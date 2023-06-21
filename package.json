@@ -1,0 +1,17 @@
+{
+  "name": "school-placements-alpha-prototype",
+  "description": "A prototype service for training providers and schools to manage their participation in ITT, view mentors and ITT partnerships",
+  "engines": {
+    "node": "18.12.1"
+  },
+  "scripts": {
+    "dev": "govuk-prototype-kit dev",
+    "serve": "govuk-prototype-kit serve",
+    "start": "govuk-prototype-kit start"
+  },
+  "dependencies": {
+    "@govuk-prototype-kit/common-templates": "1.1.1",
+    "govuk-frontend": "4.6.0",
+    "govuk-prototype-kit": "13.9.0"
+  }
+}

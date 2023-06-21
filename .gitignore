@@ -1,3 +1,13 @@
+# Prototype ignores - per-user
+.tmp/
+.env
+migrate.log
+usage-data-config.json
+
+# General ignores
+.DS_Store
+.idea
+
 # Logs
 logs
 *.log
