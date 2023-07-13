@@ -1,0 +1,29 @@
+{% extends "layouts/main.njk" %}
+
+{% set title = "Check your answers" %}
+
+{% if placement.id %}
+  {% set caption = placement.name + " (" + placement.code + ")" %}
+{% else %}
+  {% set caption = "Add placement" %}
+{% endif %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+
+    </div>
+  </div>
+
+{% endblock %}

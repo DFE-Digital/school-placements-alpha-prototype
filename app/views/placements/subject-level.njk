@@ -1,0 +1,49 @@
+{% extends "layouts/main.njk" %}
+
+{% set title = "Subject level" %}
+
+{% if placement.id %}
+  {% set caption = placement.name + " (" + placement.code + ")" %}
+{% else %}
+  {% set caption = "Add placement" %}
+{% endif %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/error-summary.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+
+
+        {% if placement.id %}
+          {{ govukButton({
+            text: "Update " + (title | lower)
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        {% endif %}
+
+      </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}
