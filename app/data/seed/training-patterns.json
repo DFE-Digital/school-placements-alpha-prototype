@@ -1,0 +1,27 @@
+[
+  {
+    "id": "2ddd340d-fbfc-4dd9-93c5-17e986cdd3e0",
+    "code": "monday",
+    "name": "Monday"
+  },
+  {
+    "id": "659faf14-c132-44c6-a40b-30d26e66e784",
+    "code": "tuesday",
+    "name": "Tuesday"
+  },
+  {
+    "id": "91d274d1-b247-4568-9fad-501b0fe65c38",
+    "code": "wednesday",
+    "name": "Wednesday"
+  },
+  {
+    "id": "4da8274a-2c84-4e51-9db9-43d34c52ade2",
+    "code": "thursday",
+    "name": "Thursday"
+  },
+  {
+    "id": "a0a8b4f4-e61c-412b-9507-057c1548e37d",
+    "code": "friday",
+    "name": "Friday"
+  }
+]
