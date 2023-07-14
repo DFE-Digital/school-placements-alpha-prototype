@@ -5,6 +5,8 @@
     "node": "18.12.1"
   },
   "scripts": {
+    "generate-data": "node ./scripts/generate-data.js",
+    "postinstall": "npm run generate-data",
     "dev": "govuk-prototype-kit dev",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start"
