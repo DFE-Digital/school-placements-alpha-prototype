@@ -409,6 +409,10 @@ exports.new_placement_check_post = (req, res) => {
   placementModel.insertOne({
     placement: req.session.data.placement
   })
+
+  req.flash('success', 'Placement added')
+
+  res.redirect(`/placements`)
 }
 
 // EDIT PLACEMENT
