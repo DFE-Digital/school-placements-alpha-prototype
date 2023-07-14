@@ -22,10 +22,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% include "_includes/page-heading.njk" %}
+      {% set headingHtml %}
+        {% include "_includes/page-heading-legend.njk" %}
+      {% endset %}
 
       <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
 
+        {{ govukInput({
+          id: "class-size",
+          name: "placement[classSize]",
+          label: {
+            html: headingHtml,
+            classes: "govuk-label--l"
+          },
+          hint: {
+            text: "Enter a class size, for example ‘30’"
+          },
+          errorMessage: errors | getErrorMessage("class-size"),
+          value: placement.classSize,
+          classes: "govuk-input--width-2"
+        }) }}
 
         {% if placement.id %}
           {{ govukButton({

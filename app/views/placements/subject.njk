@@ -22,10 +22,28 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% include "_includes/page-heading.njk" %}
+      {% set headingHtml %}
+        {% include "_includes/page-heading-legend.njk" %}
+      {% endset %}
 
       <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
 
+        {{ govukCheckboxes({
+          idPrefix: "subject",
+          name: "placement[subject][]",
+          fieldset: {
+            legend: {
+              html: headingHtml,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply"
+          },
+          errorMessage: errors | getErrorMessage("subject"),
+          items: subjectOptions
+        }) }}
 
         {% if placement.id %}
           {{ govukButton({
