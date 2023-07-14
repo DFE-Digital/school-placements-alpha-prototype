@@ -58,6 +58,7 @@ router.get('/placements/new/training-pattern', checkIsAuthenticated, placementCo
 router.post('/placements/new/training-pattern', checkIsAuthenticated, placementController.new_placement_training_pattern_post)
 
 router.get('/placements/new/check-your-answers', checkIsAuthenticated, placementController.new_placement_check_get)
+router.post('/placements/new/check-your-answers', checkIsAuthenticated, placementController.new_placement_check_post)
 
 
 router.get('/placements/:placementId/subject', checkIsAuthenticated, placementController.edit_placement_subject_get)
