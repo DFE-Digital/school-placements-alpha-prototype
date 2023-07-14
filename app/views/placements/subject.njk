@@ -29,8 +29,8 @@
       <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
 
         {{ govukCheckboxes({
-          idPrefix: "subject",
-          name: "placement[subject][]",
+          idPrefix: "subjects",
+          name: "placement[subjects][]",
           fieldset: {
             legend: {
               html: headingHtml,
@@ -41,7 +41,7 @@
           hint: {
             text: "Select all that apply"
           },
-          errorMessage: errors | getErrorMessage("subject"),
+          errorMessage: errors | getErrorMessage("subjects"),
           items: subjectOptions
         }) }}
 

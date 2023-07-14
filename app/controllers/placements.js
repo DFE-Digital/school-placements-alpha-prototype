@@ -117,8 +117,8 @@ exports.new_placement_subject_level_post = (req, res) => {
 
 exports.new_placement_subject_get = (req, res) => {
   let selectedSubject
-  if (req.session.data.placement?.subject) {
-    selectedSubject = req.session.data.placement.subject
+  if (req.session.data.placement?.subjects) {
+    selectedSubject = req.session.data.placement.subjects
   }
 
   const subjectOptions = subjectHelper.getSubjectOptions(
@@ -147,8 +147,8 @@ exports.new_placement_subject_post = (req, res) => {
   const errors = []
 
   let selectedSubject
-  if (req.session.data.placement?.subject) {
-    selectedSubject = req.session.data.placement.subject
+  if (req.session.data.placement?.subjects) {
+    selectedSubject = req.session.data.placement.subjects
   }
 
   const subjectOptions = subjectHelper.getSubjectOptions(
@@ -163,10 +163,10 @@ exports.new_placement_subject_post = (req, res) => {
     back += '/placements/new/check-your-answers'
   }
 
-  if (!req.session.data.placement.subject.length) {
+  if (!req.session.data.placement.subjects.length) {
     const error = {}
-    error.fieldName = 'subject'
-    error.href = '#subject'
+    error.fieldName = 'subjects'
+    error.href = '#subjects'
     error.text = 'Select a subject'
     errors.push(error)
   }
