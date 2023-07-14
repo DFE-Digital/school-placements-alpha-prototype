@@ -14,7 +14,7 @@ exports.list_placements_get = (req, res) => {
     placements,
     actions: {
       new: `/placements/new/subject-level`,
-      view: `/placements/`
+      view: `/placements`
     }
   })
 }
