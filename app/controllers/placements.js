@@ -8,25 +8,28 @@ exports.list_placements_get = (req, res) => {
   // clean out placement data
   delete req.session.data.placement
 
-  const placements = placementModel.findMany({})
+  const placements = placementModel.findMany({ organisationId: req.params.organisationId })
 
   res.render('../views/placements/list', {
     placements,
     actions: {
-      new: `/placements/new/subject-level`,
-      view: `/placements`
+      new: `/organisations/${req.params.organisationId}/placements/new/subject-level`,
+      view: `/organisations/${req.params.organisationId}/placements`
     }
   })
 }
 
 exports.show_placement_get = (req, res) => {
-  const placement = placementModel.findOne({ placementId: req.params.placementId })
+  const placement = placementModel.findOne({
+    organisationId: req.params.organisationId,
+    placementId: req.params.placementId
+  })
 
   res.render('../views/placements/show', {
     placement,
     actions: {
-      back: `/placements`,
-      change: `/placements/${req.params.placementId}`
+      back: `/organisations/${req.params.organisationId}/placements`,
+      change: `/organisations/${req.params.organisationId}/placements/${req.params.placementId}`
     }
   })
 }
@@ -49,8 +52,8 @@ exports.new_placement_subject_level_get = (req, res) => {
 
   const subjectLevelOptions = subjectHelper.getSubjectLevelOptions(selectedSubjectLevel)
 
-  let save = `/placements/new/subject-level`
-  let back = `/placements`
+  let save = `/organisations/${req.params.organisationId}/placements/new/subject-level`
+  let back = `/organisations/${req.params.organisationId}/placements`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -61,7 +64,7 @@ exports.new_placement_subject_level_get = (req, res) => {
     actions: {
       save,
       back,
-      cancel: `/placements`
+      cancel: `/organisations/${req.params.organisationId}/placements`
     }
   })
 }
@@ -80,8 +83,8 @@ exports.new_placement_subject_level_post = (req, res) => {
 
   const subjectLevelOptions = subjectHelper.getSubjectLevelOptions(selectedSubjectLevel)
 
-  let save = `/placements/new/subject-level`
-  let back = `/placements`
+  let save = `/organisations/${req.params.organisationId}/placements/new/subject-level`
+  let back = `/organisations/${req.params.organisationId}/placements`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -102,15 +105,15 @@ exports.new_placement_subject_level_post = (req, res) => {
       actions: {
         save,
         back,
-        cancel: `/placements`
+        cancel: `/organisations/${req.params.organisationId}/placements`
       },
       errors
     })
   } else {
     if (req.query.referrer === 'check') {
-      res.redirect(`/placements/new/check-your-answers`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
     } else {
-      res.redirect(`/placements/new/subject`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/subject`)
     }
   }
 }
@@ -126,8 +129,8 @@ exports.new_placement_subject_get = (req, res) => {
     selectedSubject
   )
 
-  let save = `/placements/new/subject`
-  let back = `/placements/new/subject-level`
+  let save = `/organisations/${req.params.organisationId}/placements/new/subject`
+  let back = `/organisations/${req.params.organisationId}/placements/new/subject-level`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -138,7 +141,7 @@ exports.new_placement_subject_get = (req, res) => {
     actions: {
       save,
       back,
-      cancel: `/placements`
+      cancel: `/organisations/${req.params.organisationId}/placements`
     }
   })
 }
@@ -156,8 +159,8 @@ exports.new_placement_subject_post = (req, res) => {
     selectedSubject
   )
 
-  let save = `/placements/new/subject`
-  let back = `/placements/new/subject-level`
+  let save = `/organisations/${req.params.organisationId}/placements/new/subject`
+  let back = `/organisations/${req.params.organisationId}/placements/new/subject-level`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -178,15 +181,15 @@ exports.new_placement_subject_post = (req, res) => {
       actions: {
         save,
         back,
-        cancel: `/placements`
+        cancel: `/organisations/${req.params.organisationId}/placements`
       },
       errors
     })
   } else {
     if (req.query.referrer === 'check') {
-      res.redirect(`/placements/new/check-your-answers`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
     } else {
-      res.redirect(`/placements/new/age-range`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/age-range`)
     }
   }
 }
@@ -202,8 +205,8 @@ exports.new_placement_age_range_get = (req, res) => {
     selectedAgeRange
   )
 
-  let save = `/placements/new/age-range`
-  let back = `/placements/new/subject`
+  let save = `/organisations/${req.params.organisationId}/placements/new/age-range`
+  let back = `/organisations/${req.params.organisationId}/placements/new/subject`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -214,7 +217,7 @@ exports.new_placement_age_range_get = (req, res) => {
     actions: {
       save,
       back,
-      cancel: `/placements`
+      cancel: `/organisations/${req.params.organisationId}/placements`
     }
   })
 }
@@ -232,8 +235,8 @@ exports.new_placement_age_range_post = (req, res) => {
     selectedAgeRange
   )
 
-  let save = `/placements/new/age-range`
-  let back = `/placements/new/subject`
+  let save = `/organisations/${req.params.organisationId}/placements/new/age-range`
+  let back = `/organisations/${req.params.organisationId}/placements/new/subject`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -254,22 +257,22 @@ exports.new_placement_age_range_post = (req, res) => {
       actions: {
         save,
         back,
-        cancel: `/placements`
+        cancel: `/organisations/${req.params.organisationId}/placements`
       },
       errors
     })
   } else {
     if (req.query.referrer === 'check') {
-      res.redirect(`/placements/new/check-your-answers`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
     } else {
-      res.redirect(`/placements/new/class-size`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/class-size`)
     }
   }
 }
 
 exports.new_placement_class_size_get = (req, res) => {
-  let save = `/placements/new/class-size`
-  let back = `/placements/new/age-range`
+  let save = `/organisations/${req.params.organisationId}/placements/new/class-size`
+  let back = `/organisations/${req.params.organisationId}/placements/new/age-range`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -280,7 +283,7 @@ exports.new_placement_class_size_get = (req, res) => {
     actions: {
       save,
       back,
-      cancel: `/placements`
+      cancel: `/organisations/${req.params.organisationId}/placements`
     }
   })
 }
@@ -288,8 +291,8 @@ exports.new_placement_class_size_get = (req, res) => {
 exports.new_placement_class_size_post = (req, res) => {
   const errors = []
 
-  let save = `/placements/new/class-size`
-  let back = `/placements/new/age-range`
+  let save = `/organisations/${req.params.organisationId}/placements/new/class-size`
+  let back = `/organisations/${req.params.organisationId}/placements/new/age-range`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -309,15 +312,15 @@ exports.new_placement_class_size_post = (req, res) => {
       actions: {
         save,
         back,
-        cancel: `/placements`
+        cancel: `/organisations/${req.params.organisationId}/placements`
       },
       errors
     })
   } else {
     if (req.query.referrer === 'check') {
-      res.redirect(`/placements/new/check-your-answers`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
     } else {
-      res.redirect(`/placements/new/training-pattern`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/training-pattern`)
     }
   }
 }
@@ -332,8 +335,8 @@ exports.new_placement_training_pattern_get = (req, res) => {
     selectedTrainingPattern
   )
 
-  let save = `/placements/new/training-pattern`
-  let back = `/placements/new/class-size`
+  let save = `/organisations/${req.params.organisationId}/placements/new/training-pattern`
+  let back = `/organisations/${req.params.organisationId}/placements/new/class-size`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -344,7 +347,7 @@ exports.new_placement_training_pattern_get = (req, res) => {
     actions: {
       save,
       back,
-      cancel: `/placements`
+      cancel: `/organisations/${req.params.organisationId}/placements`
     }
   })
 }
@@ -361,8 +364,8 @@ exports.new_placement_training_pattern_post = (req, res) => {
     selectedTrainingPattern
   )
 
-  let save = `/placements/new/training-pattern`
-  let back = `/placements/new/class-size`
+  let save = `/organisations/${req.params.organisationId}/placements/new/training-pattern`
+  let back = `/organisations/${req.params.organisationId}/placements/new/class-size`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -383,12 +386,12 @@ exports.new_placement_training_pattern_post = (req, res) => {
       actions: {
         save,
         back,
-        cancel: `/placements`
+        cancel: `/organisations/${req.params.organisationId}/placements`
       },
       errors
     })
   } else {
-    res.redirect(`/placements/new/check-your-answers`)
+    res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
   }
 
 }
@@ -397,22 +400,23 @@ exports.new_placement_check_get = (req, res) => {
   res.render('../views/placements/check-your-answers', {
     placement: req.session.data.placement,
     actions: {
-      save: `/placements/new/check-your-answers`,
-      back: `/placements/new/training-pattern`,
-      cancel: `/placements`,
-      change: `/placements/new`
+      save: `/organisations/${req.params.organisationId}/placements/new/check-your-answers`,
+      back: `/organisations/${req.params.organisationId}/placements/new/training-pattern`,
+      cancel: `/organisations/${req.params.organisationId}/placements`,
+      change: `/organisations/${req.params.organisationId}/placements/new`
     }
   })
 }
 
 exports.new_placement_check_post = (req, res) => {
   placementModel.insertOne({
+    organisationId: req.params.organisationId,
     placement: req.session.data.placement
   })
 
   req.flash('success', 'Placement added')
 
-  res.redirect(`/placements`)
+  res.redirect(`/organisations/${req.params.organisationId}/placements`)
 }
 
 // EDIT PLACEMENT

@@ -6,8 +6,8 @@ const { v4: uuid } = require('uuid')
 exports.findMany = (params) => {
   let placements = []
 
-  // if (params.organisationId) {
-    const directoryPath = path.join(__dirname, '../data/placements/') //+ params.organisationId
+  if (params.organisationId) {
+    const directoryPath = path.join(__dirname, '../data/placements/' + params.organisationId)
 
     // to prevent errors when an organisation doesn't have any placements
     // create an empty placement directory for the organisation
@@ -25,7 +25,7 @@ exports.findMany = (params) => {
       const data = JSON.parse(raw)
       placements.push(data)
     })
-  // }
+  }
 
   return placements
 }
@@ -33,8 +33,8 @@ exports.findMany = (params) => {
 exports.findOne = (params) => {
   let placement = {}
 
-  if (params.placementId) {
-    const directoryPath = path.join(__dirname, '../data/placements/') //+ params.organisationId
+  if (params.organisationId && params.placementId) {
+    const directoryPath = path.join(__dirname, '../data/placements/' + params.organisationId)
 
     const filePath = directoryPath + '/' + params.placementId + '.json'
 
@@ -73,7 +73,7 @@ exports.insertOne = (params) => {
 
     placement.createdAt = new Date()
 
-    const directoryPath = path.join(__dirname, '../data/placements/') // + params.organisationId
+    const directoryPath = path.join(__dirname, '../data/placements/' + params.organisationId)
 
     const filePath = directoryPath + '/' + placement.id + '.json'
 

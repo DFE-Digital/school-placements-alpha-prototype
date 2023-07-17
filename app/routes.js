@@ -46,38 +46,38 @@ router.all('*', (req, res, next) => {
 /// PLACEMENT ROUTES
 /// ------------------------------------------------------------------------ ///
 
-router.get('/placements/new/subject-level', checkIsAuthenticated, placementController.new_placement_subject_level_get)
-router.post('/placements/new/subject-level', checkIsAuthenticated, placementController.new_placement_subject_level_post)
+router.get('/organisations/:organisationId/placements/new/subject-level', checkIsAuthenticated, placementController.new_placement_subject_level_get)
+router.post('/organisations/:organisationId/placements/new/subject-level', checkIsAuthenticated, placementController.new_placement_subject_level_post)
 
-router.get('/placements/new/subject', checkIsAuthenticated, placementController.new_placement_subject_get)
-router.post('/placements/new/subject', checkIsAuthenticated, placementController.new_placement_subject_post)
+router.get('/organisations/:organisationId/placements/new/subject', checkIsAuthenticated, placementController.new_placement_subject_get)
+router.post('/organisations/:organisationId/placements/new/subject', checkIsAuthenticated, placementController.new_placement_subject_post)
 
-router.get('/placements/new/age-range', checkIsAuthenticated, placementController.new_placement_age_range_get)
-router.post('/placements/new/age-range', checkIsAuthenticated, placementController.new_placement_age_range_post)
+router.get('/organisations/:organisationId/placements/new/age-range', checkIsAuthenticated, placementController.new_placement_age_range_get)
+router.post('/organisations/:organisationId/placements/new/age-range', checkIsAuthenticated, placementController.new_placement_age_range_post)
 
-router.get('/placements/new/class-size', checkIsAuthenticated, placementController.new_placement_class_size_get)
-router.post('/placements/new/class-size', checkIsAuthenticated, placementController.new_placement_class_size_post)
+router.get('/organisations/:organisationId/placements/new/class-size', checkIsAuthenticated, placementController.new_placement_class_size_get)
+router.post('/organisations/:organisationId/placements/new/class-size', checkIsAuthenticated, placementController.new_placement_class_size_post)
 
-router.get('/placements/new/training-pattern', checkIsAuthenticated, placementController.new_placement_training_pattern_get)
-router.post('/placements/new/training-pattern', checkIsAuthenticated, placementController.new_placement_training_pattern_post)
+router.get('/organisations/:organisationId/placements/new/training-pattern', checkIsAuthenticated, placementController.new_placement_training_pattern_get)
+router.post('/organisations/:organisationId/placements/new/training-pattern', checkIsAuthenticated, placementController.new_placement_training_pattern_post)
 
-router.get('/placements/new/check-your-answers', checkIsAuthenticated, placementController.new_placement_check_get)
-router.post('/placements/new/check-your-answers', checkIsAuthenticated, placementController.new_placement_check_post)
-
-
-router.get('/placements/:placementId/subject', checkIsAuthenticated, placementController.edit_placement_subject_get)
-router.post('/placements/:placementId/subject', checkIsAuthenticated, placementController.edit_placement_subject_post)
-
-router.get('/placements/:placementId/age-range', checkIsAuthenticated, placementController.edit_placement_age_range_get)
-router.post('/placements/:placementId/age-range', checkIsAuthenticated, placementController.edit_placement_age_range_post)
-
-router.get('/placements/:placementId/class-size', checkIsAuthenticated, placementController.edit_placement_class_size_get)
-router.post('/placements/:placementId/class-size', checkIsAuthenticated, placementController.edit_placement_class_size_post)
-
-router.get('/placements/:placementId/training-pattern', checkIsAuthenticated, placementController.edit_placement_training_pattern_get)
-router.post('/placements/:placementId/training-pattern', checkIsAuthenticated, placementController.edit_placement_training_pattern_post)
+router.get('/organisations/:organisationId/placements/new/check-your-answers', checkIsAuthenticated, placementController.new_placement_check_get)
+router.post('/organisations/:organisationId/placements/new/check-your-answers', checkIsAuthenticated, placementController.new_placement_check_post)
 
 
-router.get('/placements/:placementId', checkIsAuthenticated, placementController.show_placement_get)
+router.get('/organisations/:organisationId/placements/:placementId/subject', checkIsAuthenticated, placementController.edit_placement_subject_get)
+router.post('/organisations/:organisationId/placements/:placementId/subject', checkIsAuthenticated, placementController.edit_placement_subject_post)
 
-router.get('/placements', checkIsAuthenticated, placementController.list_placements_get)
+router.get('/organisations/:organisationId/placements/:placementId/age-range', checkIsAuthenticated, placementController.edit_placement_age_range_get)
+router.post('/organisations/:organisationId/placements/:placementId/age-range', checkIsAuthenticated, placementController.edit_placement_age_range_post)
+
+router.get('/organisations/:organisationId/placements/:placementId/class-size', checkIsAuthenticated, placementController.edit_placement_class_size_get)
+router.post('/organisations/:organisationId/placements/:placementId/class-size', checkIsAuthenticated, placementController.edit_placement_class_size_post)
+
+router.get('/organisations/:organisationId/placements/:placementId/training-pattern', checkIsAuthenticated, placementController.edit_placement_training_pattern_get)
+router.post('/organisations/:organisationId/placements/:placementId/training-pattern', checkIsAuthenticated, placementController.edit_placement_training_pattern_post)
+
+
+router.get('/organisations/:organisationId/placements/:placementId', checkIsAuthenticated, placementController.show_placement_get)
+
+router.get('/organisations/:organisationId/placements', checkIsAuthenticated, placementController.list_placements_get)
