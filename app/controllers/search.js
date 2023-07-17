@@ -102,7 +102,7 @@ exports.primary_subjects_post = (req, res) => {
     const error = {}
     error.fieldName = "subject"
     error.href = "#subject"
-    error.text = "Select a least one primary subject"
+    error.text = "Select a least one primary subject specialism"
     errors.push(error)
   }
 
