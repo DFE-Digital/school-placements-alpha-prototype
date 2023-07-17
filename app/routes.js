@@ -13,6 +13,8 @@ router.use(flash())
 // Controller modules
 const organisationController = require('./controllers/organisations')
 const placementController = require('./controllers/placements')
+const resultsController = require('./controllers/results')
+const searchController = require('./controllers/search')
 
 
 // Add your routes here
@@ -86,9 +88,25 @@ router.get('/organisations/:organisationId/placements/:placementId', checkIsAuth
 router.get('/organisations/:organisationId/placements', checkIsAuthenticated, placementController.list_placements_get)
 
 
-
 /// ------------------------------------------------------------------------ ///
-/// PLACEMENT ROUTES
+/// ORGANISATION ROUTES
 /// ------------------------------------------------------------------------ ///
 
 router.get('/organisations/:organisationId', checkIsAuthenticated, organisationController.show_organisation_get)
+
+
+/// ------------------------------------------------------------------------ ///
+/// SEARCH ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/search', searchController.search_get)
+router.post('/search', searchController.search_post)
+
+router.get('/age-groups', searchController.age_groups_get)
+router.post('/age-groups', searchController.age_groups_post)
+
+router.get('/primary-subjects', searchController.primary_subjects_get)
+router.post('/primary-subjects', searchController.primary_subjects_post)
+
+router.get('/secondary-subjects', searchController.secondary_subjects_get)
+router.post('/secondary-subjects', searchController.secondary_subjects_post)
