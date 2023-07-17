@@ -1,4 +1,6 @@
-{% extends "layouts/main.njk" %}
+{% extends "layouts/publish.njk" %}
+
+{% set primaryNavId = "placements" %}
 
 {% set title = "School placements" %}
 
@@ -58,7 +60,6 @@
       {% else %}
         <p class="govuk-body">There are no placements for {{ organisation.name if organisation.name else "your organisation" }}.</p>
       {% endif %}
-
 
     </div>
   </div>

@@ -22,7 +22,7 @@ const checkIsAuthenticated = (req, res, next) => {
   //   // the signed in user
   //   res.locals.passport = req.session.passport
   //   // the base URL for navigation
-  //   res.locals.baseUrl = `/organisations/${req.params.organisationId}/cycles/${req.params.cycleId}`
+  res.locals.baseUrl = `/organisations/${req.params.organisationId}`
   //   res.locals.cycleId = req.params.cycleId
     next()
   // } else {
