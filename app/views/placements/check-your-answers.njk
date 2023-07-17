@@ -1,0 +1,152 @@
+{% extends "layouts/publish.njk" %}
+
+{% set primaryNavId = "placements" %}
+
+{% set title = "Check your answers" %}
+
+{% if placement.id %}
+  {% set caption = placement.name + " (" + placement.code + ")" %}
+{% else %}
+  {% set caption = "Add placement" %}
+{% endif %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+
+        {% set subjectHtml %}
+          <ul class="govuk-list">
+            {% for subject in placement.subjects %}
+              <li>
+                {{ subject | getSubjectLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
+        {% set trainingPatternHtml %}
+          <ul class="govuk-list">
+            {% for pattern in placement.trainingPattern %}
+              <li>
+                {{ pattern | capitalize }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Subject level"
+              },
+              value: {
+                text: placement.subjectLevel | getSubjectLevelLabel
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/subject-level?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "subject level"
+                  }
+                ]
+              } if 1==0
+            },
+            {
+              key: {
+                text: "Subject"
+              },
+              value: {
+                html: subjectHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/subject?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "subject"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Age range"
+              },
+              value: {
+                text: placement.ageRange | getAgeRangeLabel
+              },
+              actions: {
+                items: [
+                  {
+                    href:actions.change + "/age-range?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "age range"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Class size"
+              },
+              value: {
+                text: placement.classSize
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/class-size?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "class size"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Training pattern"
+              },
+              value: {
+                html: trainingPatternHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/training-pattern?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "training pattern"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Add placement"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

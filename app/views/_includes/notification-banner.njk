@@ -1,0 +1,5 @@
+{{ govukNotificationBanner({
+  type: "success",
+  html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+  icon: false
+}) if flash | length }}

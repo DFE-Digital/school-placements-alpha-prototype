@@ -1,0 +1,173 @@
+{% extends "layouts/publish.njk" %}
+
+{% set primaryNavId = "settings" %}
+
+{% set title = "Organisation details" %}
+
+{% block beforeContent %}
+{# {{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }} #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Organisation name"
+            },
+            value: {
+              text: organisation.name
+            }
+          },
+          {
+            key: {
+              text: "UK provider reference number (UKPRN)"
+            },
+            value: {
+              text: organisation.ukprn if organisation.ukprn else "Not entered",
+              classes: "govuk-hint" if not organisation.ukprn
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/edit",
+                  text: "Change",
+                  visuallyHiddenText: "UK provider reference number (UKPRN)"
+                }
+              ]
+            } if 1==0
+          },
+          {
+            key: {
+              text: "Unique reference number (URN)"
+            },
+            value: {
+              text: organisation.urn if organisation.urn else "Not entered",
+              classes: "govuk-hint" if not organisation.urn
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/edit",
+                  text: "Change",
+                  visuallyHiddenText: "unique reference number (URN)"
+                }
+              ]
+            } if 1==0
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">Contact details</h2>
+
+      {% set addressHtml %}
+        {% if organisation.address.addressLine1.length %}
+          {{ organisation.address.addressLine1 }}<br>
+        {% endif %}
+        {% if organisation.address.addressLine2.length %}
+          {{ organisation.address.addressLine2 }}<br>
+        {% endif %}
+        {% if organisation.address.addressLine3.length %}
+          {{ organisation.address.addressLine3 }}<br>
+        {% endif %}
+        {% if organisation.address.town.length %}
+          {{ organisation.address.town }}<br>
+        {% endif %}
+        {% if organisation.address.county.length %}
+          {{ organisation.address.county }}<br>
+        {% endif %}
+        {% if organisation.address.postcode.length %}
+          {{ organisation.address.postcode }}<br>
+        {% endif %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: (organisation.contact.email | urlize | safe) if organisation.contact.email.length else "Not entered",
+              classes: "govuk-hint" if not organisation.contact.email.length
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/contact-details",
+                  text: "Change",
+                  visuallyHiddenText: "email address"
+                }
+              ]
+            } if 1==0
+          },
+          {
+            key: {
+              text: "Telephone number"
+            },
+            value: {
+              text: organisation.contact.telephone if organisation.contact.telephone.length else "Not entered",
+              classes: "govuk-hint" if not organisation.contact.telephone.length
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/contact-details",
+                  text: "Change",
+                  visuallyHiddenText: "telephone number"
+                }
+              ]
+            } if 1==0
+          },
+          {
+            key: {
+              text: "Website"
+            },
+            value: {
+              text: (organisation.contact.website | urlize | safe) if organisation.contact.website.length else "Not entered",
+              classes: "govuk-hint" if not organisation.contact.website.length
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/contact-details",
+                  text: "Change",
+                  visuallyHiddenText: "website"
+                }
+              ]
+            } if 1==0
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: ('<p class="govuk-body">' + addressHtml + '</p>') if addressHtml | trim | length else "Not entered",
+              classes: "govuk-hint" if not addressHtml | trim | length
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/contact-details",
+                  text: "Change",
+                  visuallyHiddenText: "website"
+                }
+              ]
+            } if 1==0
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

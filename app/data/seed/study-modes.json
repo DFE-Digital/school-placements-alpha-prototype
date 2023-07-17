@@ -1,0 +1,17 @@
+[
+  {
+    "id": "a989bedb-7bb7-4216-af3b-665fc7c95890",
+    "code": "F",
+    "name": "Full time"
+  },
+  {
+    "id": "31a0aa3c-dec2-442f-9ace-57f170c6fc97",
+    "code": "P",
+    "name": "Part time"
+  },
+  {
+    "id": "aae72058-fcda-4425-b397-33dcd0f3ced6",
+    "code": "B",
+    "name": "Full time or part time"
+  }
+]

@@ -1,6 +1,16 @@
 //
 // For guidance on how to add CSS and SCSS see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
-// 
+//
 
 // Add extra styles here
+
+// Import local component styles
+@import "app/views/_components/all.scss";
+
+// Styles that aren't in the GOV.UK Frontend or local components
+@import "core/header";
+@import "core/links";
+
+// Utilities
+@import "utilities/overrides";

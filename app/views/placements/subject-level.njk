@@ -1,0 +1,66 @@
+{% extends "layouts/publish.njk" %}
+
+{% set primaryNavId = "placements" %}
+
+{% set title = "Subject level" %}
+
+{% if placement.id %}
+  {% set caption = placement.name + " (" + placement.code + ")" %}
+{% else %}
+  {% set caption = "Add placement" %}
+{% endif %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/error-summary.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set headingHtml %}
+        {% include "_includes/page-heading-legend.njk" %}
+      {% endset %}
+
+      <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "subject-level",
+          name: "placement[subjectLevel]",
+          fieldset: {
+            legend: {
+              html: headingHtml,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          errorMessage: errors | getErrorMessage("subject-level"),
+          items: subjectLevelOptions
+        }) }}
+
+        {% if placement.id %}
+          {{ govukButton({
+            text: "Update " + (title | lower)
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        {% endif %}
+
+      </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

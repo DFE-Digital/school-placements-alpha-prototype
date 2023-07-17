@@ -1,0 +1,44 @@
+[
+  {
+    "id": "d2946e56-092e-42b0-9cec-80d5905bcfaf",
+    "code": "11_to_16",
+    "name": "11 to 16",
+    "level": "secondary"
+  },
+  {
+    "id": "ddff8c9d-8f24-4146-8300-043e8fc7000f",
+    "code": "11_to_18",
+    "name": "11 to 18",
+    "level": "secondary"
+  },
+  {
+    "id": "561ef3e3-70e9-4fa9-b933-317455916d75",
+    "code": "14_to_19",
+    "name": "14 to 19",
+    "level": "secondary"
+  },
+  {
+    "id": "56bf4890-c14a-4218-a012-26b1aa350afb",
+    "code": "3_to_7",
+    "name": "3 to 7",
+    "level": "primary"
+  },
+  {
+    "id": "56c1f6dc-ef66-45f1-84ee-909299b54de0",
+    "code": "5_to_11",
+    "name": "5 to 11",
+    "level": "primary"
+  },
+  {
+    "id": "7a3b4168-844c-4255-9ddc-8c68ae2d219e",
+    "code": "7_to_11",
+    "name": "7 to 11",
+    "level": "primary"
+  },
+  {
+    "id": "a8577784-18be-4bdf-ab73-3184d7a4069f",
+    "code": "7_to_14",
+    "name": "7 to 14 - middle years",
+    "level": "primary"
+  }
+]
