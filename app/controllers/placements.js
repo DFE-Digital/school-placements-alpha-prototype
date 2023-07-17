@@ -29,17 +29,55 @@ exports.show_placement_get = (req, res) => {
     placement,
     actions: {
       back: `/organisations/${req.params.organisationId}/placements`,
-      change: `/organisations/${req.params.organisationId}/placements/${req.params.placementId}`
+      change: `/organisations/${req.params.organisationId}/placements/${req.params.placementId}`,
+      delete: `/organisations/${req.params.organisationId}/placements/${req.params.placementId}/delete`
     }
   })
 }
 
 exports.delete_placement_get = (req, res) => {
-  res.send('Not implemented')
+  const placement = placementModel.findOne({
+    organisationId: req.params.organisationId,
+    placementId: req.params.placementId
+  })
+
+  res.render('../views/placements/delete', {
+    placement,
+    actions: {
+      save: `/organisations/${req.params.organisationId}/placements/${req.params.placementId}/delete`,
+      back: `/organisations/${req.params.organisationId}/placements/${req.params.placementId}`,
+      cancel: `/organisations/${req.params.organisationId}/placements/${req.params.placementId}`
+    }
+  })
 }
 
 exports.delete_placement_post = (req, res) => {
-  res.send('Not implemented')
+  const placement = placementModel.findOne({
+    organisationId: req.params.organisationId,
+    placementId: req.params.placementId
+  })
+
+  const errors = []
+
+  if (errors.length) {
+    res.render('../views/placements/delete', {
+      placement,
+      actions: {
+        save: `/organisations/${req.params.organisationId}/placements/${req.params.placementId}/delete`,
+        back: `/organisations/${req.params.organisationId}/placements/${req.params.placementId}`,
+        cancel: `/organisations/${req.params.organisationId}/placements/${req.params.placementId}`
+      },
+      errors
+    })
+  } else {
+    placementModel.deleteOne({
+      organisationId: req.params.organisationId,
+      placementId: req.params.placementId
+    })
+
+    req.flash('success', 'Placement deleted')
+    res.redirect(`/organisations/${req.params.organisationId}/placements`)
+  }
 }
 
 // NEW PLACEMENT

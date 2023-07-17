@@ -1,0 +1,40 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "placement" %}
+
+{% set title = "Are you sure you want to delete this placement?" %}
+{# {% set caption = placement.subjects %} #}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+
+        <p class="govuk-body">Deleting a placement is permanent – you cannot undo it.</p>
+
+        {{ govukButton({
+          text: "Delete placement",
+          classes: "govuk-button--warning"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

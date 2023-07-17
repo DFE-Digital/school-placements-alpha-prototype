@@ -92,5 +92,10 @@ exports.updateOne = (params) => {
 }
 
 exports.deleteOne = (params) => {
+  if (params.organisationId && params.placementId) {
+    const directoryPath = path.join(__dirname, '../data/placements/' + params.organisationId)
 
+    const filePath = directoryPath + '/' + params.placementId + '.json'
+    fs.unlinkSync(filePath)
+  }
 }
