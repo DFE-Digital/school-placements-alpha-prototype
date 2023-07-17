@@ -11,6 +11,7 @@ const flash = require('connect-flash')
 router.use(flash())
 
 // Controller modules
+const organisationController = require('./controllers/organisations')
 const placementController = require('./controllers/placements')
 
 
@@ -83,3 +84,11 @@ router.post('/organisations/:organisationId/placements/:placementId/delete', che
 router.get('/organisations/:organisationId/placements/:placementId', checkIsAuthenticated, placementController.show_placement_get)
 
 router.get('/organisations/:organisationId/placements', checkIsAuthenticated, placementController.list_placements_get)
+
+
+
+/// ------------------------------------------------------------------------ ///
+/// PLACEMENT ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/organisations/:organisationId', checkIsAuthenticated, organisationController.show_organisation_get)
