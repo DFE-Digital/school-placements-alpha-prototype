@@ -1,0 +1,52 @@
+{% extends "layouts/find.njk" %}
+
+{% set title = "Primary subject specialisms" %}
+
+{% block pageTitle %}
+{{ "Error: " if errors }}{{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/age-groups"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/error-summary.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set headingHtml %}
+        {% include "_includes/page-heading-legend.njk" %}
+      {% endset %}
+
+      <form action="/primary-subjects" method="post" accept-charset="utf-8" novalidate>
+
+        {{ govukCheckboxes({
+          idPrefix: "subject",
+          name: "filter[subject]",
+          fieldset: {
+            legend: {
+              html: headingHtml,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply"
+          },
+          errorMessage: errors | getErrorMessage("subject"),
+          items: subjectOptions
+        }) }}
+
+        {{ govukButton({
+          text: "Find placements"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
