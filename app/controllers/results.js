@@ -56,7 +56,7 @@ exports.list = async (req, res) => {
 
     if (as?.length) {
       selectedFilters.categories.push({
-        heading: { text: 'A' },
+        heading: { text: 'Filter A' },
         items: as.map((a) => {
           return {
             text: utilsHelper.getFilterALabel(a),
@@ -68,7 +68,7 @@ exports.list = async (req, res) => {
 
     if (bs?.length) {
       selectedFilters.categories.push({
-        heading: { text: 'B' },
+        heading: { text: 'Filter B' },
         items: bs.map((b) => {
           return {
             text: utilsHelper.getFilterBLabel(b),
@@ -80,7 +80,7 @@ exports.list = async (req, res) => {
 
     if (cs?.length) {
       selectedFilters.categories.push({
-        heading: { text: 'C' },
+        heading: { text: 'Filter C' },
         items: cs.map((c) => {
           return {
             text: utilsHelper.getFilterCLabel(c),
