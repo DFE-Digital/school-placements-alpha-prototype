@@ -110,3 +110,17 @@ router.post('/primary-subjects', searchController.primary_subjects_post)
 
 router.get('/secondary-subjects', searchController.secondary_subjects_get)
 router.post('/secondary-subjects', searchController.secondary_subjects_post)
+
+/// ------------------------------------------------------------------------ ///
+/// RESULTS ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/results', resultsController.list)
+
+router.get('/results/remove-keyword-search', resultsController.removeKeywordSearch)
+
+router.get('/results/remove-a-filter/:a', resultsController.removeFilterA)
+router.get('/results/remove-b-filter/:b', resultsController.removeFilterB)
+router.get('/results/remove-c-filter/:c', resultsController.removeFilterC)
+
+router.get('/results/remove-all-filters', resultsController.removeAllFilters)
