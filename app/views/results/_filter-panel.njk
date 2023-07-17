@@ -1,200 +1,50 @@
 {% set filterOptionsHtml %}
-{% if userJourney == "browse" and data.ageGroup == "primary" %}
-  {{ govukCheckboxes({
-    idPrefix: "subject",
-    name: "filter[subject]",
-    fieldset: {
-      legend: {
-        html: 'Specialist subjects<span class="govuk-visually-hidden"> filter</span>',
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    formGroup: {
-      classes: "app-filter__group"
-    },
-    items: subjectItems,
-    classes: "govuk-checkboxes--small"
-  }) }}
-{% endif %}
 
-{% if userJourney == "browse" and data.route == "all" and data.ageGroup == "secondary" or userJourney == "filter" %}
-  {% if subjectItems.length >= subjectItemsDisplayLimit %}
-
-    {{ appCheckboxFilter({
-      idPrefix: "subject",
-      name: "filter[subject]",
-      legend: {
-        html: 'Subject<span class="govuk-visually-hidden"> filter</span>'
-      },
-      items: subjectItems,
-      selectedItems: selectedSubjects,
-      showSelectedTags: true if userJourney in ["browse","filter"] else false,
-      classes: "govuk-!-margin-bottom-7"
-    }) }}
-
-  {% else %}
-
-    {{ govukCheckboxes({
-      idPrefix: "subject",
-      name: "filter[subject]",
-      fieldset: {
-        legend: {
-          html: 'Subject<span class="govuk-visually-hidden"> filter</span>',
-          classes: "govuk-fieldset__legend--s"
-        }
-      },
-      items: subjectItems,
-      classes: "govuk-checkboxes--small"
-    }) }}
-
-  {% endif %}
-{% endif %}
-
-{% if hasSearchPhysics %}
 {{ govukCheckboxes({
-  idPrefix: "engineers-teach-physics",
-  name: "filter[campaign]",
+  idPrefix: "filter-a",
+  name: "filter[a]",
   fieldset: {
     legend: {
-      html: 'Engineers teach physics<span class="govuk-visually-hidden"> filter</span>',
+      html: 'Filter A<span class="govuk-visually-hidden"> filter</span>',
       classes: "govuk-fieldset__legend--s"
     }
   },
   formGroup: {
     classes: "app-filter__group"
   },
-  items: campaignItems,
-  classes: "govuk-checkboxes--small"
-}) }}
-{% endif %}
-
-{{ govukCheckboxes({
-  idPrefix: "special-educational-needs",
-  name: "filter[send]",
-  fieldset: {
-    legend: {
-      html: 'Special educational needs<span class="govuk-visually-hidden"> filter</span>',
-      classes: "govuk-fieldset__legend--s"
-    }
-  },
-  formGroup: {
-    classes: "app-filter__group"
-  },
-  items: sendItems,
+  items: filterAItems,
   classes: "govuk-checkboxes--small"
 }) }}
 
 {{ govukCheckboxes({
-  idPrefix: "vacancy",
-  name: "filter[vacancy]",
+  idPrefix: "filter-b",
+  name: "filter[b]",
   fieldset: {
     legend: {
-      html: 'Applications open<span class="govuk-visually-hidden"> filter</span>',
+      html: 'Filter B<span class="govuk-visually-hidden"> filter</span>',
       classes: "govuk-fieldset__legend--s"
     }
   },
   formGroup: {
     classes: "app-filter__group"
   },
-  items: vacancyItems,
-  classes: "govuk-checkboxes--small"
-}) }}
-
-{% if userJourney == "hackday" %}
-  {{ govukCheckboxes({
-    idPrefix: "provider-type",
-    name: "filter[providerType]",
-    fieldset: {
-      legend: {
-        html: 'Provider type<span class="govuk-visually-hidden"> filter</span>',
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    formGroup: {
-      classes: "app-filter__group"
-    },
-    items: providerTypeItems,
-    classes: "govuk-checkboxes--small"
-  }) }}
-{% endif %}
-
-{{ govukCheckboxes({
-  idPrefix: "study-mode",
-  name: "filter[studyMode]",
-  fieldset: {
-    legend: {
-      html: 'Full time or part time<span class="govuk-visually-hidden"> filter</span>',
-      classes: "govuk-fieldset__legend--s"
-    }
-  },
-  formGroup: {
-    classes: "app-filter__group"
-  },
-  items: studyModeItems,
+  items: filterBItems,
   classes: "govuk-checkboxes--small"
 }) }}
 
 {{ govukCheckboxes({
-  idPrefix: "qualification",
-  name: "filter[qualification]",
+  idPrefix: "filter-c",
+  name: "filter[c]",
   fieldset: {
     legend: {
-      html: 'Qualification<span class="govuk-visually-hidden"> filter</span>',
+      html: 'Filter C<span class="govuk-visually-hidden"> filter</span>',
       classes: "govuk-fieldset__legend--s"
     }
   },
   formGroup: {
     classes: "app-filter__group"
   },
-  items: qualificationItems,
-  classes: "govuk-checkboxes--small"
-}) }}
-
-{{ govukCheckboxes({
-  idPrefix: "funding-type",
-  name: "filter[fundingType]",
-  fieldset: {
-    legend: {
-      html: 'Fee or salary<span class="govuk-visually-hidden"> filter</span>',
-      classes: "govuk-fieldset__legend--s"
-    }
-  },
-  formGroup: {
-    classes: "app-filter__group"
-  },
-  items: fundingTypeItems,
-  classes: "govuk-checkboxes--small"
-}) }}
-
-{{ govukRadios({
-  idPrefix: "degree-grade",
-  name: "filter[degreeGrade]",
-  fieldset: {
-    legend: {
-      html: 'Degree grade accepted<span class="govuk-visually-hidden"> filter</span>',
-      classes: "govuk-fieldset__legend--s"
-    }
-  },
-  formGroup: {
-    classes: "app-filter__group"
-  },
-  items: degreeGradeItems,
-  classes: "govuk-radios--small"
-}) }}
-
-{{ govukCheckboxes({
-  idPrefix: "visa-sponsorship",
-  name: "filter[visaSponsorship]",
-  fieldset: {
-    legend: {
-      html: 'Visa sponsorship<span class="govuk-visually-hidden"> filter</span>',
-      classes: "govuk-fieldset__legend--s"
-    }
-  },
-  formGroup: {
-    classes: "app-filter__group"
-  },
-  items: visaSponsorshipItems,
+  items: filterCItems,
   classes: "govuk-checkboxes--small"
 }) }}
 {% endset %}
@@ -209,7 +59,7 @@
     </div>
   </div>
   <div class="app-filter__content">
-    {# {% if userJourney == "filter" and selectedFilters %}
+    {% if selectedFilters %}
       <div class="app-filter__selected">
         <div class="app-filter__selected-heading">
           <div class="app-filter__heading-title">
@@ -232,7 +82,7 @@
           </ul>
         {% endfor %}
       </div>
-    {% endif %} #}
+    {% endif %}
     <div class="app-filter__options">
       <form method="get" action="{{ actions.filters.apply }}" novalidate>
         <button class="govuk-button" data-module="govuk-button">
