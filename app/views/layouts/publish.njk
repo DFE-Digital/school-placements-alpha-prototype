@@ -39,19 +39,19 @@
   }) }}
 
   {{ appPrimaryNavigation({
-  items: [
-    {
-      href: baseUrl + "/placements",
-      text: "School placements",
-      active: primaryNavId == "placements"
-    },
-    {
-      href: baseUrl,
-      text: "Organisation details",
-      active: primaryNavId == "settings"
-    }
-  ]
-}) }}
+    items: [
+      {
+        href: baseUrl + "/placements",
+        text: "School placements",
+        active: primaryNavId == "placements"
+      },
+      {
+        href: baseUrl,
+        text: "Organisation details",
+        active: primaryNavId == "settings"
+      }
+    ]
+  }) }}
 {% endblock %}
 
 {% block footer %}
