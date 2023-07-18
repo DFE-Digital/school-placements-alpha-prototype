@@ -2,7 +2,7 @@ const paginationHelper = require('../helpers/pagination')
 const subjectHelper = require('../helpers/subjects')
 const utilsHelper = require('../helpers/utils')
 
-exports.list = async (req, res) => {
+exports.list = (req, res) => {
   // const defaults = req.session.data.defaults
 
   // if (process.env.USER_JOURNEY === 'filter' && req.session.data.filter === undefined) {
@@ -203,4 +203,12 @@ exports.removeFilterC = (req, res) => {
 exports.removeAllFilters = (req, res) => {
   delete req.session.data.filter
   res.redirect('/results')
+}
+
+exports.show = (req, res) => {
+  res.render('../views/results/show', {
+    actions: {
+
+    }
+  })
 }

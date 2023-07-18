@@ -132,3 +132,5 @@ router.get('/results/remove-b-filter/:b', resultsController.removeFilterB)
 router.get('/results/remove-c-filter/:c', resultsController.removeFilterC)
 
 router.get('/results/remove-all-filters', resultsController.removeAllFilters)
+
+router.get('/placements/:placementId', resultsController.show)
