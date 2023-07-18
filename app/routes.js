@@ -112,6 +112,14 @@ router.get('/secondary-subjects', searchController.secondary_subjects_get)
 router.post('/secondary-subjects', searchController.secondary_subjects_post)
 
 /// ------------------------------------------------------------------------ ///
+/// AUTOCOMPLETE ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/location-suggestions', searchController.location_suggestions_json)
+
+router.get('/school-suggestions', searchController.school_suggestions_json)
+
+/// ------------------------------------------------------------------------ ///
 /// RESULTS ROUTES
 /// ------------------------------------------------------------------------ ///
 

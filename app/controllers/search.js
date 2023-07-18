@@ -4,7 +4,7 @@ const subjectHelper = require('../helpers/subjects')
 exports.search_get = (req, res) => {
   delete req.session.data.filter
   delete req.session.data.location
-  delete req.session.data.provider
+  delete req.session.data.school
   delete req.session.data.q
   delete req.session.data.sortBy
 
@@ -32,11 +32,11 @@ exports.search_post = (req, res) => {
       errors.push(error)
     }
 
-    if (req.session.data.q === 'provider' && !req.session.data.provider.length) {
+    if (req.session.data.q === 'school' && !req.session.data.school.length) {
       const error = {}
-      error.fieldName = "provider"
-      error.href = "#provider"
-      error.text = "Enter a provider name or code"
+      error.fieldName = "school"
+      error.href = "#school"
+      error.text = "Enter a school name, URN or postcode"
       errors.push(error)
     }
   }
@@ -169,7 +169,7 @@ exports.location_suggestions_json = (req, res) => {
 
 }
 
-exports.provider_suggestions_json = (req, res) => {
+exports.school_suggestions_json = (req, res) => {
   req.headers['Access-Control-Allow-Origin'] = true
 
 }

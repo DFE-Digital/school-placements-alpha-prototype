@@ -167,8 +167,6 @@ exports.list = async (req, res) => {
 
 exports.removeKeywordSearch = (req, res) => {
   delete req.session.data.keywords
-  delete req.session.data.provider
-  delete req.session.data.q
   res.redirect('/results')
 }
 
