@@ -137,8 +137,8 @@ exports.list = async (req, res) => {
   // const page = req.query.page || 1
   // const perPage = 20
 
-  const results = []
-  const resultsCount = 0
+  const results = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}]
+  const resultsCount = results.length
 
   res.render('../views/results/index', {
     results,
