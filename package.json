@@ -18,6 +18,7 @@
     "govuk-frontend": "4.7.0",
     "govuk-prototype-kit": "13.10.1",
     "luxon": "^3.3.0",
+    "marked": "^5.1.1",
     "numeral": "^2.0.6",
     "uuid": "^9.0.0"
   }
