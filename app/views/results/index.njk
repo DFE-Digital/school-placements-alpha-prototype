@@ -42,7 +42,9 @@
         <ul class="app-search-results">
           {% for result in results %}
             <li class="app-search-results__item">
-              SCHOOL PLACEMENT
+              {{ appResultDetail({
+                href: "/placements/" + result.id
+              })}}
             </li>
           {% endfor %}
         </ul>
