@@ -1,6 +1,6 @@
 {% extends "layouts/find.njk" %}
 
-{% set title = "Find placements by location or by training provider" %}
+{% set title = "Find school placements by location or by training provider" %}
 
 {% block pageTitle %}
 {{ "Error: " if errors }}{{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
@@ -38,28 +38,23 @@
           </div>
         {% endset %}
 
-        {% set providerHtml %}
-          <div class="govuk-form-group {{- ' govuk-form-group--error' if (errors | getErrorMessage('provider'))}}">
+        {% set schoolHtml %}
+          <div class="govuk-form-group {{- ' govuk-form-group--error' if (errors | getErrorMessage('school'))}}">
             {{ govukInput({
-              id: "provider",
-              name: "provider",
+              id: "school",
+              name: "school",
               label: {
-                text: "Enter a provider name or code"
+                text: "Enter a school name, URN or postcode"
               },
-              value: data.provider.name,
+              value: data.school.name,
               autocomplete: "off",
               formGroup: {
                 classes: "govuk-!-margin-bottom-0"
               },
-              errorMessage: errors | getErrorMessage("provider")
+              errorMessage: errors | getErrorMessage("school")
             }) }}
-            <div id="provider-autocomplete" class="govuk-body"></div>
+            <div id="school-autocomplete" class="govuk-body"></div>
           </div>
-          {% if userJourney == "hackday" %}
-            <p class="govuk-body">
-              <a href="/providers">View all providers</a>
-            </p>
-          {% endif %}
         {% endset %}
 
         {{ govukRadios({
@@ -86,11 +81,11 @@
           }, {
             divider: "or"
           }, {
-            value: "provider",
-            text: "By university or other training provider",
-            checked: (data.q == "provider"),
+            value: "school",
+            text: "By school",
+            checked: (data.q == "school"),
             conditional: {
-              html: providerHtml
+              html: schoolHtml
             }
           }]
         }) }}
@@ -118,9 +113,9 @@
   });
 
   initAutocomplete({
-    element: "provider-autocomplete",
-    input: "provider",
-    path: "/provider-suggestions",
+    element: "school-autocomplete",
+    input: "school",
+    path: "/school-suggestions",
   });
   </script> #}
 {% endblock %}
