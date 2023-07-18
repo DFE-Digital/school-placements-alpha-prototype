@@ -151,8 +151,12 @@ exports.list = (req, res) => {
   // get an array of selected subjects for use in the search terms subject list
   const selectedSubjects = utilsHelper.getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === 'checked'))
 
-  const results = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}]
+  const results = require('../data/temp/placements')
   const resultsCount = results.length
+
+  results.sort((a, b) => {
+    return a.subject.name.localeCompare(b.subject.name) || a.school.name.localeCompare(b.school.name)
+  })
 
   res.render('../views/results/index', {
     results,
