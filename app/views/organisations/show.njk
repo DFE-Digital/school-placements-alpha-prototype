@@ -170,4 +170,50 @@
     </div>
   </div>
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h2 class="govuk-heading-m govuk-!-margin-top-2">About your organisation</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Training with your organisation"
+            },
+            value: {
+              html: (organisation.trainWithUs | nl2br | markdownToHtml | safe) if organisation.trainWithUs.length else "Not entered",
+              classes: "govuk-hint" if not organisation.trainWithUs.length
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/training",
+                  text: "Change",
+                  visuallyHiddenText: "information about training with your organisation"
+                }
+              ]
+            }
+          } if 1==0,
+          {
+            key: {
+              text: "Training with disabilities and other needs"
+            },
+            value: {
+              html: (organisation.trainWithDisability | nl2br | markdownToHtml | safe) if organisation.trainWithDisability.length else "Not entered",
+              classes: "govuk-hint" if not organisation.trainWithDisability.length
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/training-with-disabilities",
+                  text: "Change",
+                  visuallyHiddenText: "information about training with disabilities and other needs"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+    </div>
+
 {% endblock %}

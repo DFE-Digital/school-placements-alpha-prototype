@@ -1,0 +1,118 @@
+{% extends "layouts/find.njk" %}
+
+{% set title %}
+  {% if resultsCount > 0 %}
+    {{ resultsCount | numeral('0,0') }} school placement {{- "s" if resultsCount > 1 }} found
+  {% else %}
+    No school placements found
+  {% endif %}
+{% endset %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include "./_search-terms.njk" %}
+
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+
+    </div>
+  </div>
+
+  <div class="app-filter-layout">
+    <div class="app-filter-layout__filter">
+
+      {% include "./_filter-panel.njk" %}
+
+    </div>
+
+    <div class="app-filter-layout__content">
+
+      <div class="app-action-bar">
+        <div class="app-action-bar__filter"></div>
+      </div>
+
+      {# {% include "./_sort-options.njk" %} #}
+
+      {% if results.length %}
+
+        <ul class="app-search-results">
+          {% for result in results %}
+            <li class="app-search-results__item">
+              {{ appResultDetail({
+                href: "/placements/" + result.id
+              })}}
+            </li>
+          {% endfor %}
+        </ul>
+
+        {% if pagination.pages > 1 %}
+          {{ appPagination( pagination ) }}
+        {% endif %}
+
+      {% else %}
+
+        {% include "./_no-results.njk" %}
+
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script type="module">
+  import { FilterToggleButton } from '/public/javascripts/components/filter-toggle-button.js'
+
+  const filterToggleButton = new FilterToggleButton({
+    bigModeMediaQuery: '(min-width: 48.063em)',
+    startHidden: false,
+    toggleButton: {
+      container: $('.app-action-bar__filter'),
+      showText: 'Show filter',
+      hideText: 'Hide filter',
+      classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
+    },
+    closeButton: {
+      container: $('.app-filter__header-action'),
+      text: 'Close'
+    },
+    filter: {
+      container: $('.app-filter-layout__filter')
+    }
+  })
+
+  filterToggleButton.init()
+</script>
+
+{# {% if userJourney in ["browse","filter"] %}
+  <script type="module" >
+  import { CheckboxFilter } from '/public/javascripts/components/checkbox-filter.js'
+
+  const checkboxFilter = new CheckboxFilter({
+    container: $('#subject'),
+    textBox: {
+      label: 'Search for subject'
+    }
+  })
+
+  checkboxFilter.init()
+  </script>
+
+  <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+  <script src="/public/javascripts/debounce.js"></script>
+  <script src="/public/javascripts/init-autocomplete.js"></script>
+
+  <script type="text/javascript">
+  initAutocomplete({
+    element: "provider-autocomplete",
+    input: "provider",
+    path: "/provider-suggestions",
+  });
+  </script>
+{% endif %} #}
+{% endblock %}

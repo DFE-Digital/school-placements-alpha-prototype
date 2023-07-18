@@ -1,7 +1,10 @@
 {% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
 
+{% from "_components/checkbox-filter/macro.njk" import appCheckboxFilter %}
+{# {% from "_components/filter/macro.njk" import appFilter %} #}
 {% from "_components/footer/macro.njk" import appFooter %}
-{% from "_components/primary-navigation/macro.njk" import appPrimaryNavigation %}
+{% from "_components/pagination/macro.njk" import appPagination %}
+{% from "_components/result-detail/macro.njk" import appResultDetail %}
 
 {% block pageTitle %}
   {{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
@@ -27,7 +30,7 @@
         href: "#",
         text: "Sign out"
       }
-    ]
+    ] if 1==0
   }) }}
 
   {{ govukPhaseBanner({
@@ -35,22 +38,7 @@
       text: "Prototype"
     },
     html: 'This is a new service – your <a class="govuk-link" href="/feedback">feedback</a> will help us to improve it.',
-    classes: "govuk-width-container govuk-phase-banner--no-border-bottom"
-  }) }}
-
-  {{ appPrimaryNavigation({
-    items: [
-      {
-        href: baseUrl + "/placements",
-        text: "School placements",
-        active: primaryNavId == "placements"
-      },
-      {
-        href: baseUrl,
-        text: "Organisation details",
-        active: primaryNavId == "settings"
-      }
-    ]
+    classes: "govuk-width-container"
   }) }}
 {% endblock %}
 
