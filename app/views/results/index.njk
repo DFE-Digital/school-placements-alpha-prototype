@@ -43,7 +43,12 @@
           {% for result in results %}
             <li class="app-search-results__item">
               {{ appResultDetail({
-                href: "/placements/" + result.id
+                href: "/placements/" + result.id,
+                schoolName: result.school.name,
+                placementName: result.subject.name,
+                ageRange: result.ageRange | getAgeRangeLabel,
+                classSize: result.classSize,
+                gender: result.gender | capitalize
               })}}
             </li>
           {% endfor %}

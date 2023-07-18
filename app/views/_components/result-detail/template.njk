@@ -8,30 +8,30 @@
     </a>
   {% endif %} #}
   <a class="govuk-link" href="{{ params.href }}">
-    <span class="app-search-result__provider-name">School name</span><br>
-    <span class="app-search-result__course-name">Placement subject</span>
+    <span class="app-search-result__provider-name">{{ params.schoolName }}</span><br>
+    <span class="app-search-result__course-name">{{ params.placementName }}</span>
   </a>
 </h2>
 
 <dl class="app-result-detail">
   <div class="app-result-detail__row">
+    <dt class="app-result-detail__key">Age range</dt>
+    <dd class="app-result-detail__value">{{ params.ageRange }}</dd>
+  </div>
+  <div class="app-result-detail__row">
+    <dt class="app-result-detail__key">Gender of entry</dt>
+    <dd class="app-result-detail__value">{{ params.gender }}</dd>
+  </div>
+  <div class="app-result-detail__row">
+    <dt class="app-result-detail__key">Class size</dt>
+    <dd class="app-result-detail__value">{{ params.classSize }}</dd>
+  </div>
+  {# <div class="app-result-detail__row">
     <dt class="app-result-detail__key">Item name</dt>
     <dd class="app-result-detail__value">Item value</dd>
   </div>
   <div class="app-result-detail__row">
     <dt class="app-result-detail__key">Item name</dt>
     <dd class="app-result-detail__value">Item value</dd>
-  </div>
-  <div class="app-result-detail__row">
-    <dt class="app-result-detail__key">Item name</dt>
-    <dd class="app-result-detail__value">Item value</dd>
-  </div>
-  <div class="app-result-detail__row">
-    <dt class="app-result-detail__key">Item name</dt>
-    <dd class="app-result-detail__value">Item value</dd>
-  </div>
-  <div class="app-result-detail__row">
-    <dt class="app-result-detail__key">Item name</dt>
-    <dd class="app-result-detail__value">Item value</dd>
-  </div>
+  </div> #}
 </dl>

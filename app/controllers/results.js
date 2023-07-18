@@ -57,7 +57,7 @@ exports.list = (req, res) => {
 
     if (as?.length) {
       selectedFilters.categories.push({
-        heading: { text: 'Filter A' },
+        heading: { text: 'Age group' },
         items: as.map((a) => {
           return {
             text: utilsHelper.getFilterALabel(a),
@@ -69,7 +69,7 @@ exports.list = (req, res) => {
 
     if (bs?.length) {
       selectedFilters.categories.push({
-        heading: { text: 'Filter B' },
+        heading: { text: 'Gender' },
         items: bs.map((b) => {
           return {
             text: utilsHelper.getFilterBLabel(b),
@@ -81,7 +81,7 @@ exports.list = (req, res) => {
 
     if (cs?.length) {
       selectedFilters.categories.push({
-        heading: { text: 'Filter C' },
+        heading: { text: 'Admissions policy' },
         items: cs.map((c) => {
           return {
             text: utilsHelper.getFilterCLabel(c),
@@ -100,7 +100,7 @@ exports.list = (req, res) => {
   //   selectedA = defaults.a
   // }
 
-  const filterAItems = utilsHelper.getFilterAItems(selectedA)
+  const filterAItems = utilsHelper.getAgeRangeFilterItems(req.session.data.ageGroup, selectedA)
 
   let selectedB
   if (req.session.data.filter?.b) {
@@ -110,7 +110,7 @@ exports.list = (req, res) => {
   //   selectedB = defaults.b
   // }
 
-  const filterBItems = utilsHelper.getFilterBItems(selectedB)
+  const filterBItems = utilsHelper.getGenderFilterItems(selectedB)
 
   let selectedC
   if (req.session.data.filter?.c) {
@@ -120,7 +120,7 @@ exports.list = (req, res) => {
   //   selectedC = defaults.c
   // }
 
-  const filterCItems = utilsHelper.getFilterCItems(selectedC)
+  const filterCItems = utilsHelper.getAdmissionsPolicyFilterItems(selectedC)
 
   // Search radius - 5, 10, 50
   // default to 50
@@ -151,8 +151,12 @@ exports.list = (req, res) => {
   // get an array of selected subjects for use in the search terms subject list
   const selectedSubjects = utilsHelper.getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === 'checked'))
 
-  const results = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}]
+  const results = require('../data/temp/placements')
   const resultsCount = results.length
+
+  results.sort((a, b) => {
+    return a.subject.name.localeCompare(b.subject.name) || a.school.name.localeCompare(b.school.name)
+  })
 
   res.render('../views/results/index', {
     results,

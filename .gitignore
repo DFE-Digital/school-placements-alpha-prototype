@@ -15,6 +15,7 @@ app/data/mentors/
 app/data/organisations/
 app/data/placements/
 app/data/schools/
+app/data/temp/
 app/data/users/
 
 # Prototype ignores - per-user

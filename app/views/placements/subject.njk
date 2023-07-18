@@ -30,7 +30,7 @@
 
       <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
 
-        {{ govukCheckboxes({
+        {{ govukRadios({
           idPrefix: "subjects",
           name: "placement[subjects][]",
           fieldset: {
