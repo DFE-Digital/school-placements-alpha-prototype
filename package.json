@@ -14,7 +14,7 @@
   "dependencies": {
     "@govuk-prototype-kit/common-templates": "1.2.1",
     "connect-flash": "^0.1.1",
-    "del": "6.1.1",
+    "del": "7.0.0",
     "govuk-frontend": "4.7.0",
     "govuk-prototype-kit": "13.10.1",
     "luxon": "^3.3.0",
