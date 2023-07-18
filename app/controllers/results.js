@@ -1,4 +1,5 @@
 const paginationHelper = require('../helpers/pagination')
+const subjectHelper = require('../helpers/subjects')
 const utilsHelper = require('../helpers/utils')
 
 exports.list = async (req, res) => {
@@ -137,6 +138,19 @@ exports.list = async (req, res) => {
   // const page = req.query.page || 1
   // const perPage = 20
 
+  let selectedSubject
+  if (req.session.data.filter?.subject) {
+    selectedSubject = req.session.data.filter.subject
+  }
+  // else {
+  //   selectedSubject = defaults.subject
+  // }
+
+  const subjectItems = subjectHelper.getSubjectOptions(req.session.data.ageGroup, selectedSubject)
+
+  // get an array of selected subjects for use in the search terms subject list
+  const selectedSubjects = utilsHelper.getSelectedSubjectItems(subjectItems.filter(subject => subject.checked === 'checked'))
+
   const results = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}]
   const resultsCount = results.length
 
@@ -150,6 +164,7 @@ exports.list = async (req, res) => {
     filterAItems,
     filterBItems,
     filterCItems,
+    selectedSubjects,
     actions: {
       view: '/course/',
       filters: {

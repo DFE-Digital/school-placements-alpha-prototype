@@ -195,3 +195,17 @@ exports.getFilterCItems = (selectedItems) => {
 
   return items
 }
+
+exports.getSelectedSubjectItems = (selectedItems, baseHref = '/results') => {
+  const items = []
+
+  selectedItems.forEach((item) => {
+    const subject = {}
+    subject.text = item.text
+    subject.href = `${baseHref}/remove-subject-filter/${item.value}`
+
+    items.push(subject)
+  })
+
+  return items
+}
