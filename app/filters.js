@@ -1,8 +1,19 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const addFilter = govukPrototypeKit.views.addFilter
 
+const numeral = require('numeral')
+
 const ageRangeHelper = require('./helpers/age-ranges')
 const subjectHelper = require('./helpers/subjects')
+
+/* ------------------------------------------------------------------
+  numeral filter for use in Nunjucks
+  example: {{ params.number | numeral("0,00.0") }}
+  outputs: 1,000.00
+------------------------------------------------------------------ */
+addFilter('numeral', (number, format) => {
+  return numeral(number).format(format)
+})
 
 /* ------------------------------------------------------------------
 utility function to get an error for a component
