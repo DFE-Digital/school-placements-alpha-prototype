@@ -1,17 +1,114 @@
 {% extends "layouts/find.njk" %}
 
-{% set title = "Placement subject" %}
-{% set caption = "School name" %}
+{% set title = placement.subject.name %}
+{% set caption = placement.school.name %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
         <span class="govuk-caption-xl">{{ caption }}</span>
         {{ title }}
       </h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Age range"
+            },
+            value: {
+              text: placement.ageRange | getAgeRangeLabel
+            }
+          },
+          {
+            key: {
+              text: "Gender"
+            },
+            value: {
+              text: placement.gender | capitalize
+            }
+          },
+          {
+            key: {
+              text: "Class size"
+            },
+            value: {
+              text: placement.classSize
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">Contact details</h2>
+
+      {% set addressHtml %}
+        {% if organisation.address.addressLine1.length %}
+          {{ organisation.address.addressLine1 }}<br>
+        {% endif %}
+        {% if organisation.address.addressLine2.length %}
+          {{ organisation.address.addressLine2 }}<br>
+        {% endif %}
+        {% if organisation.address.addressLine3.length %}
+          {{ organisation.address.addressLine3 }}<br>
+        {% endif %}
+        {% if organisation.address.town.length %}
+          {{ organisation.address.town }}<br>
+        {% endif %}
+        {% if organisation.address.county.length %}
+          {{ organisation.address.county }}<br>
+        {% endif %}
+        {% if organisation.address.postcode.length %}
+          {{ organisation.address.postcode }}<br>
+        {% endif %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: (organisation.contact.email | urlize | safe) if organisation.contact.email.length else "Not entered",
+              classes: "govuk-hint" if not organisation.contact.email.length
+            }
+          },
+          {
+            key: {
+              text: "Telephone number"
+            },
+            value: {
+              text: organisation.contact.telephone if organisation.contact.telephone.length else "Not entered",
+              classes: "govuk-hint" if not organisation.contact.telephone.length
+            }
+          },
+          {
+            key: {
+              text: "Website"
+            },
+            value: {
+              text: (organisation.contact.website | urlize | safe) if organisation.contact.website.length else "Not entered",
+              classes: "govuk-hint" if not organisation.contact.website.length
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: ('<p class="govuk-body">' + addressHtml + '</p>') if addressHtml | trim | length else "Not entered",
+              classes: "govuk-hint" if not addressHtml | trim | length
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">Training with disabilities and other needs</h2>
+
+      {{ organisation.trainWithDisability | nl2br | markdownToHtml | safe }}
 
     </div>
   </div>

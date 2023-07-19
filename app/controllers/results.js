@@ -210,9 +210,15 @@ exports.removeAllFilters = (req, res) => {
 }
 
 exports.show = (req, res) => {
-  res.render('../views/results/show', {
-    actions: {
+  const placements = require('../data/temp/placements')
+  const placement = placements.find((placement) => placement.id === req.params.placementId)
+  const organisation = require(`../data/organisations/${placement.school.id}`)
 
+  res.render('../views/results/show', {
+    placement,
+    organisation,
+    actions: {
+      back: `/results`
     }
   })
 }
