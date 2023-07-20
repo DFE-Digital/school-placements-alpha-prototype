@@ -5,6 +5,7 @@ const marked = require('marked')
 const numeral = require('numeral')
 
 const ageRangeHelper = require('./helpers/age-ranges')
+const keyStageHelper = require('./helpers/key-stages')
 const subjectHelper = require('./helpers/subjects')
 
 /* ------------------------------------------------------------------
@@ -98,6 +99,21 @@ addFilter('getAgeRangeLabel', (ageRange) => {
 
   if (ageRange) {
     label = ageRangeHelper.getAgeRangeLabel(ageRange)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the key stage label
+example: {{ 'KS1' | getKeyStageLabel }}
+outputs: "Key Stage 1"
+------------------------------------------------------------------ */
+addFilter('getKeyStageLabel', (keyStage) => {
+  let label = keyStage
+
+  if (keyStage) {
+    label = keyStageHelper.getKeyStageLabel(keyStage)
   }
 
   return label
