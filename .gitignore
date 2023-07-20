@@ -1,5 +1,6 @@
 # Ignore generated data files
 app/data/age-ranges.json
+app/data/key-stages.json
 app/data/school-groups.json
 app/data/school-phases.json
 app/data/school-statuses.json
