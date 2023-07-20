@@ -13,7 +13,10 @@
     "classSize": 30,
     "send": true,
     "gender": "mixed",
-    "pupils": 384
+    "pupils": 384,
+    "keyStage":["KS1","KS2"],
+    "mentor": "Aaron Black",
+    "mentorAvailability":["monday","tuesday","wednesday","thursday"]
   },
   {
     "id": "ae650f23-1442-47a9-89f0-d440d877dfa7",
@@ -29,7 +32,10 @@
     "classSize": 30,
     "send": true,
     "gender": "mixed",
-    "pupils": 384
+    "pupils": 384,
+    "keyStage":["KS1"],
+    "mentor": "Brenda Parker",
+    "mentorAvailability":["monday","tuesday","thursday","friday"]
   },
   {
     "id": "087ffebe-9e74-476b-9dac-30b287b473f1",
@@ -45,7 +51,10 @@
     "classSize": 30,
     "send": true,
     "gender": "mixed",
-    "pupils": 440
+    "pupils": 440,
+    "keyStage":["KS2"],
+    "mentor": "Carolyn Adams",
+    "mentorAvailability":["monday","tuesday","wednesday"]
   },
   {
     "id": "45b3b633-56ce-4f1a-863e-f6a7973b61d7",
@@ -61,7 +70,10 @@
     "classSize": 30,
     "send": true,
     "gender": "mixed",
-    "pupils": 440
+    "pupils": 440,
+    "keyStage":["KS1","KS2"],
+    "mentor": "Elene Redlinghuys",
+    "mentorAvailability":["monday","tuesday","wednesday"]
   },
   {
     "id": "7ba5c246-4eb6-417a-8d3b-ff5c42aaba97",
@@ -77,7 +89,10 @@
     "classSize": 30,
     "send": true,
     "gender": "mixed",
-    "pupils": 440
+    "pupils": 440,
+    "keyStage":["KS1","KS2"],
+    "mentor": "Gillian Donneky",
+    "mentorAvailability":["monday","tuesday","wednesday"]
   },
   {
     "id": "9410d1ea-f525-44af-b53c-f0232e87070b",
@@ -93,7 +108,10 @@
     "classSize": 30,
     "send": true,
     "gender": "mixed",
-    "pupils": 399
+    "pupils": 399,
+    "keyStage":["KS1","KS2"],
+    "mentor": "Humara Haq",
+    "mentorAvailability":["monday","tuesday","wednesday","thursday"]
   },
   {
     "id": "7653979e-f033-4e22-b1cf-0d2e341e93bc",
@@ -109,7 +127,10 @@
     "classSize": 30,
     "send": true,
     "gender": "mixed",
-    "pupils": 332
+    "pupils": 332,
+    "keyStage":["KS1","KS2"],
+    "mentor": "Nicholas Kehoe",
+    "mentorAvailability":["monday","wednesday","thursday"]
   },
   {
     "id": "84f66fe5-986c-42f8-b3c2-46a294b6fa41",
@@ -125,7 +146,10 @@
     "classSize": 30,
     "send": true,
     "gender": "mixed",
-    "pupils": 332
+    "pupils": 332,
+    "keyStage":["KS1","KS2"],
+    "mentor": "Roger Gwinnett",
+    "mentorAvailability":["monday","tuesday","wednesday"]
   },
   {
     "id": "caff67cc-d8be-4e41-a842-7926422cbbba",
@@ -141,7 +165,10 @@
     "classSize": 30,
     "send": true,
     "gender": "mixed",
-    "pupils": 332
+    "pupils": 332,
+    "keyStage":["KS1","KS2"],
+    "mentor": "Ros Fenney",
+    "mentorAvailability":["monday","tuesday","wednesday"]
   },
   {
     "id": "a171b9c8-1775-44ae-a6cd-dfdf5a947f15",
@@ -157,6 +184,9 @@
     "classSize": 30,
     "send": true,
     "gender": "mixed",
-    "pupils": 332
+    "pupils": 332,
+    "keyStage":["KS1"],
+    "mentor": "Siobhan Meredith",
+    "mentorAvailability":["monday","tuesday","wednesday"]
   }
 ]
