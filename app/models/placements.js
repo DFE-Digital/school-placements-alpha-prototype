@@ -55,12 +55,16 @@ exports.insertOne = (params) => {
       placement.subjectLevel = params.placement.subjectLevel
     }
 
-    if (params.placement.subjects) {
-      placement.subjects = params.placement.subjects
+    if (params.placement.subject) {
+      placement.subject = params.placement.subject
     }
 
     if (params.placement.ageRange) {
       placement.ageRange = params.placement.ageRange
+    }
+
+    if (params.placement.keyStage) {
+      placement.keyStage = params.placement.keyStage
     }
 
     if (params.placement.classSize) {
@@ -69,6 +73,10 @@ exports.insertOne = (params) => {
 
     if (params.placement.trainingPattern) {
       placement.trainingPattern = params.placement.trainingPattern
+    }
+
+    if (params.placement.mentorAvailability) {
+      placement.mentorAvailability = params.placement.mentorAvailability
     }
 
     placement.createdAt = new Date()
