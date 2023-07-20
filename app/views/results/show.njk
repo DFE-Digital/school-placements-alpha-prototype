@@ -20,6 +20,26 @@
         {{ title }}
       </h1>
 
+      {% set keyStageHtml %}
+        <ul class="govuk-list">
+          {% for keyStage in placement.keyStage %}
+            <li>
+              {{ keyStage | getKeyStageLabel }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+      {% set mentorAvailabilityHtml %}
+        <ul class="govuk-list">
+          {% for mentorAvailability in placement.mentorAvailability %}
+            <li>
+              {{ mentorAvailability | capitalize }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -32,7 +52,15 @@
           },
           {
             key: {
-              text: "Gender"
+              text: "Key stage"
+            },
+            value: {
+              html: keyStageHtml
+            }
+          },
+          {
+            key: {
+              text: "School gender"
             },
             value: {
               text: placement.gender | capitalize
@@ -40,10 +68,18 @@
           },
           {
             key: {
-              text: "Class size"
+              text: "Mentor"
             },
             value: {
-              text: placement.classSize
+              text: placement.mentor
+            }
+          },
+          {
+            key: {
+              text: "Mentor availability"
+            },
+            value: {
+              html: mentorAvailabilityHtml
             }
           }
         ]
