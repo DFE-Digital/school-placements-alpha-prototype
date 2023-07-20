@@ -3,6 +3,13 @@
 {% set title = placement.subject.name %}
 {% set caption = placement.school.name %}
 
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back to search results",
+  href: actions.back
+}) }}
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
