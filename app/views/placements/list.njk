@@ -25,8 +25,7 @@
             <tr class="govuk-table__row">
               <th class="govuk-table__header">Subject</th>
               <th class="govuk-table__header">Age range</th>
-              <th class="govuk-table__header">Class size</th>
-              <th class="govuk-table__header">&nbsp;</th>
+              <th class="govuk-table__header">Key stage</th>
             </tr>
           </thead>
           <tbody class="govuk-table__body">
@@ -34,22 +33,21 @@
             {% for placement in placements %}
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell app-table--courses__course-name">
-                  <ul class="govuk-list">
-                    {% for subject in placement.subjects %}
-                      <li>
-                        {{ subject | getSubjectLabel }}
-                      </li>
-                    {% endfor %}
-                  </ul>
+                  <a href="{{ actions.view }}/{{ placement.id }}" class="govuk-link">
+                    {{ placement.subject | getSubjectLabel }}
+                  </a>
                 </td>
                 <td class="govuk-table__cell">
                   {{ placement.ageRange | getAgeRangeLabel }}
                 </td>
                 <td class="govuk-table__cell">
-                  {{ placement.classSize }}
-                </td>
-                <td class="govuk-table__cell">
-                  <a href="{{ actions.view }}/{{ placement.id }}" class="govuk-link">View placement</a>
+                  <ul class="govuk-list">
+                    {% for keyStage in placement.keyStage %}
+                      <li>
+                        {{ keyStage | getKeyStageLabel }}
+                      </li>
+                    {% endfor %}
+                  </ul>
                 </td>
               </tr>
             {% endfor %}

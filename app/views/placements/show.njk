@@ -18,11 +18,11 @@
 
       {% include "_includes/page-heading.njk" %}
 
-      {% set subjectHtml %}
+      {% set keyStageHtml %}
         <ul class="govuk-list">
-          {% for subject in placement.subjects %}
+          {% for keyStage in placement.keyStage %}
             <li>
-              {{ subject | getSubjectLabel }}
+              {{ keyStage | getKeyStageLabel }}
             </li>
           {% endfor %}
         </ul>
@@ -33,6 +33,16 @@
           {% for pattern in placement.trainingPattern %}
             <li>
               {{ pattern | capitalize }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+      {% set mentorAvailabilityHtml %}
+        <ul class="govuk-list">
+          {% for availability in placement.mentorAvailability %}
+            <li>
+              {{ availability | capitalize }}
             </li>
           {% endfor %}
         </ul>
@@ -62,7 +72,7 @@
               text: "Subject"
             },
             value: {
-              html: subjectHtml
+              text: placement.subject | getSubjectLabel
             },
             actions: {
               items: [
@@ -93,6 +103,23 @@
           },
           {
             key: {
+              text: "Key stage"
+            },
+            value: {
+              html: keyStageHtml
+            },
+            actions: {
+              items: [
+                {
+                  href:actions.change + "/key-stage?referrer=change",
+                  text: "Change",
+                  visuallyHiddenText: "key stage"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: "Class size"
             },
             value: {
@@ -107,7 +134,7 @@
                 }
               ]
             }
-          },
+          } if 1==0,
           {
             key: {
               text: "Training pattern"
@@ -121,6 +148,23 @@
                   href: actions.change + "/training-pattern?referrer=change",
                   text: "Change",
                   visuallyHiddenText: "training pattern"
+                }
+              ]
+            }
+          } if 1==0,
+          {
+            key: {
+              text: "Mentor availability"
+            },
+            value: {
+              html: mentorAvailabilityHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/mentor-availability?referrer=change",
+                  text: "Change",
+                  visuallyHiddenText: "mentor availability"
                 }
               ]
             }
