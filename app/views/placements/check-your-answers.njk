@@ -36,6 +36,16 @@
           </ul>
         {% endset %}
 
+        {% set keyStageHtml %}
+          <ul class="govuk-list">
+            {% for keyStage in placement.keyStage %}
+              <li>
+                {{ keyStage | getKeyStageLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
         {% set trainingPatternHtml %}
           <ul class="govuk-list">
             {% for pattern in placement.trainingPattern %}
@@ -95,6 +105,23 @@
                     href:actions.change + "/age-range?referrer=check",
                     text: "Change",
                     visuallyHiddenText: "age range"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Key stage"
+              },
+              value: {
+                html: keyStageHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href:actions.change + "/key-stage?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "key stage"
                   }
                 ]
               }
