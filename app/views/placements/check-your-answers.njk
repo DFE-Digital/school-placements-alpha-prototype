@@ -56,6 +56,16 @@
           </ul>
         {% endset %}
 
+        {% set mentorAvailabilityHtml %}
+          <ul class="govuk-list">
+            {% for availability in placement.mentorAvailability %}
+              <li>
+                {{ availability | capitalize }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
         {{ govukSummaryList({
           rows: [
             {
@@ -156,6 +166,23 @@
                     href: actions.change + "/training-pattern?referrer=check",
                     text: "Change",
                     visuallyHiddenText: "training pattern"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Mentor availability"
+              },
+              value: {
+                html: mentorAvailabilityHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/mentor-availability?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "mentor availability"
                   }
                 ]
               }
