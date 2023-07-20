@@ -3,6 +3,7 @@ const placementModel = require('../models/placements')
 const ageRangeHelper = require('../helpers/age-ranges')
 const keyStageHelper = require('../helpers/key-stages')
 const mentorAvailabilityHelper = require('../helpers/mentor-availability')
+const mentorHelper = require('../helpers/mentors')
 const subjectHelper = require('../helpers/subjects')
 const trainingPatternHelper = require('../helpers/training-patterns')
 
@@ -381,7 +382,7 @@ exports.new_placement_key_stage_post = (req, res) => {
     if (req.query.referrer === 'check') {
       res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
     } else {
-      res.redirect(`/organisations/${req.params.organisationId}/placements/new/mentor-availability`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/mentor`)
     }
   }
 }
@@ -512,6 +513,85 @@ exports.new_placement_training_pattern_post = (req, res) => {
 
 }
 
+exports.new_placement_mentor_get = (req, res) => {
+  let selectedMentor
+  if (req.session.data.placement?.mentor) {
+    selectedMentor = req.session.data.placement.mentor
+  }
+
+  const mentorOptions = mentorHelper.getMentorOptions(
+    req.params.organisationId,
+    req.session.data.placement.subject,
+    selectedMentor
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/mentor`
+  let back = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  res.render('../views/placements/mentor', {
+    mentorOptions,
+    actions: {
+      save,
+      back,
+      cancel: `/organisations/${req.params.organisationId}/placements`
+    }
+  })
+}
+
+exports.new_placement_mentor_post = (req, res) => {
+  const errors = []
+
+  let selectedMentor
+  if (req.session.data.placement?.mentor) {
+    selectedMentor = req.session.data.placement.mentor
+  }
+
+  const mentorOptions = mentorHelper.getMentorOptions(
+    req.params.organisationId,
+    req.session.data.placement.subject,
+    selectedMentor
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/mentor`
+  let back = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  if (!req.session.data.placement.mentor.length) {
+    const error = {}
+    error.fieldName = 'mentor-availability'
+    error.href = '#training-pattern'
+    error.text = 'Select a training pattern'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/placements/mentor', {
+      placement: req.session.data.placement,
+      mentorOptions,
+      actions: {
+        save,
+        back,
+        cancel: `/organisations/${req.params.organisationId}/placements`
+      },
+      errors
+    })
+  } else {
+    if (req.query.referrer === 'check') {
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
+    } else {
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/mentor-availability`)
+    }
+  }
+
+}
+
 exports.new_placement_mentor_availability_get = (req, res) => {
   let selectedMentorAvailability
   if (req.session.data.placement?.mentorAvailability) {
@@ -523,7 +603,7 @@ exports.new_placement_mentor_availability_get = (req, res) => {
   )
 
   let save = `/organisations/${req.params.organisationId}/placements/new/mentor-availability`
-  let back = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  let back = `/organisations/${req.params.organisationId}/placements/new/mentor`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -552,7 +632,7 @@ exports.new_placement_mentor_availability_post = (req, res) => {
   )
 
   let save = `/organisations/${req.params.organisationId}/placements/new/mentor-availability`
-  let back = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  let back = `/organisations/${req.params.organisationId}/placements/new/mentor`
   if (req.query.referrer === 'check') {
     save += '?referrer=check'
     back += '/placements/new/check-your-answers'
@@ -561,13 +641,13 @@ exports.new_placement_mentor_availability_post = (req, res) => {
   if (!req.session.data.placement.mentorAvailability.length) {
     const error = {}
     error.fieldName = 'mentor-availability'
-    error.href = '#training-pattern'
-    error.text = 'Select a training pattern'
+    error.href = '#mentor-availability'
+    error.text = 'Select mentor availability'
     errors.push(error)
   }
 
   if (errors.length) {
-    res.render('../views/placements/training-pattern', {
+    res.render('../views/placements/mentor-availability', {
       placement: req.session.data.placement,
       mentorAvailabilityOptions,
       actions: {
@@ -644,6 +724,14 @@ exports.edit_placement_training_pattern_get = (req, res) => {
 }
 
 exports.edit_placement_training_pattern_post = (req, res) => {
+  res.send('Not implemented')
+}
+
+exports.edit_placement_mentor_get = (req, res) => {
+  res.send('Not implemented')
+}
+
+exports.edit_placement_mentor_post = (req, res) => {
   res.send('Not implemented')
 }
 
