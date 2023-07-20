@@ -6,6 +6,7 @@ const numeral = require('numeral')
 
 const ageRangeHelper = require('./helpers/age-ranges')
 const keyStageHelper = require('./helpers/key-stages')
+const mentorHelper = require('./helpers/mentors')
 const subjectHelper = require('./helpers/subjects')
 
 /* ------------------------------------------------------------------
@@ -131,6 +132,21 @@ addFilter('getKeyStageLabel', (keyStage) => {
 
   if (keyStage) {
     label = keyStageHelper.getKeyStageLabel(keyStage)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the mentor label
+example: {{ '79a2c9fa-c197-44b4-979f-1f5f75bd8f36' | getMentorLabel }}
+outputs: "Aaron Black"
+------------------------------------------------------------------ */
+addFilter('getMentorLabel', (mentor) => {
+  let label = mentor
+
+  if (mentor) {
+    label = mentorHelper.getMentorLabel(mentor)
   }
 
   return label
