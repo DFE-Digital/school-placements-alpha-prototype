@@ -2,6 +2,7 @@ const placementModel = require('../models/placements')
 
 const ageRangeHelper = require('../helpers/age-ranges')
 const keyStageHelper = require('../helpers/key-stages')
+const mentorAvailabilityHelper = require('../helpers/mentor-availability')
 const subjectHelper = require('../helpers/subjects')
 const trainingPatternHelper = require('../helpers/training-patterns')
 
@@ -511,6 +512,77 @@ exports.new_placement_training_pattern_post = (req, res) => {
 
 }
 
+exports.new_placement_mentor_availability_get = (req, res) => {
+  let selectedMentorAvailability
+  if (req.session.data.placement?.mentorAvailability) {
+    selectedMentorAvailability = req.session.data.placement.mentorAvailability
+  }
+
+  const mentorAvailabilityOptions = mentorAvailabilityHelper.getMentorAvailabilityOptions(
+    selectedMentorAvailability
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/mentor-availability`
+  let back = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  res.render('../views/placements/mentor-availability', {
+    mentorAvailabilityOptions,
+    actions: {
+      save,
+      back,
+      cancel: `/organisations/${req.params.organisationId}/placements`
+    }
+  })
+}
+
+exports.new_placement_mentor_availability_post = (req, res) => {
+  const errors = []
+
+  let selectedMentorAvailability
+  if (req.session.data.placement?.mentorAvailability) {
+    selectedMentorAvailability = req.session.data.placement.mentorAvailability
+  }
+
+  const mentorAvailabilityOptions = mentorAvailabilityHelper.getMentorAvailabilityOptions(
+    selectedMentorAvailability
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/mentor-availability`
+  let back = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  if (!req.session.data.placement.mentorAvailability.length) {
+    const error = {}
+    error.fieldName = 'mentor-availability'
+    error.href = '#training-pattern'
+    error.text = 'Select a training pattern'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/placements/training-pattern', {
+      placement: req.session.data.placement,
+      mentorAvailabilityOptions,
+      actions: {
+        save,
+        back,
+        cancel: `/organisations/${req.params.organisationId}/placements`
+      },
+      errors
+    })
+  } else {
+    res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
+  }
+
+}
+
 exports.new_placement_check_get = (req, res) => {
   res.render('../views/placements/check-your-answers', {
     placement: req.session.data.placement,
@@ -572,5 +644,13 @@ exports.edit_placement_training_pattern_get = (req, res) => {
 }
 
 exports.edit_placement_training_pattern_post = (req, res) => {
+  res.send('Not implemented')
+}
+
+exports.edit_placement_mentor_availability_get = (req, res) => {
+  res.send('Not implemented')
+}
+
+exports.edit_placement_mentor_availability_post = (req, res) => {
   res.send('Not implemented')
 }
