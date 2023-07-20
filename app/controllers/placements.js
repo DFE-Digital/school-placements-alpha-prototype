@@ -1,6 +1,7 @@
 const placementModel = require('../models/placements')
 
 const ageRangeHelper = require('../helpers/age-ranges')
+const keyStageHelper = require('../helpers/key-stages')
 const subjectHelper = require('../helpers/subjects')
 const trainingPatternHelper = require('../helpers/training-patterns')
 
@@ -303,7 +304,83 @@ exports.new_placement_age_range_post = (req, res) => {
     if (req.query.referrer === 'check') {
       res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
     } else {
-      res.redirect(`/organisations/${req.params.organisationId}/placements/new/class-size`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/key-stage`)
+    }
+  }
+}
+
+exports.new_placement_key_stage_get = (req, res) => {
+  let selectedKeyStage
+  if (req.session.data.placement?.keyStage) {
+    selectedKeyStage = req.session.data.placement.keyStage
+  }
+
+  const keyStageOptions = keyStageHelper.getKeyStageOptions(
+    req.session.data.placement.subjectLevel,
+    selectedKeyStage
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  let back = `/organisations/${req.params.organisationId}/placements/new/age-range`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  res.render('../views/placements/key-stage', {
+    keyStageOptions,
+    actions: {
+      save,
+      back,
+      cancel: `/organisations/${req.params.organisationId}/placements`
+    }
+  })
+}
+
+exports.new_placement_key_stage_post = (req, res) => {
+  const errors = []
+
+  let selectedKeyStage
+  if (req.session.data.placement?.keyStage) {
+    selectedKeyStage = req.session.data.placement.keyStage
+  }
+
+  const keyStageOptions = keyStageHelper.getKeyStageOptions(
+    req.session.data.placement.subjectLevel,
+    selectedKeyStage
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  let back = `/organisations/${req.params.organisationId}/placements/new/age-range`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  if (!req.session.data.placement.keyStage) {
+    const error = {}
+    error.fieldName = 'key-stage'
+    error.href = '#key-stage'
+    error.text = 'Select a key stage'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/placements/key-stage', {
+      placement: req.session.data.placement,
+      keyStageOptions,
+      actions: {
+        save,
+        back,
+        cancel: `/organisations/${req.params.organisationId}/placements`
+      },
+      errors
+    })
+  } else {
+    if (req.query.referrer === 'check') {
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
+    } else {
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/mentor-availability`)
     }
   }
 }
@@ -472,6 +549,13 @@ exports.edit_placement_age_range_get = (req, res) => {
 }
 
 exports.edit_placement_age_range_post = (req, res) => {
+  res.send('Not implemented')
+}
+exports.edit_placement_key_stage_get = (req, res) => {
+  res.send('Not implemented')
+}
+
+exports.edit_placement_key_stage_post = (req, res) => {
   res.send('Not implemented')
 }
 
