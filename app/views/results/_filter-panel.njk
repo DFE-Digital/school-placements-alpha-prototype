@@ -17,6 +17,22 @@
 }) }}
 
 {{ govukCheckboxes({
+  idPrefix: "filter-c",
+  name: "filter[c]",
+  fieldset: {
+    legend: {
+      html: 'Key stage<span class="govuk-visually-hidden"> filter</span>',
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  formGroup: {
+    classes: "app-filter__group"
+  },
+  items: filterCItems,
+  classes: "govuk-checkboxes--small"
+}) }}
+
+{{ govukCheckboxes({
   idPrefix: "filter-b",
   name: "filter[b]",
   fieldset: {
@@ -32,21 +48,21 @@
   classes: "govuk-checkboxes--small"
 }) }}
 
-{{ govukCheckboxes({
-  idPrefix: "filter-c",
-  name: "filter[c]",
+{# {{ govukCheckboxes({
+  idPrefix: "filter-d",
+  name: "filter[d]",
   fieldset: {
     legend: {
-      html: 'Admissions policy<span class="govuk-visually-hidden"> filter</span>',
+      html: 'XXX<span class="govuk-visually-hidden"> filter</span>',
       classes: "govuk-fieldset__legend--s"
     }
   },
   formGroup: {
     classes: "app-filter__group"
   },
-  items: filterCItems,
+  items: filterXXXItems,
   classes: "govuk-checkboxes--small"
-}) }}
+}) }} #}
 {% endset %}
 
 <div class="app-filter">
