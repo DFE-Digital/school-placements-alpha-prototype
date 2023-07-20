@@ -47,8 +47,10 @@
                 schoolName: result.school.name,
                 placementName: result.subject.name,
                 ageRange: result.ageRange | getAgeRangeLabel,
-                classSize: result.classSize,
-                gender: result.gender | capitalize
+                keyStage: result.keyStage,
+                gender: result.gender | capitalize,
+                mentor: result.mentor,
+                mentorAvailability: result.mentorAvailability
               })}}
             </li>
           {% endfor %}

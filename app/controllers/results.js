@@ -120,7 +120,7 @@ exports.list = (req, res) => {
   //   selectedC = defaults.c
   // }
 
-  const filterCItems = utilsHelper.getAdmissionsPolicyFilterItems(selectedC)
+  const filterCItems = utilsHelper.getKeyStageFilterItems(req.session.data.ageGroup, selectedC)
 
   // Search radius - 5, 10, 50
   // default to 50

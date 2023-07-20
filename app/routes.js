@@ -58,11 +58,20 @@ router.post('/organisations/:organisationId/placements/new/subject', checkIsAuth
 router.get('/organisations/:organisationId/placements/new/age-range', checkIsAuthenticated, placementController.new_placement_age_range_get)
 router.post('/organisations/:organisationId/placements/new/age-range', checkIsAuthenticated, placementController.new_placement_age_range_post)
 
+router.get('/organisations/:organisationId/placements/new/key-stage', checkIsAuthenticated, placementController.new_placement_key_stage_get)
+router.post('/organisations/:organisationId/placements/new/key-stage', checkIsAuthenticated, placementController.new_placement_key_stage_post)
+
 router.get('/organisations/:organisationId/placements/new/class-size', checkIsAuthenticated, placementController.new_placement_class_size_get)
 router.post('/organisations/:organisationId/placements/new/class-size', checkIsAuthenticated, placementController.new_placement_class_size_post)
 
 router.get('/organisations/:organisationId/placements/new/training-pattern', checkIsAuthenticated, placementController.new_placement_training_pattern_get)
 router.post('/organisations/:organisationId/placements/new/training-pattern', checkIsAuthenticated, placementController.new_placement_training_pattern_post)
+
+router.get('/organisations/:organisationId/placements/new/mentor', checkIsAuthenticated, placementController.new_placement_mentor_get)
+router.post('/organisations/:organisationId/placements/new/mentor', checkIsAuthenticated, placementController.new_placement_mentor_post)
+
+router.get('/organisations/:organisationId/placements/new/mentor-availability', checkIsAuthenticated, placementController.new_placement_mentor_availability_get)
+router.post('/organisations/:organisationId/placements/new/mentor-availability', checkIsAuthenticated, placementController.new_placement_mentor_availability_post)
 
 router.get('/organisations/:organisationId/placements/new/check-your-answers', checkIsAuthenticated, placementController.new_placement_check_get)
 router.post('/organisations/:organisationId/placements/new/check-your-answers', checkIsAuthenticated, placementController.new_placement_check_post)
@@ -74,11 +83,20 @@ router.post('/organisations/:organisationId/placements/:placementId/subject', ch
 router.get('/organisations/:organisationId/placements/:placementId/age-range', checkIsAuthenticated, placementController.edit_placement_age_range_get)
 router.post('/organisations/:organisationId/placements/:placementId/age-range', checkIsAuthenticated, placementController.edit_placement_age_range_post)
 
+router.get('/organisations/:organisationId/placements/:placementId/key-stage', checkIsAuthenticated, placementController.edit_placement_key_stage_get)
+router.post('/organisations/:organisationId/placements/:placementId/key-stage', checkIsAuthenticated, placementController.edit_placement_key_stage_post)
+
 router.get('/organisations/:organisationId/placements/:placementId/class-size', checkIsAuthenticated, placementController.edit_placement_class_size_get)
 router.post('/organisations/:organisationId/placements/:placementId/class-size', checkIsAuthenticated, placementController.edit_placement_class_size_post)
 
 router.get('/organisations/:organisationId/placements/:placementId/training-pattern', checkIsAuthenticated, placementController.edit_placement_training_pattern_get)
 router.post('/organisations/:organisationId/placements/:placementId/training-pattern', checkIsAuthenticated, placementController.edit_placement_training_pattern_post)
+
+router.get('/organisations/:organisationId/placements/:placementId/mentor', checkIsAuthenticated, placementController.edit_placement_mentor_get)
+router.post('/organisations/:organisationId/placements/:placementId/mentor', checkIsAuthenticated, placementController.edit_placement_mentor_post)
+
+router.get('/organisations/:organisationId/placements/:placementId/mentor-availability', checkIsAuthenticated, placementController.edit_placement_mentor_availability_get)
+router.post('/organisations/:organisationId/placements/:placementId/mentor-availability', checkIsAuthenticated, placementController.edit_placement_mentor_availability_post)
 
 router.get('/organisations/:organisationId/placements/:placementId/delete', checkIsAuthenticated, placementController.delete_placement_get)
 router.post('/organisations/:organisationId/placements/:placementId/delete', checkIsAuthenticated, placementController.delete_placement_post)

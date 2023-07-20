@@ -5,7 +5,7 @@
 {% set title = "Check your answers" %}
 
 {% if placement.id %}
-  {% set caption = placement.name + " (" + placement.code + ")" %}
+  {% set caption = placement.subject | getSubjectLabel %}
 {% else %}
   {% set caption = "Add placement" %}
 {% endif %}
@@ -36,11 +36,41 @@
           </ul>
         {% endset %}
 
+        {% set keyStageHtml %}
+          <ul class="govuk-list">
+            {% for keyStage in placement.keyStage %}
+              <li>
+                {{ keyStage | getKeyStageLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
+        {% set mentorHtml %}
+          <ul class="govuk-list">
+            {% for mentor in placement.mentor %}
+              <li>
+                {{ mentor | getMentorLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
         {% set trainingPatternHtml %}
           <ul class="govuk-list">
             {% for pattern in placement.trainingPattern %}
               <li>
                 {{ pattern | capitalize }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
+        {% set mentorAvailabilityHtml %}
+          <ul class="govuk-list">
+            {% for availability in placement.mentorAvailability %}
+              <li>
+                {{ availability | capitalize }}
               </li>
             {% endfor %}
           </ul>
@@ -70,7 +100,7 @@
                 text: "Subject"
               },
               value: {
-                html: subjectHtml
+                text: placement.subject | getSubjectLabel
               },
               actions: {
                 items: [
@@ -101,6 +131,23 @@
             },
             {
               key: {
+                text: "Key stage"
+              },
+              value: {
+                html: keyStageHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href:actions.change + "/key-stage?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "key stage"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
                 text: "Class size"
               },
               value: {
@@ -115,7 +162,7 @@
                   }
                 ]
               }
-            },
+            } if 1==0,
             {
               key: {
                 text: "Training pattern"
@@ -129,6 +176,40 @@
                     href: actions.change + "/training-pattern?referrer=check",
                     text: "Change",
                     visuallyHiddenText: "training pattern"
+                  }
+                ]
+              }
+            } if 1==0,
+            {
+              key: {
+                text: "Mentor"
+              },
+              value: {
+                html: mentorHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/mentor?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "mentor"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Mentor availability"
+              },
+              value: {
+                html: mentorAvailabilityHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/mentor-availability?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "mentor availability"
                   }
                 ]
               }

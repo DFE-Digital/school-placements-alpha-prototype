@@ -5,6 +5,8 @@ const marked = require('marked')
 const numeral = require('numeral')
 
 const ageRangeHelper = require('./helpers/age-ranges')
+const keyStageHelper = require('./helpers/key-stages')
+const mentorHelper = require('./helpers/mentors')
 const subjectHelper = require('./helpers/subjects')
 
 /* ------------------------------------------------------------------
@@ -14,6 +16,23 @@ const subjectHelper = require('./helpers/subjects')
 ------------------------------------------------------------------ */
 addFilter('numeral', (number, format) => {
   return numeral(number).format(format)
+})
+
+/* ------------------------------------------------------------------
+utility function to turn and array into a list
+example: {{ ['primary','secondary'] | arrayToList }}
+outputs: "primary and secondary"
+------------------------------------------------------------------ */
+addFilter('arrayToList', (array, join = ', ', final = ' and ') => {
+  const arr = array.slice(0)
+
+  const last = arr.pop()
+
+  if (array.length > 1) {
+    return arr.join(join) + final + last
+  }
+
+  return last
 })
 
 /* ------------------------------------------------------------------
@@ -98,6 +117,36 @@ addFilter('getAgeRangeLabel', (ageRange) => {
 
   if (ageRange) {
     label = ageRangeHelper.getAgeRangeLabel(ageRange)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the key stage label
+example: {{ 'KS1' | getKeyStageLabel }}
+outputs: "Key Stage 1"
+------------------------------------------------------------------ */
+addFilter('getKeyStageLabel', (keyStage) => {
+  let label = keyStage
+
+  if (keyStage) {
+    label = keyStageHelper.getKeyStageLabel(keyStage)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the mentor label
+example: {{ '79a2c9fa-c197-44b4-979f-1f5f75bd8f36' | getMentorLabel }}
+outputs: "Aaron Black"
+------------------------------------------------------------------ */
+addFilter('getMentorLabel', (mentor) => {
+  let label = mentor
+
+  if (mentor) {
+    label = mentorHelper.getMentorLabel(mentor)
   }
 
   return label

@@ -2,7 +2,7 @@
 
 {% set primaryNavId = "placements" %}
 
-{% set title = "Class size" %}
+{% set title = "Mentor" %}
 
 {% if placement.id %}
   {% set caption = placement.subject | getSubjectLabel %}
@@ -30,21 +30,23 @@
 
       <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
 
-        {{ govukInput({
-          id: "class-size",
-          name: "placement[classSize]",
-          label: {
-            html: headingHtml,
-            classes: "govuk-label--l"
+        {{ govukCheckboxes({
+          idPrefix: "mentor",
+          name: "placement[mentor][]",
+          fieldset: {
+            legend: {
+              html: headingHtml,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
           },
           hint: {
-            text: "Enter a class size, for example ‘30’"
+            text: "Select all that apply"
           },
-          errorMessage: errors | getErrorMessage("class-size"),
-          value: placement.classSize,
-          autocomplete: "off",
-          classes: "govuk-input--width-2"
+          errorMessage: errors | getErrorMessage("mentor"),
+          items: mentorOptions
         }) }}
+
 
         {% if placement.id %}
           {{ govukButton({

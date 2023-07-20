@@ -19,12 +19,36 @@
     <dd class="app-result-detail__value">{{ params.ageRange }}</dd>
   </div>
   <div class="app-result-detail__row">
-    <dt class="app-result-detail__key">Gender</dt>
+    <dt class="app-result-detail__key">Key stage</dt>
+    <dd class="app-result-detail__value">
+      <ul class="govuk-list govuk-!-margin-bottom-0">
+        {% for stage in params.keyStage %}
+          <li>
+            {{ stage | getKeyStageLabel }}
+          </li>
+        {% endfor %}
+      </ul>
+    </dd>
+  </div>
+  <div class="app-result-detail__row">
+    <dt class="app-result-detail__key">School gender</dt>
     <dd class="app-result-detail__value">{{ params.gender }}</dd>
   </div>
   <div class="app-result-detail__row">
-    <dt class="app-result-detail__key">Class size</dt>
-    <dd class="app-result-detail__value">{{ params.classSize }}</dd>
+    <dt class="app-result-detail__key">Mentor</dt>
+    <dd class="app-result-detail__value">{{ params.mentor }}</dd>
+  </div>
+  <div class="app-result-detail__row">
+    <dt class="app-result-detail__key">Mentor availability</dt>
+    <dd class="app-result-detail__value">
+      <ul class="govuk-list govuk-!-margin-bottom-0">
+        {% for day in params.mentorAvailability %}
+          <li>
+            {{ day | capitalize }}
+          </li>
+        {% endfor %}
+      </ul>
+    </dd>
   </div>
   {# <div class="app-result-detail__row">
     <dt class="app-result-detail__key">Item name</dt>

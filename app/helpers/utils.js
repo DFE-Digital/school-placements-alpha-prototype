@@ -171,3 +171,25 @@ exports.getSelectedSubjectItems = (selectedItems, baseHref = '/results') => {
 
   return items
 }
+
+exports.getKeyStageFilterItems = (subjectLevel = 'secondary', selectedItems) => {
+  const items = []
+
+  let options = require('../data/key-stages')
+  if (subjectLevel) {
+    options = options.filter(stage => stage.level === subjectLevel)
+  }
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}

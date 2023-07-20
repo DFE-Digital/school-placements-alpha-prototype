@@ -1,6 +1,9 @@
 const placementModel = require('../models/placements')
 
 const ageRangeHelper = require('../helpers/age-ranges')
+const keyStageHelper = require('../helpers/key-stages')
+const mentorAvailabilityHelper = require('../helpers/mentor-availability')
+const mentorHelper = require('../helpers/mentors')
 const subjectHelper = require('../helpers/subjects')
 const trainingPatternHelper = require('../helpers/training-patterns')
 
@@ -158,8 +161,8 @@ exports.new_placement_subject_level_post = (req, res) => {
 
 exports.new_placement_subject_get = (req, res) => {
   let selectedSubject
-  if (req.session.data.placement?.subjects) {
-    selectedSubject = req.session.data.placement.subjects
+  if (req.session.data.placement?.subject) {
+    selectedSubject = req.session.data.placement.subject
   }
 
   const subjectOptions = subjectHelper.getSubjectOptions(
@@ -188,8 +191,8 @@ exports.new_placement_subject_post = (req, res) => {
   const errors = []
 
   let selectedSubject
-  if (req.session.data.placement?.subjects) {
-    selectedSubject = req.session.data.placement.subjects
+  if (req.session.data.placement?.subject) {
+    selectedSubject = req.session.data.placement.subject
   }
 
   const subjectOptions = subjectHelper.getSubjectOptions(
@@ -204,10 +207,10 @@ exports.new_placement_subject_post = (req, res) => {
     back += '/placements/new/check-your-answers'
   }
 
-  if (!req.session.data.placement.subjects.length) {
+  if (!req.session.data.placement.subject) {
     const error = {}
-    error.fieldName = 'subjects'
-    error.href = '#subjects'
+    error.fieldName = 'subject'
+    error.href = '#subject'
     error.text = 'Select a subject'
     errors.push(error)
   }
@@ -303,7 +306,83 @@ exports.new_placement_age_range_post = (req, res) => {
     if (req.query.referrer === 'check') {
       res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
     } else {
-      res.redirect(`/organisations/${req.params.organisationId}/placements/new/class-size`)
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/key-stage`)
+    }
+  }
+}
+
+exports.new_placement_key_stage_get = (req, res) => {
+  let selectedKeyStage
+  if (req.session.data.placement?.keyStage) {
+    selectedKeyStage = req.session.data.placement.keyStage
+  }
+
+  const keyStageOptions = keyStageHelper.getKeyStageOptions(
+    req.session.data.placement.subjectLevel,
+    selectedKeyStage
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  let back = `/organisations/${req.params.organisationId}/placements/new/age-range`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  res.render('../views/placements/key-stage', {
+    keyStageOptions,
+    actions: {
+      save,
+      back,
+      cancel: `/organisations/${req.params.organisationId}/placements`
+    }
+  })
+}
+
+exports.new_placement_key_stage_post = (req, res) => {
+  const errors = []
+
+  let selectedKeyStage
+  if (req.session.data.placement?.keyStage) {
+    selectedKeyStage = req.session.data.placement.keyStage
+  }
+
+  const keyStageOptions = keyStageHelper.getKeyStageOptions(
+    req.session.data.placement.subjectLevel,
+    selectedKeyStage
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  let back = `/organisations/${req.params.organisationId}/placements/new/age-range`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  if (!req.session.data.placement.keyStage) {
+    const error = {}
+    error.fieldName = 'key-stage'
+    error.href = '#key-stage'
+    error.text = 'Select a key stage'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/placements/key-stage', {
+      placement: req.session.data.placement,
+      keyStageOptions,
+      actions: {
+        save,
+        back,
+        cancel: `/organisations/${req.params.organisationId}/placements`
+      },
+      errors
+    })
+  } else {
+    if (req.query.referrer === 'check') {
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
+    } else {
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/mentor`)
     }
   }
 }
@@ -434,6 +513,156 @@ exports.new_placement_training_pattern_post = (req, res) => {
 
 }
 
+exports.new_placement_mentor_get = (req, res) => {
+  let selectedMentor
+  if (req.session.data.placement?.mentor) {
+    selectedMentor = req.session.data.placement.mentor
+  }
+
+  const mentorOptions = mentorHelper.getMentorOptions(
+    req.params.organisationId,
+    req.session.data.placement.subject,
+    selectedMentor
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/mentor`
+  let back = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  res.render('../views/placements/mentor', {
+    mentorOptions,
+    actions: {
+      save,
+      back,
+      cancel: `/organisations/${req.params.organisationId}/placements`
+    }
+  })
+}
+
+exports.new_placement_mentor_post = (req, res) => {
+  const errors = []
+
+  let selectedMentor
+  if (req.session.data.placement?.mentor) {
+    selectedMentor = req.session.data.placement.mentor
+  }
+
+  const mentorOptions = mentorHelper.getMentorOptions(
+    req.params.organisationId,
+    req.session.data.placement.subject,
+    selectedMentor
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/mentor`
+  let back = `/organisations/${req.params.organisationId}/placements/new/key-stage`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  if (!req.session.data.placement.mentor.length) {
+    const error = {}
+    error.fieldName = 'mentor-availability'
+    error.href = '#training-pattern'
+    error.text = 'Select a training pattern'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/placements/mentor', {
+      placement: req.session.data.placement,
+      mentorOptions,
+      actions: {
+        save,
+        back,
+        cancel: `/organisations/${req.params.organisationId}/placements`
+      },
+      errors
+    })
+  } else {
+    if (req.query.referrer === 'check') {
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
+    } else {
+      res.redirect(`/organisations/${req.params.organisationId}/placements/new/mentor-availability`)
+    }
+  }
+
+}
+
+exports.new_placement_mentor_availability_get = (req, res) => {
+  let selectedMentorAvailability
+  if (req.session.data.placement?.mentorAvailability) {
+    selectedMentorAvailability = req.session.data.placement.mentorAvailability
+  }
+
+  const mentorAvailabilityOptions = mentorAvailabilityHelper.getMentorAvailabilityOptions(
+    selectedMentorAvailability
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/mentor-availability`
+  let back = `/organisations/${req.params.organisationId}/placements/new/mentor`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  res.render('../views/placements/mentor-availability', {
+    mentorAvailabilityOptions,
+    actions: {
+      save,
+      back,
+      cancel: `/organisations/${req.params.organisationId}/placements`
+    }
+  })
+}
+
+exports.new_placement_mentor_availability_post = (req, res) => {
+  const errors = []
+
+  let selectedMentorAvailability
+  if (req.session.data.placement?.mentorAvailability) {
+    selectedMentorAvailability = req.session.data.placement.mentorAvailability
+  }
+
+  const mentorAvailabilityOptions = mentorAvailabilityHelper.getMentorAvailabilityOptions(
+    selectedMentorAvailability
+  )
+
+  let save = `/organisations/${req.params.organisationId}/placements/new/mentor-availability`
+  let back = `/organisations/${req.params.organisationId}/placements/new/mentor`
+  if (req.query.referrer === 'check') {
+    save += '?referrer=check'
+    back += '/placements/new/check-your-answers'
+  }
+
+  if (!req.session.data.placement.mentorAvailability.length) {
+    const error = {}
+    error.fieldName = 'mentor-availability'
+    error.href = '#mentor-availability'
+    error.text = 'Select mentor availability'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/placements/mentor-availability', {
+      placement: req.session.data.placement,
+      mentorAvailabilityOptions,
+      actions: {
+        save,
+        back,
+        cancel: `/organisations/${req.params.organisationId}/placements`
+      },
+      errors
+    })
+  } else {
+    res.redirect(`/organisations/${req.params.organisationId}/placements/new/check-your-answers`)
+  }
+
+}
+
 exports.new_placement_check_get = (req, res) => {
   res.render('../views/placements/check-your-answers', {
     placement: req.session.data.placement,
@@ -474,6 +703,13 @@ exports.edit_placement_age_range_get = (req, res) => {
 exports.edit_placement_age_range_post = (req, res) => {
   res.send('Not implemented')
 }
+exports.edit_placement_key_stage_get = (req, res) => {
+  res.send('Not implemented')
+}
+
+exports.edit_placement_key_stage_post = (req, res) => {
+  res.send('Not implemented')
+}
 
 exports.edit_placement_class_size_get = (req, res) => {
   res.send('Not implemented')
@@ -488,5 +724,21 @@ exports.edit_placement_training_pattern_get = (req, res) => {
 }
 
 exports.edit_placement_training_pattern_post = (req, res) => {
+  res.send('Not implemented')
+}
+
+exports.edit_placement_mentor_get = (req, res) => {
+  res.send('Not implemented')
+}
+
+exports.edit_placement_mentor_post = (req, res) => {
+  res.send('Not implemented')
+}
+
+exports.edit_placement_mentor_availability_get = (req, res) => {
+  res.send('Not implemented')
+}
+
+exports.edit_placement_mentor_availability_post = (req, res) => {
   res.send('Not implemented')
 }
