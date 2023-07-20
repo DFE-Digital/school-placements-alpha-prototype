@@ -18,6 +18,23 @@ addFilter('numeral', (number, format) => {
 })
 
 /* ------------------------------------------------------------------
+utility function to turn and array into a list
+example: {{ ['primary','secondary'] | arrayToList }}
+outputs: "primary and secondary"
+------------------------------------------------------------------ */
+addFilter('arrayToList', (array, join = ', ', final = ' and ') => {
+  const arr = array.slice(0)
+
+  const last = arr.pop()
+
+  if (array.length > 1) {
+    return arr.join(join) + final + last
+  }
+
+  return last
+})
+
+/* ------------------------------------------------------------------
 utility function to parse markdown as HTML
 example: {{ "## Title" | markdownToHtml }}
 outputs: "<h2>Title</h2>"
