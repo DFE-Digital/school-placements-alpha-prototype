@@ -5,7 +5,7 @@
 {% set title = "Check your answers" %}
 
 {% if placement.id %}
-  {% set caption = placement.name + " (" + placement.code + ")" %}
+  {% set caption = placement.subject | getSubjectLabel %}
 {% else %}
   {% set caption = "Add placement" %}
 {% endif %}
