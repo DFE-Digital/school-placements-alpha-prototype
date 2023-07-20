@@ -75,6 +75,10 @@ exports.insertOne = (params) => {
       placement.trainingPattern = params.placement.trainingPattern
     }
 
+    if (params.placement.mentor) {
+      placement.mentor = params.placement.mentor
+    }
+
     if (params.placement.mentorAvailability) {
       placement.mentorAvailability = params.placement.mentorAvailability
     }
