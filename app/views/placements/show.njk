@@ -38,6 +38,16 @@
         </ul>
       {% endset %}
 
+      {% set mentorHtml %}
+        <ul class="govuk-list">
+          {% for mentor in placement.mentor %}
+            <li>
+              {{ mentor | getMentorLabel }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
       {% set mentorAvailabilityHtml %}
         <ul class="govuk-list">
           {% for availability in placement.mentorAvailability %}
@@ -152,6 +162,23 @@
               ]
             }
           } if 1==0,
+          {
+            key: {
+              text: "Mentor" + ("s" if placement.mentor.length > 1)
+            },
+            value: {
+              html: mentorHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/mentor?referrer=change",
+                  text: "Change",
+                  visuallyHiddenText: "mentor"
+                }
+              ]
+            }
+          },
           {
             key: {
               text: "Mentor availability"

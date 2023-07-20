@@ -46,6 +46,16 @@
           </ul>
         {% endset %}
 
+        {% set mentorHtml %}
+          <ul class="govuk-list">
+            {% for mentor in placement.mentor %}
+              <li>
+                {{ mentor | getMentorLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
         {% set trainingPatternHtml %}
           <ul class="govuk-list">
             {% for pattern in placement.trainingPattern %}
@@ -170,6 +180,23 @@
                 ]
               }
             } if 1==0,
+            {
+              key: {
+                text: "Mentor"
+              },
+              value: {
+                html: mentorHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/mentor?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "mentor"
+                  }
+                ]
+              }
+            },
             {
               key: {
                 text: "Mentor availability"
