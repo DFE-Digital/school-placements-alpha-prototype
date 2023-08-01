@@ -1,0 +1,37 @@
+{% extends "layouts/main.njk" %}
+
+{% set pageTitle = "Problem Report" %}
+
+
+{% block content %}
+
+{#
+Create a grid to hold our page content in two thirds of the page
+#}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Problem Report
+    </h1>
+
+    <p class="govuk-body">
+    This service allow ITT Providers to report problems blah blah.
+    </p>
+
+    {# ------------Publish a placement------------#}
+    <h2 class="govuk-heading-l">Sumbit Problem Report</h2>
+    <p class="govuk-body">
+    Start a new problem report to submit data to DfE about your ITT placements problem.
+    </p>
+
+    {{ govukButton({
+      text: "Start Problem Report",
+      href: "/problemreport/template",
+      isStartButton: true
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}
