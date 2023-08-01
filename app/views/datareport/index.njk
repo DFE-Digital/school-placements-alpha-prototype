@@ -1,0 +1,37 @@
+{% extends "layouts/main.njk" %}
+
+{% set pageTitle = "Data Report" %}
+
+
+{% block content %}
+
+{#
+Create a grid to hold our page content in two thirds of the page
+#}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Voluntary Data Report
+    </h1>
+
+    <p class="govuk-body">
+    This service allow ITT Providers to report on what is happening with their teacher training placements.
+    </p>
+
+    {# ------------Publish a placement------------#}
+    <h2 class="govuk-heading-l">Start Report</h2>
+    <p class="govuk-body">
+    Start a new report to submit data to DfE about your ITT placements
+    </p>
+
+    {{ govukButton({
+      text: "Start report",
+      href: "/datareport/biggestchallenge",
+      isStartButton: true
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}

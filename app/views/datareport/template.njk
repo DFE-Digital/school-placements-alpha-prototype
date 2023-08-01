@@ -1,0 +1,73 @@
+{% extends "layouts/main.njk" %}
+
+{#-----IMPORT FORM COMPONENTS YOU NEED-----#}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{#-----PAGE TITLE-----#}
+{% set pageTitle = "Question Title" %}
+
+{#-----BACK LINK-----#}
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/datareport/"
+  }) }}
+{% endblock %}
+
+{#-----MAIN CONTENT BELOW-----#}
+{% block content %}
+
+{#-----CREATE GRID TO HOLD OUR CONTENT IN 2/3 OF THE PAGE-----#}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {#-----HEADER TEXT-----#}
+    <h1 class="govuk-heading-xl">
+      Question Title
+    </h1>
+
+    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
+    <p class="govuk-body">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+
+    {#-----RADIO CONTROL-----#}
+    {{ govukRadios({
+      name: "template-question",
+      fieldset: {
+        legend: {
+          text: "What is blah blah?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "placements",
+          text: "Placements"
+        },
+        {
+          value: "mentors",
+          text: "Mentors"
+        },
+        {
+          value: "itt-partners",
+          text: "ITT Partners"
+        },
+        {
+          value: "trainees",
+          text: "Trainees"
+        }
+      ]
+    }) }}
+
+    {#-----CONTINUE BUTTON-----#}
+    {{ govukButton({
+      text: "Continue",
+      href: "/datareport/biggestchallenge"
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}
