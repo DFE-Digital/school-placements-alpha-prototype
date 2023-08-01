@@ -1,0 +1,73 @@
+{% extends "layouts/main.njk" %}
+
+{#-----IMPORT FORM COMPONENTS WE NEED-----#}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{#-----PAGE TITLE-----#}
+{% set pageTitle = "Question Title" %}
+
+{#-----BACK LINK-----#}
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/datareport/"
+  }) }}
+{% endblock %}
+
+{#-----MAIN CONTENT BELOW-----#}
+{% block content %}
+
+{#-----CREATE GRID TO HOLD OUR CONTENT IN 2/3 OF THE PAGE-----#}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {#-----HEADER TEXT-----#}
+    <h1 class="govuk-heading-xl">
+      Do you have a surplus in any area?
+    </h1>
+
+    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
+    <p class="govuk-body">
+    Tell us about any surplus you may have, for example too many history teachers, or not enough physics mentors. Can you come back to this page later and keep telling us about more surpluses you have.
+    </p>
+
+    {#-----RADIO CONTROL-----#}
+    {{ govukRadios({
+      name: "template-question",
+      fieldset: {
+        legend: {
+          text: "We have a surplus of",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "trainees",
+          text: "Trainees"
+        },
+        {
+          value: "mentors",
+          text: "Mentors"
+        },
+        {
+          value: "teachers",
+          text: "Teachers"
+        },
+        {
+          value: "none",
+          text: "NONE of the above"
+        }
+      ]
+    }) }}
+
+    {#-----CONTINUE BUTTON-----#}
+    {{ govukButton({
+      text: "Continue",
+      href: "/datareport/surplussubject"
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}
