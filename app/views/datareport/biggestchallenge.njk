@@ -1,0 +1,73 @@
+{% extends "layouts/main.njk" %}
+
+{#-----IMPORT FORM COMPONENTS YOU NEED-----#}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{#-----PAGE TITLE-----#}
+{% set pageTitle = "Biggest Challenge" %}
+
+{#-----BACK LINK-----#}
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/datareport/"
+  }) }}
+{% endblock %}
+
+{#-----MAIN CONTENT BELOW-----#}
+{% block content %}
+
+{#-----CREATE GRID TO HOLD OUR CONTENT IN 2/3 OF THE PAGE-----#}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {#-----HEADER TEXT-----#}
+    <h1 class="govuk-heading-xl">
+      Biggest Challenge
+    </h1>
+
+    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
+    <p class="govuk-body">
+    We are interested to know what you feel is the biggest challenge you face in managing ITT placements. We appreciate that you might be facing problems in multiple areas, but we want you to try to narrow it down to just a single choice, the one that is causing you the most concern today.
+    </p>
+
+    {#-----RADIO CONTROL-----#}
+    {{ govukRadios({
+      name: "biggest-challenge",
+      fieldset: {
+        legend: {
+          text: "What is your biggest challenge?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "placements",
+          text: "Placements"
+        },
+        {
+          value: "mentors",
+          text: "Mentors"
+        },
+        {
+          value: "itt-partners",
+          text: "ITT Partners"
+        },
+        {
+          value: "trainees",
+          text: "Trainees"
+        }
+      ]
+    }) }}
+
+    {#-----CONTINUE BUTTON-----#}
+    {{ govukButton({
+      text: "Continue",
+      href: "/datareport/"
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}
