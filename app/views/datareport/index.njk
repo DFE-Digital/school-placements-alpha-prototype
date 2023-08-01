@@ -18,16 +18,43 @@ Create a grid to hold our page content in two thirds of the page
     <p class="govuk-body">
     This service allow ITT Providers to report on what is happening with their teacher training placements.
     </p>
+    <p class="govuk-body">
+    Below is a list of the question pages created for review before we set the order    
+    </p>
+
+    <ul class="govuk-list govuk-list--spaced">
+      <li>
+        <a href="/datareport/surplusquestion" class="govuk-link">Surplus</a>
+      </li>
+      <li>
+        <a href="/datareport/challengesmanagingitt" class="govuk-link">Challenges managing ITT</a>
+      </li>
+      <li>
+        <a href="/datareport/enoughmentors" class="govuk-link">Enough mentors</a>
+      </li>
+      <li>
+        <a href="/datareport/reasonnotparticipate" class="govuk-link">Reasons not to participate</a>
+      </li>
+      <li>
+        <a href="/datareport/primarysubjectsdifficulty" class="govuk-link">Primary subjects difficulty</a>
+      </li>
+      <li>
+        <a href="/datareport/secondarysubjectsdifficulty" class="govuk-link">Secondary subjects difficulty</a>
+      </li>
+       <li>
+        <a href="/datareport/endreport" class="govuk-link">End of report - thanks</a>
+      </li>
+    </ul>
 
     {# ------------Publish a placement------------#}
-    <h2 class="govuk-heading-l">Start Report</h2>
+    <h2 class="govuk-heading-m">Start Report</h2>
     <p class="govuk-body">
     Start a new report to submit data to DfE about your ITT placements
     </p>
 
     {{ govukButton({
       text: "Start report",
-      href: "/datareport/biggestchallenge",
+      href: "/datareport/",
       isStartButton: true
     }) }}
 

@@ -159,8 +159,17 @@ router.get('/placements/:placementId', resultsController.show)
 /// DATA REPORT ROUTES
 /// ------------------------------------------------------------------------ ///
 router.get('/datareport', datareportController.datareport_get)
+router.get('/datareport/reasonnotparticipate', datareportController.reasonnotparticipate_get)
+router.get('/datareport/challengesmanagingitt', datareportController.challengesmanagingitt_get)
+router.get('/datareport/enoughmentors', datareportController.enoughmentors_get)
+router.get('/datareport/secondarysubjectsdifficulty', datareportController.secondarysubjectsdifficulty_get)
+router.get('/datareport/primarysubjectsdifficulty', datareportController.primarysubjectsdifficulty_get)
+router.get('/datareport/surplusquestion', datareportController.surplusquestion_get)
+router.get('/datareport/surplussubject', datareportController.surplussubject_get)
+router.get('/datareport/surplus', datareportController.surplus_get)
+router.get('/datareport/endreport', datareportController.endreport_get)
+
 router.get('/datareport/template', datareportController.template_get)
-router.get('/datareport/biggestchallenge', datareportController.biggestchallenge_get)
 
 /// ------------------------------------------------------------------------ ///
 /// REPORT PROBLEM ROUTES

@@ -23,7 +23,7 @@
 
     {#-----HEADER TEXT-----#}
     <h1 class="govuk-heading-xl">
-      Question Title
+      What Primary subjects are most problematical for ITT?
     </h1>
 
     {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
@@ -31,34 +31,22 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </p>
 
-    {#-----RADIO CONTROL-----#}
-    {{ govukRadios({
-      name: "template-question",
+    {#-----CHECKBOXES COMPONENT-----#}
+    {{ govukCheckboxes({
+      idPrefix: "subject",
+      name: "filter[subject]",
       fieldset: {
         legend: {
-          text: "What is blah blah?",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--m"
+          text: headingHtml,
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
         }
       },
-      items: [
-        {
-          value: "placements",
-          text: "Placements"
-        },
-        {
-          value: "mentors",
-          text: "Mentors"
-        },
-        {
-          value: "itt-partners",
-          text: "ITT Partners"
-        },
-        {
-          value: "trainees",
-          text: "Trainees"
-        }
-      ]
+      hint: {
+        text: "Select all that apply"
+      },
+      errorMessage: errors | getErrorMessage("subject"),
+      items: subjectOptions
     }) }}
 
     {#-----CONTINUE BUTTON-----#}
