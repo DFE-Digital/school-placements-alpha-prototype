@@ -15,7 +15,7 @@ const organisationController = require('./controllers/organisations')
 const placementController = require('./controllers/placements')
 const resultsController = require('./controllers/results')
 const searchController = require('./controllers/search')
-
+const datareportController = require('./controllers/datareport')
 
 // Add your routes here
 
@@ -152,3 +152,13 @@ router.get('/results/remove-c-filter/:c', resultsController.removeFilterC)
 router.get('/results/remove-all-filters', resultsController.removeAllFilters)
 
 router.get('/placements/:placementId', resultsController.show)
+
+
+/// ------------------------------------------------------------------------ ///
+/// DATA REPORT ROUTES
+/// ------------------------------------------------------------------------ ///
+router.get('/datareport', datareportController.datareport_get)
+router.get('/datareport/template', datareportController.template_get)
+router.get('/datareport/biggestchallenge', datareportController.biggestchallenge_get)
+
+
