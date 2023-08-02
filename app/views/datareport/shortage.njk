@@ -26,16 +26,17 @@
       You told us that you have the following shortage
     </h1>
 
-    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
+    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----
     <p class="govuk-body">
     Please check the details in the table below and if anything isn't correct you can go back and change it. If you're happy with what you've told us, click Continue.
     </p>
+    #}
 
    
 
     {#-----TABLE COMPONENT-----#}
     {{ govukTable({
-      caption: "Shortage",
+      caption: "",
       captionClasses: "govuk-table__caption--m",
       firstCellIsHeader: true,
       head: [
@@ -65,7 +66,7 @@
         ],
                 [
           {
-            text: "Teacher"
+            text: "Trainee"
           },
           {
             text: "Mathematics"

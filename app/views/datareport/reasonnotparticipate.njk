@@ -11,7 +11,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/datareport/"
+    href: "/datareport/challengesmanagingitt"
   }) }}
 {% endblock %}
 
@@ -30,7 +30,7 @@
 
     {#-----EXPLANATORY TEXT FOR OUR QUESTION-----
     <p class="govuk-body">
-    In your opinion what are the reasons that schools in your area do NOT participate in ITT?
+    What is preventing schools in your area from taking part in ITT?
     </p>
     #}
 
@@ -41,7 +41,7 @@
       name: "nonparticipation",
       fieldset: {
         legend: {
-          text: "In your opinion what are the reasons that schools in your area do NOT participate in ITT?",
+          text: "What are the biggest barriers to providing ITT placements for schools in your area?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
@@ -59,8 +59,8 @@
           text: "Mentor availability"
         },
         {
-          value: "departmental-capacity",
-          text: "Departmental capacity"
+          value: "school-capacity",
+          text: "School capacity"
         },
         {
           value: "ofsted-rating",
@@ -84,12 +84,12 @@
       name: "nonparticipation-other-detail",
       id: "nonparticipation-other-detail",
       label: {
-        text: "Please you provide more detail about the OTHER reasons if you selected this?",
+        text: "If you selected other please provide more detail",
         classes: "govuk-label--m",
         isPageHeading: false
       },
       hint: {
-        text: "Do not include personal or financial information, like your National Insurance number or credit card details."
+        text: ""
       }
     }) }}
 
