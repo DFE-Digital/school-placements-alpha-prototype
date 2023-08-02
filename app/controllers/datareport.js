@@ -27,7 +27,7 @@ exports.enoughmentors_get = (req, res) => {
 
 // When a GET request is made to the '/datareport/secondarysubjectsdifficulty' route,
 // render the Nunjucks template found at './views/datareport/secondarysubjectsdifficult.njk'.
-// Also ensure that we send a list of the secondary subjects in subjectOptions variable
+// Also ensure that we send a list of the secondary subjects in subjectOptions variable here
 exports.secondarysubjectsdifficulty_get = (req, res) => {
     const subjectOptions = subjectHelper.getSubjectOptions('secondary');
     //console.log(subjectOptions); // add this line
