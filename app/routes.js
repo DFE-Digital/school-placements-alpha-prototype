@@ -167,6 +167,9 @@ router.get('/datareport/primarysubjectsdifficulty', datareportController.primary
 router.get('/datareport/surplusquestion', datareportController.surplusquestion_get)
 router.get('/datareport/surplussubject', datareportController.surplussubject_get)
 router.get('/datareport/surplus', datareportController.surplus_get)
+router.get('/datareport/shortagequestion', datareportController.shortagequestion_get)
+router.get('/datareport/shortagesubject', datareportController.shortagesubject_get)
+router.get('/datareport/shortage', datareportController.shortage_get)
 router.get('/datareport/endreport', datareportController.endreport_get)
 
 router.get('/datareport/template', datareportController.template_get)

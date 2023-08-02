@@ -41,7 +41,7 @@ exports.secondarysubjectsdifficulty_get = (req, res) => {
 // Also ensure that we send a list of the primary subjects in subjectOptions variable
 exports.primarysubjectsdifficulty_get = (req, res) => {
     const subjectOptions = subjectHelper.getSubjectOptions('primary');
-    console.log(subjectOptions); // add this line
+    //console.log(subjectOptions); // add this line
     res.render('datareport/primarysubjectsdifficulty', {
         subjectOptions
     });
@@ -65,6 +65,28 @@ exports.surplussubject_get = (req, res) => {
     const subjectOptions = subjectHelper.getSubjectOptions('secondary');
     //console.log(subjectOptions); // add this line
     res.render('datareport/surplussubject', {
+        subjectOptions
+    });
+}
+
+// When a GET request is made to the '/datareport/shortage' route,
+// render the Nunjucks template found at './views/datareport/shortage.njk'.
+exports.shortage_get = (req, res) => {
+    res.render('datareport/shortage');
+} 
+
+// When a GET request is made to the '/datareport/shortagequestion' route,
+// render the Nunjucks template found at './views/datareport/shortagequestion.njk'.
+exports.shortagequestion_get = (req, res) => {
+    res.render('datareport/shortagequestion');
+} 
+
+// When a GET request is made to the '/datareport/shortagesubject' route,
+// render the Nunjucks template found at './views/datareport/shortagesubject.njk'.
+exports.shortagesubject_get = (req, res) => {
+    const subjectOptions = subjectHelper.getSubjectOptions('secondary');
+    //console.log(subjectOptions); // add this line
+    res.render('datareport/shortagesubject', {
         subjectOptions
     });
 }
