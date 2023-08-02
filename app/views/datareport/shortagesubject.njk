@@ -4,13 +4,13 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {#-----PAGE TITLE-----#}
-{% set pageTitle = "Question Title" %}
+{% set pageTitle = "Shortage Subject" %}
 
 {#-----BACK LINK-----#}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/datareport/primarysubjectsdifficulty"
+    href: "/datareport/shortagequestion"
   }) }}
 {% endblock %}
 
@@ -23,7 +23,7 @@
 
     {#-----HEADER TEXT-----#}
     <h1 class="govuk-heading-xl">
-      Which Secondary subjects are hard to find placements for?
+      What subjects does this shortage apply to?
     </h1>
 
     {#-----EXPLANATORY TEXT FOR OUR QUESTION-----
@@ -53,7 +53,7 @@
     {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Continue",
-      href: "/datareport/challengesmanagingitt"
+      href: "/datareport/shortage"
     }) }}
 
   </div>

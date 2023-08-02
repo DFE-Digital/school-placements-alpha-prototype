@@ -12,16 +12,14 @@ Create a grid to hold our page content in two thirds of the page
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-heading-xl">
-      Voluntary Data Report
+      Report information about placements
     </h1>
 
     <p class="govuk-body">
-    This service allow ITT Providers to report on what is happening with their teacher training placements.
-    </p>
-    <p class="govuk-body">
-    Below is a list of the question pages created for review before we set the order    
+    This voluntary survey is for Initial Teacher Training (ITT) providers to report on what is happening with their teacher training placements.
     </p>
 
+{#
     <ul class="govuk-list govuk-list--spaced">
       <li>
         <a href="/datareport/surplusquestion" class="govuk-link">Surplus</a>
@@ -45,16 +43,17 @@ Create a grid to hold our page content in two thirds of the page
         <a href="/datareport/endreport" class="govuk-link">End of report - thanks</a>
       </li>
     </ul>
-
-    {# ------------Publish a placement------------#}
+#}
+    {# ------------Publish a placement------------
     <h2 class="govuk-heading-m">Start Report</h2>
     <p class="govuk-body">
     Start a new report to submit data to DfE about your ITT placements
     </p>
+    #}
 
     {{ govukButton({
       text: "Start report",
-      href: "/datareport/",
+      href: "/datareport/shortagequestion",
       isStartButton: true
     }) }}
 

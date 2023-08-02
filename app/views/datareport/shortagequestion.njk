@@ -4,13 +4,13 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {#-----PAGE TITLE-----#}
-{% set pageTitle = "Question Title" %}
+{% set pageTitle = "Shortage" %}
 
 {#-----BACK LINK-----#}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/datareport/shortage"
+    href: "/datareport/"
   }) }}
 {% endblock %}
 
@@ -23,12 +23,12 @@
 
     {#-----HEADER TEXT-----#}
     <h1 class="govuk-heading-xl">
-      Do you have a surplus of any resources?
+      Do you have a shortage of any resources?
     </h1>
 
     {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
     <p class="govuk-body">
-    For example too many history mentors.
+    For example too many history teachers, or not enough physics mentors.
     </p>
 
     {#-----RADIO CONTROL-----#}
@@ -36,7 +36,7 @@
       name: "template-question",
       fieldset: {
         legend: {
-          text: "We have a surplus of",
+          text: "We have a shortage of",
           isPageHeading: false,
           classes: "govuk-fieldset__legend--m"
         }
@@ -60,7 +60,7 @@
     {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Continue",
-      href: "/datareport/surplussubject"
+      href: "/datareport/shortagesubject"
     }) }}
 
   </div>
