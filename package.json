@@ -16,7 +16,7 @@
     "connect-flash": "^0.1.1",
     "del": "6.1.1",
     "govuk-frontend": "4.7.0",
-    "govuk-prototype-kit": "13.11.0",
+    "govuk-prototype-kit": "13.12.0",
     "luxon": "^3.3.0",
     "marked": "^5.1.2",
     "numeral": "^2.0.6",
