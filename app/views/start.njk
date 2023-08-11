@@ -1,0 +1,56 @@
+{% extends "layouts/auth.njk" %}
+
+{% set pageTitle = "Home" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      {{ serviceName }}
+    </h1>
+
+    <p class="govuk-body">
+    This service allows schools to share the capacity they have for Initial Teacher Training (ITT) placement opportunities.
+    Published placements can be searched by age group and subject and further refined by attributes such as Key Stage.
+    </p>
+
+
+    <h2 class="govuk-heading-l">Publish a placement</h2>
+    <p class="govuk-body">
+    Get started as a school by publishing a new placement opportunity. You can manage exising placements and also update the information that people will see about your school.
+    </p>
+
+    {{ govukButton({
+      text: "Publish a placement",
+      href: "/organisations/bab3ec36-ed17-4f2f-a16e-fbd1a4b2e902/placements",
+      isStartButton: true
+    }) }}
+
+    <h2 class="govuk-heading-l">Find a placement</h2>
+    <p class="govuk-body">
+    Search for schools that have suitable ITT placement opportunities matcing the needs of your organisation and the trainees you need to place.
+    </p>
+
+    {{ govukButton({
+      text: "Find a placement",
+      href: "/search",
+      isStartButton: true
+    }) }}
+
+{# -----Comment out the original links ----
+    <ul class="govuk-list govuk-list--spaced">
+      <li>
+        <a href="/organisations/bab3ec36-ed17-4f2f-a16e-fbd1a4b2e902/placements" class="govuk-link">Publish a placement</a>
+      </li>
+      <li>
+        <a href="/search" class="govuk-link">Find a placement</a>
+      </li>
+    </ul>
+#}
+
+  </div>
+</div>
+
+{% endblock %}
