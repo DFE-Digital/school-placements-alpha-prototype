@@ -122,17 +122,12 @@
         <h2 class="govuk-heading-m">Anne</h2>
 
         {{ govukTag({
-          text: "School direct",
-          classes: "govuk-tag--blue govuk-!-margin-bottom-5"
-        }) }}
-
-        {{ govukTag({
-          text: "Lead school",
+          text: "School",
           classes: "govuk-tag--yellow govuk-!-margin-bottom-5"
         }) }}
 
         <p class="govuk-body">
-          Anne is a course administrator who belongs to one school direct.
+          Anne is a XXXX.
         </p>
 
         <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
@@ -158,7 +153,7 @@
         }) }}
 
         <p class="govuk-body">
-          Susy is a SCITT service manager who belongs to one accredited provider.
+          Susy is a XXXX.
         </p>
 
         <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
@@ -184,7 +179,7 @@
         }) }}
 
         <p class="govuk-body">
-          Grace is a university admissions manager who belongs to one accredited provider.
+          Grace is a XXXX.
         </p>
 
         <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
@@ -204,25 +199,9 @@
           classes: "govuk-tag--purple govuk-!-margin-bottom-5"
         }) }}
 
-        {{ govukTag({
-          text: "Accredited provider",
-          classes: "govuk-tag--blue govuk-!-margin-bottom-5"
-        }) }}
-
-        {{ govukTag({
-          text: "School direct",
-          classes: "govuk-tag--blue govuk-!-margin-bottom-5"
-        }) }}
-
         <p class="govuk-body">
-          Mary is a SCITT Business Support Coordinator who belongs to:
+          Mary is a XXXX.
         </p>
-
-        <ul class="govuk-list govuk-list--bullet">
-          <li>multiple accredited providers, <strong>Suffolk and Norfolk Primary SCITT</strong> and <strong>Suffolk and Norfolk Secondary SCITT</strong></li>
-          <li>a school direct <strong>Thorpe St Andrew School and Sixth Form</strong> with courses accredited by <strong>Suffolk and Norfolk Secondary SCITT</strong></li>
-          <li>a school direct <strong>Thorpe St Andrew School and Sixth Form</strong> with courses also accredited by an organisation not associated with Mary</li>
-        </ul>
 
         <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
           <input type="hidden" name="username" value="mary@example.com">
@@ -232,7 +211,7 @@
           }) }}
         </form>
 
-        <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
+        {# <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
 
         <h2 class="govuk-heading-m">Alysa</h2>
 
@@ -241,27 +220,17 @@
           classes: "govuk-tag--purple govuk-!-margin-bottom-5"
         }) }}
 
-        {{ govukTag({
-          text: "Accredited provider",
-          classes: "govuk-tag--blue govuk-!-margin-bottom-5"
-        }) }}
-
-        {{ govukTag({
-          text: "School direct",
-          classes: "govuk-tag--blue govuk-!-margin-bottom-5"
-        }) }}
-
         <p class="govuk-body">
-          Alysa is a course administrator who belongs multiple organisations.
+          Alysa is a XXXX.
         </p>
 
         <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
-          <input type="hidden" name="username" value="alysa.hane-11672@example.com">
+          <input type="hidden" name="username" value="alysa@example.com">
           <input type="hidden" name="password" value="bat">
           {{ govukButton({
             text: "Sign in as Alysa"
           }) }}
-        </form>
+        </form> #}
 
         <!-- <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
 
