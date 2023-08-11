@@ -6,9 +6,42 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+/// ------------------------------------------------------------------------ ///
+/// Flash messaging
+/// ------------------------------------------------------------------------ ///
 const flash = require('connect-flash')
-
 router.use(flash())
+
+/// ------------------------------------------------------------------------ ///
+/// User authentication
+/// ------------------------------------------------------------------------ ///
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const authenticationModel = require('./models/authentication')
+
+passport.serializeUser((user, done) => {
+  done(null, user)
+})
+
+passport.deserializeUser((user, done) => {
+  done(null, user)
+})
+
+// Authentication
+passport.use(new LocalStrategy(
+  (username, password, done) => {
+    const user = authenticationModel.findOne({
+      username: username,
+      password: password,
+      active: true
+    })
+    if (user) { return done(null, user) }
+    return done(null, false)
+  }
+))
+
+router.use(passport.initialize())
+router.use(passport.session())
 
 // Controller modules
 const authenticationController = require('./controllers/authentication')
@@ -23,17 +56,16 @@ const problemreportController = require('./controllers/problemreport')
 
 // Authentication middleware
 const checkIsAuthenticated = (req, res, next) => {
-  // if (req.session.passport) {
-  //   // the signed in user
-  //   res.locals.passport = req.session.passport
-  //   // the base URL for navigation
-  res.locals.baseUrl = `/organisations/${req.params.organisationId}`
-  //   res.locals.cycleId = req.params.cycleId
+  if (req.session.passport) {
+    // the signed in user
+    res.locals.passport = req.session.passport
+    // the base URL for navigation
+    res.locals.baseUrl = `/organisations/${req.params.organisationId}`
     next()
-  // } else {
-  //   delete req.session.data
-  //   res.redirect('/sign-in')
-  // }
+  } else {
+    delete req.session.data
+    res.redirect('/sign-in')
+  }
 }
 
 /// ------------------------------------------------------------------------ ///
