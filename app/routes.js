@@ -258,3 +258,8 @@ router.get('/datareport/template', datareportController.template_get)
 /// REPORT PROBLEM ROUTES
 /// ------------------------------------------------------------------------ ///
 router.get('/problemreport', problemreportController.problemreport_get)
+
+
+router.get('/', checkIsAuthenticated, (req, res) => {
+  res.render('index')
+})

@@ -12,15 +12,15 @@ Create a grid to hold our links or buttons to the Publish and Find parts of the 
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-heading-xl">
-      {{ serviceName }}
+      {{ passport.user.firstName }} {{ passport.user.lastName }}
     </h1>
 
-    <p class="govuk-body">
+    {# <p class="govuk-body">
     This service allows schools to share the capacity they have for Initial Teacher Training (ITT) placement opportunities.
     Published placements can be searched by age group and subject and further refined by attributes such as Key Stage.
     </p>
 
-    {# ------------Publish a placement------------#}
+
     <h2 class="govuk-heading-l">Publish a placement</h2>
     <p class="govuk-body">
     Get started as a school by publishing a new placement opportunity. You can manage exising placements and also update the information that people will see about your school.
@@ -32,7 +32,6 @@ Create a grid to hold our links or buttons to the Publish and Find parts of the 
       isStartButton: true
     }) }}
 
-    {# ------------Publish a placement------------#}
     <h2 class="govuk-heading-l">Find a placement</h2>
     <p class="govuk-body">
     Search for schools that have suitable ITT placement opportunities matcing the needs of your organisation and the trainees you need to place.
@@ -42,7 +41,7 @@ Create a grid to hold our links or buttons to the Publish and Find parts of the 
       text: "Find a placement",
       href: "/search",
       isStartButton: true
-    }) }}
+    }) }} #}
 
 {# -----Comment out the original links ----
     <ul class="govuk-list govuk-list--spaced">
