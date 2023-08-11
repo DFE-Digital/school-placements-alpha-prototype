@@ -44,6 +44,7 @@ router.use(passport.initialize())
 router.use(passport.session())
 
 // Controller modules
+const accountController = require('./controllers/account')
 const authenticationController = require('./controllers/authentication')
 const organisationController = require('./controllers/organisations')
 const placementController = require('./controllers/placements')
@@ -118,6 +119,12 @@ router.post('/password-reset', authenticationController.password_reset_post)
 router.get('/registration-complete', authenticationController.registration_complete_get)
 
 router.get('/terms-and-conditions', authenticationController.terms_and_conditions_get)
+
+/// ------------------------------------------------------------------------ ///
+/// YOUR ACCOUNT ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/account', checkIsAuthenticated, accountController.user_account)
 
 /// ------------------------------------------------------------------------ ///
 /// PLACEMENT ROUTES
