@@ -119,11 +119,35 @@
 
       {% else %}
 
+        <h2 class="govuk-heading-m">Ada</h2>
+
+        {{ govukTag({
+          text: "Mentor",
+          classes: "govuk-tag--turquoise govuk-!-margin-bottom-5"
+        }) }}
+
+        <p class="govuk-body">
+          Ada is a XXXX.
+        </p>
+
+        <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+          <input type="hidden" name="username" value="ada@example.com">
+          <input type="hidden" name="password" value="bat">
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Sign in as Ada"
+            }) }}
+            <a href="#" class="govuk-link govuk-link--no-visited-state">Register as a mentor</a>
+          </div>
+        </form>
+
+        <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
+
         <h2 class="govuk-heading-m">Anne</h2>
 
         {{ govukTag({
           text: "School",
-          classes: "govuk-tag--yellow govuk-!-margin-bottom-5"
+          classes: "govuk-tag--purple govuk-!-margin-bottom-5"
         }) }}
 
         <p class="govuk-body">
@@ -143,13 +167,8 @@
         <h2 class="govuk-heading-m">Susy</h2>
 
         {{ govukTag({
-          text: "Accredited provider",
-          classes: "govuk-tag--blue govuk-!-margin-bottom-5"
-        }) }}
-
-        {{ govukTag({
           text: "SCITT",
-          classes: "govuk-tag--yellow govuk-!-margin-bottom-5"
+          classes: "govuk-tag--pink govuk-!-margin-bottom-5"
         }) }}
 
         <p class="govuk-body">
@@ -169,18 +188,14 @@
         <h2 class="govuk-heading-m">Grace</h2>
 
         {{ govukTag({
-          text: "Accredited provider",
-          classes: "govuk-tag--blue govuk-!-margin-bottom-5"
-        }) }}
-
-        {{ govukTag({
           text: "University",
-          classes: "govuk-tag--yellow govuk-!-margin-bottom-5"
+          classes: "govuk-tag--orange govuk-!-margin-bottom-5"
         }) }}
 
         <p class="govuk-body">
           Grace is a XXXX.
         </p>
+
 
         <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
           <input type="hidden" name="username" value="grace@example.com">
@@ -196,7 +211,7 @@
 
         {{ govukTag({
           text: "Multi-Org",
-          classes: "govuk-tag--purple govuk-!-margin-bottom-5"
+          classes: "govuk-tag--yellow govuk-!-margin-bottom-5"
         }) }}
 
         <p class="govuk-body">
