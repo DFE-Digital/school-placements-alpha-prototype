@@ -1,6 +1,7 @@
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
 {% from "_components/footer/macro.njk" import appFooter %}
+{% from "_components/primary-navigation/macro.njk" import appPrimaryNavigation %}
 
 {% block pageTitle %}
   {{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
@@ -34,7 +35,17 @@
       text: "Prototype"
     },
     html: 'This is a new service – your <a class="govuk-link" href="/feedback">feedback</a> will help us to improve it.',
-    classes: "govuk-width-container"
+    classes: "govuk-width-container govuk-phase-banner--no-border-bottom"
+  }) }}
+
+  {{ appPrimaryNavigation({
+    items: [
+      {
+        href: baseUrl + "/mentors",
+        text: "Mentors",
+        active: primaryNavId == "mentors"
+      }
+    ]
   }) }}
 {% endblock %}
 
