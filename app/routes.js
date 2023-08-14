@@ -189,13 +189,19 @@ router.get('/organisations/:organisationId/placements/:placementId', checkIsAuth
 
 router.get('/organisations/:organisationId/placements', checkIsAuthenticated, placementController.list_placements_get)
 
-
 /// ------------------------------------------------------------------------ ///
 /// ORGANISATION ROUTES
 /// ------------------------------------------------------------------------ ///
 
-router.get('/organisations/:organisationId', checkIsAuthenticated, organisationController.show_organisation_get)
+router.get('/organisations/:organisationId/show', checkIsAuthenticated, organisationController.show_organisation_get)
 
+router.get('/organisations/:organisationId', checkIsAuthenticated, organisationController.organisation)
+
+router.get('/organisations', checkIsAuthenticated, organisationController.list_organisations_get)
+
+router.get('/', checkIsAuthenticated, (req, res) => {
+  res.redirect('/organisations')
+})
 
 /// ------------------------------------------------------------------------ ///
 /// SEARCH ROUTES
