@@ -196,6 +196,15 @@ router.get('/organisations/:organisationId/placements', checkIsAuthenticated, pl
 
 router.get('/organisations/:organisationId/mentors', checkIsAuthenticated, mentorController.list_mentors_get)
 
+router.get('/organisations/:organisationId/mentors/remove-keyword-search', checkIsAuthenticated, mentorController.removeKeywordSearch)
+
+router.get('/organisations/:organisationId/mentors/remove-a-filter/:a', checkIsAuthenticated, mentorController.removeFilterA)
+router.get('/organisations/:organisationId/mentors/remove-b-filter/:b', checkIsAuthenticated, mentorController.removeFilterB)
+router.get('/organisations/:organisationId/mentors/remove-c-filter/:c', checkIsAuthenticated, mentorController.removeFilterC)
+router.get('/organisations/:organisationId/mentors/remove-d-filter/:d', checkIsAuthenticated, mentorController.removeFilterD)
+
+router.get('/organisations/:organisationId/mentors/remove-all-filters', checkIsAuthenticated, mentorController.removeAllFilters)
+
 /// ------------------------------------------------------------------------ ///
 /// ORGANISATION ROUTES
 /// ------------------------------------------------------------------------ ///
