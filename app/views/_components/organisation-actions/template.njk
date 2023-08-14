@@ -1,0 +1,29 @@
+{%- macro _actionLink(action) %}
+  <a class="govuk-link app-organisation-actions__link {%- if action.classes %} {{ action.classes }}{% endif %}" href="{{ action.href }}" {%- for attribute, value in action.attributes %} {{attribute}}="{{value}}"{% endfor %}>
+    {{ action.html | safe if action.html else action.text }}
+    {%- if action.visuallyHiddenText -%}
+      <span class="govuk-visually-hidden"> {{ action.visuallyHiddenText }}</span>
+    {% endif -%}
+  </a>
+{% endmacro -%}
+
+<div {%- if params.id %} id="{{ params.id }}"{% endif %} class="app-organisation-actions {{- ' ' + params.classes if params.classes }}" aria-label="{{ params.label | default('Organisation switcher') }}" {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+  <div class="app-organisation-actions__title">
+    {{- params.html | safe if params.html else params.text -}}
+  </div>
+  {% if params.actions.items.length %}
+    <div class="app-organisation-actions__actions {%- if params.actions.classes %} {{ params.actions.classes }}{% endif %}">
+      {% if params.actions.items.length == 1 %}
+        {{ _actionLink(params.actions.items[0]) | indent(12) | trim }}
+      {% else %}
+        <ul class="app-organisation-actions__actions-list">
+          {% for action in params.actions.items %}
+            <li class="app-organisation-actions__actions-list-item">
+              {{ _actionLink(action) | indent(18) | trim }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

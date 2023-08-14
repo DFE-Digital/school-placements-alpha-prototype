@@ -1,0 +1,31 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% from "_components/footer/macro.njk" import appFooter %}
+
+{% block pageTitle %}
+  {{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block head %}
+  {% include "_includes/head.njk" %}
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    productName: serviceName,
+    containerClasses: "govuk-width-container"
+  }) }}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="/feedback">feedback</a> will help us to improve it.',
+    classes: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+{% block footer %}
+  {% include "_includes/footer.njk" %}
+{% endblock %}

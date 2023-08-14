@@ -47,7 +47,7 @@ const remove = (destination) => {
         del(destinationFile)
       }
     } else {
-      if (!destinationFile.includes('session-data-defaults.js') && !destinationFile.includes('README.md')) {
+      if (!destinationFile.includes('session-data-defaults.js') && !destinationFile.includes('settings.json') && !destinationFile.includes('README.md')) {
         try {
           console.log('Removing file: ' + destinationFile)
           fs.unlinkSync(destinationFile)

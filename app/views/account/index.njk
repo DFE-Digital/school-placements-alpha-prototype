@@ -1,0 +1,62 @@
+{% extends "layouts/main.njk" %}
+
+{% set headerNavId = "account" %}
+
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
+
+{% set title = "Your account" %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [{
+    text: "Home",
+    href: "/"
+  }, {
+    text: title
+  }]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/notification-banner.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "First name"
+            },
+            value: {
+              text: user.firstName
+            }
+          },
+          {
+            key: {
+              text: "Last name"
+            },
+            value: {
+              text: user.lastName
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: user.email
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

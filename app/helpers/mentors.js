@@ -24,8 +24,7 @@ exports.getMentorOptions = (school, subject, selectedItem) => {
 exports.getMentorLabel = (code) => {
   const mentors = require('../data/temp/mentors')
   const mentor = mentors.find(mentor => mentor.id === code)
-console.log(code);
-console.log(mentor);
+
   let label = code
 
   if (mentor) {

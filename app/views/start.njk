@@ -1,21 +1,17 @@
-{% extends "layouts/main.njk" %}
+{% extends "layouts/auth.njk" %}
 
 {% set pageTitle = "Home" %}
 
-
 {% block content %}
 
-{#
-Create a grid to hold our links or buttons to the Publish and Find parts of the prototype
-#}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-heading-xl">
-      {{ passport.user.firstName }} {{ passport.user.lastName }}
+      {{ serviceName }}
     </h1>
 
-    {# <p class="govuk-body">
+    <p class="govuk-body">
     This service allows schools to share the capacity they have for Initial Teacher Training (ITT) placement opportunities.
     Published placements can be searched by age group and subject and further refined by attributes such as Key Stage.
     </p>
@@ -41,7 +37,7 @@ Create a grid to hold our links or buttons to the Publish and Find parts of the 
       text: "Find a placement",
       href: "/search",
       isStartButton: true
-    }) }} #}
+    }) }}
 
 {# -----Comment out the original links ----
     <ul class="govuk-list govuk-list--spaced">
@@ -53,7 +49,6 @@ Create a grid to hold our links or buttons to the Publish and Find parts of the 
       </li>
     </ul>
 #}
-
 
   </div>
 </div>

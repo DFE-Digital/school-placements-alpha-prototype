@@ -6,11 +6,49 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-const flash = require('connect-flash')
+const settings = require('./data/settings')
 
+/// ------------------------------------------------------------------------ ///
+/// Flash messaging
+/// ------------------------------------------------------------------------ ///
+const flash = require('connect-flash')
 router.use(flash())
 
+/// ------------------------------------------------------------------------ ///
+/// User authentication
+/// ------------------------------------------------------------------------ ///
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const authenticationModel = require('./models/authentication')
+
+passport.serializeUser((user, done) => {
+  done(null, user)
+})
+
+passport.deserializeUser((user, done) => {
+  done(null, user)
+})
+
+// Authentication
+passport.use(new LocalStrategy(
+  (username, password, done) => {
+    const user = authenticationModel.findOne({
+      username: username,
+      password: password,
+      active: true
+    })
+    if (user) { return done(null, user) }
+    return done(null, false)
+  }
+))
+
+router.use(passport.initialize())
+router.use(passport.session())
+
 // Controller modules
+const accountController = require('./controllers/account')
+const authenticationController = require('./controllers/authentication')
+const mentorController = require('./controllers/mentors')
 const organisationController = require('./controllers/organisations')
 const placementController = require('./controllers/placements')
 const resultsController = require('./controllers/results')
@@ -22,17 +60,16 @@ const problemreportController = require('./controllers/problemreport')
 
 // Authentication middleware
 const checkIsAuthenticated = (req, res, next) => {
-  // if (req.session.passport) {
-  //   // the signed in user
-  //   res.locals.passport = req.session.passport
-  //   // the base URL for navigation
-  res.locals.baseUrl = `/organisations/${req.params.organisationId}`
-  //   res.locals.cycleId = req.params.cycleId
+  if (req.session.passport) {
+    // the signed in user
+    res.locals.passport = req.session.passport
+    // the base URL for navigation
+    res.locals.baseUrl = `/organisations/${req.params.organisationId}`
     next()
-  // } else {
-  //   delete req.session.data
-  //   res.redirect('/sign-in')
-  // }
+  } else {
+    delete req.session.data
+    res.redirect('/sign-in')
+  }
 }
 
 /// ------------------------------------------------------------------------ ///
@@ -40,11 +77,58 @@ const checkIsAuthenticated = (req, res, next) => {
 /// ------------------------------------------------------------------------ ///
 
 router.all('*', (req, res, next) => {
+  res.locals.settings = settings
   res.locals.referrer = req.query.referrer
   res.locals.query = req.query
   res.locals.flash = req.flash('success') // pass through 'success' messages only
   next()
 })
+
+/// ------------------------------------------------------------------------ ///
+/// AUTHENTICATION ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/sign-in', authenticationController.sign_in_get)
+router.post('/sign-in', passport.authenticate('local', {
+  successRedirect: '/auth',
+  failureRedirect: '/sign-in',
+  failureFlash: 'Enter valid sign-in details'
+}))
+
+router.get('/auth', authenticationController.auth_get)
+
+router.get('/sign-out', authenticationController.sign_out_get)
+
+router.get('/register', authenticationController.register_get)
+router.post('/register', authenticationController.register_post)
+
+router.get('/confirm-email', authenticationController.confirm_email_get)
+router.post('/confirm-email', authenticationController.confirm_email_post)
+
+router.get('/resend-code', authenticationController.resend_code_get)
+router.post('/resend-code', authenticationController.resend_code_post)
+
+router.get('/forgotten-password', authenticationController.forgotten_password_get)
+router.post('/forgotten-password', authenticationController.forgotten_password_post)
+
+router.get('/verification-code', authenticationController.verification_code_get)
+router.post('/verification-code', authenticationController.verification_code_post)
+
+router.get('/create-password', authenticationController.create_password_get)
+router.post('/create-password', authenticationController.create_password_post)
+
+router.get('/password-reset', authenticationController.password_reset_get)
+router.post('/password-reset', authenticationController.password_reset_post)
+
+router.get('/registration-complete', authenticationController.registration_complete_get)
+
+router.get('/terms-and-conditions', authenticationController.terms_and_conditions_get)
+
+/// ------------------------------------------------------------------------ ///
+/// YOUR ACCOUNT ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/account', checkIsAuthenticated, accountController.user_account)
 
 /// ------------------------------------------------------------------------ ///
 /// PLACEMENT ROUTES
@@ -106,13 +190,25 @@ router.get('/organisations/:organisationId/placements/:placementId', checkIsAuth
 
 router.get('/organisations/:organisationId/placements', checkIsAuthenticated, placementController.list_placements_get)
 
+/// ------------------------------------------------------------------------ ///
+/// MENTOR ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/organisations/:organisationId/mentors', checkIsAuthenticated, mentorController.list_mentors_get)
 
 /// ------------------------------------------------------------------------ ///
 /// ORGANISATION ROUTES
 /// ------------------------------------------------------------------------ ///
 
-router.get('/organisations/:organisationId', checkIsAuthenticated, organisationController.show_organisation_get)
+router.get('/organisations/:organisationId/show', checkIsAuthenticated, organisationController.show_organisation_get)
 
+router.get('/organisations/:organisationId', checkIsAuthenticated, organisationController.organisation)
+
+router.get('/organisations', checkIsAuthenticated, organisationController.list_organisations_get)
+
+router.get('/', checkIsAuthenticated, (req, res) => {
+  res.redirect('/organisations')
+})
 
 /// ------------------------------------------------------------------------ ///
 /// SEARCH ROUTES
@@ -178,3 +274,8 @@ router.get('/datareport/template', datareportController.template_get)
 /// REPORT PROBLEM ROUTES
 /// ------------------------------------------------------------------------ ///
 router.get('/problemreport', problemreportController.problemreport_get)
+
+
+router.get('/', checkIsAuthenticated, (req, res) => {
+  res.render('index')
+})
