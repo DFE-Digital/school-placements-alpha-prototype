@@ -48,6 +48,7 @@ router.use(passport.session())
 // Controller modules
 const accountController = require('./controllers/account')
 const authenticationController = require('./controllers/authentication')
+const mentorController = require('./controllers/mentors')
 const organisationController = require('./controllers/organisations')
 const placementController = require('./controllers/placements')
 const resultsController = require('./controllers/results')
@@ -188,6 +189,12 @@ router.post('/organisations/:organisationId/placements/:placementId/delete', che
 router.get('/organisations/:organisationId/placements/:placementId', checkIsAuthenticated, placementController.show_placement_get)
 
 router.get('/organisations/:organisationId/placements', checkIsAuthenticated, placementController.list_placements_get)
+
+/// ------------------------------------------------------------------------ ///
+/// MENTOR ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/organisations/:organisationId/mentors', checkIsAuthenticated, mentorController.list_mentors_get)
 
 /// ------------------------------------------------------------------------ ///
 /// ORGANISATION ROUTES
