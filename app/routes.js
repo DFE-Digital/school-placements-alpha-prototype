@@ -6,6 +6,8 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+const settings = require('./data/settings')
+
 /// ------------------------------------------------------------------------ ///
 /// Flash messaging
 /// ------------------------------------------------------------------------ ///
@@ -74,6 +76,7 @@ const checkIsAuthenticated = (req, res, next) => {
 /// ------------------------------------------------------------------------ ///
 
 router.all('*', (req, res, next) => {
+  res.locals.settings = settings
   res.locals.referrer = req.query.referrer
   res.locals.query = req.query
   res.locals.flash = req.flash('success') // pass through 'success' messages only
