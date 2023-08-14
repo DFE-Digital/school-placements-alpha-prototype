@@ -1,6 +1,7 @@
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
 {% from "_components/footer/macro.njk" import appFooter %}
+{% from "_components/organisation-actions/macro.njk" import appOrganisationActions %}
 {% from "_components/primary-navigation/macro.njk" import appPrimaryNavigation %}
 
 {% block pageTitle %}
@@ -35,8 +36,28 @@
       text: "Prototype"
     },
     html: 'This is a new service – your <a class="govuk-link" href="/feedback">feedback</a> will help us to improve it.',
-    classes: "govuk-width-container govuk-phase-banner--no-border-bottom"
+    classes: "govuk-width-container" + (" govuk-phase-banner--no-border-bottom" if passport.user.organisations.length == 1 and headerNavId != "account")
   }) }}
+
+  {% if passport.user.organisations.length > 1 %}
+    {% set organisationHtml %}
+      {{ passport.organisation.name }}
+    {% endset %}
+    {# {% if not hideOrganisationSwitcher %} #}
+      {{ appOrganisationActions({
+        html: organisationHtml,
+        actions: {
+          items: [
+            {
+              text: "Change organisation",
+              href: "/organisations"
+            }
+          ]
+        },
+        classes: "govuk-width-container"
+      }) }}
+    {# {% endif %} #}
+  {% endif %}
 
   {{ appPrimaryNavigation({
     items: [
@@ -44,6 +65,16 @@
         href: baseUrl + "/mentors",
         text: "Mentors",
         active: primaryNavId == "mentors"
+      },
+      {
+        href: baseUrl + "#",
+        text: "Users",
+        active: primaryNavId == "users"
+      },
+      {
+        href: baseUrl + "/show",
+        text: "Organisation details",
+        active: primaryNavId == "settings"
       }
     ]
   }) }}
