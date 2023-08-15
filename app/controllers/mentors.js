@@ -11,6 +11,12 @@ exports.list_mentors_get = (req, res) => {
   const b = null
   const c = null
   const d = null
+  const e = null
+  const f = null
+  const g = null
+  const h = null
+  const i = null
+  const j = null
 
   let as
   if (req.session.data.filter?.a) {
@@ -32,10 +38,46 @@ exports.list_mentors_get = (req, res) => {
     ds = utilsHelper.getCheckboxValues(d, req.session.data.filter.d)
   }
 
+  let es
+  if (req.session.data.filter?.d) {
+    es = utilsHelper.getCheckboxValues(e, req.session.data.filter.e)
+  }
+
+  let fs
+  if (req.session.data.filter?.d) {
+    fs = utilsHelper.getCheckboxValues(f, req.session.data.filter.f)
+  }
+
+  let gs
+  if (req.session.data.filter?.d) {
+    gs = utilsHelper.getCheckboxValues(g, req.session.data.filter.g)
+  }
+
+  let hs
+  if (req.session.data.filter?.d) {
+    hs = utilsHelper.getCheckboxValues(h, req.session.data.filter.h)
+  }
+
+  let is
+  if (req.session.data.filter?.d) {
+    is = utilsHelper.getCheckboxValues(i, req.session.data.filter.i)
+  }
+
+  let js
+  if (req.session.data.filter?.d) {
+    js = utilsHelper.getCheckboxValues(j, req.session.data.filter.j)
+  }
+
   const hasFilters = !!((as?.length > 0)
     || (bs?.length > 0)
     || (cs?.length > 0)
     || (ds?.length > 0)
+    || (es?.length > 0)
+    || (fs?.length > 0)
+    || (gs?.length > 0)
+    || (hs?.length > 0)
+    || (is?.length > 0)
+    || (js?.length > 0)
   )
 
   let selectedFilters = null
@@ -47,7 +89,7 @@ exports.list_mentors_get = (req, res) => {
 
     if (as?.length) {
       selectedFilters.categories.push({
-        heading: { text: 'Filter A' },
+        heading: { text: 'Subject' },
         items: as.map((a) => {
           return {
             text: utilsHelper.getFilterALabel(a),
@@ -59,7 +101,7 @@ exports.list_mentors_get = (req, res) => {
 
     if (bs?.length) {
       selectedFilters.categories.push({
-        heading: { text: 'Filter B' },
+        heading: { text: 'Age range' },
         items: bs.map((b) => {
           return {
             text: utilsHelper.getFilterBLabel(b),
@@ -71,7 +113,7 @@ exports.list_mentors_get = (req, res) => {
 
     if (cs?.length) {
       selectedFilters.categories.push({
-        heading: { text: 'Filter C' },
+        heading: { text: 'School type' },
         items: cs.map((c) => {
           return {
             text: utilsHelper.getFilterCLabel(c),
@@ -83,11 +125,83 @@ exports.list_mentors_get = (req, res) => {
 
     if (ds?.length) {
       selectedFilters.categories.push({
-        heading: { text: 'Filter D' },
+        heading: { text: 'Gender' },
         items: ds.map((d) => {
           return {
             text: utilsHelper.getFilterDLabel(d),
             href: `/organisations/${req.params.organisationId}/mentors/remove-d-filter/${d}`
+          }
+        })
+      })
+    }
+
+    if (es?.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Religious character' },
+        items: es.map((e) => {
+          return {
+            text: utilsHelper.getFilterELabel(e),
+            href: `/organisations/${req.params.organisationId}/mentors/remove-e-filter/${e}`
+          }
+        })
+      })
+    }
+
+    if (fs?.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'SEN provision' },
+        items: fs.map((f) => {
+          return {
+            text: utilsHelper.getFilterFLabel(f),
+            href: `/organisations/${req.params.organisationId}/mentors/remove-f-filter/${f}`
+          }
+        })
+      })
+    }
+
+    if (gs?.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Ofsted rating' },
+        items: gs.map((g) => {
+          return {
+            text: utilsHelper.getFilterGLabel(g),
+            href: `/organisations/${req.params.organisationId}/mentors/remove-g-filter/${g}`
+          }
+        })
+      })
+    }
+
+    if (hs?.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Key stage' },
+        items: hs.map((h) => {
+          return {
+            text: utilsHelper.getFilterHLabel(h),
+            href: `/organisations/${req.params.organisationId}/mentors/remove-h-filter/${h}`
+          }
+        })
+      })
+    }
+
+    if (is?.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'Admissions policy' },
+        items: is.map((i) => {
+          return {
+            text: utilsHelper.getFilterILabel(i),
+            href: `/organisations/${req.params.organisationId}/mentors/remove-i-filter/${i}`
+          }
+        })
+      })
+    }
+
+    if (js?.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'ECF training' },
+        items: js.map((j) => {
+          return {
+            text: utilsHelper.getFilterJLabel(j),
+            href: `/organisations/${req.params.organisationId}/mentors/remove-j-filter/${j}`
           }
         })
       })
@@ -99,30 +213,72 @@ exports.list_mentors_get = (req, res) => {
     selectedA = req.session.data.filter.a
   }
 
-  const filterAItems = utilsHelper.getFilterAItems(selectedA)
+  const filterAItems = utilsHelper.getSubjectFilterItems(selectedA)
 
   let selectedB
   if (req.session.data.filter?.b) {
     selectedB = req.session.data.filter.b
   }
 
-  const filterBItems = utilsHelper.getFilterBItems(selectedB)
+  const filterBItems = utilsHelper.getAgeRangeFilterItems(selectedB)
 
   let selectedC
   if (req.session.data.filter?.c) {
     selectedC = req.session.data.filter.c
   }
 
-  const filterCItems = utilsHelper.getFilterCItems(selectedC)
+  const filterCItems = utilsHelper.getSchoolTypeFilterItems(selectedC)
 
   let selectedD
   if (req.session.data.filter?.d) {
     selectedD = req.session.data.filter.d
   }
 
-  const filterDItems = utilsHelper.getFilterDItems(selectedD)
+  const filterDItems = utilsHelper.getGenderFilterItems(selectedD)
 
-  const results = []
+  let selectedE
+  if (req.session.data.filter?.e) {
+    selectedE = req.session.data.filter.e
+  }
+
+  const filterEItems = utilsHelper.getReligiousCharacterFilterItems(selectedE)
+
+  let selectedF
+  if (req.session.data.filter?.f) {
+    selectedF = req.session.data.filter.f
+  }
+
+  const filterFItems = utilsHelper.getSENDFilterItems(selectedF)
+
+  let selectedG
+  if (req.session.data.filter?.g) {
+    selectedG = req.session.data.filter.g
+  }
+
+  const filterGItems = utilsHelper.getOfsteadRatingFilterItems(selectedG)
+
+  let selectedH
+  if (req.session.data.filter?.h) {
+    selectedH = req.session.data.filter.h
+  }
+
+  const filterHItems = utilsHelper.getKeyStageFilterItems(selectedH)
+
+  let selectedI
+  if (req.session.data.filter?.i) {
+    selectedI = req.session.data.filter.i
+  }
+
+  const filterIItems = utilsHelper.getAdmissionsPolicyFilterItems(selectedI)
+
+  let selectedJ
+  if (req.session.data.filter?.j) {
+    selectedJ = req.session.data.filter.j
+  }
+
+  const filterJItems = utilsHelper.getECFTrainingFilterItems(selectedJ)
+
+  const results = [{id:1,schoolName:'Oates Academy',subject:'Chemistry'}]
   const resultsCount = results.length
 
   // results.sort((a, b) => {
@@ -145,6 +301,16 @@ exports.list_mentors_get = (req, res) => {
     filterBItems,
     filterCItems,
     filterDItems,
+    filterEItems,
+    filterFItems,
+    filterGItems,
+    filterHItems,
+    filterIItems,
+    filterJItems,
+    // selectedA,
+    // selectedC,
+    // selectedE,
+    // selectedF,
     actions: {
       view: `/organisations/${req.params.organisationId}/mentors`,
       filters: {
@@ -181,6 +347,36 @@ exports.removeFilterC = (req, res) => {
 
 exports.removeFilterD = (req, res) => {
   req.session.data.filter.d = utilsHelper.removeFilter(req.params.d, req.session.data.filter.d)
+  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+}
+
+exports.removeFilterE = (req, res) => {
+  req.session.data.filter.e = utilsHelper.removeFilter(req.params.e, req.session.data.filter.e)
+  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+}
+
+exports.removeFilterF = (req, res) => {
+  req.session.data.filter.f = utilsHelper.removeFilter(req.params.f, req.session.data.filter.f)
+  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+}
+
+exports.removeFilterG = (req, res) => {
+  req.session.data.filter.g = utilsHelper.removeFilter(req.params.g, req.session.data.filter.g)
+  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+}
+
+exports.removeFilterH = (req, res) => {
+  req.session.data.filter.h = utilsHelper.removeFilter(req.params.h, req.session.data.filter.h)
+  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+}
+
+exports.removeFilterI = (req, res) => {
+  req.session.data.filter.i = utilsHelper.removeFilter(req.params.i, req.session.data.filter.i)
+  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+}
+
+exports.removeFilterJ = (req, res) => {
+  req.session.data.filter.j = utilsHelper.removeFilter(req.params.j, req.session.data.filter.j)
   res.redirect(`/organisations/${req.params.organisationId}/mentors`)
 }
 
