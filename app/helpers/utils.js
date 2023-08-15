@@ -58,9 +58,9 @@ exports.getSortBySelectOptions = (selectedOption = 0) => {
     items.push(item)
   })
 
-  items.sort((a,b) => {
-    return a.text.localeCompare(b.text)
-  })
+  // items.sort((a,b) => {
+  //   return a.text.localeCompare(b.text)
+  // })
 
   return items
 }
