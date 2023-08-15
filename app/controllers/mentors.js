@@ -129,6 +129,8 @@ exports.list_mentors_get = (req, res) => {
   //   return a.name.localeCompare(b.name) || a.school.name.localeCompare(b.school.name)
   // })
 
+  // sort by settings
+  const sortBy = req.query.sortBy || req.session.data.sortBy || 0
   const sortByItems = utilsHelper.getSortBySelectOptions(sortBy)
 
   res.render('../views/mentors/list', {
