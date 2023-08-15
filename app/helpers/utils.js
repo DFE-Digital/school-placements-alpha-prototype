@@ -43,6 +43,28 @@ exports.removeFilter = (value, data) => {
   }
 }
 
+exports.getSortBySelectOptions = (selectedOption = 0) => {
+  const sortOptions = require('../data/mentor-sort-options')
+  const items = []
+
+  sortOptions.forEach((sortOption, i) => {
+    const item = {}
+
+    item.text = sortOption.name
+    item.value = sortOption.code
+    item.id = sortOption.id
+    item.selected = !!(parseInt(selectedOption) === parseInt(sortOption.code)) ? 'selected' : ''
+
+    items.push(item)
+  })
+
+  items.sort((a,b) => {
+    return a.text.localeCompare(b.text)
+  })
+
+  return items
+}
+
 exports.getAgeRangeFilterItems = (subjectLevel = 'secondary', selectedItems) => {
   const items = []
 
