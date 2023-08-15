@@ -198,23 +198,152 @@ exports.getKeyStageFilterItems = (subjectLevel = 'secondary', selectedItems) => 
   return items
 }
 
+exports.getSubjectFilterItems = (selectedItems) => {
+  const options = require('../data/subjects')
 
-// DUMMY DATA
+  const items = []
 
-exports.getFilterAItems = (selectedItems) => {
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getSchoolTypeFilterItems = (selectedItems) => {
+  const options = require('../data/schools/school-types')
+
+  options.sort((a,b) => {
+    return a.name.localeCompare(b.name)
+  })
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getReligiousCharacterFilterItems = (selectedItems) => {
+  const options = require('../data/schools/school-religious-character')
+
+  options.sort((a,b) => {
+    return a.name.localeCompare(b.name)
+  })
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getSENDFilterItems = (selectedItems) => {
+  const options = require('../data/schools/school-send-provision')
+
+  options.sort((a,b) => {
+    return a.name.localeCompare(b.name)
+  })
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getOfsteadRatingFilterItems = (selectedItems) => {
+  const options = require('../data/ofsted-ratings')
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getECFTrainingFilterItems = (selectedItems) => {
   const options = [
     {
-      id: '0ec5b356-55b6-4f49-bc14-c978ebbe3790',
+      id: 'b5995d91-a26e-4c4d-b338-30c1d187ece8',
+      name: 'Only show mentors with ECF training',
+      code: 'option-1'
+    }
+  ]
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getFilterGItems = (selectedItems) => {
+  const options = [
+    {
+      id: 'b5995d91-a26e-4c4d-b338-30c1d187ece8',
       name: 'Option 1',
       code: 'option-1'
     },
     {
-      id: '17afadc9-97b2-46fc-9737-e24063da2d1f',
+      id: 'a2fce60f-d211-44cc-94fc-50c9c4145d67',
       name: 'Option 2',
       code: 'option-2'
     },
     {
-      id: '6a1c523a-1bdd-49a2-a691-b152cf838303',
+      id: 'aed87067-6aad-4898-8cb0-377d4f84ab99',
       name: 'Option 3',
       code: 'option-3'
     }
@@ -236,20 +365,20 @@ exports.getFilterAItems = (selectedItems) => {
   return items
 }
 
-exports.getFilterBItems = (selectedItems) => {
+exports.getFilterHItems = (selectedItems) => {
   const options = [
     {
-      id: 'eef4b893-d53d-4df6-8fe5-a75418c3d25a',
+      id: 'b5995d91-a26e-4c4d-b338-30c1d187ece8',
       name: 'Option 1',
       code: 'option-1'
     },
     {
-      id: '18c4c365-daa0-405b-ab9c-680d3b9a85f6',
+      id: 'a2fce60f-d211-44cc-94fc-50c9c4145d67',
       name: 'Option 2',
       code: 'option-2'
     },
     {
-      id: 'bfdc3f06-0f2f-4ee7-9f6f-9d9f0ee19c83',
+      id: 'aed87067-6aad-4898-8cb0-377d4f84ab99',
       name: 'Option 3',
       code: 'option-3'
     }
@@ -271,20 +400,20 @@ exports.getFilterBItems = (selectedItems) => {
   return items
 }
 
-exports.getFilterCItems = (selectedItems) => {
+exports.getFilterIItems = (selectedItems) => {
   const options = [
     {
-      id: '373ba7e6-f2a3-4de8-908c-a630e6e00bdc',
+      id: 'b5995d91-a26e-4c4d-b338-30c1d187ece8',
       name: 'Option 1',
       code: 'option-1'
     },
     {
-      id: '7bd46af4-0dc2-4376-a852-a055ce15c3af',
+      id: 'a2fce60f-d211-44cc-94fc-50c9c4145d67',
       name: 'Option 2',
       code: 'option-2'
     },
     {
-      id: '060a7b6b-cbbb-48ac-a78c-03e24b783dda',
+      id: 'aed87067-6aad-4898-8cb0-377d4f84ab99',
       name: 'Option 3',
       code: 'option-3'
     }
@@ -306,7 +435,7 @@ exports.getFilterCItems = (selectedItems) => {
   return items
 }
 
-exports.getFilterDItems = (selectedItems) => {
+exports.getFilterJItems = (selectedItems) => {
   const options = [
     {
       id: 'b5995d91-a26e-4c4d-b338-30c1d187ece8',
@@ -360,6 +489,42 @@ exports.getFilterCLabel = (code) => {
 }
 
 exports.getFilterDLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterELabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterFLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterGLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterHLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterILabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterJLabel = (code) => {
   let label = code
 
   return label
