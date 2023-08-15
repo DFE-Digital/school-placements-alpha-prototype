@@ -2,6 +2,7 @@
 app/data/age-ranges.json
 app/data/key-stages.json
 app/data/mentor-availability.json
+app/data/mentor-sort-options.json
 app/data/school-groups.json
 app/data/school-phases.json
 app/data/school-statuses.json
