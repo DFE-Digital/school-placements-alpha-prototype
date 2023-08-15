@@ -1,11 +1,23 @@
 {% set filterOptionsHtml %}
 
-{{ govukCheckboxes({
+{{ appCheckboxFilter({
+  idPrefix: "filter-a",
+  name: "filter[a]",
+  legend: {
+    html: 'Subject<span class="govuk-visually-hidden"> filter</span>'
+  },
+  items: filterAItems,
+  selectedItems: selectedA,
+  showSelectedTags: true,
+  classes: "govuk-!-margin-bottom-7"
+}) }}
+
+{# {{ govukCheckboxes({
   idPrefix: "filter-a",
   name: "filter[a]",
   fieldset: {
     legend: {
-      html: 'Filter A<span class="govuk-visually-hidden"> filter</span>',
+      html: 'Subject<span class="govuk-visually-hidden"> filter</span>',
       classes: "govuk-fieldset__legend--s"
     }
   },
@@ -14,14 +26,14 @@
   },
   items: filterAItems,
   classes: "govuk-checkboxes--small"
-}) }}
+}) }} #}
 
 {{ govukCheckboxes({
   idPrefix: "filter-b",
   name: "filter[b]",
   fieldset: {
     legend: {
-      html: 'Filter B<span class="govuk-visually-hidden"> filter</span>',
+      html: 'Age range<span class="govuk-visually-hidden"> filter</span>',
       classes: "govuk-fieldset__legend--s"
     }
   },
@@ -32,12 +44,24 @@
   classes: "govuk-checkboxes--small"
 }) }}
 
-{{ govukCheckboxes({
+{{ appCheckboxFilter({
+  idPrefix: "filter-c",
+  name: "filter[c]",
+  legend: {
+    html: 'School type<span class="govuk-visually-hidden"> filter</span>'
+  },
+  items: filterCItems,
+  selectedItems: selectedC,
+  showSelectedTags: true,
+  classes: "govuk-!-margin-bottom-7"
+}) }}
+
+{# {{ govukCheckboxes({
   idPrefix: "filter-c",
   name: "filter[c]",
   fieldset: {
     legend: {
-      html: 'Filter C<span class="govuk-visually-hidden"> filter</span>',
+      html: 'School type<span class="govuk-visually-hidden"> filter</span>',
       classes: "govuk-fieldset__legend--s"
     }
   },
@@ -46,14 +70,14 @@
   },
   items: filterCItems,
   classes: "govuk-checkboxes--small"
-}) }}
+}) }} #}
 
 {{ govukCheckboxes({
   idPrefix: "filter-d",
   name: "filter[d]",
   fieldset: {
     legend: {
-      html: 'Filter D<span class="govuk-visually-hidden"> filter</span>',
+      html: 'Gender<span class="govuk-visually-hidden"> filter</span>',
       classes: "govuk-fieldset__legend--s"
     }
   },
@@ -63,7 +87,144 @@
   items: filterDItems,
   classes: "govuk-checkboxes--small"
 }) }}
+
+{{ appCheckboxFilter({
+  idPrefix: "filter-e",
+  name: "filter[e]",
+  legend: {
+    html: 'Religious character<span class="govuk-visually-hidden"> filter</span>'
+  },
+  items: filterEItems,
+  selectedItems: selectedE,
+  showSelectedTags: true,
+  classes: "govuk-!-margin-bottom-7"
+}) }}
+
+{# {{ govukCheckboxes({
+  idPrefix: "filter-e",
+  name: "filter[e]",
+  fieldset: {
+    legend: {
+      html: 'Religious character<span class="govuk-visually-hidden"> filter</span>',
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  formGroup: {
+    classes: "app-filter__group"
+  },
+  items: filterEItems,
+  classes: "govuk-checkboxes--small"
+}) }} #}
+
+{{ appCheckboxFilter({
+  idPrefix: "filter-f",
+  name: "filter[f]",
+  legend: {
+    html: 'SEN provision<span class="govuk-visually-hidden"> filter</span>'
+  },
+  items: filterFItems,
+  selectedItems: selectedF,
+  showSelectedTags: true,
+  classes: "govuk-!-margin-bottom-7"
+}) }}
+
+{# {{ govukCheckboxes({
+  idPrefix: "filter-f",
+  name: "filter[f]",
+  fieldset: {
+    legend: {
+      html: 'SEN provision<span class="govuk-visually-hidden"> filter</span>',
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  formGroup: {
+    classes: "app-filter__group"
+  },
+  items: filterFItems,
+  classes: "govuk-checkboxes--small"
+}) }} #}
+
+{{ govukCheckboxes({
+  idPrefix: "filter-g",
+  name: "filter[g]",
+  fieldset: {
+    legend: {
+      html: 'Ofsted rating<span class="govuk-visually-hidden"> filter</span>',
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  formGroup: {
+    classes: "app-filter__group"
+  },
+  items: filterGItems,
+  classes: "govuk-checkboxes--small"
+}) }}
+
+{{ govukCheckboxes({
+  idPrefix: "filter-h",
+  name: "filter[h]",
+  fieldset: {
+    legend: {
+      html: 'Key stage<span class="govuk-visually-hidden"> filter</span>',
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  formGroup: {
+    classes: "app-filter__group"
+  },
+  items: filterHItems,
+  classes: "govuk-checkboxes--small"
+}) }}
+
+{{ govukCheckboxes({
+  idPrefix: "filter-i",
+  name: "filter[i]",
+  fieldset: {
+    legend: {
+      html: 'Admissions policy<span class="govuk-visually-hidden"> filter</span>',
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  formGroup: {
+    classes: "app-filter__group"
+  },
+  items: filterIItems,
+  classes: "govuk-checkboxes--small"
+}) }}
+
+{#
+Other filters
+- Percentage eligible for free school meals
+- School size
+#}
+
+{# Mentors #}
+
+{{ govukCheckboxes({
+  idPrefix: "filter-j",
+  name: "filter[j]",
+  fieldset: {
+    legend: {
+      html: 'ECF training<span class="govuk-visually-hidden"> filter</span>',
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  formGroup: {
+    classes: "app-filter__group"
+  },
+  items: filterJItems,
+  classes: "govuk-checkboxes--small"
+}) }}
+
+{#
+Other filters
+- Years of teaching experience
+- Qualifications - QTS, PGCE, PGDE, NPQ, EYTS
+- Additional experience - works with exam board,
+#}
+
 {% endset %}
+
 
 <div class="app-filter">
   <div class="app-filter__header">
