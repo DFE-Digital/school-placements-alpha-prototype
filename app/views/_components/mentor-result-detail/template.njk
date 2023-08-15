@@ -1,0 +1,69 @@
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+<h2 class="app-search-result__item-title">
+  <a class="govuk-link" href="{{ params.href }}">
+    <span class="app-search-result__school-name">{{ params.schoolName }}</span><br>
+    <span class="app-search-result__placement-name">{{ params.subject }}</span>
+  </a>
+</h2>
+
+<dl class="app-mentor-result-detail">
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key">Age range</dt>
+    <dd class="app-mentor-result-detail__value">{{ params.ageRange }}</dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key">School type</dt>
+    <dd class="app-mentor-result-detail__value">{{ params.schoolType }}</dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key">School gender</dt>
+    <dd class="app-mentor-result-detail__value">{{ params.gender }}</dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key">Religious character</dt>
+    <dd class="app-mentor-result-detail__value">{{ params.religiousCharacter }}</dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key">Key stage</dt>
+    <dd class="app-mentor-result-detail__value">
+      <ul class="govuk-list govuk-!-margin-bottom-0">
+        {% for stage in params.keyStage %}
+          <li>
+            {{ stage | getKeyStageLabel }}
+          </li>
+        {% endfor %}
+      </ul>
+    </dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key"><abbr title="special educational needs">SEN</abbr> provision</dt>
+    <dd class="app-mentor-result-detail__value">{{ params.senProvision }}</dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key">Ofsted rating</dt>
+    <dd class="app-mentor-result-detail__value">{{ params.ofstedRating }}</dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key">Admissions policy</dt>
+    <dd class="app-mentor-result-detail__value">{{ params.admissionsPolicy }}</dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key"><abbr title="Early Careers Framework">ECF</abbr> training</dt>
+    <dd class="app-mentor-result-detail__value">{{ params.ecfTraining }}</dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key">Years teaching</dt>
+    <dd class="app-mentor-result-detail__value">{{ params.yearsTeaching }}</dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key">Years mentoring</dt>
+    <dd class="app-mentor-result-detail__value">
+      <p class="govuk-body">{{ params.yearsMentoring }}</p>
+      <p class="govuk-hint">
+        Trained with {{ params.trainedWith }}
+      </p>
+    </dd>
+  </div>
+</dl>
