@@ -8,7 +8,7 @@
   </a>
 </h2>
 
-<dl class="app-mentor-result-detail">
+<dl class="app-mentor-result-detail govuk-!-margin-bottom-2">
   <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key">Age range</dt>
     <dd class="app-mentor-result-detail__value">{{ params.ageRange }}</dd>
@@ -47,25 +47,30 @@
     <dt class="app-mentor-result-detail__key">Admissions policy</dt>
     <dd class="app-mentor-result-detail__value">{{ params.admissionsPolicy if params.admissionsPolicy else "Unknown" }}</dd>
   </div>
+</dl>
+
+<h3 class="app-mentor-result-detail__section-heading">Mentor details</h3>
+
+<dl class="app-mentor-result-detail">
   <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key">Mentor</dt>
     <dd class="app-mentor-result-detail__value">{{ params.mentorName }}</dd>
   </div>
-  <div class="app-mentor-result-detail__row">
-    <dt class="app-mentor-result-detail__key"><abbr title="Early Careers Framework">ECF</abbr> training</dt>
-    <dd class="app-mentor-result-detail__value">{{ params.ecfTraining | capitalize }}</dd>
-  </div>
-  <div class="app-mentor-result-detail__row">
+  {# <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key">Years teaching</dt>
     <dd class="app-mentor-result-detail__value">{{ params.yearsTeaching }}</dd>
-  </div>
+  </div> #}
   <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key">Years mentoring</dt>
     <dd class="app-mentor-result-detail__value">
-      <p class="govuk-body">{{ params.yearsMentoring }}</p>
+      <p class="govuk-body">{{ params.yearsMentoring }} ({{ params.yearsTeaching }} years teaching)</p>
       <p class="govuk-hint">
         Trained with {{ params.trainedWith[0] }} {{" and " + (params.trainedWith.length - 1) + " others" if params.trainedWith.length > 1}}
       </p>
     </dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key"><abbr title="Early Careers Framework">ECF</abbr> training</dt>
+    <dd class="app-mentor-result-detail__value">{{ params.ecfTraining | capitalize }}</dd>
   </div>
 </dl>
