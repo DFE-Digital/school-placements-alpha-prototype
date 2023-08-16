@@ -1,0 +1,163 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "mentors" %}
+
+{% set title %}
+  {% if resultsCount > 0 %}
+    {{ resultsCount | numeral('0,0') }} mentor {{- "s" if resultsCount > 1 }}
+  {% else %}
+    No mentors found
+  {% endif %}
+{% endset %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      {% include "./_search-terms.njk" %}
+
+    </div>
+  </div>
+
+  <div class="app-filter-layout">
+    <div class="app-filter-layout__filter">
+
+      {% include "./_filter-panel.njk" %}
+
+    </div>
+
+    <div class="app-filter-layout__content">
+
+      <div class="app-action-bar">
+        <div class="app-action-bar__filter"></div>
+      </div>
+
+      {# {% include "./_search-panel.njk" %} #}
+
+      {% include "./_sort-options.njk" %}
+
+      {% if results.length %}
+
+        <ul class="app-search-results">
+          {% for result in results %}
+            <li class="app-search-results__item">
+              {{ appMentorResultDetail({
+                href: actions.view + "/" + result.id,
+                schoolName: result.schoolName,
+                subject: result.subject,
+                schoolType: result.schoolType,
+                gender: result.gender,
+                religiousCharacter: result.religiousCharacter,
+                sendProvision: result.sendProvision,
+                ofstedRating: result.ofstedRating,
+                admissionsPolicy: result.admissionsPolicy,
+                ageRange: result.ageRange,
+                keyStage: result.keyStage,
+                mentorName: result.mentorName,
+                yearsTeaching: result.yearsTeaching,
+                yearsMentoring: result.yearsMentoring,
+                ecfTraining: result.ecfTraining,
+                trainedWith: result.trainedWith
+              })}}
+            </li>
+          {% endfor %}
+        </ul>
+
+        {% if pagination.pages > 1 %}
+          {{ appPagination( pagination ) }}
+        {% endif %}
+
+      {% else %}
+
+        {% include "./_no-results.njk" %}
+
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script type="module">
+  import { FilterToggleButton } from '/public/javascripts/components/filter-toggle-button.js'
+
+  const filterToggleButton = new FilterToggleButton({
+    bigModeMediaQuery: '(min-width: 48.063em)',
+    startHidden: false,
+    toggleButton: {
+      container: $('.app-action-bar__filter'),
+      showText: 'Show filter',
+      hideText: 'Hide filter',
+      classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
+    },
+    closeButton: {
+      container: $('.app-filter__header-action'),
+      text: 'Close'
+    },
+    filter: {
+      container: $('.app-filter-layout__filter')
+    }
+  })
+
+  filterToggleButton.init()
+
+  import { CheckboxFilter } from '/public/javascripts/components/checkbox-filter.js'
+
+  const checkboxFilterA = new CheckboxFilter({
+    container: $('#filter-a'),
+    textBox: {
+      label: 'Search for subject'
+    }
+  })
+
+  const checkboxFilterC = new CheckboxFilter({
+    container: $('#filter-c'),
+    textBox: {
+      label: 'Search for school type'
+    }
+  })
+
+  const checkboxFilterE = new CheckboxFilter({
+    container: $('#filter-e'),
+    textBox: {
+      label: 'Search for religious character'
+    }
+  })
+
+  const checkboxFilterF = new CheckboxFilter({
+    container: $('#filter-f'),
+    textBox: {
+      label: 'Search for SEN provision'
+    }
+  })
+
+  checkboxFilterA.init()
+  checkboxFilterC.init()
+  checkboxFilterE.init()
+  checkboxFilterF.init()
+</script>
+
+{# <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script src="/public/javascripts/debounce.js"></script>
+<script src="/public/javascripts/init-autocomplete.js"></script>
+
+<script type="text/javascript">
+initAutocomplete({
+  element: "provider-autocomplete",
+  input: "provider",
+  path: "/provider-suggestions",
+});
+</script> #}
+
+{% endblock %}
