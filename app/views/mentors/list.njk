@@ -47,11 +47,22 @@
           {% for result in results %}
             <li class="app-search-results__item">
               {{ appMentorResultDetail({
+                href: "#",
                 schoolName: result.schoolName,
                 subject: result.subject,
-                yearsTeaching: 15,
-                yearsMentoring: 5,
-                ageRange: '11 to 18'
+                schoolType: result.schoolType,
+                gender: result.gender,
+                religiousCharacter: result.religiousCharacter,
+                sendProvision: result.sendProvision,
+                ofstedRating: result.ofstedRating,
+                admissionsPolicy: result.admissionsPolicy,
+                ageRange: result.ageRange,
+                keyStage: result.keyStage,
+                mentorName: result.mentorName,
+                yearsTeaching: result.yearsTeaching,
+                yearsMentoring: result.yearsMentoring,
+                ecfTraining: result.ecfTraining,
+                trainedWith: result.trainedWith
               })}}
             </li>
           {% endfor %}
