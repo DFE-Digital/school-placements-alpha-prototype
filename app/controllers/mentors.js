@@ -278,7 +278,7 @@ exports.list_mentors_get = (req, res) => {
 
   const filterJItems = utilsHelper.getECFTrainingFilterItems(selectedJ)
 
-  const results = [{id:1,schoolName:'Oates Academy',subject:'Chemistry'}]
+  const results = require('../data/temp/mentors-sprint5')
   const resultsCount = results.length
 
   // results.sort((a, b) => {
