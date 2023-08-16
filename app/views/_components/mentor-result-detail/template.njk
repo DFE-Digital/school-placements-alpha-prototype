@@ -29,29 +29,27 @@
     <dt class="app-mentor-result-detail__key">Key stage</dt>
     <dd class="app-mentor-result-detail__value">
       <ul class="govuk-list govuk-!-margin-bottom-0">
-        {% for stage in params.keyStage %}
-          <li>
-            {{ stage | getKeyStageLabel }}
-          </li>
-        {% endfor %}
+        {{ params.keyStage }}
       </ul>
     </dd>
   </div>
-  <div class="app-mentor-result-detail__row">
-    <dt class="app-mentor-result-detail__key"><abbr title="special educational needs">SEN</abbr> provision</dt>
-    <dd class="app-mentor-result-detail__value">{{ params.senProvision }}</dd>
-  </div>
+  {% if params.sendProvision %}
+    <div class="app-mentor-result-detail__row">
+      <dt class="app-mentor-result-detail__key"><abbr title="special educational needs and disabilities">SEND</abbr> provision</dt>
+      <dd class="app-mentor-result-detail__value">{{ params.sendProvision }}</dd>
+    </div>
+  {% endif %}
   <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key">Ofsted rating</dt>
-    <dd class="app-mentor-result-detail__value">{{ params.ofstedRating }}</dd>
+    <dd class="app-mentor-result-detail__value">{{ params.ofstedRating if params.ofstedRating else "Unknown" }}</dd>
   </div>
   <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key">Admissions policy</dt>
-    <dd class="app-mentor-result-detail__value">{{ params.admissionsPolicy }}</dd>
+    <dd class="app-mentor-result-detail__value">{{ params.admissionsPolicy if params.admissionsPolicy else "Unknown" }}</dd>
   </div>
   <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key"><abbr title="Early Careers Framework">ECF</abbr> training</dt>
-    <dd class="app-mentor-result-detail__value">{{ params.ecfTraining }}</dd>
+    <dd class="app-mentor-result-detail__value">{{ params.ecfTraining | capitalize }}</dd>
   </div>
   <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key">Years teaching</dt>
@@ -62,7 +60,7 @@
     <dd class="app-mentor-result-detail__value">
       <p class="govuk-body">{{ params.yearsMentoring }}</p>
       <p class="govuk-hint">
-        Trained with {{ params.trainedWith }}
+        Trained with {{ params.trainedWith[0] }} {{" and " + (params.trainedWith.length - 1) + " others" if params.trainedWith.length > 1}}
       </p>
     </dd>
   </div>
