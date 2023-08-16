@@ -206,6 +206,8 @@ router.post('/organisations/:organisationId/mentors/primary-subjects', checkIsAu
 router.get('/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorController.secondary_subjects_get)
 router.post('/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorController.secondary_subjects_post)
 
+router.get('/organisations/:organisationId/mentors/results', checkIsAuthenticated, mentorController.list_mentors_results_get)
+
 router.get('/organisations/:organisationId/mentors/:mentorId', checkIsAuthenticated, mentorController.show_mentors_get)
 
 router.get('/organisations/:organisationId/mentors', checkIsAuthenticated, mentorController.list_mentors_get)

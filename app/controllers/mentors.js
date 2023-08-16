@@ -2,6 +2,16 @@ const paginationHelper = require('../helpers/pagination')
 const utilsHelper = require('../helpers/utils')
 
 exports.list_mentors_get = (req, res) => {
+  const mentors = []
+  res.render('../views/mentors/list', {
+    mentors,
+    actions: {
+      find: `/organisations/${req.params.organisationId}/mentors/search`
+    }
+  })
+}
+
+exports.list_mentors_results_get = (req, res) => {
   // Search
   const keywords = req.session.data.keywords
 
@@ -293,7 +303,7 @@ exports.list_mentors_get = (req, res) => {
   const sortBy = req.query.sortBy || req.session.data.sortBy || 0
   const sortByItems = utilsHelper.getSortBySelectOptions(sortBy)
 
-  res.render('../views/mentors/list', {
+  res.render('../views/mentors/results/index', {
     results,
     resultsCount,
     selectedFilters,
