@@ -196,6 +196,21 @@ router.get('/organisations/:organisationId/placements', checkIsAuthenticated, pl
 
 router.get('/organisations/:organisationId/mentors', checkIsAuthenticated, mentorController.list_mentors_get)
 
+router.get('/organisations/:organisationId/mentors/remove-keyword-search', checkIsAuthenticated, mentorController.removeKeywordSearch)
+
+router.get('/organisations/:organisationId/mentors/remove-a-filter/:a', checkIsAuthenticated, mentorController.removeFilterA)
+router.get('/organisations/:organisationId/mentors/remove-b-filter/:b', checkIsAuthenticated, mentorController.removeFilterB)
+router.get('/organisations/:organisationId/mentors/remove-c-filter/:c', checkIsAuthenticated, mentorController.removeFilterC)
+router.get('/organisations/:organisationId/mentors/remove-d-filter/:d', checkIsAuthenticated, mentorController.removeFilterD)
+router.get('/organisations/:organisationId/mentors/remove-e-filter/:e', checkIsAuthenticated, mentorController.removeFilterE)
+router.get('/organisations/:organisationId/mentors/remove-f-filter/:f', checkIsAuthenticated, mentorController.removeFilterF)
+router.get('/organisations/:organisationId/mentors/remove-g-filter/:g', checkIsAuthenticated, mentorController.removeFilterG)
+router.get('/organisations/:organisationId/mentors/remove-h-filter/:h', checkIsAuthenticated, mentorController.removeFilterH)
+router.get('/organisations/:organisationId/mentors/remove-i-filter/:i', checkIsAuthenticated, mentorController.removeFilterI)
+router.get('/organisations/:organisationId/mentors/remove-j-filter/:j', checkIsAuthenticated, mentorController.removeFilterJ)
+
+router.get('/organisations/:organisationId/mentors/remove-all-filters', checkIsAuthenticated, mentorController.removeAllFilters)
+
 /// ------------------------------------------------------------------------ ///
 /// ORGANISATION ROUTES
 /// ------------------------------------------------------------------------ ///

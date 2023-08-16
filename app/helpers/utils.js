@@ -43,22 +43,26 @@ exports.removeFilter = (value, data) => {
   }
 }
 
-exports.getFilterALabel = (code) => {
-  let label = code
+exports.getSortBySelectOptions = (selectedOption = 0) => {
+  const sortOptions = require('../data/mentor-sort-options')
+  const items = []
 
-  return label
-}
+  sortOptions.forEach((sortOption, i) => {
+    const item = {}
 
-exports.getFilterBLabel = (code) => {
-  let label = code
+    item.text = sortOption.name
+    item.value = sortOption.code
+    item.id = sortOption.id
+    item.selected = !!(parseInt(selectedOption) === parseInt(sortOption.code)) ? 'selected' : ''
 
-  return label
-}
+    items.push(item)
+  })
 
-exports.getFilterCLabel = (code) => {
-  let label = code
+  // items.sort((a,b) => {
+  //   return a.text.localeCompare(b.text)
+  // })
 
-  return label
+  return items
 }
 
 exports.getAgeRangeFilterItems = (subjectLevel = 'secondary', selectedItems) => {
@@ -192,4 +196,336 @@ exports.getKeyStageFilterItems = (subjectLevel = 'secondary', selectedItems) => 
   })
 
   return items
+}
+
+exports.getSubjectFilterItems = (selectedItems) => {
+  const options = require('../data/subjects')
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getSchoolTypeFilterItems = (selectedItems) => {
+  const options = require('../data/schools/school-types')
+
+  options.sort((a,b) => {
+    return a.name.localeCompare(b.name)
+  })
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getReligiousCharacterFilterItems = (selectedItems) => {
+  const options = require('../data/schools/school-religious-character')
+
+  options.sort((a,b) => {
+    return a.name.localeCompare(b.name)
+  })
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getSENDFilterItems = (selectedItems) => {
+  const options = require('../data/schools/school-send-provision')
+
+  options.sort((a,b) => {
+    return a.name.localeCompare(b.name)
+  })
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getOfsteadRatingFilterItems = (selectedItems) => {
+  const options = require('../data/ofsted-ratings')
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getECFTrainingFilterItems = (selectedItems) => {
+  const options = [
+    {
+      id: 'b5995d91-a26e-4c4d-b338-30c1d187ece8',
+      name: 'Only show mentors with ECF training',
+      code: 'option-1'
+    }
+  ]
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getFilterGItems = (selectedItems) => {
+  const options = [
+    {
+      id: 'b5995d91-a26e-4c4d-b338-30c1d187ece8',
+      name: 'Option 1',
+      code: 'option-1'
+    },
+    {
+      id: 'a2fce60f-d211-44cc-94fc-50c9c4145d67',
+      name: 'Option 2',
+      code: 'option-2'
+    },
+    {
+      id: 'aed87067-6aad-4898-8cb0-377d4f84ab99',
+      name: 'Option 3',
+      code: 'option-3'
+    }
+  ]
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getFilterHItems = (selectedItems) => {
+  const options = [
+    {
+      id: 'b5995d91-a26e-4c4d-b338-30c1d187ece8',
+      name: 'Option 1',
+      code: 'option-1'
+    },
+    {
+      id: 'a2fce60f-d211-44cc-94fc-50c9c4145d67',
+      name: 'Option 2',
+      code: 'option-2'
+    },
+    {
+      id: 'aed87067-6aad-4898-8cb0-377d4f84ab99',
+      name: 'Option 3',
+      code: 'option-3'
+    }
+  ]
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getFilterIItems = (selectedItems) => {
+  const options = [
+    {
+      id: 'b5995d91-a26e-4c4d-b338-30c1d187ece8',
+      name: 'Option 1',
+      code: 'option-1'
+    },
+    {
+      id: 'a2fce60f-d211-44cc-94fc-50c9c4145d67',
+      name: 'Option 2',
+      code: 'option-2'
+    },
+    {
+      id: 'aed87067-6aad-4898-8cb0-377d4f84ab99',
+      name: 'Option 3',
+      code: 'option-3'
+    }
+  ]
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getFilterJItems = (selectedItems) => {
+  const options = [
+    {
+      id: 'b5995d91-a26e-4c4d-b338-30c1d187ece8',
+      name: 'Option 1',
+      code: 'option-1'
+    },
+    {
+      id: 'a2fce60f-d211-44cc-94fc-50c9c4145d67',
+      name: 'Option 2',
+      code: 'option-2'
+    },
+    {
+      id: 'aed87067-6aad-4898-8cb0-377d4f84ab99',
+      name: 'Option 3',
+      code: 'option-3'
+    }
+  ]
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
+exports.getFilterALabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterBLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterCLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterDLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterELabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterFLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterGLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterHLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterILabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterJLabel = (code) => {
+  let label = code
+
+  return label
 }

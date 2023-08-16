@@ -1,8 +1,13 @@
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
+
+{% from "_components/checkbox-filter/macro.njk" import appCheckboxFilter %}
 {% from "_components/footer/macro.njk" import appFooter %}
+{% from "_components/mentor-result-detail/macro.njk" import appMentorResultDetail %}
 {% from "_components/organisation-actions/macro.njk" import appOrganisationActions %}
+{% from "_components/pagination/macro.njk" import appPagination %}
 {% from "_components/primary-navigation/macro.njk" import appPrimaryNavigation %}
+{% from "_components/search/macro.njk" import appSearch %}
 
 {% block pageTitle %}
   {{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
@@ -63,7 +68,7 @@
     items: [
       {
         href: baseUrl + "/mentors",
-        text: "Mentors",
+        text: "Find mentors",
         active: primaryNavId == "mentors"
       },
       {

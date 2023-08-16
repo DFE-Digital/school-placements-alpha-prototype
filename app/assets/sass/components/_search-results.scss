@@ -21,11 +21,13 @@
   // }
 }
 
-.app-search-result__provider-name {
+.app-search-result__provider-name,
+.app-search-result__school-name {
   @include govuk-font($size: 19, $weight: "bold");
 }
 
-.app-search-result__course-name {
+.app-search-result__course-name,
+.app-search-result__placement-name {
   display: block;
   text-decoration: underline;
 }

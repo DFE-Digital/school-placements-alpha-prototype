@@ -1,6 +1,6 @@
 exports.getMentorOptions = (school, subject, selectedItem) => {
   const items = []
-  const mentors = require('../data/temp/mentors')
+  const mentors = require('../data/temp/mentors-sprint2')
 
   mentors
     .filter(mentor =>
@@ -22,7 +22,7 @@ exports.getMentorOptions = (school, subject, selectedItem) => {
 }
 
 exports.getMentorLabel = (code) => {
-  const mentors = require('../data/temp/mentors')
+  const mentors = require('../data/temp/mentors-sprint2')
   const mentor = mentors.find(mentor => mentor.id === code)
 
   let label = code

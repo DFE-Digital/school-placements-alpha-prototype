@@ -1,0 +1,32 @@
+[
+  {
+    "id": "5235635c-4f5f-4ced-91c8-b4f45278cc34",
+    "code": 0,
+    "name": "Subject (A to Z)"
+  },
+  {
+    "id": "39d21c11-0ecc-4eff-941f-651ae04fb195",
+    "code": 1,
+    "name": "Subject (Z to A)"
+  },
+  {
+    "id": "b7a63bbe-4cd4-4771-b672-5d2c7b4f507a",
+    "code": 2,
+    "name": "Training provider (A to Z)"
+  },
+  {
+    "id": "94af5269-a207-4f01-a3f1-0f52f683b7e2",
+    "code": 3,
+    "name": "Training provider (Z to A)"
+  },
+  {
+    "id": "a938b945-6561-49ce-b040-5713be24ae3f",
+    "code": 4,
+    "name": "Nearest location"
+  },
+  {
+    "id": "70d70c85-eaef-4881-bb92-676433d781e7",
+    "code": 5,
+    "name": "Furthest location"
+  }
+]
