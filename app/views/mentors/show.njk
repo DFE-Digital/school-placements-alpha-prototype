@@ -2,7 +2,8 @@
 
 {% set primaryNavId = "mentors" %}
 
-{% set title = mentor.name %}
+{% set title = mentor.subject %}
+{% set caption = mentor.schoolName %}
 
 {% block beforeContent %}
 {{ govukBackLink({

@@ -43,7 +43,7 @@
           {% for result in results %}
             <li class="app-search-results__item">
               {{ appMentorResultDetail({
-                href: "#",
+                href: actions.view + "/" + result.id,
                 schoolName: result.schoolName,
                 subject: result.subject,
                 schoolType: result.schoolType,
