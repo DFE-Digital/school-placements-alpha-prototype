@@ -401,3 +401,205 @@ exports.removeAllFilters = (req, res) => {
   delete req.session.data.filter
   res.redirect(`/organisations/${req.params.organisationId}/mentors`)
 }
+
+
+// SEARCH
+
+const subjectHelper = require('../helpers/subjects')
+
+exports.search_get = (req, res) => {
+  delete req.session.data.filter
+  delete req.session.data.location
+  delete req.session.data.school
+  delete req.session.data.q
+  delete req.session.data.sortBy
+
+  res.render('mentors/search/index', {
+    actions: {
+      back: `/organisations/${req.params.organisationId}/mentors`,
+      save: `/organisations/${req.params.organisationId}/mentors/search`
+    }
+  })
+}
+
+exports.search_post = (req, res) => {
+  // Search query
+  const q = req.session.data.q || req.query.q
+
+  const errors = []
+
+  if (req.session.data.q === undefined) {
+    const error = {}
+    error.fieldName = "q"
+    error.href = "#q"
+    error.text = "Select find placements by location or by training provider"
+    errors.push(error)
+  } else {
+    if (req.session.data.q === 'location' && !req.session.data.location.length) {
+      const error = {}
+      error.fieldName = "location"
+      error.href = "#location"
+      error.text = "Enter a city, town or postcode"
+      errors.push(error)
+    }
+
+    if (req.session.data.q === 'school' && !req.session.data.school.length) {
+      const error = {}
+      error.fieldName = "school"
+      error.href = "#school"
+      error.text = "Enter a school name, URN or postcode"
+      errors.push(error)
+    }
+  }
+
+  if (errors.length) {
+    res.render('mentors/search/index', {
+      errors,
+      actions: {
+        back: `/organisations/${req.params.organisationId}/mentors`,
+        save: `/organisations/${req.params.organisationId}/mentors/search`
+      }
+    })
+  } else {
+    res.redirect(`/organisations/${req.params.organisationId}/mentors/age-groups`)
+  }
+}
+
+exports.age_groups_get = (req, res) => {
+  res.render('mentors/search/age-groups', {
+    actions: {
+      back: `/organisations/${req.params.organisationId}/mentors/search`,
+      save: `/organisations/${req.params.organisationId}/mentors/age-groups`
+    }
+  })
+}
+
+exports.age_groups_post = (req, res) => {
+  const ageGroup = req.session.data.ageGroup
+
+  const errors = []
+
+  if (!req.session.data.ageGroup?.length) {
+    const error = {}
+    error.fieldName = "age-groups"
+    error.href = "#age-groups"
+    error.text = "Select an age group"
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('mentors/search/age-groups', {
+      errors,
+      actions: {
+        back: `/organisations/${req.params.organisationId}/mentors/search`,
+        save: `/organisations/${req.params.organisationId}/mentors/age-groups`
+      }
+    })
+  } else {
+    if (ageGroup === 'primary') {
+      res.redirect(`/organisations/${req.params.organisationId}/mentors/primary-subjects`)
+    } else if (ageGroup === 'secondary') {
+      res.redirect(`/organisations/${req.params.organisationId}/mentors/secondary-subjects`)
+    } else {
+      res.redirect(`/organisations/${req.params.organisationId}/mentors/results`)
+    }
+  }
+}
+
+exports.primary_subjects_get = (req, res) => {
+  let selectedSubject
+  if (req.session.data.filter?.subject) {
+    selectedSubject = req.session.data.filter.subject
+  }
+
+  const subjectOptions = subjectHelper.getSubjectOptions(req.session.data.ageGroup, selectedSubject)
+
+  res.render('mentors/search/primary-subjects', {
+    subjectOptions,
+    actions: {
+      back: `/organisations/${req.params.organisationId}/mentors/age-groups`,
+      save: `/organisations/${req.params.organisationId}/mentors/primary-subjects`
+    }
+  })
+}
+
+exports.primary_subjects_post = (req, res) => {
+  const errors = []
+
+  if (!req.session.data.filter.subject?.length) {
+    const error = {}
+    error.fieldName = "subject"
+    error.href = "#subject"
+    error.text = "Select a least one primary subject specialism"
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    let selectedSubject
+    if (req.session.data.filter?.subject) {
+      selectedSubject = req.session.data.filter.subject
+    }
+
+    const subjectOptions = subjectHelper.getSubjectOptions(req.session.data.ageGroup, selectedSubject)
+
+    res.render('mentors/search/primary-subjects', {
+      subjectOptions,
+      errors,
+      actions: {
+        back: `/organisations/${req.params.organisationId}/mentors/age-groups`,
+        save: `/organisations/${req.params.organisationId}/mentors/primary-subjects`
+      }
+    })
+  } else {
+    res.redirect(`/organisations/${req.params.organisationId}/mentors/results`)
+  }
+}
+
+exports.secondary_subjects_get = (req, res) => {
+  let selectedSubject
+  if (req.session.data.filter?.subject) {
+    selectedSubject = req.session.data.filter.subject
+  }
+
+  const subjectOptions = subjectHelper.getSubjectOptions(req.session.data.ageGroup, selectedSubject)
+
+  res.render('mentors/search/secondary-subjects', {
+    subjectOptions,
+    actions: {
+      back: `/organisations/${req.params.organisationId}/mentors/age-groups`,
+      save: `/organisations/${req.params.organisationId}/mentors/secondary-subjects`
+    }
+  })
+}
+
+exports.secondary_subjects_post = (req, res) => {
+  const errors = []
+
+  if (!req.session.data.filter.subject?.length) {
+    const error = {}
+    error.fieldName = "subject"
+    error.href = "#subject"
+    error.text = "Select at least one secondary subject"
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    let selectedSubject
+    if (req.session.data.filter?.subject) {
+      selectedSubject = req.session.data.filter.subject
+    }
+
+    const subjectOptions = subjectHelper.getSubjectOptions(req.session.data.ageGroup, selectedSubject)
+
+    res.render('mentors/search/secondary-subjects', {
+      subjectOptions,
+      errors,
+      actions: {
+        back: `/organisations/${req.params.organisationId}/mentors/age-groups`,
+        save: `/organisations/${req.params.organisationId}/mentors/secondary-subjects`
+      }
+    })
+  } else {
+    res.redirect(`/organisations/${req.params.organisationId}/mentors/results`)
+  }
+}

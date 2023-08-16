@@ -194,6 +194,18 @@ router.get('/organisations/:organisationId/placements', checkIsAuthenticated, pl
 /// MENTOR ROUTES
 /// ------------------------------------------------------------------------ ///
 
+router.get('/organisations/:organisationId/mentors/search', checkIsAuthenticated, mentorController.search_get)
+router.post('/organisations/:organisationId/mentors/search', checkIsAuthenticated, mentorController.search_post)
+
+router.get('/organisations/:organisationId/mentors/age-groups', checkIsAuthenticated, mentorController.age_groups_get)
+router.post('/organisations/:organisationId/mentors/age-groups', checkIsAuthenticated, mentorController.age_groups_post)
+
+router.get('/organisations/:organisationId/mentors/primary-subjects', checkIsAuthenticated, mentorController.primary_subjects_get)
+router.post('/organisations/:organisationId/mentors/primary-subjects', checkIsAuthenticated, mentorController.primary_subjects_post)
+
+router.get('/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorController.secondary_subjects_get)
+router.post('/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorController.secondary_subjects_post)
+
 router.get('/organisations/:organisationId/mentors/:mentorId', checkIsAuthenticated, mentorController.show_mentors_get)
 
 router.get('/organisations/:organisationId/mentors', checkIsAuthenticated, mentorController.list_mentors_get)

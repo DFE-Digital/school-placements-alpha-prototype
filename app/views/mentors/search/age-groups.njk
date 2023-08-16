@@ -1,0 +1,71 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "mentors" %}
+
+{% set title = "Age group" %}
+
+{% block pageTitle %}
+{{ "Error: " if errors }}{{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/error-summary.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "age-groups",
+          name: "ageGroup",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          errorMessage: errors | getErrorMessage("age-groups"),
+          items: [
+            {
+              value: "primary",
+              text: "Primary",
+              checked: (data["ageGroup"] == "primary")
+            },
+            {
+              value: "secondary",
+              text: "Secondary",
+              checked: (data["ageGroup"] == "secondary")
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "furtherEducation",
+              text: "Further education",
+              hint: {
+                text: "For example, teaching A levels or vocational courses"
+              },
+              checked: (data["ageGroup"] == "furtherEducation")
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
