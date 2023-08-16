@@ -194,6 +194,8 @@ router.get('/organisations/:organisationId/placements', checkIsAuthenticated, pl
 /// MENTOR ROUTES
 /// ------------------------------------------------------------------------ ///
 
+router.get('/organisations/:organisationId/mentors/:mentorId', checkIsAuthenticated, mentorController.show_mentors_get)
+
 router.get('/organisations/:organisationId/mentors', checkIsAuthenticated, mentorController.list_mentors_get)
 
 router.get('/organisations/:organisationId/mentors/remove-keyword-search', checkIsAuthenticated, mentorController.removeKeywordSearch)

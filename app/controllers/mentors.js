@@ -330,6 +330,18 @@ exports.list_mentors_get = (req, res) => {
   })
 }
 
+exports.show_mentors_get = (req, res) => {
+  const mentors = require('../data/temp/mentors-sprint5')
+  const mentor = mentors.find(mentor => mentor.id === req.params.mentorId)
+
+  res.render('../views/mentors/show', {
+    mentor,
+    actions: {
+      back: `/organisations/${req.params.organisationId}/mentors`
+    }
+  })
+}
+
 exports.removeKeywordSearch = (req, res) => {
   delete req.session.data.keywords
   res.redirect(`/organisations/${req.params.organisationId}/mentors`)
