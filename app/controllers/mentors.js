@@ -1,3 +1,4 @@
+const paginationHelper = require('../helpers/pagination')
 const utilsHelper = require('../helpers/utils')
 
 exports.list_mentors_get = (req, res) => {
@@ -278,12 +279,15 @@ exports.list_mentors_get = (req, res) => {
 
   const filterJItems = utilsHelper.getECFTrainingFilterItems(selectedJ)
 
-  const results = require('../data/temp/mentors-sprint5')
+  let results = require('../data/temp/mentors-sprint5')
   const resultsCount = results.length
 
-  // results.sort((a, b) => {
-  //   return a.name.localeCompare(b.name) || a.school.name.localeCompare(b.school.name)
-  // })
+  // Get the pagination data
+  const pageSize = 10
+  const pagination = paginationHelper.getPagination(results, req.query.page, pageSize)
+
+  // Get a slice of the data to display
+  results = paginationHelper.getDataByPage(results, pagination.pageNumber, pageSize)
 
   // sort by settings
   const sortBy = req.query.sortBy || req.session.data.sortBy || 0
@@ -297,6 +301,7 @@ exports.list_mentors_get = (req, res) => {
     hasSearch,
     keywords,
     sortByItems,
+    pagination,
     filterAItems,
     filterBItems,
     filterCItems,
