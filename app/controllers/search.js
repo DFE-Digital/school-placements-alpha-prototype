@@ -1,4 +1,3 @@
-
 const subjectHelper = require('../helpers/subjects')
 
 exports.search_get = (req, res) => {
@@ -13,7 +12,7 @@ exports.search_get = (req, res) => {
 
 exports.search_post = (req, res) => {
   // Search query
-  const q = req.session.data.q || req.query.q
+  // const q = req.session.data.q || req.query.q
 
   const errors = []
 
@@ -21,7 +20,7 @@ exports.search_post = (req, res) => {
     const error = {}
     error.fieldName = "q"
     error.href = "#q"
-    error.text = "Select find placements by location or by training provider"
+    error.text = "Select find placements by location or by school"
     errors.push(error)
   } else {
     if (req.session.data.q === 'location' && !req.session.data.location.length) {
