@@ -47,7 +47,7 @@
     {% set organisationHtml %}
       {{ passport.organisation.name }}
     {% endset %}
-    {# {% if not hideOrganisationSwitcher %} #}
+    {% if not hideOrganisationSwitcher %}
       {{ appOrganisationActions({
         html: organisationHtml,
         actions: {
@@ -60,28 +60,30 @@
         },
         classes: "govuk-width-container"
       }) }}
-    {# {% endif %} #}
+    {% endif %}
   {% endif %}
 
-  {{ appPrimaryNavigation({
-    items: [
-      {
-        href: baseUrl + "/mentors",
-        text: "Mentors",
-        active: primaryNavId == "mentors"
-      },
-      {
-        href: baseUrl + "#",
-        text: "Users",
-        active: primaryNavId == "users"
-      },
-      {
-        href: baseUrl + "/show",
-        text: "Organisation details",
-        active: primaryNavId == "settings"
-      }
-    ]
-  }) }}
+  {% if not hidePrimaryNavigation %}
+    {{ appPrimaryNavigation({
+      items: [
+        {
+          href: baseUrl + "/mentors",
+          text: "Mentors",
+          active: primaryNavId == "mentors"
+        },
+        {
+          href: baseUrl + "#",
+          text: "Users",
+          active: primaryNavId == "users"
+        },
+        {
+          href: baseUrl + "/show",
+          text: "Organisation details",
+          active: primaryNavId == "settings"
+        }
+      ]
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block footer %}
