@@ -14,6 +14,14 @@
     <dd class="app-mentor-result-detail__value">{{ params.ageRange }}</dd>
   </div>
   <div class="app-mentor-result-detail__row">
+    <dt class="app-mentor-result-detail__key">Key stage</dt>
+    <dd class="app-mentor-result-detail__value">
+      <ul class="govuk-list govuk-!-margin-bottom-0">
+        {{ params.keyStage }}
+      </ul>
+    </dd>
+  </div>
+  <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key">School type</dt>
     <dd class="app-mentor-result-detail__value">{{ params.schoolType }}</dd>
   </div>
@@ -24,14 +32,6 @@
   <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key">Religious character</dt>
     <dd class="app-mentor-result-detail__value">{{ params.religiousCharacter }}</dd>
-  </div>
-  <div class="app-mentor-result-detail__row">
-    <dt class="app-mentor-result-detail__key">Key stage</dt>
-    <dd class="app-mentor-result-detail__value">
-      <ul class="govuk-list govuk-!-margin-bottom-0">
-        {{ params.keyStage }}
-      </ul>
-    </dd>
   </div>
   {% if params.sendProvision %}
     <div class="app-mentor-result-detail__row">
