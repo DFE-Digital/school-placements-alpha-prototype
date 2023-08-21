@@ -1,5 +1,7 @@
 const subjectHelper = require('../helpers/subjects')
 
+const locationSuggestionsService = require('../services/location-suggestions')
+
 exports.search_get = (req, res) => {
   delete req.session.data.filter
   delete req.session.data.location
@@ -163,9 +165,13 @@ exports.secondary_subjects_post = (req, res) => {
   }
 }
 
-exports.location_suggestions_json = (req, res) => {
+exports.location_suggestions_json = async (req, res) => {
   req.headers['Access-Control-Allow-Origin'] = true
 
+  let locationSuggestionListResponse
+  locationSuggestionListResponse = await locationSuggestionsService.getLocationSuggestions(req.query.query)
+
+  res.json(locationSuggestionListResponse)
 }
 
 exports.school_suggestions_json = (req, res) => {
