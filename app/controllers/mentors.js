@@ -231,7 +231,7 @@ exports.list_mentors_results_get = (req, res) => {
     selectedB = req.session.data.filter.b
   }
 
-  const filterBItems = utilsHelper.getAgeRangeFilterItems(selectedB)
+  const filterBItems = utilsHelper.getAgeRangeFilterItems(req.session.data.ageGroup, selectedB)
 
   let selectedC
   if (req.session.data.filter?.c) {
@@ -273,7 +273,7 @@ exports.list_mentors_results_get = (req, res) => {
     selectedH = req.session.data.filter.h
   }
 
-  const filterHItems = utilsHelper.getKeyStageFilterItems(selectedH)
+  const filterHItems = utilsHelper.getKeyStageFilterItems(req.session.data.ageGroup, selectedH)
 
   let selectedI
   if (req.session.data.filter?.i) {
@@ -334,7 +334,8 @@ exports.list_mentors_results_get = (req, res) => {
       },
       search: {
         find: `/organisations/${req.params.organisationId}/mentors`,
-        remove: `/organisations/${req.params.organisationId}/mentors/remove-keyword-search`
+        remove: `/organisations/${req.params.organisationId}/mentors/remove-keyword-search`,
+        change: `/organisations/${req.params.organisationId}/mentors/search`
       }
     }
   })
