@@ -18,7 +18,7 @@
     "govuk-frontend": "4.7.0",
     "govuk-prototype-kit": "13.12.1",
     "luxon": "^3.4.0",
-    "marked": "^7.0.3",
+    "marked": "^7.0.4",
     "numeral": "^2.0.6",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
