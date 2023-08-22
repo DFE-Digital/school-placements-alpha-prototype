@@ -114,13 +114,14 @@
   initAutocomplete({
     element: "location-autocomplete",
     input: "location",
-    path: "/location-suggestions",
+    path: "/location-suggestions"
   });
 
-  {# initAutocomplete({
+  initAutocomplete({
     element: "school-autocomplete",
     input: "school",
     path: "/school-suggestions",
-  }); #}
+    type: "school"
+  });
   </script>
 {% endblock %}
