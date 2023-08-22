@@ -41,7 +41,7 @@ const initAutocomplete = ({ element, input, path, selectNameAndCode }) => {
 
   const inputValueTemplate = result => (typeof result === "string" ? result : result && result.name);
   const suggestionTemplate = result =>
-    typeof result === "string" ? result : result && `${result.name} (${result.code})`;
+    typeof result === "string" ? result : result && `${result.name} (${result.address.postcode})`;
 
   try {
     if($input) {
