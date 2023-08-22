@@ -1,6 +1,7 @@
 const subjectHelper = require('../helpers/subjects')
 
 const locationSuggestionsService = require('../services/location-suggestions')
+const schoolSuggestionsService = require('../services/school-suggestions')
 
 exports.search_get = (req, res) => {
   delete req.session.data.filter
@@ -177,4 +178,14 @@ exports.location_suggestions_json = async (req, res) => {
 exports.school_suggestions_json = (req, res) => {
   req.headers['Access-Control-Allow-Origin'] = true
 
+  let schools
+  schools = schoolSuggestionsService.getSchoolSuggestions(req.query)
+
+  schools.sort((a, b) => {
+    return a.name.localeCompare(b.name)
+  })
+
+  // TODO: slice data to only return max n records
+
+  res.json(schools)
 }
