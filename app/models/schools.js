@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs')
+const { log } = require('console')
 
 const directoryPath = path.join(__dirname, '../data/schools/')
 
@@ -33,10 +34,12 @@ exports.findOne = (params) => {
   let school = {}
 
   if (params.schoolId) {
-    const filePath = directoryPath + '/' + params.schoolId + '.json'
+    // const filePath = directoryPath + '/' + params.schoolId + '.json'
 
-    const raw = fs.readFileSync(filePath)
-    school = JSON.parse(raw)
+    // const raw = fs.readFileSync(filePath)
+    // school = JSON.parse(raw)
+    const schools = require('../data/schools/schools.json')
+    school = schools.find(school => school.urn === params.schoolId)
   }
 
   return school
