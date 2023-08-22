@@ -1,3 +1,5 @@
+const schoolModel = require('../models/schools')
+
 const paginationHelper = require('../helpers/pagination')
 const subjectHelper = require('../helpers/subjects')
 const utilsHelper = require('../helpers/utils')
@@ -290,7 +292,7 @@ exports.list_mentors_results_get = (req, res) => {
 
   const filterJItems = utilsHelper.getECFTrainingFilterItems(selectedJ)
 
-  let results = require('../data/temp/mentors-sprint5')
+  let results = require('../data/temp/mentors-sprint6')
   const resultsCount = results.length
 
   // Get the pagination data
@@ -343,13 +345,16 @@ exports.list_mentors_results_get = (req, res) => {
 }
 
 exports.show_mentors_get = (req, res) => {
-  const mentors = require('../data/temp/mentors-sprint5')
+  const mentors = require('../data/temp/mentors-sprint6')
   const mentor = mentors.find(mentor => mentor.id === req.params.mentorId)
 
+  const school = schoolModel.findOne({ schoolId: mentor.urn })
+
   res.render('../views/mentors/show', {
+    school,
     mentor,
     actions: {
-      back: `/organisations/${req.params.organisationId}/mentors`
+      back: `/organisations/${req.params.organisationId}/mentors/results`
     }
   })
 }
