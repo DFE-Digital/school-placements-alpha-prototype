@@ -1,4 +1,5 @@
 const paginationHelper = require('../helpers/pagination')
+const subjectHelper = require('../helpers/subjects')
 const utilsHelper = require('../helpers/utils')
 
 exports.list_mentors_get = (req, res) => {
@@ -415,9 +416,6 @@ exports.removeAllFilters = (req, res) => {
 
 
 // SEARCH
-
-const subjectHelper = require('../helpers/subjects')
-
 exports.search_get = (req, res) => {
   delete req.session.data.filter
   delete req.session.data.location
