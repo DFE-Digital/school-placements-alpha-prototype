@@ -1,30 +1,4 @@
-//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-//:::                                                                         :::
-//:::  This routine calculates the distance between two points (given the     :::
-//:::  latitude/longitude of those points). It is being used to calculate     :::
-//:::  the distance between two locations using GeoDataSource (TM) prodducts  :::
-//:::                                                                         :::
-//:::  Definitions:                                                           :::
-//:::    South latitudes are negative, east longitudes are positive           :::
-//:::                                                                         :::
-//:::  Passed to function:                                                    :::
-//:::    lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)  :::
-//:::    lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)  :::
-//:::    unit = the unit you desire for results                               :::
-//:::           where: 'M' is statute miles (default)                         :::
-//:::                  'K' is kilometers                                      :::
-//:::                  'N' is nautical miles                                  :::
-//:::                                                                         :::
-//:::  Worldwide cities and other features databases with latitude longitude  :::
-//:::  are available at https://www.geodatasource.com                         :::
-//:::                                                                         :::
-//:::  For enquiries, please contact sales@geodatasource.com                  :::
-//:::                                                                         :::
-//:::  Official Web site: https://www.geodatasource.com                       :::
-//:::                                                                         :::
-//:::               GeoDataSource.com (C) All Rights Reserved 2022            :::
-//:::                                                                         :::
-//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Source: https://www.geodatasource.com/developers/javascript
 
 exports.getDistance = (lat1, lon1, lat2, lon2, unit = null) => {
 	if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -41,6 +15,7 @@ exports.getDistance = (lat1, lon1, lat2, lon2, unit = null) => {
 			dist = 1
 		}
 
+    // statute miles
     dist = Math.acos(dist);
 		dist = dist * 180/Math.PI
 		dist = dist * 60 * 1.1515
