@@ -5,7 +5,12 @@ const subjectHelper = require('../helpers/subjects')
 const utilsHelper = require('../helpers/utils')
 
 exports.list_mentors_get = (req, res) => {
-  const mentors = []
+  const mentors = require('../data/temp/known-mentors-sprint6')
+
+  mentors.sort((a,b) => {
+    return a.mentor.name.localeCompare(b.mentor.name) || a.school.name.localeCompare(b.school.name)
+  })
+
   res.render('../views/mentors/list', {
     mentors,
     actions: {
