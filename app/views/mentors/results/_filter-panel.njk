@@ -1,6 +1,6 @@
 {% set filterOptionsHtml %}
 
-{{ appCheckboxFilter({
+{# {{ appCheckboxFilter({
   idPrefix: "filter-a",
   name: "filter[a]",
   legend: {
@@ -10,7 +10,7 @@
   selectedItems: selectedA,
   showSelectedTags: true,
   classes: "govuk-!-margin-bottom-7"
-}) }}
+}) }} #}
 
 {# {{ govukCheckboxes({
   idPrefix: "filter-a",
@@ -120,7 +120,7 @@
   idPrefix: "filter-f",
   name: "filter[f]",
   legend: {
-    html: 'SEN provision<span class="govuk-visually-hidden"> filter</span>'
+    html: 'SEND provision<span class="govuk-visually-hidden"> filter</span>'
   },
   items: filterFItems,
   selectedItems: selectedF,

@@ -1,0 +1,56 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "mentors" %}
+
+{% set title = "Secondary subject" %}
+
+{% block pageTitle %}
+{{ "Error: " if errors }}{{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/error-summary.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set headingHtml %}
+        {% include "_includes/page-heading-legend.njk" %}
+      {% endset %}
+
+      <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+
+        {{ govukCheckboxes({
+          idPrefix: "subject",
+          name: "filter[subject]",
+          fieldset: {
+            legend: {
+              text: headingHtml,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply"
+          },
+          errorMessage: errors | getErrorMessage("subject"),
+          items: subjectOptions
+        }) }}
+
+        {{ govukButton({
+          text: "Find mentors"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

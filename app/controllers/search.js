@@ -1,5 +1,7 @@
-
 const subjectHelper = require('../helpers/subjects')
+
+const locationSuggestionsService = require('../services/location-suggestions')
+const schoolSuggestionsService = require('../services/school-suggestions')
 
 exports.search_get = (req, res) => {
   delete req.session.data.filter
@@ -13,7 +15,7 @@ exports.search_get = (req, res) => {
 
 exports.search_post = (req, res) => {
   // Search query
-  const q = req.session.data.q || req.query.q
+  // const q = req.session.data.q || req.query.q
 
   const errors = []
 
@@ -21,7 +23,7 @@ exports.search_post = (req, res) => {
     const error = {}
     error.fieldName = "q"
     error.href = "#q"
-    error.text = "Select find placements by location or by training provider"
+    error.text = "Select find placements by location or by school"
     errors.push(error)
   } else {
     if (req.session.data.q === 'location' && !req.session.data.location.length) {
@@ -164,12 +166,26 @@ exports.secondary_subjects_post = (req, res) => {
   }
 }
 
-exports.location_suggestions_json = (req, res) => {
+exports.location_suggestions_json = async (req, res) => {
   req.headers['Access-Control-Allow-Origin'] = true
 
+  let locationSuggestionListResponse
+  locationSuggestionListResponse = await locationSuggestionsService.getLocationSuggestions(req.query.query)
+
+  res.json(locationSuggestionListResponse)
 }
 
 exports.school_suggestions_json = (req, res) => {
   req.headers['Access-Control-Allow-Origin'] = true
 
+  let schools
+  schools = schoolSuggestionsService.getSchoolSuggestions(req.query)
+
+  schools.sort((a, b) => {
+    return a.name.localeCompare(b.name)
+  })
+
+  // TODO: slice data to only return max n records
+
+  res.json(schools)
 }

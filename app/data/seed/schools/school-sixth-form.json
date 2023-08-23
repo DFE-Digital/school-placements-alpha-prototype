@@ -1,0 +1,22 @@
+[
+  {
+    "id": "b85881e5-1cee-446c-a0e8-b5f09df7ddf4",
+    "code": 2,
+    "name": "Does not have a sixth form"
+  },
+  {
+    "id": "116b4afe-3afd-4984-af52-1fad14aa3d0f",
+    "code": 1,
+    "name": "Has a sixth form"
+  },
+  {
+    "id": "f29ded74-670d-4d3c-a0ef-9afa767aa2f4",
+    "code": 0,
+    "name": "Not applicable"
+  },
+  {
+    "id": "0ca9db8c-fdae-4f4d-a4e5-f8d6d3ae3111",
+    "code": 9,
+    "name": "Unknown"
+  }
+]

@@ -1,1 +1,1 @@
-[{"code":1,"name":"Open"},{"code":2,"name":"Closed"},{"code":3,"name":"Open, but proposed to close"},{"code":4,"name":"Proposed to open"}]
+[{"id":"3f0e5301-8237-4d81-b1d5-389092a75f9c","code":1,"name":"Open"},{"id":"960e1f43-92f4-4659-aea4-f34266e2377b","code":2,"name":"Closed"},{"id":"490553cb-54d7-44f7-8c84-6e7e667e6906","code":3,"name":"Open, but proposed to close"},{"id":"1a673f28-cacd-4719-8ce4-10f5e445a9bc","code":4,"name":"Proposed to open"}]

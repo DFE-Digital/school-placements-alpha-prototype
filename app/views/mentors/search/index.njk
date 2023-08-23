@@ -1,0 +1,127 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "mentors" %}
+
+{% set title = "Find a mentors by location or by school" %}
+
+{% block pageTitle %}
+{{ "Error: " if errors }}{{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/error-summary.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+
+        {% set locationHtml %}
+          <div class="govuk-form-group {{- ' govuk-form-group--error' if (errors | getErrorMessage('location'))}}">
+            {{ govukInput({
+              id: "location",
+              name: "location",
+              label: {
+                text: "Enter a city, town or postcode"
+              },
+              value: data.location,
+              autocomplete: "off",
+              formGroup: {
+                classes: "govuk-!-margin-bottom-0"
+              },
+              errorMessage: errors | getErrorMessage("location")
+            }) }}
+            <div id="location-autocomplete" class="govuk-body"></div>
+          </div>
+        {% endset %}
+
+        {% set schoolHtml %}
+          <div class="govuk-form-group {{- ' govuk-form-group--error' if (errors | getErrorMessage('school'))}}">
+            {{ govukInput({
+              id: "school",
+              name: "school",
+              label: {
+                text: "Enter a school name, URN or postcode"
+              },
+              value: data.school.name,
+              autocomplete: "off",
+              formGroup: {
+                classes: "govuk-!-margin-bottom-0"
+              },
+              errorMessage: errors | getErrorMessage("school")
+            }) }}
+            <div id="school-autocomplete" class="govuk-body"></div>
+          </div>
+        {% endset %}
+
+        {{ govukRadios({
+          name: "q",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          errorMessage: errors | getErrorMessage("q"),
+          items: [{
+            value: "location",
+            text: "By city, town or postcode",
+            checked: (data.q == "location"),
+            conditional: {
+              html: locationHtml
+            }
+          }, {
+            value: "england",
+            text: "Across England",
+            checked: (data.q == "england")
+          }, {
+            divider: "or"
+          }, {
+            value: "school",
+            text: "By school",
+            checked: (data.q == "school"),
+            conditional: {
+              html: schoolHtml
+            }
+          }]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+  <script src="/public/javascripts/debounce.js"></script>
+  <script src="/public/javascripts/init-autocomplete.js"></script>
+
+  <script type="text/javascript">
+  initAutocomplete({
+    element: "location-autocomplete",
+    input: "location",
+    path: "/location-suggestions"
+  });
+
+  initAutocomplete({
+    element: "school-autocomplete",
+    input: "school",
+    path: "/school-suggestions",
+    type: "school"
+  });
+  </script>
+{% endblock %}

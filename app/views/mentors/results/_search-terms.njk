@@ -1,6 +1,6 @@
 {% macro _selectedSubjects(params) %}
   {% for item in params.subjects %}
-    <b>{{ item.text }}</b>
+    <b>{{ item | getSubjectLabel }}</b>
     {% if not loop.last %}
       and
     {% endif %}
@@ -11,13 +11,13 @@
   {% if data.ageGroup == "furtherEducation" %}
     <b>Further education</b>
   {% else %}
-    {% if data.ageGroup == "primary" %}
+    {# {% if data.ageGroup == "primary" %}
       <b>{{ data.ageGroup | capitalize }}</b>
-    {% else %}
-      {{ _selectedSubjects({ subjects: selectedSubjects }) }}
-    {% endif %}
+    {% else %} #}
+      {{ _selectedSubjects({ subjects: data.filter.subject }) }}
+    {# {% endif %} #}
   {% endif %}
-  school placements
+  mentors
   {% if data.q == "england" %}
     in <b>England</b>
   {% elif data.q == "location" %}
@@ -25,5 +25,5 @@
   {% elif data.q == "provider" %}
     from <b>{{ data.school }}</b>
   {% endif %}
-  <a href="/search" class="govuk-link govuk-link--no-visited-state">Change<span class="govuk-visually-hidden"> subject or location</span></a>
+  <a href="{{ actions.search.change }}" class="govuk-link govuk-link--no-visited-state">Change<span class="govuk-visually-hidden"> subject or location</span></a>
 </p>

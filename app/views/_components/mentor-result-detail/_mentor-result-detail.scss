@@ -54,3 +54,9 @@
 .app-mentor-result-detail--label {
   font-weight: bold;
 }
+
+.app-mentor-result-detail__section-heading {
+  @include govuk-font($size: 19, $weight: 'bold');
+  color: govuk-colour('dark-grey');
+  margin-bottom: govuk-spacing(1);
+}
