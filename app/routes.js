@@ -319,4 +319,4 @@ router.get('/', checkIsAuthenticated, (req, res) => {
 /// ------------------------------------------------------------------------ ///
 router.get('/gias/basic', dataController.gias_basic)
 router.get('/gias/contrast', dataController.gias_contrast_factors)
-// router.get('/gias/combine', dataController.gias_combine)
+router.get('/gias/combine', dataController.gias_combine_data)
