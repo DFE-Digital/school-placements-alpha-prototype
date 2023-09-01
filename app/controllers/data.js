@@ -9,6 +9,7 @@ const sourceDirectoryPath = path.join(__dirname, '../data/seed/temp/')
 const destinationDirectoryPath = path.join(__dirname, '../data/seed/schools/')
 
 exports.gias_basic = (req, res) => {
+  // data must have the headings
   // urn,ukprn,name,type,group,status,phase,addressLine1,addressLine2,addressLine3,town,county,postcode,latitude,longitude,regionCode,website,telephone
 
   const fileInputName = sourceDirectoryPath + 'gias-basic-details.csv'
@@ -106,25 +107,22 @@ exports.gias_basic = (req, res) => {
   })
 
   // create a JSON sting for the submitted data
-  // const fileData = JSON.stringify(schools)
+  const fileData = JSON.stringify(schools)
 
-  // const filePath = destinationDirectoryPath + 'schools-basic-details.json'
+  const filePath = destinationDirectoryPath + 'schools-basic-details.json'
 
-  // // write the JSON data
+  // write the JSON data
   // fs.writeFileSync(filePath, fileData)
 
   res.send('Working on it...')
 }
 
 exports.gias_contrast_factors = (req, res) => {
+  // data must have the headings:
   // urn,minAge,maxAge,gender,boarders,officialSixthForm,nurseryProvision,childcareFacilities,religiousCharacter,admissionsPolicy,schoolCapacity,totalPupils,totalBoys,totalGirls,specialClasses,percentageFreeSchoolMeals,trustSchool,trustCode,schoolSponsorCode,federationCode,furtherEducationType,localAuthorityCode,urbanRural,updatedAt
 
   const fileInputName = sourceDirectoryPath + 'gias-contrast-factors.csv'
   const items = csvToJson.fieldDelimiter(',').getJsonFromCsv(fileInputName)
-
-  // for(let i=0; i<items.length; i++){
-  //   console.log(items[i])
-  // }
 
   const schools = []
 
@@ -241,7 +239,67 @@ exports.gias_contrast_factors = (req, res) => {
   const filePath = destinationDirectoryPath + 'schools-contrast-factors.json'
 
   // write the JSON data
-  fs.writeFileSync(filePath, fileData)
+  // fs.writeFileSync(filePath, fileData)
 
   res.send('Working on it...')
+}
+
+exports.gias_combine_data = (req, res) => {
+  const items = require('../data/seed/schools/schools-basic-details')
+
+  const contrastFactors = require('../data/seed/schools/schools-contrast-factors')
+  const ofstedRatings = require('../data/seed/schools/schools-ofsted')
+  const sendDetails = require('../data/seed/schools/schools-send')
+  const headDetails = require('../data/seed/schools/schools-head')
+
+  const schools = []
+
+  items.forEach(item => {
+    let school = {}
+
+    const factors = contrastFactors.find(f => f.urn === item.urn)
+
+    if (factors) {
+      school = {...item, ...factors}
+    } else {
+      school = item
+    }
+
+    const head = headDetails.find(h => h.urn === item.urn)
+
+    if (head) {
+      school.head = head.head
+    }
+
+    const send = sendDetails.find(s => s.urn === item.urn)
+
+    if (send) {
+      school.send = send.send
+    }
+
+    const rating = ofstedRatings.find(o => o.urn === item.urn)
+
+    if (rating) {
+      school.ofsted = rating.ofsted
+    }
+
+    school.createdAt = school.updatedAt
+
+    console.log(school)
+
+    if (Object.keys(school).length > 1) {
+      schools.push(school)
+    }
+  })
+
+  // create a JSON sting for the submitted data
+  const fileData = JSON.stringify(schools)
+
+  const filePath = destinationDirectoryPath + 'schools.json'
+
+  // write the JSON data
+  // fs.writeFileSync(filePath, fileData)
+
+  res.send('Working on it...')
+
 }
