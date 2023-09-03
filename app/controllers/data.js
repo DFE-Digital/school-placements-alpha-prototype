@@ -1,4 +1,3 @@
-const { log } = require('console')
 const csvToJson = require('convert-csv-to-json')
 const fs = require('fs')
 const path = require('path')
@@ -14,7 +13,10 @@ exports.gias_basic = (req, res) => {
 
   const fileInputName = sourceDirectoryPath + 'gias-basic-details.csv'
 
-  const items = csvToJson.fieldDelimiter(',').getJsonFromCsv(fileInputName)
+  const items = csvToJson
+    // .formatValueByType()
+    // .fieldDelimiter(',')
+    .getJsonFromCsv(fileInputName)
 
   const schools = []
 
