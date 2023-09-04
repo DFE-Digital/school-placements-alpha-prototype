@@ -7,7 +7,7 @@ const schoolSuggestionsService = {
       return schools.filter(school =>
         school.name.toLowerCase().includes(query)
         || school.urn.toString().includes(query)
-        || school.address.postcode.toLowerCase().includes(query)
+        || school.address?.postcode?.toLowerCase().includes(query)
        )
     } else {
       return []

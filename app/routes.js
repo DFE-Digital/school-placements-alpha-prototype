@@ -56,6 +56,8 @@ const searchController = require('./controllers/search')
 const datareportController = require('./controllers/datareport')
 const problemreportController = require('./controllers/problemreport')
 
+const dataController = require('./controllers/data')
+
 // Add your routes here
 
 // Authentication middleware
@@ -310,3 +312,11 @@ router.get('/problemreport', problemreportController.problemreport_get)
 router.get('/', checkIsAuthenticated, (req, res) => {
   res.render('index')
 })
+
+
+/// ------------------------------------------------------------------------ ///
+/// DATA ROUTES
+/// ------------------------------------------------------------------------ ///
+router.get('/gias/basic', dataController.gias_basic)
+router.get('/gias/contrast', dataController.gias_contrast_factors)
+router.get('/gias/combine', dataController.gias_combine_data)
