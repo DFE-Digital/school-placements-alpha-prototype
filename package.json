@@ -16,7 +16,7 @@
     "connect-flash": "^0.1.1",
     "convert-csv-to-json": "^2.0.0",
     "csv-string": "^4.1.1",
-    "del": "6.1.1",
+    "del": "7.1.0",
     "got": "^11.8.6",
     "govuk-frontend": "4.7.0",
     "govuk-prototype-kit": "13.13.1",
