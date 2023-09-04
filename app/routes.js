@@ -317,6 +317,8 @@ router.get('/', checkIsAuthenticated, (req, res) => {
 /// ------------------------------------------------------------------------ ///
 /// DATA ROUTES
 /// ------------------------------------------------------------------------ ///
-router.get('/gias/basic', dataController.gias_basic)
-router.get('/gias/contrast', dataController.gias_contrast_factors)
-router.get('/gias/combine', dataController.gias_combine_data)
+router.get('/data/gias/basic', dataController.gias_basic)
+router.get('/data/gias/contrast', dataController.gias_contrast_factors)
+router.get('/data/gias/combine', dataController.gias_combine_data)
+
+router.get('/data/providers', dataController.providers)
