@@ -322,3 +322,4 @@ router.get('/data/gias/contrast', dataController.gias_contrast_factors)
 router.get('/data/gias/combine', dataController.gias_combine_data)
 
 router.get('/data/providers', dataController.providers)
+router.get('/data/lead-schools', dataController.lead_schools)
