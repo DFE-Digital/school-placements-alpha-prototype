@@ -305,3 +305,49 @@ exports.gias_combine_data = (req, res) => {
   res.send('Working on it...')
 
 }
+
+exports.providers = (req, res) => {
+  const providers = require('../data/seed/temp/providers')
+
+  const destinationDirectoryPath = path.join(__dirname, '../data/seed/organisations/')
+
+  providers.forEach(provider => {
+
+    console.log(provider)
+
+    // create a JSON sting for the submitted data
+    const fileData = JSON.stringify(provider)
+
+    const filePath = destinationDirectoryPath + provider.id + '.json'
+
+    // write the JSON data
+    // fs.writeFileSync(filePath, fileData)
+
+  })
+
+  res.send('Working on it...')
+
+}
+
+exports.lead_schools = (req, res) => {
+  const providers = require('../data/seed/temp/lead-schools')
+
+  const destinationDirectoryPath = path.join(__dirname, '../data/seed/organisations/')
+
+  providers.forEach(provider => {
+
+    console.log(provider)
+
+    // create a JSON sting for the submitted data
+    const fileData = JSON.stringify(provider)
+
+    const filePath = destinationDirectoryPath + provider.id + '.json'
+
+    // write the JSON data
+    // fs.writeFileSync(filePath, fileData)
+
+  })
+
+  res.send('Working on it...')
+
+}
