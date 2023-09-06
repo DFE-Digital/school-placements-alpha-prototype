@@ -1,0 +1,62 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "users" %}
+
+{% set title = "Users" %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/notification-banner.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      {{ govukButton({
+        text: "Add user",
+        href: actions.new
+      }) }}
+
+      {% if users.length %}
+        <table class="govuk-table app-table--vertical-align-middle">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header govuk-!-width-one-third">Name</th>
+              <th class="govuk-table__header">Email</th>
+              <!-- <th class="govuk-table__header">Status</th> -->
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% for user in users %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell app-table--courses__course-name">
+                  <a class="govuk-link govuk-heading-s govuk-!-margin-bottom-0" href="{{ actions.view }}/{{ user.id }}">
+                    {{ user.firstName }} {{ user.lastName }}
+                  </a>
+                  {# {% if user.id == passport.user.id %}
+                    <span class="govuk-hint">(You)</span>
+                  {% endif %} #}
+                </td>
+                <td class="govuk-table__cell">
+                  {{ user.email if user.email else "Not entered" }}
+                </td>
+                <!-- <td class="govuk-table__cell">
+                  {{ "Active" if user.active else "Inactive" }}
+                </td> -->
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="govuk-body">There are no users for {{ organisation.name if organisation.name else "your organisation" }}.</p>
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}
