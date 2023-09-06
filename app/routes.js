@@ -55,6 +55,7 @@ const resultsController = require('./controllers/results')
 const searchController = require('./controllers/search')
 const datareportController = require('./controllers/datareport')
 const problemreportController = require('./controllers/problemreport')
+const userController = require('./controllers/users')
 
 const dataController = require('./controllers/data')
 
@@ -312,6 +313,29 @@ router.get('/problemreport', problemreportController.problemreport_get)
 router.get('/', checkIsAuthenticated, (req, res) => {
   res.render('index')
 })
+
+/// ------------------------------------------------------------------------ ///
+/// USER ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/organisations/:organisationId/users/new', checkIsAuthenticated, userController.new_user_get)
+router.post('/organisations/:organisationId/users/new', checkIsAuthenticated, userController.new_user_post)
+
+router.get('/organisations/:organisationId/users/new/check', checkIsAuthenticated, userController.new_user_check_get)
+router.post('/organisations/:organisationId/users/new/check', checkIsAuthenticated, userController.new_user_check_post)
+
+router.get('/organisations/:organisationId/users/:userId/edit', checkIsAuthenticated, userController.edit_user_get)
+router.post('/organisations/:organisationId/users/:userId/edit', checkIsAuthenticated, userController.edit_user_post)
+
+router.get('/organisations/:organisationId/users/:userId/edit/check', checkIsAuthenticated, userController.edit_user_check_get)
+router.post('/organisations/:organisationId/users/:userId/edit/check', checkIsAuthenticated, userController.edit_user_check_post)
+
+router.get('/organisations/:organisationId/users/:userId/delete', checkIsAuthenticated, userController.delete_user_get)
+router.post('/organisations/:organisationId/users/:userId/delete', checkIsAuthenticated, userController.delete_user_post)
+
+router.get('/organisations/:organisationId/users/:userId', checkIsAuthenticated, userController.user_details)
+
+router.get('/organisations/:organisationId/users', checkIsAuthenticated, userController.user_list)
 
 
 /// ------------------------------------------------------------------------ ///
