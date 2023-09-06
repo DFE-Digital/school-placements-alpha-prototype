@@ -1,6 +1,7 @@
 const csvToJson = require('convert-csv-to-json')
 const fs = require('fs')
 const path = require('path')
+const { v4: uuid } = require('uuid')
 
 const { DateTime } = require('luxon')
 
@@ -9,7 +10,7 @@ const destinationDirectoryPath = path.join(__dirname, '../data/seed/schools/')
 
 exports.gias_basic = (req, res) => {
   // data must have the headings
-  // urn;ukprn;name;type;group;status;phase;addressLine1;addressLine2;addressLine3;town;county;postcode;latitude;longitude;regionCode;localAuthorityCode;website;telephone
+  // urn;ukprn;name;establishmentType;establishmentGroup;establishmentStatus;establishmentPhase;addressLine1;addressLine2;addressLine3;town;county;postcode;latitude;longitude;regionCode;localAuthorityCode;website;telephone
 
   const fileInputName = sourceDirectoryPath + 'gias-basic-details.csv'
 
@@ -31,13 +32,13 @@ exports.gias_basic = (req, res) => {
 
     school.name = item.name
 
-    school.type = parseInt(item.type)
+    school.establishmentType = parseInt(item.establishmentType)
 
-    school.group = parseInt(item.group)
+    school.establishmentGroup = parseInt(item.establishmentGroup)
 
-    school.status = parseInt(item.status)
+    school.establishmentStatus = parseInt(item.establishmentStatus)
 
-    school.phase = parseInt(item.phase)
+    school.establishmentPhase = parseInt(item.establishmentPhase)
 
     const address = {}
 
@@ -131,7 +132,6 @@ exports.gias_contrast_factors = (req, res) => {
   const items = csvToJson.fieldDelimiter(',').getJsonFromCsv(fileInputName)
 
   const schools = []
-
 
   items.forEach(item => {
     const school = {}
@@ -260,17 +260,21 @@ exports.gias_combine_data = (req, res) => {
 
   const schools = []
 
+  const dt = new Date()
+
   items.forEach(item => {
     let school = {}
+
+    school.id = uuid()
 
     const factors = contrastFactors.find(f => f.urn === item.urn)
 
     if (factors) {
       delete factors.updatedAt
       delete factors.localAuthorityCode
-      school = {...item, ...factors}
+      school = {...school, ...item, ...factors}
     } else {
-      school = item
+      school = {...school, ...item}
     }
 
     const head = headDetails.find(h => h.urn === item.urn)
@@ -291,7 +295,7 @@ exports.gias_combine_data = (req, res) => {
       school.ofsted = rating.ofsted
     }
 
-    school.createdAt = new Date()
+    school.createdAt = dt
     school.updatedAt = school.createdAt
 
     console.log(school)
@@ -318,7 +322,12 @@ exports.providers = (req, res) => {
 
   const destinationDirectoryPath = path.join(__dirname, '../data/seed/organisations/')
 
+  const dt = new Date()
+
   providers.forEach(provider => {
+
+    provider.createdAt = dt
+    provider.updatedAt = provider.createdAt
 
     console.log(provider)
 
@@ -341,7 +350,12 @@ exports.lead_schools = (req, res) => {
 
   const destinationDirectoryPath = path.join(__dirname, '../data/seed/organisations/')
 
+  const dt = new Date()
+
   providers.forEach(provider => {
+
+    provider.createdAt = dt
+    provider.updatedAt = provider.createdAt
 
     console.log(provider)
 
@@ -365,21 +379,24 @@ exports.schools = (req, res) => {
 
   const destinationDirectoryPath = path.join(__dirname, '../data/seed/organisations/')
 
+  const dt = new Date()
+
   schools.forEach(school => {
     let item = {}
     const s = gias.find(g => g.urn === school.urn)
 
-    // console.log(school)
-    // console.log(s)
+    item = {...s, ...school}
 
-    item = {...school, ...s}
+    item.type = 'school'
+    item.createdAt = dt
+    item.updatedAt = item.createdAt
 
-    console.log(item);
+    console.log(item)
 
     // create a JSON sting for the submitted data
-    const fileData = JSON.stringify(school)
+    const fileData = JSON.stringify(item)
 
-    const filePath = destinationDirectoryPath + school.id + '.json'
+    const filePath = destinationDirectoryPath + item.id + '.json'
 
     // write the JSON data
     // fs.writeFileSync(filePath, fileData)
