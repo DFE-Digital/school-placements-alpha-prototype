@@ -323,3 +323,4 @@ router.get('/data/gias/combine', dataController.gias_combine_data)
 
 router.get('/data/providers', dataController.providers)
 router.get('/data/lead-schools', dataController.lead_schools)
+router.get('/data/schools', dataController.schools)
