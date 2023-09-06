@@ -5,7 +5,10 @@
 {% set title = user.firstName + " " + user.lastName %}
 
 {% block beforeContent %}
-
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
 {% endblock %}
 
 {% block content %}
