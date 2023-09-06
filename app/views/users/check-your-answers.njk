@@ -1,0 +1,118 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "users" %}
+
+{% set title = "Check your answers" %}
+
+{% if referrer == "change" %}
+  {% set caption = currentUser.firstName + " " + currentUser.lastName %}
+{% else %}
+  {% set caption = "Add user" %}
+{% endif %}
+
+{% block pageTitle %}
+  {{ "Error: " if errors.length }}{{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/error-summary.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "First name"
+              },
+              value: {
+                text: user.firstName
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change,
+                    text: "Change",
+                    visuallyHiddenText: "first name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Last name"
+              },
+              value: {
+                text: user.lastName
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change,
+                    text: "Change",
+                    visuallyHiddenText: "last name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Email address"
+              },
+              value: {
+                text: user.email
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change,
+                    text: "Change",
+                    visuallyHiddenText: "email address"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {% if referrer == "change" %}
+          {% if not (user.email == currentUser.email) %}
+            {{ govukWarningText({
+              text: "The user will be sent an email to tell them you’ve changed their email address",
+              iconFallbackText: "Warning"
+            }) }}
+          {% endif %}
+        {% else %}
+          {{ govukWarningText({
+            text: "The user will be sent an email to tell them you’ve added them to the organisation",
+            iconFallbackText: "Warning"
+          }) }}
+        {% endif %}
+
+        {{ govukButton({
+          text: "Update user" if referrer == "change" else "Add user"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}
