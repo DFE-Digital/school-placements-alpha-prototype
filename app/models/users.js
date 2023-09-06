@@ -93,27 +93,10 @@ exports.insertOne = (params) => {
     organisation.id = o.id
     organisation.code = o.code
     organisation.name = o.name
+
     organisation.permissions = []
 
-    if (['hei', 'scitt'].includes(o.type)) {
-      organisation.notifications = [
-        'course_published',
-        'course_changed',
-        'course_withdrawn',
-        'course_vacancies_changed',
-        'course_published_training_provider',
-        'course_changed_training_provider',
-        'course_withdrawn_training_provider',
-        'course_vacancies_changed_training_provider'
-      ]
-    } else {
-      organisation.notifications = [
-        'course_published',
-        'course_changed',
-        'course_withdrawn',
-        'course_vacancies_changed'
-      ]
-    }
+    organisation.notifications = []
 
     user.organisations.push(organisation)
 
@@ -164,27 +147,10 @@ exports.updateOne = (params) => {
       organisation.id = o.id
       organisation.code = o.code
       organisation.name = o.name
+
       organisation.permissions = []
 
-      if (['hei', 'scitt'].includes(o.type)) {
-        organisation.notifications = [
-          'course_published',
-          'course_changed',
-          'course_withdrawn',
-          'course_vacancies_changed',
-          'course_published_training_provider',
-          'course_changed_training_provider',
-          'course_withdrawn_training_provider',
-          'course_vacancies_changed_training_provider'
-        ]
-      } else {
-        organisation.notifications = [
-          'course_published',
-          'course_changed',
-          'course_withdrawn',
-          'course_vacancies_changed'
-        ]
-      }
+      organisation.notifications = []
 
       user.organisations.push(organisation)
     }
