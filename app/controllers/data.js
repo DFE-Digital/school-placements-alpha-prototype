@@ -9,7 +9,7 @@ const destinationDirectoryPath = path.join(__dirname, '../data/seed/schools/')
 
 exports.gias_basic = (req, res) => {
   // data must have the headings
-  // urn,ukprn,name,type,group,status,phase,addressLine1,addressLine2,addressLine3,town,county,postcode,latitude,longitude,regionCode,website,telephone
+  // urn;ukprn;name;type;group;status;phase;addressLine1;addressLine2;addressLine3;town;county;postcode;latitude;longitude;regionCode;localAuthorityCode;website;telephone
 
   const fileInputName = sourceDirectoryPath + 'gias-basic-details.csv'
 
@@ -81,6 +81,10 @@ exports.gias_basic = (req, res) => {
 
     if (item.regionCode) {
       location.regionCode = item.regionCode
+    }
+
+    if (item.localAuthorityCode) {
+      location.localAuthorityCode = item.localAuthorityCode
     }
 
     if (Object.keys(location).length) {
@@ -214,9 +218,9 @@ exports.gias_contrast_factors = (req, res) => {
       school.furtherEducationType = parseInt(item.furtherEducationType)
     }
 
-    if (item.localAuthorityCode) {
-      school.localAuthorityCode = parseInt(item.localAuthorityCode)
-    }
+    // if (item.localAuthorityCode) {
+    //   school.localAuthorityCode = parseInt(item.localAuthorityCode)
+    // }
 
     if (item.urbanRural) {
       school.urbanRural = item.urbanRural
@@ -262,6 +266,8 @@ exports.gias_combine_data = (req, res) => {
     const factors = contrastFactors.find(f => f.urn === item.urn)
 
     if (factors) {
+      delete factors.updatedAt
+      delete factors.localAuthorityCode
       school = {...item, ...factors}
     } else {
       school = item
@@ -285,7 +291,8 @@ exports.gias_combine_data = (req, res) => {
       school.ofsted = rating.ofsted
     }
 
-    school.createdAt = school.updatedAt
+    school.createdAt = new Date()
+    school.updatedAt = school.createdAt
 
     console.log(school)
 
@@ -342,6 +349,37 @@ exports.lead_schools = (req, res) => {
     const fileData = JSON.stringify(provider)
 
     const filePath = destinationDirectoryPath + provider.id + '.json'
+
+    // write the JSON data
+    // fs.writeFileSync(filePath, fileData)
+
+  })
+
+  res.send('Working on it...')
+
+}
+
+exports.schools = (req, res) => {
+  const schools = require('../data/seed/temp/schools')
+  const gias = require('../data/seed/schools/schools')
+
+  const destinationDirectoryPath = path.join(__dirname, '../data/seed/organisations/')
+
+  schools.forEach(school => {
+    let item = {}
+    const s = gias.find(g => g.urn === school.urn)
+
+    // console.log(school)
+    // console.log(s)
+
+    item = {...school, ...s}
+
+    console.log(item);
+
+    // create a JSON sting for the submitted data
+    const fileData = JSON.stringify(school)
+
+    const filePath = destinationDirectoryPath + school.id + '.json'
 
     // write the JSON data
     // fs.writeFileSync(filePath, fileData)
