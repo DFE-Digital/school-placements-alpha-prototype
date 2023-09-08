@@ -1,0 +1,105 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "mentors" %}
+
+{% set title = "Personal details" %}
+
+{% if referrer == "change" %}
+  {% set caption = currentMentor.firstName + " " + currentMentor.lastName %}
+{% else %}
+  {% set caption = "Add mentor" %}
+{% endif %}
+
+{% block pageTitle %}
+  {{ "Error: " if errors.length }}{{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/error-summary.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set headingHtml %}
+        {% include "_includes/page-heading.njk" %}
+      {% endset %}
+
+      <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+
+        {% call govukFieldset({
+          legend: {
+            html: headingHtml
+          }
+        }) %}
+
+        {{ govukInput({
+          id: "firstName",
+          name: "mentor[firstName]",
+          label: {
+            text: "First name",
+            classes: "govuk-label--s"
+          },
+          errorMessage: errors | getErrorMessage("firstName"),
+          value: mentor.firstName,
+          classes: "govuk-!-width-two-thirds"
+        }) }}
+
+        {{ govukInput({
+          id: "lastName",
+          name: "mentor[lastName]",
+          label: {
+            text: "Last name",
+            classes: "govuk-label--s"
+          },
+          errorMessage: errors | getErrorMessage("lastName"),
+          value: mentor.lastName,
+          classes: "govuk-!-width-two-thirds"
+        }) }}
+
+        {{ govukInput({
+          id: "trn",
+          name: "mentor[trn]",
+          label: {
+            text: "Teacher reference number (TRN)",
+            classes: "govuk-label--s"
+          },
+          errorMessage: errors | getErrorMessage("trn"),
+          value: mentor.trn,
+          classes: "govuk-!-width-one-third"
+        }) }}
+
+        {{ govukInput({
+          id: "email",
+          name: "mentor[email]",
+          label: {
+            text: "Email address",
+            classes: "govuk-label--s"
+          },
+          errorMessage: errors | getErrorMessage("email"),
+          value: mentor.email
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        {% endcall %}
+
+      </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}
