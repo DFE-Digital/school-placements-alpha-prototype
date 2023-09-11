@@ -16,7 +16,8 @@ exports.list_mentors_get = (req, res) => {
   delete req.session.data.mentor
 
   mentors.sort((a,b) => {
-    return a.mentor.name.localeCompare(b.mentor.name) || a.school.name.localeCompare(b.school.name)
+    return a.firstName.localeCompare(b.firstName)
+      || a.lastName.localeCompare(b.lastName)
   })
 
   res.render('../views/mentors/list', {
@@ -524,9 +525,11 @@ exports.edit_mentor_check_post = (req, res) => {
 /// ------------------------------------------------------------------------ ///
 
 exports.delete_mentor_get = (req, res) => {
+  const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
   const mentor = mentorModel.findOne({ organisationId: req.params.organisationId, mentorId: req.params.mentorId })
 
   res.render('../views/mentors/delete', {
+    organisation,
     mentor,
     actions: {
       save: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/delete`,
