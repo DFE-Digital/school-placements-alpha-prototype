@@ -1,0 +1,12 @@
+{{ appSubNavigation({
+  label: "Sub navigation",
+  items: [{
+    text: "Basic details",
+    href: actions.details,
+    active: true if secondaryNavId == "details"
+  }, {
+    text: "Description",
+    href: actions.description,
+    active: true if secondaryNavId == "description"
+  }]
+}) }}

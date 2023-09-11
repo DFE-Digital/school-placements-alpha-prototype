@@ -1,0 +1,7 @@
+<p class="govuk-hint govuk-!-font-size-16">
+  {% if  mentor.updatedAt %}
+    Last updated on {{ mentor.updatedAt | datetime('dd LLLL yyyy') }} at {{ mentor.updatedAt | datetime('HH:mm') }}
+  {% else %}
+    Created on {{ mentor.createdAt | datetime('dd LLLL yyyy') }} at {{ mentor.createdAt | datetime('HH:mm') }}
+  {% endif %}
+</p>
