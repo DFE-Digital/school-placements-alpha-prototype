@@ -28,7 +28,7 @@
       <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
 
         {{ govukWarningText({
-          text: "The mentor will be sent an email to tell them you removed them from the organisation.",
+          text: "The mentor will be sent an email to tell them you removed them from " + organisation.name + ".",
           iconFallbackText: "Warning"
         }) }}
 
