@@ -1,6 +1,7 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const addFilter = govukPrototypeKit.views.addFilter
 
+const { DateTime } = require('luxon')
 const marked = require('marked')
 const numeral = require('numeral')
 
@@ -16,6 +17,25 @@ const subjectHelper = require('./helpers/subjects')
 ------------------------------------------------------------------ */
 addFilter('numeral', (number, format) => {
   return numeral(number).format(format)
+})
+
+/* ------------------------------------------------------------------
+  numeral filter for use in Nunjucks
+  example: {{ params.number | numeral("0,00.0") }}
+  outputs: 1,000.00
+------------------------------------------------------------------ */
+addFilter('datetime', (timestamp, format) => {
+  let datetime = DateTime.fromJSDate(timestamp, {
+    locale: 'en-GB'
+  }).toFormat(format)
+
+  if (datetime === 'Invalid DateTime') {
+    datetime = DateTime.fromISO(timestamp, {
+      locale: 'en-GB'
+    }).toFormat(format)
+  }
+
+  return datetime
 })
 
 /* ------------------------------------------------------------------
