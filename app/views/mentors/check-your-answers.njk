@@ -195,7 +195,7 @@
           {% endif %}
         {% else %}
           {{ govukWarningText({
-            text: "The mentor will be sent an email to tell them you’ve added them to the organisation",
+            text: "The mentor will be sent an email to tell them you’ve added them to " + organisation.name,
             iconFallbackText: "Warning"
           }) }}
         {% endif %}
