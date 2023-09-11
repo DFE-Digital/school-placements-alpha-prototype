@@ -1,6 +1,7 @@
 {% extends "layouts/main.njk" %}
 
 {% set primaryNavId = "mentors" %}
+{% set secondaryNavId = "details" %}
 
 {% set title = mentor.firstName + " " + mentor.lastName %}
 
@@ -16,7 +17,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% include "_includes/page-heading.njk" %}
+      {% include "./_page-heading.njk" %}
+
+      {% include "./_meta-data.njk" %}
+
+      {% include "./_actions.njk" %}
+
+    </div>
+  </div>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include "./_sub-navigation.njk" %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       {% set subjectHtml %}
         <ul class="govuk-list">
@@ -60,7 +80,7 @@
             actions: {
               items: [
                 {
-                  href: actions.change,
+                  href: actions.change + "?referrer=change",
                   text: "Change",
                   visuallyHiddenText: "first name"
                 }
@@ -77,7 +97,7 @@
             actions: {
               items: [
                 {
-                  href: actions.change,
+                  href: actions.change + "?referrer=change",
                   text: "Change",
                   visuallyHiddenText: "last name"
                 }
@@ -94,7 +114,7 @@
             actions: {
               items: [
                 {
-                  href: actions.change,
+                  href: actions.change + "?referrer=change",
                   text: "Change",
                   visuallyHiddenText: "teacher reference number (TRN)"
                 }
@@ -111,7 +131,7 @@
             actions: {
               items: [
                 {
-                  href: actions.change,
+                  href: actions.change + "?referrer=change",
                   text: "Change",
                   visuallyHiddenText: "email address"
                 }
@@ -128,7 +148,7 @@
               actions: {
                 items: [
                   {
-                    href: actions.change + "/subject?referrer=check",
+                    href: actions.change + "/subject?referrer=change",
                     text: "Change",
                     visuallyHiddenText: "subject"
                   }
@@ -145,7 +165,7 @@
               actions: {
                 items: [
                   {
-                    href: actions.change + "/age-range?referrer=check",
+                    href: actions.change + "/age-range?referrer=change",
                     text: "Change",
                     visuallyHiddenText: "age range"
                   }
@@ -162,7 +182,7 @@
               actions: {
                 items: [
                   {
-                    href: actions.change + "/key-stage?referrer=check",
+                    href: actions.change + "/key-stage?referrer=change",
                     text: "Change",
                     visuallyHiddenText: "key stage"
                   }
@@ -172,9 +192,9 @@
         ]
       }) }}
 
-      <p class="govuk-body">
+      {# <p class="govuk-body">
         <a class="govuk-link app-link--destructive" href="{{ actions.delete }}">Remove mentor</a>
-      </p>
+      </p> #}
 
     </div>
   </div>
