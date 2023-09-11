@@ -11,6 +11,8 @@ exports.list_mentors_get = (req, res) => {
   const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
   const mentors = mentorModel.findMany({ organisationId: req.params.organisationId })
 
+  delete req.session.data.mentor
+
   mentors.sort((a,b) => {
     return a.mentor.name.localeCompare(b.mentor.name) || a.school.name.localeCompare(b.school.name)
   })
@@ -127,6 +129,253 @@ exports.new_mentor_post = (req, res) => {
       errors
     })
   } else {
+    res.redirect(`/organisations/${req.params.organisationId}/mentors/new/subject`)
+  }
+}
+
+exports.new_mentor_subject_get = (req, res) => {
+  const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
+  const mentor = req.session.data.mentor
+
+  let selectedSubject
+  if (req.session.data.mentor && req.session.data.mentor.subjects) {
+    selectedSubject = req.session.data.mentor.subjects
+  }
+
+  let subjectOptions
+  if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
+    subjectOptions = subjectHelper.getSubjectOptions('secondary', selectedSubject)
+  } else {
+    subjectOptions = subjectHelper.getSubjectOptions('primary', selectedSubject)
+  }
+
+  let back = `/organisations/${req.params.organisationId}/mentors/new`
+  if (req.query.referrer === 'check') {
+    back += 'check'
+  }
+
+  res.render('../views/mentors/subject', {
+    organisation,
+    mentor,
+    subjectOptions,
+    actions: {
+      save: `/organisations/${req.params.organisationId}/mentors/new/subject`,
+      back,
+      cancel: `/organisations/${req.params.organisationId}/mentors`
+    }
+  })
+}
+
+exports.new_mentor_subject_post = (req, res) => {
+  const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
+  const mentor = req.session.data.mentor
+
+  let selectedSubject
+  if (req.session.data.mentor && req.session.data.mentor.subjects) {
+    selectedSubject = req.session.data.mentor.subjects
+  }
+
+  let subjectOptions
+  if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
+    subjectOptions = subjectHelper.getSubjectOptions('secondary', selectedSubject)
+  } else {
+    subjectOptions = subjectHelper.getSubjectOptions('primary', selectedSubject)
+  }
+
+  let back = `/organisations/${req.params.organisationId}/mentors/new`
+  if (req.query.referrer === 'check') {
+    back += 'check'
+  }
+
+  const errors = []
+
+  if (!mentor.subjects.length) {
+    const error = {}
+    error.fieldName = 'subject'
+    error.href = '#subject'
+    if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
+      error.text = 'Select a secondary subject'
+    } else {
+      error.text = 'Select a primary subject specialism'
+    }
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/mentors/subject', {
+      organisation,
+      mentor,
+      subjectOptions,
+      actions: {
+        save: `/organisations/${req.params.organisationId}/mentors/new/subject`,
+        back,
+        cancel: `/organisations/${req.params.organisationId}/mentors`
+      },
+      errors
+    })
+  } else {
+    res.redirect(`/organisations/${req.params.organisationId}/mentors/new/age-range`)
+  }
+}
+
+exports.new_mentor_age_range_get = (req, res) => {
+  const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
+  const mentor = req.session.data.mentor
+
+  let selectedAgeRange
+  if (req.session.data.mentor && req.session.data.mentor.ageRanges) {
+    selectedAgeRange = req.session.data.mentor.ageRanges
+  }
+
+  let agerangeOptions
+  if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
+    // agerangeOptions = ageRangeHelper.getAgeRangeOptions('secondary', selectedAgeRange)
+  } else {
+    // agerangeOptions = ageRangeHelper.getAgeRangeOptions('primary', selectedAgeRange)
+  }
+
+  let back = `/organisations/${req.params.organisationId}/mentors/new/subject`
+  if (req.query.referrer === 'check') {
+    back = `/organisations/${req.params.organisationId}/mentors/new/check`
+  }
+
+  res.render('../views/mentors/age-range', {
+    organisation,
+    mentor,
+    agerangeOptions,
+    actions: {
+      save: `/organisations/${req.params.organisationId}/mentors/new/age-range`,
+      back,
+      cancel: `/organisations/${req.params.organisationId}/mentors`
+    }
+  })
+}
+
+exports.new_mentor_age_range_post = (req, res) => {
+  const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
+  const mentor = req.session.data.mentor
+
+  let selectedAgeRange
+  if (req.session.data.mentor && req.session.data.mentor.ageRanges) {
+    selectedAgeRange = req.session.data.mentor.ageRanges
+  }
+
+  let agerangeOptions
+  if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
+    // agerangeOptions = ageRangeHelper.getAgeRangeOptions('secondary', selectedAgeRange)
+  } else {
+    // agerangeOptions = ageRangeHelper.getAgeRangeOptions('primary', selectedAgeRange)
+  }
+
+  let back = `/organisations/${req.params.organisationId}/mentors/new/subject`
+  if (req.query.referrer === 'check') {
+    back = `/organisations/${req.params.organisationId}/mentors/new/check`
+  }
+
+  const errors = []
+
+  if (!mentor.ageRanges.length) {
+    const error = {}
+    error.fieldName = 'ageRange'
+    error.href = '#ageRange'
+    error.text = 'Select an age range'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/mentors/age-range', {
+      organisation,
+      mentor,
+      agerangeOptions,
+      actions: {
+        save: `/organisations/${req.params.organisationId}/mentors/new/age-range`,
+        back,
+        cancel: `/organisations/${req.params.organisationId}/mentors`
+      },
+      errors
+    })
+  } else {
+    res.redirect(`/organisations/${req.params.organisationId}/mentors/new/key-stage`)
+  }
+}
+
+exports.new_mentor_key_stage_get = (req, res) => {
+  const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
+  const mentor = req.session.data.mentor
+
+  let selectedKeyStage
+  if (req.session.data.mentor && req.session.data.mentor.keyStages) {
+    selectedKeyStage = req.session.data.mentor.keyStages
+  }
+
+  let keyStageOptions
+  if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
+    // keyStageOptions = keyStageHelper.getKeyStageOptions('secondary', selectedKeyStage)
+  } else {
+    // keyStageOptions = keyStageHelper.getKeyStageOptions('primary', selectedKeyStage)
+  }
+
+  let back = `/organisations/${req.params.organisationId}/mentors/new/age-range`
+  if (req.query.referrer === 'check') {
+    back = `/organisations/${req.params.organisationId}/mentors/new/check`
+  }
+
+  res.render('../views/mentors/key-stage', {
+    organisation,
+    mentor,
+    keyStageOptions,
+    actions: {
+      save: `/organisations/${req.params.organisationId}/mentors/new/key-stage`,
+      back,
+      cancel: `/organisations/${req.params.organisationId}/mentors`
+    }
+  })
+}
+
+exports.new_mentor_key_stage_post = (req, res) => {
+  const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
+  const mentor = req.session.data.mentor
+
+  let selectedKeyStage
+  if (req.session.data.mentor && req.session.data.mentor.keyStages) {
+    selectedKeyStage = req.session.data.mentor.keyStages
+  }
+
+  let keyStageOptions
+  if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
+    // keyStageOptions = keyStageHelper.getKeyStageOptions('secondary', selectedKeyStage)
+  } else {
+    // keyStageOptions = keyStageHelper.getKeyStageOptions('primary', selectedKeyStage)
+  }
+
+  let back = `/organisations/${req.params.organisationId}/mentors/new/age-range`
+  if (req.query.referrer === 'check') {
+    back = `/organisations/${req.params.organisationId}/mentors/new/check`
+  }
+
+  const errors = []
+
+  if (!mentor.keyStages.length) {
+    const error = {}
+    error.fieldName = 'keyStage'
+    error.href = '#keyStage'
+    error.text = 'Select a key stage'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/mentors/key-stage', {
+      organisation,
+      mentor,
+      keyStageOptions,
+      actions: {
+        save: `/organisations/${req.params.organisationId}/mentors/new/key-stage`,
+        back,
+        cancel: `/organisations/${req.params.organisationId}/mentors`
+      },
+      errors
+    })
+  } else {
     res.redirect(`/organisations/${req.params.organisationId}/mentors/new/check`)
   }
 }
@@ -136,8 +385,8 @@ exports.new_mentor_check_get = (req, res) => {
     mentor: req.session.data.mentor,
     actions: {
       save: `/organisations/${req.params.organisationId}/mentors/new/check`,
-      back: `/organisations/${req.params.organisationId}/mentors/new`,
-      change: `/organisations/${req.params.organisationId}/mentors/new?referrer=check`,
+      back: `/organisations/${req.params.organisationId}/mentors/new/key-stage`,
+      change: `/organisations/${req.params.organisationId}/mentors/new`,
       cancel: `/organisations/${req.params.organisationId}/mentors`
     }
   })
