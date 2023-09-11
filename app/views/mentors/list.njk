@@ -37,24 +37,50 @@
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
                 <th class="govuk-table__header">Mentor</th>
-                <th class="govuk-table__header">Teacher reference number (TRN)</th>
-                <th class="govuk-table__header">Email</th>
+                <th class="govuk-table__header">Subject</th>
+                <th class="govuk-table__header">Age range</th>
+                <th class="govuk-table__header">Key stage</th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
 
               {% for mentor in mentors %}
+
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">
                     <a class="govuk-link govuk-heading-s govuk-!-margin-bottom-0" href="{{ actions.view }}/{{ mentor.id }}">
                       {{ mentor.firstName }} {{ mentor.lastName }}
                     </a>
+                    <span class="govuk-hint govuk-!-font-size-16">
+                      <abbr title="Teacher reference number">TRN</abbr>: {{ mentor.trn }}
+                    </span>
                   </td>
                   <td class="govuk-table__cell">
-                    {{ mentor.trn if mentor.trn else "Not entered" }}
+                    <ul class="govuk-list">
+                      {% for subject in mentor.subjects %}
+                        <li>
+                          {{ subject | getSubjectLabel }}
+                        </li>
+                      {% endfor %}
+                    </ul>
                   </td>
                   <td class="govuk-table__cell">
-                    {{ mentor.email }}
+                    <ul class="govuk-list">
+                      {% for ageRange in mentor.ageRanges %}
+                        <li>
+                          {{ ageRange | getAgeRangeLabel }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                  <td class="govuk-table__cell">
+                    <ul class="govuk-list">
+                      {% for keyStage in mentor.keyStages %}
+                        <li>
+                          {{ keyStage | getKeyStageLabel }}
+                        </li>
+                      {% endfor %}
+                    </ul>
                   </td>
                 </tr>
 
@@ -64,9 +90,8 @@
           </table>
 
         {% else %}
-          <p class="govuk-body">There are no mentors for {{ organistion.name if organistion.name else "your organisation" }}.</p>
+          <p class="govuk-body">There are no mentors for {{ organisation.name if organisation.name else "your organisation" }}.</p>
         {% endif %}
-
       </div>
     </div>
 
