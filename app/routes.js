@@ -234,6 +234,15 @@ router.get('/organisations/:organisationId/mentors/remove-all-filters', checkIsA
 router.get('/organisations/:organisationId/mentors/new', checkIsAuthenticated, mentorController.new_mentor_get)
 router.post('/organisations/:organisationId/mentors/new', checkIsAuthenticated, mentorController.new_mentor_post)
 
+router.get('/organisations/:organisationId/mentors/new/subject', checkIsAuthenticated, mentorController.new_mentor_subject_get)
+router.post('/organisations/:organisationId/mentors/new/subject', checkIsAuthenticated, mentorController.new_mentor_subject_post)
+
+router.get('/organisations/:organisationId/mentors/new/age-range', checkIsAuthenticated, mentorController.new_mentor_age_range_get)
+router.post('/organisations/:organisationId/mentors/new/age-range', checkIsAuthenticated, mentorController.new_mentor_age_range_post)
+
+router.get('/organisations/:organisationId/mentors/new/key-stage', checkIsAuthenticated, mentorController.new_mentor_key_stage_get)
+router.post('/organisations/:organisationId/mentors/new/key-stage', checkIsAuthenticated, mentorController.new_mentor_key_stage_post)
+
 router.get('/organisations/:organisationId/mentors/new/check', checkIsAuthenticated, mentorController.new_mentor_check_get)
 router.post('/organisations/:organisationId/mentors/new/check', checkIsAuthenticated, mentorController.new_mentor_check_post)
 
