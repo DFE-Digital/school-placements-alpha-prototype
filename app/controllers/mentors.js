@@ -2,6 +2,8 @@ const mentorModel = require('../models/mentors')
 const organisationModel = require('../models/organisations')
 const schoolModel = require('../models/schools')
 
+const ageRangeHelper = require('../helpers/age-ranges')
+const keyStageHelper = require('../helpers/key-stages')
 const paginationHelper = require('../helpers/pagination')
 const subjectHelper = require('../helpers/subjects')
 const utilsHelper = require('../helpers/utils')
@@ -227,11 +229,11 @@ exports.new_mentor_age_range_get = (req, res) => {
     selectedAgeRange = req.session.data.mentor.ageRanges
   }
 
-  let agerangeOptions
+  let ageRangeOptions
   if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
-    // agerangeOptions = ageRangeHelper.getAgeRangeOptions('secondary', selectedAgeRange)
+    ageRangeOptions = ageRangeHelper.getAgeRangeOptions('secondary', selectedAgeRange)
   } else {
-    // agerangeOptions = ageRangeHelper.getAgeRangeOptions('primary', selectedAgeRange)
+    ageRangeOptions = ageRangeHelper.getAgeRangeOptions('primary', selectedAgeRange)
   }
 
   let back = `/organisations/${req.params.organisationId}/mentors/new/subject`
@@ -242,7 +244,7 @@ exports.new_mentor_age_range_get = (req, res) => {
   res.render('../views/mentors/age-range', {
     organisation,
     mentor,
-    agerangeOptions,
+    ageRangeOptions,
     actions: {
       save: `/organisations/${req.params.organisationId}/mentors/new/age-range`,
       back,
@@ -260,11 +262,11 @@ exports.new_mentor_age_range_post = (req, res) => {
     selectedAgeRange = req.session.data.mentor.ageRanges
   }
 
-  let agerangeOptions
+  let ageRangeOptions
   if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
-    // agerangeOptions = ageRangeHelper.getAgeRangeOptions('secondary', selectedAgeRange)
+    ageRangeOptions = ageRangeHelper.getAgeRangeOptions('secondary', selectedAgeRange)
   } else {
-    // agerangeOptions = ageRangeHelper.getAgeRangeOptions('primary', selectedAgeRange)
+    ageRangeOptions = ageRangeHelper.getAgeRangeOptions('primary', selectedAgeRange)
   }
 
   let back = `/organisations/${req.params.organisationId}/mentors/new/subject`
@@ -286,7 +288,7 @@ exports.new_mentor_age_range_post = (req, res) => {
     res.render('../views/mentors/age-range', {
       organisation,
       mentor,
-      agerangeOptions,
+      ageRangeOptions,
       actions: {
         save: `/organisations/${req.params.organisationId}/mentors/new/age-range`,
         back,
@@ -310,9 +312,9 @@ exports.new_mentor_key_stage_get = (req, res) => {
 
   let keyStageOptions
   if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
-    // keyStageOptions = keyStageHelper.getKeyStageOptions('secondary', selectedKeyStage)
+    keyStageOptions = keyStageHelper.getKeyStageOptions('secondary', selectedKeyStage)
   } else {
-    // keyStageOptions = keyStageHelper.getKeyStageOptions('primary', selectedKeyStage)
+    keyStageOptions = keyStageHelper.getKeyStageOptions('primary', selectedKeyStage)
   }
 
   let back = `/organisations/${req.params.organisationId}/mentors/new/age-range`
@@ -343,9 +345,9 @@ exports.new_mentor_key_stage_post = (req, res) => {
 
   let keyStageOptions
   if (organisation.establishmentPhase && [4,5].includes(organisation.establishmentPhase)) {
-    // keyStageOptions = keyStageHelper.getKeyStageOptions('secondary', selectedKeyStage)
+    keyStageOptions = keyStageHelper.getKeyStageOptions('secondary', selectedKeyStage)
   } else {
-    // keyStageOptions = keyStageHelper.getKeyStageOptions('primary', selectedKeyStage)
+    keyStageOptions = keyStageHelper.getKeyStageOptions('primary', selectedKeyStage)
   }
 
   let back = `/organisations/${req.params.organisationId}/mentors/new/age-range`
