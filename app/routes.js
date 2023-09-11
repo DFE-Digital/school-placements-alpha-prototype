@@ -249,8 +249,14 @@ router.post('/organisations/:organisationId/mentors/new/check', checkIsAuthentic
 router.get('/organisations/:organisationId/mentors/:mentorId/edit', checkIsAuthenticated, mentorController.edit_mentor_get)
 router.post('/organisations/:organisationId/mentors/:mentorId/edit', checkIsAuthenticated, mentorController.edit_mentor_post)
 
-router.get('/organisations/:organisationId/mentors/:mentorId/edit/check', checkIsAuthenticated, mentorController.edit_mentor_check_get)
-router.post('/organisations/:organisationId/mentors/:mentorId/edit/check', checkIsAuthenticated, mentorController.edit_mentor_check_post)
+router.get('/organisations/:organisationId/mentors/:mentorId/subject', checkIsAuthenticated, mentorController.edit_mentor_subject_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/subject', checkIsAuthenticated, mentorController.edit_mentor_subject_post)
+
+router.get('/organisations/:organisationId/mentors/:mentorId/age-range', checkIsAuthenticated, mentorController.edit_mentor_age_range_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/age-range', checkIsAuthenticated, mentorController.edit_mentor_age_range_post)
+
+router.get('/organisations/:organisationId/mentors/:mentorId/key-stage', checkIsAuthenticated, mentorController.edit_mentor_key_stage_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/key-stage', checkIsAuthenticated, mentorController.edit_mentor_key_stage_post)
 
 router.get('/organisations/:organisationId/mentors/:mentorId/delete', checkIsAuthenticated, mentorController.delete_mentor_get)
 router.post('/organisations/:organisationId/mentors/:mentorId/delete', checkIsAuthenticated, mentorController.delete_mentor_post)
