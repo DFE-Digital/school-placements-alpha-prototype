@@ -105,7 +105,7 @@ exports.insertOne = (params) => {
 
     mentor.keyStages = params.mentor.keyStages
 
-    mentor.active = true
+    mentor.status = 'pending'
     mentor.createdAt = new Date()
 
     const filePath = directoryPath + '/' + mentor.id + '.json'
@@ -160,13 +160,22 @@ exports.updateOne = (params) => {
       mentor.organisations.push(organisation)
     }
 
-    mentor.subjects = params.mentor.subjects
+    if (params.mentor.subjects) {
+      mentor.subjects = params.mentor.subjects
+    }
 
-    mentor.ageRanges = params.mentor.ageRanges
+    if (params.mentor.ageRanges) {
+      mentor.ageRanges = params.mentor.ageRanges
+    }
 
-    mentor.keyStages = params.mentor.keyStages
+    if (params.mentor.keyStages) {
+      mentor.keyStages = params.mentor.keyStages
+    }
 
-    mentor.active = true
+    if (params.mentor.status) {
+      mentor.status = params.mentor.status
+    }
+
     mentor.updatedAt = new Date()
 
     const filePath = directoryPath + '/' + mentor.id + '.json'
