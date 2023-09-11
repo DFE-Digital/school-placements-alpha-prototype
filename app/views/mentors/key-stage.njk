@@ -4,7 +4,7 @@
 
 {% set title = "Key stage" %}
 
-{% if mentor.id %}
+{% if currentMentor %}
   {% set caption = currentMentor.firstName + " " + currentMentor.lastName %}
 {% else %}
   {% set caption = "Add mentor" %}
@@ -48,7 +48,7 @@
           items: keyStageOptions
         }) }}
 
-        {% if mentor.id %}
+        {% if currentMentor %}
           {{ govukButton({
             text: "Update " + (title | lower)
           }) }}

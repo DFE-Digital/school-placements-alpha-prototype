@@ -4,7 +4,7 @@
 
 {% set title = "Personal details" %}
 
-{% if referrer == "change" %}
+{% if mentor.id %}
   {% set caption = currentMentor.firstName + " " + currentMentor.lastName %}
 {% else %}
   {% set caption = "Add mentor" %}
@@ -89,9 +89,15 @@
 
         {% endcall %}
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        {% if mentor.id %}
+          {{ govukButton({
+            text: "Update " + (title | lower)
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        {% endif %}
 
       </form>
 

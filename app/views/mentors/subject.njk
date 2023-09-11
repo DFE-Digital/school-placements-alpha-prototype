@@ -9,7 +9,7 @@
   {% set title = "Primary subject specialism" %}
 {% endif %}
 
-{% if mentor.id %}
+{% if currentMentor %}
   {% set caption = currentMentor.firstName + " " + currentMentor.lastName %}
 {% else %}
   {% set caption = "Add mentor" %}
@@ -53,7 +53,7 @@
           items: subjectOptions
         }) }}
 
-        {% if mentor.id %}
+        {% if currentMentor %}
           {{ govukButton({
             text: "Update " + (title | lower)
           }) }}
