@@ -99,6 +99,12 @@ exports.insertOne = (params) => {
 
     mentor.organisations.push(organisation)
 
+    mentor.subjects = params.mentor.subjects
+
+    mentor.ageRanges = params.mentor.ageRanges
+
+    mentor.keyStages = params.mentor.keyStages
+
     mentor.active = true
     mentor.createdAt = new Date()
 
@@ -153,6 +159,12 @@ exports.updateOne = (params) => {
 
       mentor.organisations.push(organisation)
     }
+
+    mentor.subjects = params.mentor.subjects
+
+    mentor.ageRanges = params.mentor.ageRanges
+
+    mentor.keyStages = params.mentor.keyStages
 
     mentor.active = true
     mentor.updatedAt = new Date()
