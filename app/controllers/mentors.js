@@ -381,8 +381,11 @@ exports.new_mentor_key_stage_post = (req, res) => {
 }
 
 exports.new_mentor_check_get = (req, res) => {
+  const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
+  const mentor = req.session.data.mentor
   res.render('../views/mentors/check-your-answers', {
-    mentor: req.session.data.mentor,
+    organisation,
+    mentor,
     actions: {
       save: `/organisations/${req.params.organisationId}/mentors/new/check`,
       back: `/organisations/${req.params.organisationId}/mentors/new/key-stage`,
