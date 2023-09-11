@@ -3,7 +3,7 @@ exports.getKeyStageOptions = (subjectLevel = 'secondary', selectedItem) => {
 
   let keyStages = require('../data/key-stages')
   if (subjectLevel) {
-    keyStages = keyStages.filter(stage => stage.level === subjectLevel)
+    keyStages = keyStages.filter(stage => stage.levels.includes(subjectLevel))
   }
 
   keyStages.forEach((keyStage, i) => {
