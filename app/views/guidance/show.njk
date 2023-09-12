@@ -1,7 +1,7 @@
-{% extends "layouts/main.njk" %}
+{% extends "layouts/guidance.njk" %}
 
-{% set hidePrimaryNavigation = true %}
-{% set hideOrganisationSwitcher = true %}
+{# {% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %} #}
 
 {% set caption = "Guidance" %}
 {% set title = contentData.title %}
@@ -29,6 +29,12 @@
 
       {% include "_includes/page-heading.njk" %}
 
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
       {% if contentData.contents.items and contentData.contents.items.length %}
         <h2 class="govuk-heading-s">Contents</h2>
 
@@ -44,6 +50,16 @@
       </div>
 
     </div>
+
+    {% if contentData.related %}
+    <div class="govuk-grid-column-one-third">
+      {{ appRelated({
+        title: contentData.related.title or "Related links",
+        items: contentData.related.items
+      }) }}
+    </div>
+    {% endif %}
+
   </div>
 
 {% endblock %}
