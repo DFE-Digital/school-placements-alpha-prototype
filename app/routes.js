@@ -261,7 +261,9 @@ router.post('/organisations/:organisationId/mentors/:mentorId/key-stage', checkI
 router.get('/organisations/:organisationId/mentors/:mentorId/delete', checkIsAuthenticated, mentorController.delete_mentor_get)
 router.post('/organisations/:organisationId/mentors/:mentorId/delete', checkIsAuthenticated, mentorController.delete_mentor_post)
 
-router.get('/organisations/:organisationId/mentors/:mentorId', checkIsAuthenticated, mentorController.show_mentors_get)
+router.get('/organisations/:organisationId/mentors/:mentorId/description', checkIsAuthenticated, mentorController.show_mentor_additional_details_get)
+
+router.get('/organisations/:organisationId/mentors/:mentorId', checkIsAuthenticated, mentorController.show_mentor_details_get)
 
 router.get('/organisations/:organisationId/mentors', checkIsAuthenticated, mentorController.list_mentors_get)
 
