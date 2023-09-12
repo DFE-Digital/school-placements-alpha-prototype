@@ -55,15 +55,19 @@ exports.show_mentors_get = (req, res) => {
 /// ------------------------------------------------------------------------ ///
 
 exports.new_mentor_get = (req, res) => {
+  const mentor = req.session.data.mentor
+
   let back = `/organisations/${req.params.organisationId}/mentors`
+  let save = `/organisations/${req.params.organisationId}/mentors/new`
   if (req.query.referrer === 'check') {
     back = `/organisations/${req.params.organisationId}/mentors/new/check`
+    save += '?referrer=check'
   }
 
   res.render('../views/mentors/edit', {
-    mentor: req.session.data.mentor,
+    mentor,
     actions: {
-      save: `/organisations/${req.params.organisationId}/mentors/new`,
+      save,
       back,
       cancel: `/organisations/${req.params.organisationId}/mentors`
     }
@@ -122,18 +126,29 @@ exports.new_mentor_post = (req, res) => {
     errors.push(error)
   }
 
+  let back = `/organisations/${req.params.organisationId}/mentors`
+  let save = `/organisations/${req.params.organisationId}/mentors/new`
+  if (req.query.referrer === 'check') {
+    back = `/organisations/${req.params.organisationId}/mentors/new/check`
+    save += '?referrer=check'
+  }
+
   if (errors.length) {
     res.render('../views/mentors/edit', {
       mentor: req.session.data.mentor,
       actions: {
-        save: `/organisations/${req.params.organisationId}/mentors/new`,
-        back: `/organisations/${req.params.organisationId}/mentors`,
+        save,
+        back,
         cancel: `/organisations/${req.params.organisationId}/mentors`
       },
       errors
     })
   } else {
-    res.redirect(`/organisations/${req.params.organisationId}/mentors/new/subject`)
+    if (req.query.referrer === 'check') {
+      res.redirect(`/organisations/${req.params.organisationId}/mentors/new/check`)
+    } else {
+      res.redirect(`/organisations/${req.params.organisationId}/mentors/new/subject`)
+    }
   }
 }
 
@@ -154,8 +169,10 @@ exports.new_mentor_subject_get = (req, res) => {
   }
 
   let back = `/organisations/${req.params.organisationId}/mentors/new`
+  let save = `/organisations/${req.params.organisationId}/mentors/new/subject`
   if (req.query.referrer === 'check') {
-    back += 'check'
+    back += '/check'
+    save += '?referrer=check'
   }
 
   res.render('../views/mentors/subject', {
@@ -163,7 +180,7 @@ exports.new_mentor_subject_get = (req, res) => {
     mentor,
     subjectOptions,
     actions: {
-      save: `/organisations/${req.params.organisationId}/mentors/new/subject`,
+      save,
       back,
       cancel: `/organisations/${req.params.organisationId}/mentors`
     }
@@ -187,8 +204,10 @@ exports.new_mentor_subject_post = (req, res) => {
   }
 
   let back = `/organisations/${req.params.organisationId}/mentors/new`
+  let save = `/organisations/${req.params.organisationId}/mentors/new/subject`
   if (req.query.referrer === 'check') {
-    back += 'check'
+    back += '/check'
+    save += '?referrer=check'
   }
 
   const errors = []
@@ -211,14 +230,18 @@ exports.new_mentor_subject_post = (req, res) => {
       mentor,
       subjectOptions,
       actions: {
-        save: `/organisations/${req.params.organisationId}/mentors/new/subject`,
+        save,
         back,
         cancel: `/organisations/${req.params.organisationId}/mentors`
       },
       errors
     })
   } else {
-    res.redirect(`/organisations/${req.params.organisationId}/mentors/new/age-range`)
+    if (req.query.referrer === 'check') {
+      res.redirect(`/organisations/${req.params.organisationId}/mentors/new/check`)
+    } else {
+      res.redirect(`/organisations/${req.params.organisationId}/mentors/new/age-range`)
+    }
   }
 }
 
@@ -239,8 +262,10 @@ exports.new_mentor_age_range_get = (req, res) => {
   }
 
   let back = `/organisations/${req.params.organisationId}/mentors/new/subject`
+  let save = `/organisations/${req.params.organisationId}/mentors/new/age-range`
   if (req.query.referrer === 'check') {
     back = `/organisations/${req.params.organisationId}/mentors/new/check`
+    save += '?referrer=check'
   }
 
   res.render('../views/mentors/age-range', {
@@ -248,7 +273,7 @@ exports.new_mentor_age_range_get = (req, res) => {
     mentor,
     ageRangeOptions,
     actions: {
-      save: `/organisations/${req.params.organisationId}/mentors/new/age-range`,
+      save,
       back,
       cancel: `/organisations/${req.params.organisationId}/mentors`
     }
@@ -272,8 +297,10 @@ exports.new_mentor_age_range_post = (req, res) => {
   }
 
   let back = `/organisations/${req.params.organisationId}/mentors/new/subject`
+  let save = `/organisations/${req.params.organisationId}/mentors/new/age-range`
   if (req.query.referrer === 'check') {
     back = `/organisations/${req.params.organisationId}/mentors/new/check`
+    save += '?referrer=check'
   }
 
   const errors = []
@@ -292,14 +319,18 @@ exports.new_mentor_age_range_post = (req, res) => {
       mentor,
       ageRangeOptions,
       actions: {
-        save: `/organisations/${req.params.organisationId}/mentors/new/age-range`,
+        save,
         back,
         cancel: `/organisations/${req.params.organisationId}/mentors`
       },
       errors
     })
   } else {
-    res.redirect(`/organisations/${req.params.organisationId}/mentors/new/key-stage`)
+    if (req.query.referrer === 'check') {
+      res.redirect(`/organisations/${req.params.organisationId}/mentors/new/check`)
+    } else {
+      res.redirect(`/organisations/${req.params.organisationId}/mentors/new/key-stage`)
+    }
   }
 }
 
@@ -531,7 +562,7 @@ exports.edit_mentor_subject_post = (req, res) => {
   const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
   const currentMentor = mentorModel.findOne({ mentorId: req.params.mentorId })
   const mentor = req.session.data.mentor
-console.log(currentMentor);
+
   let selectedSubject
   if (mentor && mentor.subjects) {
     selectedSubject = mentor.subjects
