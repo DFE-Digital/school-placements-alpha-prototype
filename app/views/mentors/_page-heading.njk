@@ -8,7 +8,7 @@
   {{ title }}
 
   {{ govukTag({
-    text: mentor.status,
-    classes: mentor.status
+    text: mentor.status | getMentorStatusLabel,
+    classes: mentor.status | getMentorStatusClasses
   }) }}
 </h1>
