@@ -29,16 +29,16 @@ If you are a trainee, your training body will usually organise your placements f
 
 ## Becoming a mentor
 
-If you're interested in mentoring a trainee teacher, you should speak to your school's [local training provider](https://www.gov.uk/find-postgraduate-teacher-training-courses) or a Teaching School Hub. You will train with an ITT provider, and the type of training will depend on who you're training with
+If you’re interested in mentoring a trainee teacher, you should speak to your school’s [local training provider](https://www.gov.uk/find-postgraduate-teacher-training-courses) or a Teaching School Hub. You will train with an ITT provider, and the type of training will depend on who you’re training with.
 
 ## Hosting a trainee teacher at your school
 
-If your school has an Ofsted rating of Requires Improvement or above and no element of your school is in special measures, you are eligible to host a trainee teacher.
+If your school has an Ofsted rating of ‘Requires Improvement’ or above and no element of your school is in special measures, you are eligible to host a trainee teacher.
 
 There may be financial support available to schools who are able to take on ITT placements.
 
-Talk to a [local teacher training provider](https://www.gov.uk/find-postgraduate-teacher-training-courses) or a Teaching School Hub if you're interested in hosting a trainee teacher at your school or in training your teachers to become mentors.
+Talk to a [local teacher training provider](https://www.gov.uk/find-postgraduate-teacher-training-courses) or a Teaching School Hub if you’re interested in hosting a trainee teacher at your school or in training your teachers to become mentors.
 
-If you'd like to know the training path for trainees in your area, search [Find postgraduate teacher training courses](https://www.gov.uk/find-postgraduate-teacher-training-courses).
+If you’d like to know the training path for trainees in your area, search [Find postgraduate teacher training courses](https://www.gov.uk/find-postgraduate-teacher-training-courses).
 
 There is more information about ITT in the [Initial Teacher Training collection](https://www.gov.uk/education/initial-teacher-training-itt).
