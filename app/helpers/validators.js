@@ -108,3 +108,16 @@ exports.isValidWordCount = (text, wordCount) => {
 
   return valid
 }
+
+exports.isValidTRN = (trn) => {
+  // ^ matches the start of the string
+  // \d matches any digit (equivalent to [0-9])
+  // {7} quantifier matches the preceding \d exactly 7 times
+  // $ matches the end of the string
+  const regex = /^\d{7}$/
+  let valid = true
+  if (!trn || !regex.test(trn)) {
+    valid = false
+  }
+  return valid
+}
