@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const { v4: uuid } = require('uuid')
 
-const organisationModel = require('./organisations')
+// const organisationModel = require('./organisations')
 
 const directoryPath = path.join(__dirname, '../data/mentors/')
 
@@ -21,9 +21,7 @@ exports.findMany = (params) => {
   })
 
   if (params.organisationId) {
-    mentors = mentors.filter(mentor => {
-      return mentor.organisations.find(organisation => organisation.id === params.organisationId)
-    })
+    mentors = mentors.filter(mentor => mentor.schools.includes(params.organisationId))
   }
 
   return mentors
@@ -86,18 +84,16 @@ exports.insertOne = (params) => {
       mentor.email = params.mentor.email
     }
 
-    mentor.password = 'bat'
+    mentor.schools = []
 
-    mentor.organisations = []
+    // const o = organisationModel.findOne({ organisationId: params.organisationId })
 
-    const o = organisationModel.findOne({ organisationId: params.organisationId })
+    // const organisation = {}
+    // organisation.id = o.id
+    // // organisation.code = o.code
+    // organisation.name = o.name
 
-    const organisation = {}
-    organisation.id = o.id
-    // organisation.code = o.code
-    organisation.name = o.name
-
-    mentor.organisations.push(organisation)
+    mentor.schools.push(params.organisationId)
 
     mentor.subjects = params.mentor.subjects
 
@@ -145,19 +141,19 @@ exports.updateOne = (params) => {
       mentor.email = params.mentor.email
     }
 
-    const organisationExists = mentor.organisations.find(
-      organisation => organisation.id === params.organisationId
+    const schoolExists = mentor.schools.find(
+      school => school.id === params.organisationId
     )
 
-    if (!organisationExists) {
-      const o = organisationModel.findOne({ organisationId: params.organisationId })
+    if (!schoolExists) {
+      // const o = organisationModel.findOne({ organisationId: params.organisationId })
 
-      const organisation = {}
-      organisation.id = o.id
-      // organisation.code = o.code
-      organisation.name = o.name
+      // const organisation = {}
+      // organisation.id = o.id
+      // // organisation.code = o.code
+      // organisation.name = o.name
 
-      mentor.organisations.push(organisation)
+      mentor.organisations.push(params.organisationId)
     }
 
     if (params.mentor.subjects) {
@@ -194,15 +190,15 @@ exports.deleteOne = (params) => {
   if (params.organisationId && params.mentorId) {
     const mentor = this.findOne({ mentorId: params.mentorId })
 
-    mentor.organisations = mentor.organisations.filter(
-      organisation => organisation.id !== params.organisationId
+    mentor.schools = mentor.schools.filter(
+      school => school.id !== params.organisationId
     )
 
     mentor.updatedAt = new Date()
 
     const filePath = directoryPath + '/' + mentor.id + '.json'
 
-    if (mentor.organisations.length) {
+    if (mentor.schools.length) {
       // create a JSON sting for the submitted data
       const fileData = JSON.stringify(mentor)
       // write the JSON data
