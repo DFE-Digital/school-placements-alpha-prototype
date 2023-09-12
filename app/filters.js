@@ -10,6 +10,7 @@ const keyStageHelper = require('./helpers/key-stages')
 const mentorHelper = require('./helpers/mentors')
 const organisationHelper = require('./helpers/organisations')
 const subjectHelper = require('./helpers/subjects')
+const qualificationHelper = require('./helpers/qualifications')
 
 /* ------------------------------------------------------------------
   numeral filter for use in Nunjucks
@@ -204,15 +205,30 @@ addFilter('getMentorStatusClasses', (status) => {
 })
 
 /* ------------------------------------------------------------------
-utility function to get the provider label
-example: {{ "pending" | getMentorStatusColour }}
-outputs: "govuk-tag--grey"
+utility function to get the organisation name
+example: {{ "6fa28993-4d7c-437e-b522-96168de9939b" | getMentorStatusColour }}
+outputs: "Ellis Guilford School"
 ------------------------------------------------------------------ */
 addFilter('getOrganisationName', (organisationId) => {
   let label = organisationId
 
   if (organisationId !== undefined) {
     label = organisationHelper.getOrganisationName(organisationId)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the qualification label
+example: {{ "pgce" | getQualificationLabel }}
+outputs: "Postgraduate Certificate in Education"
+------------------------------------------------------------------ */
+addFilter('getQualificationLabel', (code) => {
+  let label = code
+
+  if (code !== undefined) {
+    label = qualificationHelper.getQualificationLabel(code)
   }
 
   return label
