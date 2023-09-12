@@ -35,17 +35,33 @@ exports.list_mentors_get = (req, res) => {
 /// SHOW mentor
 /// ------------------------------------------------------------------------ ///
 
-exports.show_mentors_get = (req, res) => {
+exports.show_mentor_details_get = (req, res) => {
   const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
   const mentor = mentorModel.findOne({ mentorId: req.params.mentorId })
 
-  res.render('../views/mentors/show', {
+  res.render('../views/mentors/details', {
     organisation,
     mentor,
     actions: {
       back: `/organisations/${req.params.organisationId}/mentors`,
       change: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`,
       delete: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/delete`,
+      description: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/description`
+    }
+  })
+}
+
+exports.show_mentor_additional_details_get = (req, res) => {
+  const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
+  const mentor = mentorModel.findOne({ mentorId: req.params.mentorId })
+
+  res.render('../views/mentors/description', {
+    organisation,
+    mentor,
+    actions: {
+      back: `/organisations/${req.params.organisationId}/mentors`,
+      change: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`,
+      details: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`,
     }
   })
 }
