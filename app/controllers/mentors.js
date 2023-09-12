@@ -803,35 +803,6 @@ exports.edit_mentor_key_stage_post = (req, res) => {
   }
 }
 
-// exports.edit_mentor_check_get = (req, res) => {
-//   const currentmentor = mentorModel.findOne({ organisationId: req.params.organisationId, mentorId: req.params.mentorId })
-
-//   res.render('../views/mentors/check-your-answers', {
-//     currentmentor,
-//     mentor: req.session.data.mentor,
-//     referrer: 'change',
-//     actions: {
-//       save: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/edit/check`,
-//       back: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/edit`,
-//       change: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/edit?referrer=change`,
-//       cancel: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`
-//     }
-//   })
-// }
-
-// exports.edit_mentor_check_post = (req, res) => {
-//   mentorModel.saveOne({
-//     organisationId: req.params.organisationId,
-//     mentorId: req.params.mentorId,
-//     mentor: req.session.data.mentor
-//   })
-
-//   delete req.session.data.mentor
-
-//   req.flash('success', 'Mentor updated')
-//   res.redirect(`/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`)
-// }
-
 /// ------------------------------------------------------------------------ ///
 /// DELETE mentor
 /// ------------------------------------------------------------------------ ///
