@@ -171,3 +171,33 @@ addFilter('getMentorLabel', (mentor) => {
 
   return label
 })
+
+/* ------------------------------------------------------------------
+utility function to get the mentor status label
+example: {{ "pending" | getMentorStatusLabel }}
+outputs: "Pending"
+------------------------------------------------------------------ */
+addFilter('getMentorStatusLabel', (status) => {
+  let label = status
+
+  if (status !== undefined) {
+    label = mentorHelper.getMentorStatusLabel(status)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the mentor status colour
+example: {{ "pending" | getMentorStatusColour }}
+outputs: "govuk-tag--grey"
+------------------------------------------------------------------ */
+addFilter('getMentorStatusClasses', (status) => {
+  let label
+
+  if (status !== undefined) {
+    label = mentorHelper.getMentorStatusClasses(status)
+  }
+
+  return label
+})
