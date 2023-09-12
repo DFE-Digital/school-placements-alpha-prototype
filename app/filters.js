@@ -8,6 +8,7 @@ const numeral = require('numeral')
 const ageRangeHelper = require('./helpers/age-ranges')
 const keyStageHelper = require('./helpers/key-stages')
 const mentorHelper = require('./helpers/mentors')
+const organisationHelper = require('./helpers/organisations')
 const subjectHelper = require('./helpers/subjects')
 
 /* ------------------------------------------------------------------
@@ -197,6 +198,21 @@ addFilter('getMentorStatusClasses', (status) => {
 
   if (status !== undefined) {
     label = mentorHelper.getMentorStatusClasses(status)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the provider label
+example: {{ "pending" | getMentorStatusColour }}
+outputs: "govuk-tag--grey"
+------------------------------------------------------------------ */
+addFilter('getOrganisationName', (organisationId) => {
+  let label = organisationId
+
+  if (organisationId !== undefined) {
+    label = organisationHelper.getOrganisationName(organisationId)
   }
 
   return label
