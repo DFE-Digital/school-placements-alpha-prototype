@@ -4,7 +4,7 @@ const { v4: uuid } = require('uuid')
 
 // const organisationModel = require('./organisations')
 
-const directoryPath = path.join(__dirname, '../data/mentors/')
+const directoryPath = path.join(__dirname, '../data/mentors')
 
 exports.findMany = (params) => {
   let mentors = []
@@ -191,14 +191,13 @@ exports.deleteOne = (params) => {
     const mentor = this.findOne({ mentorId: params.mentorId })
 
     mentor.schools = mentor.schools.filter(
-      school => school.id !== params.organisationId
+      school => !school.includes(params.organisationId)
     )
-
-    mentor.updatedAt = new Date()
 
     const filePath = directoryPath + '/' + mentor.id + '.json'
 
     if (mentor.schools.length) {
+      mentor.updatedAt = new Date()
       // create a JSON sting for the submitted data
       const fileData = JSON.stringify(mentor)
       // write the JSON data
