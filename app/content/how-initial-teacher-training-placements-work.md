@@ -3,6 +3,8 @@ title: How Initial Teacher Training (ITT) placements work
 type: guidance
 contents:
   items:
+    - text: Overview
+      href: "#overview"
     - text: How to find a placement
       href: "#how-to-find-a-placement"
     - text: Becoming a mentor
@@ -17,7 +19,9 @@ related:
       href: https://www.gov.uk/
 ---
 
-All trainee teachers must attend two school placements in order to gain Qualified Teacher Status (QTS). The placements must be undertaken at two contrasting schools, giving trainees rounded practical experience. They must also be overseen by a trained  mentor.
+## Overview
+
+All trainee teachers must attend two school placements in order to gain Qualified Teacher Status (QTS). The placements must be undertaken at two contrasting schools, giving trainees rounded practical experience. They must also be overseen by a trained mentor.
 
 ## How to find a placement
 
@@ -25,7 +29,7 @@ If you are a trainee, your training body will usually organise your placements f
 
 ## Becoming a mentor
 
-If you're interested in mentoring a trainee teacher, you should speak to your school's local training provider or a Teaching School Hub. You will train with an ITT provider, and the type of training will depend on who you're training with
+If you're interested in mentoring a trainee teacher, you should speak to your school's [local training provider](https://www.gov.uk/find-postgraduate-teacher-training-courses) or a Teaching School Hub. You will train with an ITT provider, and the type of training will depend on who you're training with
 
 ## Hosting a trainee teacher at your school
 
@@ -33,8 +37,8 @@ If your school has an Ofsted rating of Requires Improvement or above and no elem
 
 There may be financial support available to schools who are able to take on ITT placements.
 
-Talk to a local teacher training provider [link] or a Teaching School Hub if you're inter
+Talk to a [local teacher training provider](https://www.gov.uk/find-postgraduate-teacher-training-courses) or a Teaching School Hub if you're interested in hosting a trainee teacher at your school or in training your teachers to become mentors.
 
-If you'd like to know the training path for trainees in your area, search Find
+If you'd like to know the training path for trainees in your area, search [Find postgraduate teacher training courses](https://www.gov.uk/find-postgraduate-teacher-training-courses).
 
-There is more information about ITT in the Initial Teacher Training collection. https://www.gov.uk/education/initial-teacher-training-itt
+There is more information about ITT in the [Initial Teacher Training collection](https://www.gov.uk/education/initial-teacher-training-itt).
