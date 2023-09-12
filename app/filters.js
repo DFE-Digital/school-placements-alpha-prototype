@@ -206,7 +206,7 @@ addFilter('getMentorStatusClasses', (status) => {
 
 /* ------------------------------------------------------------------
 utility function to get the organisation name
-example: {{ "6fa28993-4d7c-437e-b522-96168de9939b" | getMentorStatusColour }}
+example: {{ "6fa28993-4d7c-437e-b522-96168de9939b" | getOrganisationName }}
 outputs: "Ellis Guilford School"
 ------------------------------------------------------------------ */
 addFilter('getOrganisationName', (organisationId) => {
