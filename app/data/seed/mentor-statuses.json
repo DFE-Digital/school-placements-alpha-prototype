@@ -1,0 +1,32 @@
+[
+  {
+    "id": "8f47a402-409b-401a-86d8-139e1aa586fe",
+    "code": "pending",
+    "name": "Pending",
+    "classes": "govuk-tag--grey"
+  },
+  {
+    "id": "ae3a2589-9edc-4cd3-a630-4631c5743b27",
+    "code": "unassigned",
+    "name": "Unassigned",
+    "classes": "govuk-tag--blue"
+  },
+  {
+    "id": "b4965785-611d-41bf-939a-e13b8aa8feb4",
+    "code": "assigned",
+    "name": "Assigned",
+    "classes": "govuk-tag--turquoise"
+  },
+  {
+    "id": "8ba5374c-de9a-412d-aba8-fc85f0cbd21b",
+    "code": "x",
+    "name": "xxx",
+    "classes": "govuk-tag--red"
+  },
+  {
+    "id": "c43e4b7b-1cb7-4c7e-9f19-f41c2e8c43e0",
+    "code": "paused",
+    "name": "paused",
+    "classes": "govuk-tag--purple"
+  }
+]
