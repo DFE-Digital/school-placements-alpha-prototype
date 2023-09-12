@@ -39,7 +39,71 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% set providerHtml %}
+        <ul class="govuk-list">
+          {% for provider in mentor.providers %}
+            <li>
+              {{ provider | getOrganisationName }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
 
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Date qualified as a teacher"
+            },
+            value: {
+              text: mentor.dateQualified
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "date qualified as a teacher"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date started as a mentor"
+            },
+            value: {
+              text: mentor.dateStartedMentoring
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "date started as a mentor"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Providers they have trained with"
+            },
+            value: {
+              html: providerHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "providers they have trained with"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
 
     </div>
   </div>
