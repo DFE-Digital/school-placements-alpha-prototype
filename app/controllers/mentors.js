@@ -25,7 +25,7 @@ exports.list_mentors_get = (req, res) => {
     mentors,
     actions: {
       new: `/organisations/${req.params.organisationId}/mentors/new`,
-      find: `/organisations/${req.params.organisationId}/mentors/search`,
+      find: `/find/organisations/${req.params.organisationId}/mentors/search`,
       view: `/organisations/${req.params.organisationId}/mentors`
     }
   })
