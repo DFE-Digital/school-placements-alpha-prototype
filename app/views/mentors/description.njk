@@ -40,23 +40,36 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set providerHtml %}
-        <ul class="govuk-list">
-          {% for provider in mentor.providers %}
-            <li>
-              {{ provider | getOrganisationName }}
-            </li>
-          {% endfor %}
-        </ul>
+        {% if mentor.providers %}
+          <ul class="govuk-list">
+            {% for provider in mentor.providers %}
+              <li>
+                {{ provider | getOrganisationName }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="govuk-hint">
+            Not entered
+          </p>
+        {% endif %}
       {% endset %}
 
       {% set qualificationsHtml %}
-        <ul class="govuk-list">
-          {% for qualification in mentor.qualifications %}
-            <li>
-              {{ qualification | getQualificationLabel }}
-            </li>
-          {% endfor %}
-        </ul>
+        {% if mentor.qualifications %}
+          <ul class="govuk-list">
+            {% for qualification in mentor.qualifications %}
+              <li>
+                {{ qualification | getQualificationLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="govuk-hint">
+            Not entered
+          </p>
+        {% endif %}
+
       {% endset %}
 
       {{ govukSummaryList({
@@ -66,7 +79,8 @@
               text: "Date qualified as a teacher"
             },
             value: {
-              text: mentor.dateQualified | datetime('dd LLLL yyyy')
+              text: mentor.dateQualified | datetime('dd LLLL yyyy') if mentor.dateQualified else "Not entered",
+              classes: "govuk-hint" if not mentor.dateQualified
             },
             actions: {
               items: [
@@ -100,7 +114,8 @@
               text: "Date started mentoring"
             },
             value: {
-              text: mentor.dateStartedMentoring | datetime('dd LLLL yyyy')
+              text: mentor.dateStartedMentoring | datetime('dd LLLL yyyy') if mentor.dateStartedMentoring else "Not entered",
+              classes: "govuk-hint" if not mentor.dateQualified
             },
             actions: {
               items: [
