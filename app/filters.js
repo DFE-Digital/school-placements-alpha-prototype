@@ -3,6 +3,7 @@ const addFilter = govukPrototypeKit.views.addFilter
 
 const { DateTime } = require('luxon')
 const marked = require('marked')
+const { gfmHeadingId } = require('marked-gfm-heading-id')
 const numeral = require('numeral')
 
 const ageRangeHelper = require('./helpers/age-ranges')
@@ -66,6 +67,8 @@ addFilter('markdownToHtml', (markdown) => {
   if (!markdown) {
     return null
   }
+
+  marked.use(gfmHeadingId())
 
   const text = markdown.replace(/\\r/g, '\n').replace(/\\t/g, ' ')
   const html = marked.parse(text)
