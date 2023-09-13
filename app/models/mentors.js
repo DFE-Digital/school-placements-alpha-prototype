@@ -142,7 +142,7 @@ exports.updateOne = (params) => {
     }
 
     const schoolExists = mentor.schools.find(
-      school => school.id === params.organisationId
+      school => school.includes(params.organisationId)
     )
 
     if (!schoolExists) {
