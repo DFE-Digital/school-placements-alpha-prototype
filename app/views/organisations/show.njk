@@ -67,6 +67,64 @@
         ]
       }) }}
 
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">Special educational needs and disabilities (SEND)</h2>
+
+      {% set sendHtml %}
+        {% if organisation.send %}
+          <ul class="govuk-list">
+            {% for send in organisation.send %}
+              <li>
+                {{ send }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="govuk-hint">
+            Not entered
+          </p>
+        {% endif %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              html: '<abbr title="Special educational needs and disability">SEND</abbr> provision'
+            },
+            value: {
+              html: sendHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "SEND provision"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Training with disabilities"
+            },
+            value: {
+              text: organisation.trainingWithDisabilities if organisation.trainingWithDisabilities else "Not entered",
+              classes: "govuk-hint" if not organisation.trainingWithDisabilities
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "training with disabilities"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
       <h2 class="govuk-heading-m govuk-!-margin-top-5">Contact details</h2>
 
       {% set addressHtml %}
