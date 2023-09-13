@@ -13,6 +13,7 @@ $app-assets-path: '/public/';
 @import "core/header";
 @import "core/links";
 @import "core/lists";
+@import "core/markdown";
 
 // Utilities
 @import "utilities/overrides";
