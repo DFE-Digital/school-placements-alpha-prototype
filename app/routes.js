@@ -57,6 +57,7 @@ const searchController = require('./controllers/search')
 const datareportController = require('./controllers/datareport')
 const problemreportController = require('./controllers/problemreport')
 const userController = require('./controllers/users')
+const guidanceController = require('./controllers/guidance')
 
 const dataController = require('./controllers/data')
 
@@ -373,6 +374,14 @@ router.post('/organisations/:organisationId/users/:userId/delete', checkIsAuthen
 router.get('/organisations/:organisationId/users/:userId', checkIsAuthenticated, userController.user_details)
 
 router.get('/organisations/:organisationId/users', checkIsAuthenticated, userController.user_list)
+
+/// ------------------------------------------------------------------------ ///
+/// GUIDANCE ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/guidance/:fileName', guidanceController.guidance)
+
+router.get('/guidance', guidanceController.guidance)
 
 
 /// ------------------------------------------------------------------------ ///

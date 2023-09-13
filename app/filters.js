@@ -233,3 +233,20 @@ addFilter('getQualificationLabel', (code) => {
 
   return label
 })
+
+/* ------------------------------------------------------------------
+utility function to get the guidance section label
+example: {{ "account" | getGuidanceSectionLabel }}
+outputs: "Your account"
+------------------------------------------------------------------ */
+addFilter('getGuidanceSectionLabel', (section) => {
+  let label = ''
+
+  if (section === 'XXX') {
+    label = 'XXX'
+  } else if (section === 'YYY') {
+    label = 'YYY'
+  }
+
+  return label
+})
