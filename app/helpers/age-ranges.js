@@ -3,7 +3,7 @@ exports.getAgeRangeOptions = (subjectLevel = 'secondary', selectedItem) => {
 
   let ageRanges = require('../data/age-ranges')
   if (subjectLevel) {
-    ageRanges = ageRanges.filter(range => range.level === subjectLevel)
+    ageRanges = ageRanges.filter(range => range.levels.includes(subjectLevel))
   }
 
   ageRanges.forEach((ageRange, i) => {
@@ -20,17 +20,6 @@ exports.getAgeRangeOptions = (subjectLevel = 'secondary', selectedItem) => {
   items.sort((a, b) => {
     return a.text.localeCompare(b.text)
   })
-
-  // const divider = { divider: 'or' }
-  // items.push(divider)
-
-  // const other = {}
-  // other.text = 'Another age range'
-  // other.value = 'other'
-  // other.id = 'age-range-other'
-  // other.checked = (selectedItem && selectedItem.includes('other')) ? 'checked' : ''
-  // other.conditional = true
-  // items.push(other)
 
   return items
 }

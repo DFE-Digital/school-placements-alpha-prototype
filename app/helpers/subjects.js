@@ -34,8 +34,7 @@ exports.getSubjectOptions = (subjectLevel, selectedItem) => {
 
   let subjects = require('../data/subjects')
   subjects = subjects.filter(subject => subject.level === subjectLevel &&
-    subject.code !== '24' &&
-    subject.parentCode === undefined)
+    !['ML','24'].includes(subject.code))
 
   subjects.forEach((subject, i) => {
     const item = {}
@@ -61,8 +60,7 @@ exports.getSubjectSelectOptions = (subjectLevel, selectedItem) => {
 
   let subjects = require('../data/subjects')
   subjects = subjects.filter(subject => subject.level === subjectLevel &&
-    subject.code !== '24' &&
-    subject.parentCode === undefined)
+    !['ML','24'].includes(subject.code))
 
   subjects.forEach((subject, i) => {
     const item = {}

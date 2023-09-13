@@ -3,11 +3,13 @@ app/data/age-ranges.json
 app/data/key-stages.json
 app/data/mentor-availability.json
 app/data/mentor-sort-options.json
+app/data/mentor-statuses.json
 app/data/ofsted-ratings.json
 app/data/study-modes.json
 app/data/subject-levels.json
 app/data/subjects.json
 app/data/training-patterns.json
+app/data/qualifications.json
 
 # Ignore generated data directories
 app/data/mentors/

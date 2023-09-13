@@ -1,0 +1,216 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "mentors" %}
+
+{% set title = "Check your answers" %}
+
+{% if referrer == "change" %}
+  {% set caption = currentMentor.firstName + " " + currentMentor.lastName %}
+{% else %}
+  {% set caption = "Add mentor" %}
+{% endif %}
+
+{% block pageTitle %}
+  {{ "Error: " if errors.length }}{{ title + " - " if title }}{{ caption + " - " if caption }}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/error-summary.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      <form action="{{ actions.save }}" method="post" accept-charset="utf-8" novalidate>
+
+        {% set subjectHtml %}
+          <ul class="govuk-list">
+            {% for subject in mentor.subjects %}
+              <li>
+                {{ subject | getSubjectLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
+        {% set ageRangeHtml %}
+          <ul class="govuk-list">
+            {% for ageRange in mentor.ageRanges %}
+              <li>
+                {{ ageRange | getAgeRangeLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
+        {% set keyStageHtml %}
+          <ul class="govuk-list">
+            {% for keyStage in mentor.keyStages %}
+              <li>
+                {{ keyStage | getKeyStageLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "First name"
+              },
+              value: {
+                text: mentor.firstName
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "first name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Last name"
+              },
+              value: {
+                text: mentor.lastName
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "last name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Teacher reference number (TRN)"
+              },
+              value: {
+                text: mentor.trn
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "teacher reference number (TRN)"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Email address"
+              },
+              value: {
+                text: mentor.email
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "email address"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Subject" + ("s" if mentor.subjects.length > 1)
+              },
+              value: {
+                html: subjectHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/subject?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "subject"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Age range" + ("s" if mentor.ageRanges.length > 1)
+              },
+              value: {
+                html: ageRangeHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/age-range?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "age range"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Key stage" + ("s" if mentor.keyStages.length > 1)
+              },
+              value: {
+                html: keyStageHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/key-stage?referrer=check",
+                    text: "Change",
+                    visuallyHiddenText: "key stage"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {% if referrer == "change" %}
+          {% if not (mentor.email == currentMentor.email) %}
+            {{ govukWarningText({
+              text: "The mentor will be sent an email to tell them you’ve changed their email address",
+              iconFallbackText: "Warning"
+            }) }}
+          {% endif %}
+        {% else %}
+          {{ govukWarningText({
+            text: "The mentor will be sent an email to tell them you’ve added them to " + organisation.name,
+            iconFallbackText: "Warning"
+          }) }}
+        {% endif %}
+
+        {{ govukButton({
+          text: "Update mentor" if referrer == "change" else "Add mentor"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="{{ actions.cancel }}">Cancel</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

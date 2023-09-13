@@ -21,7 +21,7 @@ related:
 
 ## Overview
 
-All trainee teachers must attend two school placements in order to gain Qualified Teacher Status (QTS). The placements must be undertaken at two contrasting schools, giving trainees rounded practical experience. They must also be overseen by a trained mentor.
+All trainee teachers must attend 2 school placements in order to gain Qualified Teacher Status (QTS). The placements must be undertaken at 2 contrasting schools, giving trainees rounded practical experience. They must also be overseen by a trained mentor.
 
 ## How to find a placement
 

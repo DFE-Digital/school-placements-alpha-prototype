@@ -1,0 +1,204 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "mentors" %}
+{% set secondaryNavId = "details" %}
+
+{% set title = mentor.firstName + " " + mentor.lastName %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: actions.back
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "_includes/notification-banner.njk" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "./_page-heading.njk" %}
+
+      {% include "./_meta-data.njk" %}
+
+      {# {% include "./_actions.njk" %} #}
+
+    </div>
+  </div>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include "./_sub-navigation.njk" %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set subjectHtml %}
+        <ul class="govuk-list">
+          {% for subject in mentor.subjects %}
+            <li>
+              {{ subject | getSubjectLabel }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+      {% set ageRangeHtml %}
+        <ul class="govuk-list">
+          {% for ageRange in mentor.ageRanges %}
+            <li>
+              {{ ageRange | getAgeRangeLabel }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+      {% set keyStageHtml %}
+        <ul class="govuk-list">
+          {% for keyStage in mentor.keyStages %}
+            <li>
+              {{ keyStage | getKeyStageLabel }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "First name"
+            },
+            value: {
+              text: mentor.firstName
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/edit?referrer=change",
+                  text: "Change",
+                  visuallyHiddenText: "first name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Last name"
+            },
+            value: {
+              text: mentor.lastName
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/edit?referrer=change",
+                  text: "Change",
+                  visuallyHiddenText: "last name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Teacher reference number (TRN)"
+            },
+            value: {
+              text: mentor.trn
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/edit?referrer=change",
+                  text: "Change",
+                  visuallyHiddenText: "teacher reference number (TRN)"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: mentor.email
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/edit?referrer=change",
+                  text: "Change",
+                  visuallyHiddenText: "email address"
+                }
+              ]
+            }
+          },
+          {
+              key: {
+                text: "Subject" + ("s" if mentor.subjects.length > 1)
+              },
+              value: {
+                html: subjectHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/subject?referrer=change",
+                    text: "Change",
+                    visuallyHiddenText: "subject"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Age range" + ("s" if mentor.ageRanges.length > 1)
+              },
+              value: {
+                html: ageRangeHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/age-range?referrer=change",
+                    text: "Change",
+                    visuallyHiddenText: "age range"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Key stage" + ("s" if mentor.keyStages.length > 1)
+              },
+              value: {
+                html: keyStageHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/key-stage?referrer=change",
+                    text: "Change",
+                    visuallyHiddenText: "key stage"
+                  }
+                ]
+              }
+            }
+        ]
+      }) }}
+
+      <p class="govuk-body">
+        <a class="govuk-link app-link--destructive" href="{{ actions.delete }}">Remove mentor</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

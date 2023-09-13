@@ -406,3 +406,34 @@ exports.schools = (req, res) => {
   res.send('Working on it...')
 
 }
+
+exports.mentors = (req, res) => {
+  const mentors = require('../data/seed/temp/mentors')
+
+  const destinationDirectoryPath = path.join(__dirname, '../data/seed/mentors/')
+
+  const dt = new Date()
+
+  mentors.forEach(mentor => {
+    let item = {}
+
+    item = mentor
+
+    item.createdAt = dt
+    item.updatedAt = item.createdAt
+
+    console.log(item)
+
+    // create a JSON sting for the submitted data
+    const fileData = JSON.stringify(item)
+
+    const filePath = destinationDirectoryPath + item.id + '.json'
+
+    // write the JSON data
+    // fs.writeFileSync(filePath, fileData)
+
+  })
+
+  res.send('Working on it...')
+
+}

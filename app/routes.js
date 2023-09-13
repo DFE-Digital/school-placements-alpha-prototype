@@ -49,6 +49,7 @@ router.use(passport.session())
 const accountController = require('./controllers/account')
 const authenticationController = require('./controllers/authentication')
 const mentorController = require('./controllers/mentors')
+const mentorSearchController = require('./controllers/mentor-search')
 const organisationController = require('./controllers/organisations')
 const placementController = require('./controllers/placements')
 const resultsController = require('./controllers/results')
@@ -195,41 +196,77 @@ router.get('/organisations/:organisationId/placements/:placementId', checkIsAuth
 router.get('/organisations/:organisationId/placements', checkIsAuthenticated, placementController.list_placements_get)
 
 /// ------------------------------------------------------------------------ ///
+/// MENTOR SEARCH ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/organisations/:organisationId/mentors/search', checkIsAuthenticated, mentorSearchController.search_get)
+router.post('/organisations/:organisationId/mentors/search', checkIsAuthenticated, mentorSearchController.search_post)
+
+router.get('/organisations/:organisationId/mentors/age-groups', checkIsAuthenticated, mentorSearchController.age_groups_get)
+router.post('/organisations/:organisationId/mentors/age-groups', checkIsAuthenticated, mentorSearchController.age_groups_post)
+
+router.get('/organisations/:organisationId/mentors/primary-subjects', checkIsAuthenticated, mentorSearchController.primary_subjects_get)
+router.post('/organisations/:organisationId/mentors/primary-subjects', checkIsAuthenticated, mentorSearchController.primary_subjects_post)
+
+router.get('/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorSearchController.secondary_subjects_get)
+router.post('/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorSearchController.secondary_subjects_post)
+
+router.get('/organisations/:organisationId/mentors/results', checkIsAuthenticated, mentorSearchController.list_mentors_results_get)
+
+router.get('/organisations/:organisationId/mentors/remove-keyword-search', checkIsAuthenticated, mentorSearchController.removeKeywordSearch)
+
+router.get('/organisations/:organisationId/mentors/remove-a-filter/:a', checkIsAuthenticated, mentorSearchController.removeFilterA)
+router.get('/organisations/:organisationId/mentors/remove-b-filter/:b', checkIsAuthenticated, mentorSearchController.removeFilterB)
+router.get('/organisations/:organisationId/mentors/remove-c-filter/:c', checkIsAuthenticated, mentorSearchController.removeFilterC)
+router.get('/organisations/:organisationId/mentors/remove-d-filter/:d', checkIsAuthenticated, mentorSearchController.removeFilterD)
+router.get('/organisations/:organisationId/mentors/remove-e-filter/:e', checkIsAuthenticated, mentorSearchController.removeFilterE)
+router.get('/organisations/:organisationId/mentors/remove-f-filter/:f', checkIsAuthenticated, mentorSearchController.removeFilterF)
+router.get('/organisations/:organisationId/mentors/remove-g-filter/:g', checkIsAuthenticated, mentorSearchController.removeFilterG)
+router.get('/organisations/:organisationId/mentors/remove-h-filter/:h', checkIsAuthenticated, mentorSearchController.removeFilterH)
+router.get('/organisations/:organisationId/mentors/remove-i-filter/:i', checkIsAuthenticated, mentorSearchController.removeFilterI)
+router.get('/organisations/:organisationId/mentors/remove-j-filter/:j', checkIsAuthenticated, mentorSearchController.removeFilterJ)
+
+router.get('/organisations/:organisationId/mentors/remove-all-filters', checkIsAuthenticated, mentorSearchController.removeAllFilters)
+
+/// ------------------------------------------------------------------------ ///
 /// MENTOR ROUTES
 /// ------------------------------------------------------------------------ ///
 
-router.get('/organisations/:organisationId/mentors/search', checkIsAuthenticated, mentorController.search_get)
-router.post('/organisations/:organisationId/mentors/search', checkIsAuthenticated, mentorController.search_post)
+router.get('/organisations/:organisationId/mentors/new', checkIsAuthenticated, mentorController.new_mentor_get)
+router.post('/organisations/:organisationId/mentors/new', checkIsAuthenticated, mentorController.new_mentor_post)
 
-router.get('/organisations/:organisationId/mentors/age-groups', checkIsAuthenticated, mentorController.age_groups_get)
-router.post('/organisations/:organisationId/mentors/age-groups', checkIsAuthenticated, mentorController.age_groups_post)
+router.get('/organisations/:organisationId/mentors/new/subject', checkIsAuthenticated, mentorController.new_mentor_subject_get)
+router.post('/organisations/:organisationId/mentors/new/subject', checkIsAuthenticated, mentorController.new_mentor_subject_post)
 
-router.get('/organisations/:organisationId/mentors/primary-subjects', checkIsAuthenticated, mentorController.primary_subjects_get)
-router.post('/organisations/:organisationId/mentors/primary-subjects', checkIsAuthenticated, mentorController.primary_subjects_post)
+router.get('/organisations/:organisationId/mentors/new/age-range', checkIsAuthenticated, mentorController.new_mentor_age_range_get)
+router.post('/organisations/:organisationId/mentors/new/age-range', checkIsAuthenticated, mentorController.new_mentor_age_range_post)
 
-router.get('/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorController.secondary_subjects_get)
-router.post('/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorController.secondary_subjects_post)
+router.get('/organisations/:organisationId/mentors/new/key-stage', checkIsAuthenticated, mentorController.new_mentor_key_stage_get)
+router.post('/organisations/:organisationId/mentors/new/key-stage', checkIsAuthenticated, mentorController.new_mentor_key_stage_post)
 
-router.get('/organisations/:organisationId/mentors/results', checkIsAuthenticated, mentorController.list_mentors_results_get)
+router.get('/organisations/:organisationId/mentors/new/check', checkIsAuthenticated, mentorController.new_mentor_check_get)
+router.post('/organisations/:organisationId/mentors/new/check', checkIsAuthenticated, mentorController.new_mentor_check_post)
 
-router.get('/organisations/:organisationId/mentors/:mentorId', checkIsAuthenticated, mentorController.show_mentors_get)
+router.get('/organisations/:organisationId/mentors/:mentorId/edit', checkIsAuthenticated, mentorController.edit_mentor_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/edit', checkIsAuthenticated, mentorController.edit_mentor_post)
+
+router.get('/organisations/:organisationId/mentors/:mentorId/subject', checkIsAuthenticated, mentorController.edit_mentor_subject_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/subject', checkIsAuthenticated, mentorController.edit_mentor_subject_post)
+
+router.get('/organisations/:organisationId/mentors/:mentorId/age-range', checkIsAuthenticated, mentorController.edit_mentor_age_range_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/age-range', checkIsAuthenticated, mentorController.edit_mentor_age_range_post)
+
+router.get('/organisations/:organisationId/mentors/:mentorId/key-stage', checkIsAuthenticated, mentorController.edit_mentor_key_stage_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/key-stage', checkIsAuthenticated, mentorController.edit_mentor_key_stage_post)
+
+router.get('/organisations/:organisationId/mentors/:mentorId/delete', checkIsAuthenticated, mentorController.delete_mentor_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/delete', checkIsAuthenticated, mentorController.delete_mentor_post)
+
+router.get('/organisations/:organisationId/mentors/:mentorId/description', checkIsAuthenticated, mentorController.show_mentor_additional_details_get)
+
+router.get('/organisations/:organisationId/mentors/:mentorId', checkIsAuthenticated, mentorController.show_mentor_details_get)
 
 router.get('/organisations/:organisationId/mentors', checkIsAuthenticated, mentorController.list_mentors_get)
-
-router.get('/organisations/:organisationId/mentors/remove-keyword-search', checkIsAuthenticated, mentorController.removeKeywordSearch)
-
-router.get('/organisations/:organisationId/mentors/remove-a-filter/:a', checkIsAuthenticated, mentorController.removeFilterA)
-router.get('/organisations/:organisationId/mentors/remove-b-filter/:b', checkIsAuthenticated, mentorController.removeFilterB)
-router.get('/organisations/:organisationId/mentors/remove-c-filter/:c', checkIsAuthenticated, mentorController.removeFilterC)
-router.get('/organisations/:organisationId/mentors/remove-d-filter/:d', checkIsAuthenticated, mentorController.removeFilterD)
-router.get('/organisations/:organisationId/mentors/remove-e-filter/:e', checkIsAuthenticated, mentorController.removeFilterE)
-router.get('/organisations/:organisationId/mentors/remove-f-filter/:f', checkIsAuthenticated, mentorController.removeFilterF)
-router.get('/organisations/:organisationId/mentors/remove-g-filter/:g', checkIsAuthenticated, mentorController.removeFilterG)
-router.get('/organisations/:organisationId/mentors/remove-h-filter/:h', checkIsAuthenticated, mentorController.removeFilterH)
-router.get('/organisations/:organisationId/mentors/remove-i-filter/:i', checkIsAuthenticated, mentorController.removeFilterI)
-router.get('/organisations/:organisationId/mentors/remove-j-filter/:j', checkIsAuthenticated, mentorController.removeFilterJ)
-
-router.get('/organisations/:organisationId/mentors/remove-all-filters', checkIsAuthenticated, mentorController.removeAllFilters)
 
 /// ------------------------------------------------------------------------ ///
 /// ORGANISATION ROUTES
@@ -357,3 +394,4 @@ router.get('/data/gias/combine', dataController.gias_combine_data)
 router.get('/data/providers', dataController.providers)
 router.get('/data/lead-schools', dataController.lead_schools)
 router.get('/data/schools', dataController.schools)
+router.get('/data/mentors', dataController.mentors)

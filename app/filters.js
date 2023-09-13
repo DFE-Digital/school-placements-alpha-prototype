@@ -1,13 +1,16 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const addFilter = govukPrototypeKit.views.addFilter
 
+const { DateTime } = require('luxon')
 const marked = require('marked')
 const numeral = require('numeral')
 
 const ageRangeHelper = require('./helpers/age-ranges')
 const keyStageHelper = require('./helpers/key-stages')
 const mentorHelper = require('./helpers/mentors')
+const organisationHelper = require('./helpers/organisations')
 const subjectHelper = require('./helpers/subjects')
+const qualificationHelper = require('./helpers/qualifications')
 
 /* ------------------------------------------------------------------
   numeral filter for use in Nunjucks
@@ -16,6 +19,25 @@ const subjectHelper = require('./helpers/subjects')
 ------------------------------------------------------------------ */
 addFilter('numeral', (number, format) => {
   return numeral(number).format(format)
+})
+
+/* ------------------------------------------------------------------
+  numeral filter for use in Nunjucks
+  example: {{ params.number | numeral("0,00.0") }}
+  outputs: 1,000.00
+------------------------------------------------------------------ */
+addFilter('datetime', (timestamp, format) => {
+  let datetime = DateTime.fromJSDate(timestamp, {
+    locale: 'en-GB'
+  }).toFormat(format)
+
+  if (datetime === 'Invalid DateTime') {
+    datetime = DateTime.fromISO(timestamp, {
+      locale: 'en-GB'
+    }).toFormat(format)
+  }
+
+  return datetime
 })
 
 /* ------------------------------------------------------------------
@@ -147,6 +169,66 @@ addFilter('getMentorLabel', (mentor) => {
 
   if (mentor) {
     label = mentorHelper.getMentorLabel(mentor)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the mentor status label
+example: {{ "pending" | getMentorStatusLabel }}
+outputs: "Pending"
+------------------------------------------------------------------ */
+addFilter('getMentorStatusLabel', (status) => {
+  let label = status
+
+  if (status !== undefined) {
+    label = mentorHelper.getMentorStatusLabel(status)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the mentor status colour
+example: {{ "pending" | getMentorStatusColour }}
+outputs: "govuk-tag--grey"
+------------------------------------------------------------------ */
+addFilter('getMentorStatusClasses', (status) => {
+  let label
+
+  if (status !== undefined) {
+    label = mentorHelper.getMentorStatusClasses(status)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the organisation name
+example: {{ "6fa28993-4d7c-437e-b522-96168de9939b" | getOrganisationName }}
+outputs: "Ellis Guilford School"
+------------------------------------------------------------------ */
+addFilter('getOrganisationName', (organisationId) => {
+  let label = organisationId
+
+  if (organisationId !== undefined) {
+    label = organisationHelper.getOrganisationName(organisationId)
+  }
+
+  return label
+})
+
+/* ------------------------------------------------------------------
+utility function to get the qualification label
+example: {{ "pgce" | getQualificationLabel }}
+outputs: "Postgraduate Certificate in Education"
+------------------------------------------------------------------ */
+addFilter('getQualificationLabel', (code) => {
+  let label = code
+
+  if (code !== undefined) {
+    label = qualificationHelper.getQualificationLabel(code)
   }
 
   return label

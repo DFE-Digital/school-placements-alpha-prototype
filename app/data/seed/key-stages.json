@@ -3,36 +3,36 @@
     "id": "82fde379-7f7d-40b4-8768-bc249f00b9b4",
     "name": "Early years",
     "code": "EY",
-    "level": "primary"
+    "levels": ["primary"]
   },
   {
     "id": "85e5e638-e732-4237-9d59-29d3e531a583",
-    "name": "Key Stage 1",
+    "name": "Key stage 1",
     "code": "KS1",
-    "level": "primary"
+    "levels": ["primary"]
   },
   {
     "id": "570b76d1-072c-4da5-a416-1744e4324576",
-    "name": "Key Stage 2",
+    "name": "Key stage 2",
     "code": "KS2",
-    "level": "primary"
+    "levels": ["primary"]
   },
   {
     "id": "21d67521-1cee-4f8b-8f70-bc12e1752eb5",
-    "name": "Key Stage 3",
+    "name": "Key stage 3",
     "code": "KS3",
-    "level": "secondary"
+    "levels": ["secondary"]
   },
   {
     "id": "474f93dd-d5ef-4d8c-85a0-7a21d2add3b7",
-    "name": "Key Stage 4",
+    "name": "Key stage 4",
     "code": "KS4",
-    "level": "secondary"
+    "levels": ["secondary"]
   },
   {
     "id": "338fafe3-b1bc-4651-ac4e-09cf02e84774",
-    "name": "Key Stage 5",
+    "name": "Key stage 5",
     "code": "KS5",
-    "level": "secondary"
+    "levels": ["secondary"]
   }
 ]

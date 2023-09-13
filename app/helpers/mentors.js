@@ -33,3 +33,27 @@ exports.getMentorLabel = (code) => {
 
   return label
 }
+
+exports.getMentorStatusLabel = (code) => {
+  const mentorStatuses = require('../data/mentor-statuses')
+  const mentorStatus = mentorStatuses.find(mentorStatus => mentorStatus.code === code)
+  let label = code
+
+  if (mentorStatus) {
+    label = mentorStatus.name
+  }
+
+  return label
+}
+
+exports.getMentorStatusClasses = (code) => {
+  const mentorStatuses = require('../data/mentor-statuses')
+  const mentorStatus = mentorStatuses.find(mentorStatus => mentorStatus.code === code)
+
+  let classes
+  if (mentorStatus) {
+    classes = mentorStatus.classes
+  }
+
+  return classes
+}

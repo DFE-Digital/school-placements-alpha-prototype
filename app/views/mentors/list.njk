@@ -6,15 +6,24 @@
 
 {% block content %}
 
+  {% include "_includes/notification-banner.njk" %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       {% include "_includes/page-heading.njk" %}
 
-      {{ govukButton({
-        text: "Find a mentor",
-        href: actions.find
-      }) }}
+      {% if organisation.type == "school" %}
+        {{ govukButton({
+          text: "Add mentor",
+          href: actions.new
+        }) }}
+      {% else %}
+        {{ govukButton({
+          text: "Find mentors",
+          href: actions.find
+        }) }}
+      {% endif %}
 
     </div>
   </div>
@@ -28,23 +37,57 @@
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
                 <th class="govuk-table__header">Mentor</th>
+                <th class="govuk-table__header">Status</th>
                 <th class="govuk-table__header">Subject</th>
+                <th class="govuk-table__header">Age range</th>
+                <th class="govuk-table__header">Key stage</th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
 
               {% for mentor in mentors %}
+
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">
-                    <a class="govuk-link govuk-heading-s govuk-!-margin-bottom-0" href="#">
-                      {{ mentor.mentor.name }}
+                    <a class="govuk-link govuk-heading-s govuk-!-margin-bottom-0" href="{{ actions.view }}/{{ mentor.id }}">
+                      {{ mentor.firstName }} {{ mentor.lastName }}
                     </a>
-                    <span class="govuk-body-s">
-                      {{ mentor.school.name }}
+                    <span class="govuk-hint govuk-!-font-size-16">
+                      <abbr title="Teacher reference number">TRN</abbr>: {{ mentor.trn }}
                     </span>
                   </td>
                   <td class="govuk-table__cell">
-                    {{ mentor.subject.name }}
+                    {{ govukTag({
+                      text: mentor.status | getMentorStatusLabel,
+                      classes: mentor.status | getMentorStatusClasses
+                    }) }}
+                  </td>
+                  <td class="govuk-table__cell">
+                    <ul class="govuk-list">
+                      {% for subject in mentor.subjects %}
+                        <li>
+                          {{ subject | getSubjectLabel }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                  <td class="govuk-table__cell">
+                    <ul class="govuk-list">
+                      {% for ageRange in mentor.ageRanges %}
+                        <li>
+                          {{ ageRange | getAgeRangeLabel }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                  <td class="govuk-table__cell">
+                    <ul class="govuk-list">
+                      {% for keyStage in mentor.keyStages %}
+                        <li>
+                          {{ keyStage | getKeyStageLabel }}
+                        </li>
+                      {% endfor %}
+                    </ul>
                   </td>
                 </tr>
 
@@ -54,9 +97,8 @@
           </table>
 
         {% else %}
-          <p class="govuk-body">There are no mentors for {{ provider.name if provider.name else "your organisation" }}.</p>
+          <p class="govuk-body">There are no mentors for {{ organisation.name if organisation.name else "your organisation" }}.</p>
         {% endif %}
-
       </div>
     </div>
 
