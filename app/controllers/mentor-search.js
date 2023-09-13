@@ -97,7 +97,7 @@ exports.list_mentors_results_get = (req, res) => {
         items: as.map((a) => {
           return {
             text: utilsHelper.getFilterALabel(a),
-            href: `/organisations/${req.params.organisationId}/mentors/remove-a-filter/${a}`
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-a-filter/${a}`
           }
         })
       })
@@ -109,7 +109,7 @@ exports.list_mentors_results_get = (req, res) => {
         items: bs.map((b) => {
           return {
             text: utilsHelper.getFilterBLabel(b),
-            href: `/organisations/${req.params.organisationId}/mentors/remove-b-filter/${b}`
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-b-filter/${b}`
           }
         })
       })
@@ -121,7 +121,7 @@ exports.list_mentors_results_get = (req, res) => {
         items: cs.map((c) => {
           return {
             text: utilsHelper.getFilterCLabel(c),
-            href: `/organisations/${req.params.organisationId}/mentors/remove-c-filter/${c}`
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-c-filter/${c}`
           }
         })
       })
@@ -133,7 +133,7 @@ exports.list_mentors_results_get = (req, res) => {
         items: ds.map((d) => {
           return {
             text: utilsHelper.getFilterDLabel(d),
-            href: `/organisations/${req.params.organisationId}/mentors/remove-d-filter/${d}`
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-d-filter/${d}`
           }
         })
       })
@@ -145,7 +145,7 @@ exports.list_mentors_results_get = (req, res) => {
         items: es.map((e) => {
           return {
             text: utilsHelper.getFilterELabel(e),
-            href: `/organisations/${req.params.organisationId}/mentors/remove-e-filter/${e}`
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-e-filter/${e}`
           }
         })
       })
@@ -157,7 +157,7 @@ exports.list_mentors_results_get = (req, res) => {
         items: fs.map((f) => {
           return {
             text: utilsHelper.getFilterFLabel(f),
-            href: `/organisations/${req.params.organisationId}/mentors/remove-f-filter/${f}`
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-f-filter/${f}`
           }
         })
       })
@@ -169,7 +169,7 @@ exports.list_mentors_results_get = (req, res) => {
         items: gs.map((g) => {
           return {
             text: utilsHelper.getFilterGLabel(g),
-            href: `/organisations/${req.params.organisationId}/mentors/remove-g-filter/${g}`
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-g-filter/${g}`
           }
         })
       })
@@ -181,7 +181,7 @@ exports.list_mentors_results_get = (req, res) => {
         items: hs.map((h) => {
           return {
             text: utilsHelper.getFilterHLabel(h),
-            href: `/organisations/${req.params.organisationId}/mentors/remove-h-filter/${h}`
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-h-filter/${h}`
           }
         })
       })
@@ -193,7 +193,7 @@ exports.list_mentors_results_get = (req, res) => {
         items: is.map((i) => {
           return {
             text: utilsHelper.getFilterILabel(i),
-            href: `/organisations/${req.params.organisationId}/mentors/remove-i-filter/${i}`
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-i-filter/${i}`
           }
         })
       })
@@ -205,7 +205,7 @@ exports.list_mentors_results_get = (req, res) => {
         items: js.map((j) => {
           return {
             text: utilsHelper.getFilterJLabel(j),
-            href: `/organisations/${req.params.organisationId}/mentors/remove-j-filter/${j}`
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-j-filter/${j}`
           }
         })
       })
@@ -320,15 +320,15 @@ exports.list_mentors_results_get = (req, res) => {
     // selectedE,
     // selectedF,
     actions: {
-      view: `/organisations/${req.params.organisationId}/mentors`,
+      view: `/find/organisations/${req.params.organisationId}/mentors`,
       filters: {
-        apply: `/organisations/${req.params.organisationId}/mentors`,
-        remove: `/organisations/${req.params.organisationId}/mentors/remove-all-filters`
+        apply: `/find/organisations/${req.params.organisationId}/mentors`,
+        remove: `/find/organisations/${req.params.organisationId}/mentors/remove-all-filters`
       },
       search: {
-        find: `/organisations/${req.params.organisationId}/mentors`,
-        remove: `/organisations/${req.params.organisationId}/mentors/remove-keyword-search`,
-        change: `/organisations/${req.params.organisationId}/mentors/search`
+        find: `/find/organisations/${req.params.organisationId}/mentors`,
+        remove: `/find/organisations/${req.params.organisationId}/mentors/remove-keyword-search`,
+        change: `/find/organisations/${req.params.organisationId}/mentors/search`
       }
     }
   })
@@ -336,62 +336,62 @@ exports.list_mentors_results_get = (req, res) => {
 
 exports.removeKeywordSearch = (req, res) => {
   delete req.session.data.keywords
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeFilterA = (req, res) => {
   req.session.data.filter.a = utilsHelper.removeFilter(req.params.a, req.session.data.filter.a)
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeFilterB = (req, res) => {
   req.session.data.filter.b = utilsHelper.removeFilter(req.params.b, req.session.data.filter.b)
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeFilterC = (req, res) => {
   req.session.data.filter.c = utilsHelper.removeFilter(req.params.c, req.session.data.filter.c)
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeFilterD = (req, res) => {
   req.session.data.filter.d = utilsHelper.removeFilter(req.params.d, req.session.data.filter.d)
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeFilterE = (req, res) => {
   req.session.data.filter.e = utilsHelper.removeFilter(req.params.e, req.session.data.filter.e)
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeFilterF = (req, res) => {
   req.session.data.filter.f = utilsHelper.removeFilter(req.params.f, req.session.data.filter.f)
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeFilterG = (req, res) => {
   req.session.data.filter.g = utilsHelper.removeFilter(req.params.g, req.session.data.filter.g)
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeFilterH = (req, res) => {
   req.session.data.filter.h = utilsHelper.removeFilter(req.params.h, req.session.data.filter.h)
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeFilterI = (req, res) => {
   req.session.data.filter.i = utilsHelper.removeFilter(req.params.i, req.session.data.filter.i)
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeFilterJ = (req, res) => {
   req.session.data.filter.j = utilsHelper.removeFilter(req.params.j, req.session.data.filter.j)
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 exports.removeAllFilters = (req, res) => {
   delete req.session.data.filter
-  res.redirect(`/organisations/${req.params.organisationId}/mentors`)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 
 
@@ -405,8 +405,8 @@ exports.search_get = (req, res) => {
 
   res.render('mentors/search/index', {
     actions: {
-      back: `/organisations/${req.params.organisationId}/mentors`,
-      save: `/organisations/${req.params.organisationId}/mentors/search`
+      back: `/find/organisations/${req.params.organisationId}/mentors`,
+      save: `/find/organisations/${req.params.organisationId}/mentors/search`
     }
   })
 }
@@ -445,20 +445,20 @@ exports.search_post = (req, res) => {
     res.render('mentors/search/index', {
       errors,
       actions: {
-        back: `/organisations/${req.params.organisationId}/mentors`,
-        save: `/organisations/${req.params.organisationId}/mentors/search`
+        back: `/find/organisations/${req.params.organisationId}/mentors`,
+        save: `/find/organisations/${req.params.organisationId}/mentors/search`
       }
     })
   } else {
-    res.redirect(`/organisations/${req.params.organisationId}/mentors/age-groups`)
+    res.redirect(`/find/organisations/${req.params.organisationId}/mentors/age-groups`)
   }
 }
 
 exports.age_groups_get = (req, res) => {
   res.render('mentors/search/age-groups', {
     actions: {
-      back: `/organisations/${req.params.organisationId}/mentors/search`,
-      save: `/organisations/${req.params.organisationId}/mentors/age-groups`
+      back: `/find/organisations/${req.params.organisationId}/mentors/search`,
+      save: `/find/organisations/${req.params.organisationId}/mentors/age-groups`
     }
   })
 }
@@ -480,17 +480,17 @@ exports.age_groups_post = (req, res) => {
     res.render('mentors/search/age-groups', {
       errors,
       actions: {
-        back: `/organisations/${req.params.organisationId}/mentors/search`,
-        save: `/organisations/${req.params.organisationId}/mentors/age-groups`
+        back: `/find/organisations/${req.params.organisationId}/mentors/search`,
+        save: `/find/organisations/${req.params.organisationId}/mentors/age-groups`
       }
     })
   } else {
     if (ageGroup === 'primary') {
-      res.redirect(`/organisations/${req.params.organisationId}/mentors/primary-subjects`)
+      res.redirect(`/find/organisations/${req.params.organisationId}/mentors/primary-subjects`)
     } else if (ageGroup === 'secondary') {
-      res.redirect(`/organisations/${req.params.organisationId}/mentors/secondary-subjects`)
+      res.redirect(`/find/organisations/${req.params.organisationId}/mentors/secondary-subjects`)
     } else {
-      res.redirect(`/organisations/${req.params.organisationId}/mentors/results`)
+      res.redirect(`/find/organisations/${req.params.organisationId}/mentors/results`)
     }
   }
 }
@@ -506,8 +506,8 @@ exports.primary_subjects_get = (req, res) => {
   res.render('mentors/search/primary-subjects', {
     subjectOptions,
     actions: {
-      back: `/organisations/${req.params.organisationId}/mentors/age-groups`,
-      save: `/organisations/${req.params.organisationId}/mentors/primary-subjects`
+      back: `/find/organisations/${req.params.organisationId}/mentors/age-groups`,
+      save: `/find/organisations/${req.params.organisationId}/mentors/primary-subjects`
     }
   })
 }
@@ -535,12 +535,12 @@ exports.primary_subjects_post = (req, res) => {
       subjectOptions,
       errors,
       actions: {
-        back: `/organisations/${req.params.organisationId}/mentors/age-groups`,
-        save: `/organisations/${req.params.organisationId}/mentors/primary-subjects`
+        back: `/find/organisations/${req.params.organisationId}/mentors/age-groups`,
+        save: `/find/organisations/${req.params.organisationId}/mentors/primary-subjects`
       }
     })
   } else {
-    res.redirect(`/organisations/${req.params.organisationId}/mentors/results`)
+    res.redirect(`/find/organisations/${req.params.organisationId}/mentors/results`)
   }
 }
 
@@ -555,8 +555,8 @@ exports.secondary_subjects_get = (req, res) => {
   res.render('mentors/search/secondary-subjects', {
     subjectOptions,
     actions: {
-      back: `/organisations/${req.params.organisationId}/mentors/age-groups`,
-      save: `/organisations/${req.params.organisationId}/mentors/secondary-subjects`
+      back: `/find/organisations/${req.params.organisationId}/mentors/age-groups`,
+      save: `/find/organisations/${req.params.organisationId}/mentors/secondary-subjects`
     }
   })
 }
@@ -584,12 +584,12 @@ exports.secondary_subjects_post = (req, res) => {
       subjectOptions,
       errors,
       actions: {
-        back: `/organisations/${req.params.organisationId}/mentors/age-groups`,
-        save: `/organisations/${req.params.organisationId}/mentors/secondary-subjects`
+        back: `/find/organisations/${req.params.organisationId}/mentors/age-groups`,
+        save: `/find/organisations/${req.params.organisationId}/mentors/secondary-subjects`
       }
     })
   } else {
-    res.redirect(`/organisations/${req.params.organisationId}/mentors/results`)
+    res.redirect(`/find/organisations/${req.params.organisationId}/mentors/results`)
   }
 }
 
@@ -597,17 +597,17 @@ exports.secondary_subjects_post = (req, res) => {
 /// SHOW mentor
 /// ------------------------------------------------------------------------ ///
 
-exports.show_mentors_get = (req, res) => {
+exports.show_mentor_get = (req, res) => {
   const mentors = require('../data/temp/mentors-sprint6')
   const mentor = mentors.find(mentor => mentor.id === req.params.mentorId)
 
   const school = schoolModel.findOne({ schoolId: mentor.urn })
 
-  res.render('../views/mentors/show', {
+  res.render('../views/mentors/results/show', {
     school,
     mentor,
     actions: {
-      back: `/organisations/${req.params.organisationId}/mentors/results`
+      back: `/find/organisations/${req.params.organisationId}/mentors/results`
     }
   })
 }

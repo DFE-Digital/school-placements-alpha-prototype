@@ -70,7 +70,7 @@ exports.getAgeRangeFilterItems = (subjectLevel = 'secondary', selectedItems) => 
 
   let options = require('../data/age-ranges')
   if (subjectLevel) {
-    options = options.filter(range => range.level === subjectLevel)
+    options = options.filter(range => range.levels.includes(subjectLevel))
   }
 
   options.forEach((option, i) => {
@@ -181,7 +181,7 @@ exports.getKeyStageFilterItems = (subjectLevel = 'secondary', selectedItems) => 
 
   let options = require('../data/key-stages')
   if (subjectLevel) {
-    options = options.filter(stage => stage.level === subjectLevel)
+    options = options.filter(stage => stage.levels.includes(subjectLevel))
   }
 
   options.forEach((option, i) => {
