@@ -199,34 +199,36 @@ router.get('/organisations/:organisationId/placements', checkIsAuthenticated, pl
 /// MENTOR SEARCH ROUTES
 /// ------------------------------------------------------------------------ ///
 
-router.get('/organisations/:organisationId/mentors/search', checkIsAuthenticated, mentorSearchController.search_get)
-router.post('/organisations/:organisationId/mentors/search', checkIsAuthenticated, mentorSearchController.search_post)
+router.get('/find/organisations/:organisationId/mentors/search', checkIsAuthenticated, mentorSearchController.search_get)
+router.post('/find/organisations/:organisationId/mentors/search', checkIsAuthenticated, mentorSearchController.search_post)
 
-router.get('/organisations/:organisationId/mentors/age-groups', checkIsAuthenticated, mentorSearchController.age_groups_get)
-router.post('/organisations/:organisationId/mentors/age-groups', checkIsAuthenticated, mentorSearchController.age_groups_post)
+router.get('/find/organisations/:organisationId/mentors/age-groups', checkIsAuthenticated, mentorSearchController.age_groups_get)
+router.post('/find/organisations/:organisationId/mentors/age-groups', checkIsAuthenticated, mentorSearchController.age_groups_post)
 
-router.get('/organisations/:organisationId/mentors/primary-subjects', checkIsAuthenticated, mentorSearchController.primary_subjects_get)
-router.post('/organisations/:organisationId/mentors/primary-subjects', checkIsAuthenticated, mentorSearchController.primary_subjects_post)
+router.get('/find/organisations/:organisationId/mentors/primary-subjects', checkIsAuthenticated, mentorSearchController.primary_subjects_get)
+router.post('/find/organisations/:organisationId/mentors/primary-subjects', checkIsAuthenticated, mentorSearchController.primary_subjects_post)
 
-router.get('/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorSearchController.secondary_subjects_get)
-router.post('/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorSearchController.secondary_subjects_post)
+router.get('/find/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorSearchController.secondary_subjects_get)
+router.post('/find/organisations/:organisationId/mentors/secondary-subjects', checkIsAuthenticated, mentorSearchController.secondary_subjects_post)
 
-router.get('/organisations/:organisationId/mentors/results', checkIsAuthenticated, mentorSearchController.list_mentors_results_get)
+router.get('/find/organisations/:organisationId/mentors/results', checkIsAuthenticated, mentorSearchController.list_mentors_results_get)
 
-router.get('/organisations/:organisationId/mentors/remove-keyword-search', checkIsAuthenticated, mentorSearchController.removeKeywordSearch)
+router.get('/find/organisations/:organisationId/mentors/remove-keyword-search', checkIsAuthenticated, mentorSearchController.removeKeywordSearch)
 
-router.get('/organisations/:organisationId/mentors/remove-a-filter/:a', checkIsAuthenticated, mentorSearchController.removeFilterA)
-router.get('/organisations/:organisationId/mentors/remove-b-filter/:b', checkIsAuthenticated, mentorSearchController.removeFilterB)
-router.get('/organisations/:organisationId/mentors/remove-c-filter/:c', checkIsAuthenticated, mentorSearchController.removeFilterC)
-router.get('/organisations/:organisationId/mentors/remove-d-filter/:d', checkIsAuthenticated, mentorSearchController.removeFilterD)
-router.get('/organisations/:organisationId/mentors/remove-e-filter/:e', checkIsAuthenticated, mentorSearchController.removeFilterE)
-router.get('/organisations/:organisationId/mentors/remove-f-filter/:f', checkIsAuthenticated, mentorSearchController.removeFilterF)
-router.get('/organisations/:organisationId/mentors/remove-g-filter/:g', checkIsAuthenticated, mentorSearchController.removeFilterG)
-router.get('/organisations/:organisationId/mentors/remove-h-filter/:h', checkIsAuthenticated, mentorSearchController.removeFilterH)
-router.get('/organisations/:organisationId/mentors/remove-i-filter/:i', checkIsAuthenticated, mentorSearchController.removeFilterI)
-router.get('/organisations/:organisationId/mentors/remove-j-filter/:j', checkIsAuthenticated, mentorSearchController.removeFilterJ)
+router.get('/find/organisations/:organisationId/mentors/remove-a-filter/:a', checkIsAuthenticated, mentorSearchController.removeFilterA)
+router.get('/find/organisations/:organisationId/mentors/remove-b-filter/:b', checkIsAuthenticated, mentorSearchController.removeFilterB)
+router.get('/find/organisations/:organisationId/mentors/remove-c-filter/:c', checkIsAuthenticated, mentorSearchController.removeFilterC)
+router.get('/find/organisations/:organisationId/mentors/remove-d-filter/:d', checkIsAuthenticated, mentorSearchController.removeFilterD)
+router.get('/find/organisations/:organisationId/mentors/remove-e-filter/:e', checkIsAuthenticated, mentorSearchController.removeFilterE)
+router.get('/find/organisations/:organisationId/mentors/remove-f-filter/:f', checkIsAuthenticated, mentorSearchController.removeFilterF)
+router.get('/find/organisations/:organisationId/mentors/remove-g-filter/:g', checkIsAuthenticated, mentorSearchController.removeFilterG)
+router.get('/find/organisations/:organisationId/mentors/remove-h-filter/:h', checkIsAuthenticated, mentorSearchController.removeFilterH)
+router.get('/find/organisations/:organisationId/mentors/remove-i-filter/:i', checkIsAuthenticated, mentorSearchController.removeFilterI)
+router.get('/find/organisations/:organisationId/mentors/remove-j-filter/:j', checkIsAuthenticated, mentorSearchController.removeFilterJ)
 
-router.get('/organisations/:organisationId/mentors/remove-all-filters', checkIsAuthenticated, mentorSearchController.removeAllFilters)
+router.get('/find/organisations/:organisationId/mentors/remove-all-filters', checkIsAuthenticated, mentorSearchController.removeAllFilters)
+
+router.get('/find/organisations/:organisationId/mentors/:mentorId', checkIsAuthenticated, mentorSearchController.show_mentor_get)
 
 /// ------------------------------------------------------------------------ ///
 /// MENTOR ROUTES
