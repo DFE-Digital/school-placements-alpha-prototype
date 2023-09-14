@@ -230,6 +230,8 @@ router.get('/find/organisations/:organisationId/mentors/remove-all-filters', che
 
 router.get('/find/organisations/:organisationId/mentors/:mentorId', checkIsAuthenticated, mentorSearchController.show_mentor_get)
 
+router.get('/find/organisations/:organisationId/mentors', checkIsAuthenticated, mentorSearchController.list_mentors_get)
+
 /// ------------------------------------------------------------------------ ///
 /// MENTOR ROUTES
 /// ------------------------------------------------------------------------ ///
