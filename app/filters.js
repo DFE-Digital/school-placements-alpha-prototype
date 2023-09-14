@@ -133,6 +133,21 @@ addFilter('getSubjectLabel', (subject) => {
 })
 
 /* ------------------------------------------------------------------
+utility function to get the subject list
+example: {{ [F3,G1] | getSubjectList }}
+outputs: "physics and mathematics"
+------------------------------------------------------------------ */
+addFilter('getSubjectList', (subjectCodes, join = ', ', final = ' and ') => {
+  let list = subjectCodes
+
+  if (subjectCodes) {
+    list = subjectHelper.getSubjectList(subjectCodes, join, final)
+  }
+
+  return list
+})
+
+/* ------------------------------------------------------------------
 utility function to get the age range label
 example: {{ '5_to_11' | getAgeRangeLabel }}
 outputs: "5 to 11"

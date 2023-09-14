@@ -35,16 +35,6 @@
 
               {% for mentor in mentors %}
 
-                {% set subjectHtml %}
-                <ul class="govuk-list">
-                  {% for subject in mentor.subjects %}
-                  <li>
-                    {{ subject | getSubjectLabel }}
-                  </li>
-                {% endfor %}
-                </ul>
-                {% endset %}
-
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">
                     <a class="govuk-link govuk-heading-s govuk-!-margin-bottom-0" href="#">
@@ -55,7 +45,7 @@
                     </span>
                   </td>
                   <td class="govuk-table__cell">
-                    {{ subjectHtml | safe }}
+                    {{ mentor.subjects | getSubjectList }}
                   </td>
                 </tr>
 
