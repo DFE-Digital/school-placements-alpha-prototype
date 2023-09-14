@@ -539,7 +539,7 @@ exports.edit_mentor_post = (req, res) => {
 
     delete req.session.data.mentor
 
-    req.flash('success', 'Mentor updated')
+    req.flash('success', 'Personal details updated')
     res.redirect(`/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`)
   }
 }
@@ -627,7 +627,7 @@ exports.edit_mentor_subject_post = (req, res) => {
 
     delete req.session.data.mentor
 
-    req.flash('success', 'Mentor updated')
+    req.flash('success', 'Subject updated')
     res.redirect(`/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`)
   }
 }
@@ -692,6 +692,7 @@ exports.edit_mentor_age_range_post = (req, res) => {
   if (errors.length) {
     res.render('../views/mentors/age-range', {
       organisation,
+      currentMentor,
       mentor,
       ageRangeOptions,
       actions: {
@@ -710,13 +711,14 @@ exports.edit_mentor_age_range_post = (req, res) => {
 
     delete req.session.data.mentor
 
-    req.flash('success', 'Mentor updated')
+    req.flash('success', 'Age range updated')
     res.redirect(`/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`)
   }
 }
 
 exports.edit_mentor_key_stage_get = (req, res) => {
   const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
+  const currentMentor = mentorModel.findOne({ mentorId: req.params.mentorId })
   const mentor = mentorModel.findOne({ mentorId: req.params.mentorId })
 
   let selectedKeyStage
@@ -798,7 +800,7 @@ exports.edit_mentor_key_stage_post = (req, res) => {
 
     delete req.session.data.mentor
 
-    req.flash('success', 'Mentor updated')
+    req.flash('success', 'Key stage updated')
     res.redirect(`/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`)
   }
 }
