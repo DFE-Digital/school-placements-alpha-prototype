@@ -153,7 +153,7 @@ exports.updateOne = (params) => {
       // // organisation.code = o.code
       // organisation.name = o.name
 
-      mentor.organisations.push(params.organisationId)
+      mentor.schools.push(params.organisationId)
     }
 
     if (params.mentor.subjects) {

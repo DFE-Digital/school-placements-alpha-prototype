@@ -1,3 +1,5 @@
+const mentorModel = require('../models/provider-mentors')
+const organisationModel = require('../models/organisations')
 const schoolModel = require('../models/schools')
 
 const paginationHelper = require('../helpers/pagination')
@@ -591,6 +593,35 @@ exports.secondary_subjects_post = (req, res) => {
   } else {
     res.redirect(`/find/organisations/${req.params.organisationId}/mentors/results`)
   }
+}
+
+/// ------------------------------------------------------------------------ ///
+/// LIST mentors
+/// ------------------------------------------------------------------------ ///
+
+exports.list_mentors_get = (req, res) => {
+  const organisation = organisationModel.findOne({ organisationId: req.params.organisationId })
+  // const mentors = require('../data/temp/known-mentors-sprint6')
+  const mentors = mentorModel.findMany({ organisationId: req.params.organisationId })
+  // mentors.sort((a,b) => {
+  //   return a.mentor.name.localeCompare(b.mentor.name)
+  //     || a.school.name.localeCompare(b.school.name)
+  // })
+
+  mentors.sort((a,b) => {
+    return a.firstName.localeCompare(b.firstName)
+      || a.lastName.localeCompare(b.lastName)
+  })
+
+  res.render('../views/mentors/search/list', {
+    organisation,
+    mentors,
+    actions: {
+      new: `/organisations/${req.params.organisationId}/mentors/new`,
+      find: `/find/organisations/${req.params.organisationId}/mentors/search`,
+      view: `/organisations/${req.params.organisationId}/mentors`
+    }
+  })
 }
 
 /// ------------------------------------------------------------------------ ///

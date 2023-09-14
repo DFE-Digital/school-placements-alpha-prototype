@@ -1,0 +1,68 @@
+{% extends "layouts/main.njk" %}
+
+{% set primaryNavId = "mentors" %}
+
+{% set title = "Mentors" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      {{ govukButton({
+        text: "Find a mentor",
+        href: actions.find
+      }) }}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+
+        {% if mentors.length %}
+
+          <table class="govuk-table app-table--vertical-align-middle">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header">Mentor</th>
+                <th class="govuk-table__header">Subject</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+
+              {% for mentor in mentors %}
+
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-heading-s govuk-!-margin-bottom-0" href="#">
+                      {{ mentor.firstName }} {{ mentor.lastName }}
+                    </a>
+                    <span class="govuk-body-s">
+                      {{ mentor.schools[0] | getOrganisationName }}
+                    </span>
+                  </td>
+                  <td class="govuk-table__cell">
+                    {{ mentor.subjects | getSubjectList }}
+                  </td>
+                </tr>
+
+              {% endfor %}
+            </tbody>
+
+          </table>
+
+        {% else %}
+          <p class="govuk-body">There are no mentors for {{ organisation.name if organisation.name else "your organisation" }}.</p>
+        {% endif %}
+
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+{% endblock %}

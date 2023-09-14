@@ -1,3 +1,5 @@
+const utilsHelper = require('./utils')
+
 exports.getSubjectLevelOptions = (selectedItem) => {
   const items = []
   const subjectLevels = require('../data/subject-levels')
@@ -141,4 +143,18 @@ exports.getChildSubjectOptions = (parentSubjectCode, selectedItem) => {
   }
 
   return items
+}
+
+exports.getSubjectList = (subjectCodes, join = ', ', final = ' and ') => {
+  let list = subjectCodes
+
+  const subjects = []
+
+  subjectCodes.forEach((subjectCode, i) => {
+    subjects.push(this.getSubjectLabel(subjectCode))
+  })
+
+  list = utilsHelper.arrayToList(subjects, join, final)
+
+  return list
 }
