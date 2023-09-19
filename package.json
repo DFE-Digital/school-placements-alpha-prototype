@@ -22,7 +22,7 @@
     "govuk-prototype-kit": "13.13.2",
     "gray-matter": "^4.0.3",
     "luxon": "^3.4.3",
-    "marked": "^9.0.2",
+    "marked": "^9.0.3",
     "marked-gfm-heading-id": "^3.0.8",
     "numeral": "^2.0.6",
     "passport": "^0.6.0",
