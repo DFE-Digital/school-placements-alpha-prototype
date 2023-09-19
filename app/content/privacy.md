@@ -85,4 +85,4 @@ If we cannot resolve your issue, you have the right to raise it with the Informa
 
 We’ll update this privacy notice when required. You should regularly review the notice.
 
-This version was last updated on 14 November 2022.
+This version was last updated on 19 September 2023.
