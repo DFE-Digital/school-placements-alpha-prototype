@@ -58,6 +58,7 @@ const datareportController = require('./controllers/datareport')
 const problemreportController = require('./controllers/problemreport')
 const userController = require('./controllers/users')
 const guidanceController = require('./controllers/guidance')
+const contentController = require('./controllers/content')
 
 const dataController = require('./controllers/data')
 
@@ -387,6 +388,17 @@ router.get('/guidance/:fileName', guidanceController.guidance)
 
 router.get('/guidance', guidanceController.guidance)
 
+/// ------------------------------------------------------------------------ ///
+/// GENERAL ROUTES
+/// ------------------------------------------------------------------------ ///
+
+router.get('/accessibility', contentController.accessibility)
+
+router.get('/cookies', contentController.cookies)
+
+router.get('/privacy', contentController.privacy)
+
+router.get('/terms', contentController.terms)
 
 /// ------------------------------------------------------------------------ ///
 /// DATA ROUTES
