@@ -10,7 +10,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/datareport/surplus"
+    href: "/data-report/shortage"
   }) }}
 {% endblock %}
 
@@ -23,36 +23,44 @@
 
     {#-----HEADER TEXT-----#}
     <h1 class="govuk-heading-xl">
-      Which Primary subjects are hard to find placements for?
+      Do you have a surplus of any resources?
     </h1>
 
     {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
     <p class="govuk-body">
-    
+    For example too many history mentors.
     </p>
 
-    {#-----CHECKBOXES COMPONENT-----#}
-    {{ govukCheckboxes({
-      idPrefix: "subject",
-      name: "filter[subject]",
+    {#-----RADIO CONTROL-----#}
+    {{ govukRadios({
+      name: "template-question",
       fieldset: {
         legend: {
-          text: headingHtml,
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--l"
+          text: "We have a surplus of",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
         }
       },
-      hint: {
-        text: "Select all that apply"
-      },
-      errorMessage: errors | getErrorMessage("subject"),
-      items: subjectOptions
+      items: [
+        {
+          value: "trainees",
+          text: "Trainees"
+        },
+        {
+          value: "mentors",
+          text: "Mentors"
+        },
+        {
+          value: "none",
+          text: "None"
+        }
+      ]
     }) }}
 
     {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Continue",
-      href: "/datareport/secondarysubjectsdifficulty"
+      href: "/data-report/surplussubject"
     }) }}
 
   </div>

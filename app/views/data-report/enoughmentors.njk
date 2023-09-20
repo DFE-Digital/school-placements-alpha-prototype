@@ -10,7 +10,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/datareport/primarysubjectsdifficulty"
+    href: "/data-report/"
   }) }}
 {% endblock %}
 
@@ -21,10 +21,11 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {#-----HEADER TEXT-----#}
+    {#-----HEADER TEXT-----
     <h1 class="govuk-heading-xl">
-      Which Secondary subjects are hard to find placements for?
+      Question Title
     </h1>
+    #}
 
     {#-----EXPLANATORY TEXT FOR OUR QUESTION-----
     <p class="govuk-body">
@@ -32,28 +33,40 @@
     </p>
     #}
 
-    {#-----CHECKBOXES COMPONENT-----#}
-    {{ govukCheckboxes({
-      idPrefix: "subject",
-      name: "filter[subject]",
+    {#-----RADIO CONTROL-----#}
+    {{ govukRadios({
+      name: "enough-mentors",
       fieldset: {
         legend: {
-          text: headingHtml,
-          isPageHeading: true,
+          text: "Do you have enough ITT Mentors in your network?",
+          isPageHeading: false,
           classes: "govuk-fieldset__legend--l"
         }
       },
-      hint: {
-        text: "Select all that apply"
-      },
-      errorMessage: errors | getErrorMessage("subject"),
-      items: subjectOptions
+      items: [
+        {
+          value: "yes",
+          text: "Yes, we have enough"
+        },
+        {
+          value: "need-more",
+          text: "We need more"
+        },
+        {
+          value: "spare-capacity",
+          text: "We have spare capacity"
+        },
+        {
+          value: "dontknow",
+          text: "Don't know"
+        }
+      ]
     }) }}
 
     {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Continue",
-      href: "/datareport/challengesmanagingitt"
+      href: "/data-report/"
     }) }}
 
   </div>

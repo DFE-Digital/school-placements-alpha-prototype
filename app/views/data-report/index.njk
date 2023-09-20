@@ -1,0 +1,63 @@
+{% extends "layouts/main.njk" %}
+
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
+
+{% set title = "Report information about placements" %}
+
+
+{% block content %}
+
+{#
+Create a grid to hold our page content in two thirds of the page
+#}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% include "_includes/page-heading.njk" %}
+
+    <p class="govuk-body">
+      This voluntary survey is for Initial Teacher Training (ITT) providers to report on what is happening with their teacher training placements.
+    </p>
+
+{#
+    <ul class="govuk-list govuk-list--spaced">
+      <li>
+        <a href="/data-report/surplusquestion" class="govuk-link">Surplus</a>
+      </li>
+      <li>
+        <a href="/data-report/challengesmanagingitt" class="govuk-link">Challenges managing ITT</a>
+      </li>
+      <li>
+        <a href="/data-report/enoughmentors" class="govuk-link">Enough mentors</a>
+      </li>
+      <li>
+        <a href="/data-report/reasonnotparticipate" class="govuk-link">Reasons not to participate</a>
+      </li>
+      <li>
+        <a href="/data-report/primarysubjectsdifficulty" class="govuk-link">Primary subjects difficulty</a>
+      </li>
+      <li>
+        <a href="/data-report/secondarysubjectsdifficulty" class="govuk-link">Secondary subjects difficulty</a>
+      </li>
+       <li>
+        <a href="/data-report/endreport" class="govuk-link">End of report - thanks</a>
+      </li>
+    </ul>
+#}
+    {# ------------Publish a placement------------
+    <h2 class="govuk-heading-m">Start Report</h2>
+    <p class="govuk-body">
+    Start a new report to submit data to DfE about your ITT placements
+    </p>
+    #}
+
+    {{ govukButton({
+      text: "Start report",
+      href: "/data-report/shortagequestion"
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}

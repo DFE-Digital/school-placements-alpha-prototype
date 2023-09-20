@@ -4,13 +4,13 @@
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
 {#-----PAGE TITLE-----#}
-{% set pageTitle = "Surplus" %}
+{% set pageTitle = "Shortage" %}
 
 {#-----BACK LINK-----#}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/datareport/surplussubject"
+    href: "/data-report/shortagesubject"
   }) }}
 {% endblock %}
 
@@ -23,7 +23,7 @@
 
     {#-----HEADER TEXT-----#}
     <h1 class="govuk-heading-xl">
-      You told us that you have the following surplus
+      You told us that you have the following shortage
     </h1>
 
     {#-----EXPLANATORY TEXT FOR OUR QUESTION-----
@@ -32,7 +32,7 @@
     </p>
     #}
 
-   
+
 
     {#-----TABLE COMPONENT-----#}
     {{ govukTable({
@@ -86,7 +86,7 @@
     {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Continue",
-      href: "/datareport/primarysubjectsdifficulty"
+      href: "/data-report/surplusquestion"
     }) }}
 
   </div>
