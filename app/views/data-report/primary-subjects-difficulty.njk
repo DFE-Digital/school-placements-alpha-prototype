@@ -17,6 +17,8 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    <form action="/data-report/secondary-subjects-difficulty" method="post" accept-charset="utf-8" novalidate>
+
     {{ govukCheckboxes({
       idPrefix: "subject",
       name: "filter[subject]",
@@ -30,13 +32,18 @@
       hint: {
         text: "Select all that apply"
       },
-      errorMessage: errors | getErrorMessage("subject"),
       items: subjectOptions
     }) }}
     {{ govukButton({
       text: "Continue",
       href: "/data-report/secondary-subjects-difficulty"
     }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
 
   </div>
 </div>

@@ -17,38 +17,45 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {{ govukRadios({
-      name: "template-question",
-      fieldset: {
-        legend: {
-          text: "Do you have a surplus of any resources?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--l"
-        }
-      },
-      hint: {
-        text: "For example too many history mentors."
-      },
-      items: [
-        {
-          value: "trainees",
-          text: "Trainees"
-        },
-        {
-          value: "mentors",
-          text: "Mentors"
-        },
-        {
-          value: "none",
-          text: "None"
-        }
-      ]
-    }) }}
+    <form action="/data-report/surplus-subject" method="post" accept-charset="utf-8" novalidate>
 
-    {{ govukButton({
-      text: "Continue",
-      href: "/data-report/surplus-subject"
-    }) }}
+      {{ govukRadios({
+        name: "template-question",
+        fieldset: {
+          legend: {
+            text: "Do you have a surplus of any resources?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "For example too many history mentors."
+        },
+        items: [
+          {
+            value: "trainees",
+            text: "Trainees"
+          },
+          {
+            value: "mentors",
+            text: "Mentors"
+          },
+          {
+            value: "none",
+            text: "None"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
 
   </div>
 </div>

@@ -23,35 +23,42 @@
       For example too many history teachers, or not enough physics mentors.
     </p>
 
-    {{ govukRadios({
-      name: "template-question",
-      fieldset: {
-        legend: {
-          text: "We have a shortage of",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
-      items: [
-        {
-          value: "trainees",
-          text: "Trainees"
-        },
-        {
-          value: "mentors",
-          text: "Mentors"
-        },
-        {
-          value: "none",
-          text: "None"
-        }
-      ]
-    }) }}
+    <form action="/data-report/shortage-subject" method="post" accept-charset="utf-8" novalidate>
 
-    {{ govukButton({
-      text: "Continue",
-      href: "/data-report/shortage-subject"
-    }) }}
+      {{ govukRadios({
+        name: "template-question",
+        fieldset: {
+          legend: {
+            text: "We have a shortage of",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "trainees",
+            text: "Trainees"
+          },
+          {
+            value: "mentors",
+            text: "Mentors"
+          },
+          {
+            value: "none",
+            text: "None"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
 
   </div>
 </div>

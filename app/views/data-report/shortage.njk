@@ -19,58 +19,65 @@
 
     {% include "_includes/page-heading.njk" %}
 
-    {{ govukTable({
-      caption: "",
-      captionClasses: "govuk-table__caption--m",
-      firstCellIsHeader: true,
-      head: [
-        {
-          text: "Item"
-        },
-        {
-          text: "Subject"
-        }
-      ],
-      rows: [
-        [
-          {
-            text: "Mentor"
-          },
-          {
-            text: "History"
-          }
-        ],
-        [
-          {
-            text: "Mentor"
-          },
-          {
-            text: "Geography"
-          }
-        ],
-                [
-          {
-            text: "Trainee"
-          },
-          {
-            text: "Mathematics"
-          }
-        ],
-        [
-          {
-            text: "Trainee"
-          },
-          {
-            text: "Physics"
-          }
-        ]
-      ]
-    }) }}
+    <form action="/data-report/surplus-question" method="post" accept-charset="utf-8" novalidate>
 
-    {{ govukButton({
-      text: "Continue",
-      href: "/data-report/surplus-question"
-    }) }}
+      {{ govukTable({
+        caption: "",
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Item"
+          },
+          {
+            text: "Subject"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "Mentor"
+            },
+            {
+              text: "History"
+            }
+          ],
+          [
+            {
+              text: "Mentor"
+            },
+            {
+              text: "Geography"
+            }
+          ],
+                  [
+            {
+              text: "Trainee"
+            },
+            {
+              text: "Mathematics"
+            }
+          ],
+          [
+            {
+              text: "Trainee"
+            },
+            {
+              text: "Physics"
+            }
+          ]
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
 
   </div>
 </div>

@@ -17,26 +17,33 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {{ govukCheckboxes({
-      idPrefix: "subject",
-      name: "filter[subject]",
-      fieldset: {
-        legend: {
-          text: "What subjects does this surplus apply to?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--l"
-        }
-      },
-      hint: {
-        text: "Select all that apply"
-      },
-      errorMessage: errors | getErrorMessage("subject"),
-      items: subjectOptions
-    }) }}
-    {{ govukButton({
-      text: "Continue",
-      href: "/data-report/surplus"
-    }) }}
+    <form action="/data-report/surplus" method="post" accept-charset="utf-8" novalidate>
+
+      {{ govukCheckboxes({
+        idPrefix: "subject",
+        name: "filter[subject]",
+        fieldset: {
+          legend: {
+            text: "What subjects does this surplus apply to?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Select all that apply"
+        },
+        items: subjectOptions
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
 
   </div>
 </div>

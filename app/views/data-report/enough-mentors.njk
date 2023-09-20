@@ -17,38 +17,46 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {{ govukRadios({
-      name: "enough-mentors",
-      fieldset: {
-        legend: {
-          text: "Do you have enough ITT Mentors in your network?",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--l"
-        }
-      },
-      items: [
-        {
-          value: "yes",
-          text: "Yes, we have enough"
+    <form action="/data-report" method="post" accept-charset="utf-8" novalidate>
+
+      {{ govukRadios({
+        name: "enough-mentors",
+        fieldset: {
+          legend: {
+            text: "Do you have enough ITT Mentors in your network?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+          }
         },
-        {
-          value: "need-more",
-          text: "We need more"
-        },
-        {
-          value: "spare-capacity",
-          text: "We have spare capacity"
-        },
-        {
-          value: "dontknow",
-          text: "Don't know"
-        }
-      ]
-    }) }}
-    {{ govukButton({
-      text: "Continue",
-      href: "/data-report/"
-    }) }}
+        items: [
+          {
+            value: "yes",
+            text: "Yes, we have enough"
+          },
+          {
+            value: "need-more",
+            text: "We need more"
+          },
+          {
+            value: "spare-capacity",
+            text: "We have spare capacity"
+          },
+          {
+            value: "dontknow",
+            text: "Don't know"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
 
   </div>
 </div>

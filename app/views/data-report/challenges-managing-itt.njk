@@ -17,67 +17,71 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {{ govukCheckboxes({
-      name: "ittmanagementchallenges",
-      fieldset: {
-        legend: {
-          text: "What are the biggest challenges for you in managing ITT?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--l"
-        }
-      },
-      hint: {
-        text: "Select all that apply."
-      },
-      items: [
-        {
-          value: "school-awareness",
-          text: "School awareness"
-        },
-        {
-          value: "funding",
-          text: "Funding"
-        },
-        {
-          value: "mentor-availability",
-          text: "Mentor availability"
-        },
-        {
-          value: "school-capacity",
-          text: "School capacity"
-        },
-        {
-          value: "ofsted-rating",
-          text: "OFSTED rating"
-        },
-        {
-          value: "geography",
-          text: "Geographic area"
-        },
-        {
-          value: "other",
-          text: "Other"
-        }
-      ]
-    }) }}
+    <form action="/data-report/reason-not-participate" method="post" accept-charset="utf-8" novalidate>
 
-    {{ govukTextarea({
-      name: "nonparticipation-other-detail",
-      id: "nonparticipation-other-detail",
-      label: {
-        text: "If you selected other please provide more detail",
-        classes: "govuk-label--m",
-        isPageHeading: false
-      },
-      hint: {
-        text: ""
-      }
-    }) }}
+      {{ govukCheckboxes({
+        name: "ittmanagementchallenges",
+        fieldset: {
+          legend: {
+            text: "What are the biggest challenges for you in managing ITT?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Select all that apply."
+        },
+        items: [
+          {
+            value: "school-awareness",
+            text: "School awareness"
+          },
+          {
+            value: "funding",
+            text: "Funding"
+          },
+          {
+            value: "mentor-availability",
+            text: "Mentor availability"
+          },
+          {
+            value: "school-capacity",
+            text: "School capacity"
+          },
+          {
+            value: "ofsted-rating",
+            text: "OFSTED rating"
+          },
+          {
+            value: "geography",
+            text: "Geographic area"
+          },
+          {
+            value: "other",
+            text: "Other"
+          }
+        ]
+      }) }}
 
-    {{ govukButton({
-      text: "Continue",
-      href: "/data-report/reason-not-participate"
-    }) }}
+      {{ govukTextarea({
+        name: "nonparticipation-other-detail",
+        id: "nonparticipation-other-detail",
+        label: {
+          text: "If you selected other please provide more detail",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
 
   </div>
 </div>
