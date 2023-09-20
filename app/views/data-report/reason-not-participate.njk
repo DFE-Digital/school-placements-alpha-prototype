@@ -20,7 +20,8 @@
     <form action="/data-report/confirmation" method="post" accept-charset="utf-8" novalidate>
 
       {{ govukCheckboxes({
-        name: "nonparticipation",
+        idPrefix: "datareport",
+        name: "datareport[nonParticipation][reasons]",
         fieldset: {
           legend: {
             text: "What are the biggest barriers to providing ITT placements for schools in your area?",
@@ -54,12 +55,23 @@
           },
           {
             value: "other",
-            text: "Other"
+            text: "Other",
+            conditional: {
+              html: govukTextarea({
+                name: "nonparticipation-other-detail",
+                id: "nonparticipation-other-detail",
+                label: {
+                  text: "Details",
+                  classes: "govuk-label--s",
+                  isPageHeading: false
+                }
+              })
+            }
           }
         ]
       }) }}
 
-      {{ govukTextarea({
+      {# {{ govukTextarea({
         name: "nonparticipation-other-detail",
         id: "nonparticipation-other-detail",
         label: {
@@ -67,7 +79,7 @@
           classes: "govuk-label--m",
           isPageHeading: false
         }
-      }) }}
+      }) }} #}
 
       {{ govukButton({
         text: "Continue"

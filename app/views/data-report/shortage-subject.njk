@@ -20,8 +20,8 @@
     <form action="/data-report/shortage" method="post" accept-charset="utf-8" novalidate>
 
       {{ govukCheckboxes({
-        idPrefix: "subject",
-        name: "filter[subject]",
+        idPrefix: "datareport",
+        name: "datareport[shortage][subjects]",
         fieldset: {
           legend: {
             text: title,

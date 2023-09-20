@@ -20,7 +20,8 @@
     <form action="/data-report/surplus-subject" method="post" accept-charset="utf-8" novalidate>
 
       {{ govukRadios({
-        name: "template-question",
+        idPrefix: "datareport",
+        name: "datareport[surplus][question]",
         fieldset: {
           legend: {
             text: "Do you have a surplus of any resources?",

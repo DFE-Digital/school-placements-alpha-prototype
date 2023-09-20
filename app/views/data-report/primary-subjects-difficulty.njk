@@ -20,8 +20,8 @@
     <form action="/data-report/secondary-subjects-difficulty" method="post" accept-charset="utf-8" novalidate>
 
     {{ govukCheckboxes({
-      idPrefix: "subject",
-      name: "filter[subject]",
+      idPrefix: "datareport",
+        name: "datareport[difficulty][primarySubjects]",
       fieldset: {
         legend: {
           text: "Which Primary subjects are hard to find placements for?",

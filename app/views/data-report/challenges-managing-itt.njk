@@ -20,7 +20,8 @@
     <form action="/data-report/reason-not-participate" method="post" accept-charset="utf-8" novalidate>
 
       {{ govukCheckboxes({
-        name: "ittmanagementchallenges",
+        idPrefix: "datareport",
+        name: "datareport[challenges][reasons]",
         fieldset: {
           legend: {
             text: "What are the biggest challenges for you in managing ITT?",
@@ -58,20 +59,31 @@
           },
           {
             value: "other",
-            text: "Other"
+            text: "Other",
+            conditional: {
+              html: govukTextarea({
+                name: "challenges-other-detail",
+                id: "challenges-other-detail",
+                label: {
+                  text: "Details",
+                  classes: "govuk-label--s",
+                  isPageHeading: false
+                }
+              })
+            }
           }
         ]
       }) }}
 
-      {{ govukTextarea({
-        name: "nonparticipation-other-detail",
-        id: "nonparticipation-other-detail",
+      {# {{ govukTextarea({
+        name: "challenges-other-detail",
+        id: "challenges-other-detail",
         label: {
           text: "If you selected other please provide more detail",
           classes: "govuk-label--m",
           isPageHeading: false
         }
-      }) }}
+      }) }} #}
 
       {{ govukButton({
         text: "Continue"
