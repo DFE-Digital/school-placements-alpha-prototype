@@ -1,31 +1,31 @@
 const subjectHelper = require('../helpers/subjects')
 
-exports.datareport_get = (req, res) => {
+exports.data_report_get = (req, res) => {
   res.render('data-report/index')
 }
 
-exports.reasonnotparticipate_get = (req, res) => {
-  res.render('data-report/reasonnotparticipate')
+exports.reason_not_participate_get = (req, res) => {
+  res.render('data-report/reason-not-participate')
 }
 
-exports.challengesmanagingitt_get = (req, res) => {
-  res.render('data-report/challengesmanagingitt')
+exports.challenges_managing_itt_get = (req, res) => {
+  res.render('data-report/challenges-managing-itt')
 }
 
-exports.enoughmentors_get = (req, res) => {
-  res.render('data-report/enoughmentors')
+exports.enough_mentors_get = (req, res) => {
+  res.render('data-report/enough-mentors')
 }
 
-exports.secondarysubjectsdifficulty_get = (req, res) => {
+exports.secondary_subjects_difficulty_get = (req, res) => {
   const subjectOptions = subjectHelper.getSubjectOptions('secondary')
-  res.render('data-report/secondarysubjectsdifficulty', {
+  res.render('data-report/secondary-subjects-difficulty', {
     subjectOptions
   })
 }
 
-exports.primarysubjectsdifficulty_get = (req, res) => {
+exports.primary_subjects_difficulty_get = (req, res) => {
   const subjectOptions = subjectHelper.getSubjectOptions('primary')
-  res.render('data-report/primarysubjectsdifficulty', {
+  res.render('data-report/primary-subjects-difficulty', {
     subjectOptions
   })
 }
@@ -34,13 +34,13 @@ exports.surplus_get = (req, res) => {
   res.render('data-report/surplus')
 }
 
-exports.surplusquestion_get = (req, res) => {
-  res.render('data-report/surplusquestion')
+exports.surplus_question_get = (req, res) => {
+  res.render('data-report/surplus-question')
 }
 
-exports.surplussubject_get = (req, res) => {
+exports.surplus_subject_get = (req, res) => {
   const subjectOptions = subjectHelper.getSubjectOptions('secondary')
-  res.render('data-report/surplussubject', {
+  res.render('data-report/surplus-subject', {
     subjectOptions
 })
 }
@@ -49,17 +49,17 @@ exports.shortage_get = (req, res) => {
   res.render('data-report/shortage')
 }
 
-exports.shortagequestion_get = (req, res) => {
-  res.render('data-report/shortagequestion')
+exports.shortage_question_get = (req, res) => {
+  res.render('data-report/shortage-question')
 }
 
-exports.shortagesubject_get = (req, res) => {
+exports.shortage_subject_get = (req, res) => {
   const subjectOptions = subjectHelper.getSubjectOptions('secondary')
-  res.render('data-report/shortagesubject', {
+  res.render('data-report/shortage-subject', {
     subjectOptions
   })
 }
 
-exports.endreport_get = (req, res) => {
+exports.confirmation_get = (req, res) => {
   res.render('data-report/confirmation')
 }
