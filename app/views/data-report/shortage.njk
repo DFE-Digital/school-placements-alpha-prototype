@@ -3,10 +3,8 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{#-----PAGE TITLE-----#}
-{% set pageTitle = "Shortage" %}
+{% set title = "You told us that you have the following shortage" %}
 
-{#-----BACK LINK-----#}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -14,27 +12,13 @@
   }) }}
 {% endblock %}
 
-{#-----MAIN CONTENT BELOW-----#}
 {% block content %}
 
-{#-----CREATE GRID TO HOLD OUR CONTENT IN 2/3 OF THE PAGE-----#}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {#-----HEADER TEXT-----#}
-    <h1 class="govuk-heading-xl">
-      You told us that you have the following shortage
-    </h1>
+    {% include "_includes/page-heading.njk" %}
 
-    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----
-    <p class="govuk-body">
-    Please check the details in the table below and if anything isn't correct you can go back and change it. If you're happy with what you've told us, click Continue.
-    </p>
-    #}
-
-
-
-    {#-----TABLE COMPONENT-----#}
     {{ govukTable({
       caption: "",
       captionClasses: "govuk-table__caption--m",
@@ -83,7 +67,6 @@
       ]
     }) }}
 
-    {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Continue",
       href: "/data-report/surplusquestion"

@@ -3,10 +3,8 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{#-----PAGE TITLE-----#}
 {% set pageTitle = "Question Title" %}
 
-{#-----BACK LINK-----#}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -14,28 +12,11 @@
   }) }}
 {% endblock %}
 
-{#-----MAIN CONTENT BELOW-----#}
 {% block content %}
 
-{#-----CREATE GRID TO HOLD OUR CONTENT IN 2/3 OF THE PAGE-----#}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {#-----HEADER TEXT-----
-    <h1 class="govuk-heading-xl">
-      Question Title
-    </h1>
-    #}
-
-    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----
-    <p class="govuk-body">
-    What is preventing schools in your area from taking part in ITT?
-    </p>
-    #}
-
-
-
-    {#-----CHECKBOXES OF REASONS FOR NON PARTICIPATION-----#}
     {{ govukCheckboxes({
       name: "nonparticipation",
       fieldset: {
@@ -76,9 +57,6 @@
       ]
     }) }}
 
-
-
-    {#-----TEXTAREA IF OTHER SELECTED-----#}
     {{ govukTextarea({
       name: "nonparticipation-other-detail",
       id: "nonparticipation-other-detail",
@@ -86,13 +64,9 @@
         text: "If you selected other please provide more detail",
         classes: "govuk-label--m",
         isPageHeading: false
-      },
-      hint: {
-        text: ""
       }
     }) }}
 
-    {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Continue",
       href: "/data-report/endreport"

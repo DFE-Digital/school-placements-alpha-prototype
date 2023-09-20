@@ -3,10 +3,8 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{#-----PAGE TITLE-----#}
-{% set pageTitle = "Question Title" %}
+{% set title = "Which Primary subjects are hard to find placements for?" %}
 
-{#-----BACK LINK-----#}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -14,30 +12,17 @@
   }) }}
 {% endblock %}
 
-{#-----MAIN CONTENT BELOW-----#}
 {% block content %}
 
-{#-----CREATE GRID TO HOLD OUR CONTENT IN 2/3 OF THE PAGE-----#}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {#-----HEADER TEXT-----#}
-    <h1 class="govuk-heading-xl">
-      Which Primary subjects are hard to find placements for?
-    </h1>
-
-    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
-    <p class="govuk-body">
-
-    </p>
-
-    {#-----CHECKBOXES COMPONENT-----#}
     {{ govukCheckboxes({
       idPrefix: "subject",
       name: "filter[subject]",
       fieldset: {
         legend: {
-          text: headingHtml,
+          text: "Which Primary subjects are hard to find placements for?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
@@ -48,8 +33,6 @@
       errorMessage: errors | getErrorMessage("subject"),
       items: subjectOptions
     }) }}
-
-    {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Continue",
       href: "/data-report/secondarysubjectsdifficulty"

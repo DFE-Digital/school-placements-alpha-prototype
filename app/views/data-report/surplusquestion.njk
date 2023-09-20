@@ -3,10 +3,8 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{#-----PAGE TITLE-----#}
-{% set pageTitle = "Question Title" %}
+{% set pageTitle = "Do you have a surplus of any resources?" %}
 
-{#-----BACK LINK-----#}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -14,32 +12,22 @@
   }) }}
 {% endblock %}
 
-{#-----MAIN CONTENT BELOW-----#}
 {% block content %}
 
-{#-----CREATE GRID TO HOLD OUR CONTENT IN 2/3 OF THE PAGE-----#}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {#-----HEADER TEXT-----#}
-    <h1 class="govuk-heading-xl">
-      Do you have a surplus of any resources?
-    </h1>
-
-    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
-    <p class="govuk-body">
-    For example too many history mentors.
-    </p>
-
-    {#-----RADIO CONTROL-----#}
     {{ govukRadios({
       name: "template-question",
       fieldset: {
         legend: {
-          text: "We have a surplus of",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--m"
+          text: "Do you have a surplus of any resources?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
         }
+      },
+      hint: {
+        text: "For example too many history mentors."
       },
       items: [
         {
@@ -57,7 +45,6 @@
       ]
     }) }}
 
-    {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Continue",
       href: "/data-report/surplussubject"

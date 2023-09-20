@@ -3,12 +3,8 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{#-----IMPORT FORM COMPONENTS WE NEED-----#}
-
-{#-----PAGE TITLE-----#}
 {% set pageTitle = "Question Title" %}
 
-{#-----BACK LINK-----#}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -16,34 +12,20 @@
   }) }}
 {% endblock %}
 
-{#-----MAIN CONTENT BELOW-----#}
 {% block content %}
 
-{#-----CREATE GRID TO HOLD OUR CONTENT IN 2/3 OF THE PAGE-----#}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
-    {#-----HEADER TEXT-----
-    <h1 class="govuk-heading-xl">
-      Thank you
-    </h1>
-    #}
-
-    {% from "govuk/components/panel/macro.njk" import govukPanel %}
 
     {{ govukPanel({
       titleText: "Thank you",
       html: "You have completed the survey"
     }) }}
 
-    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
     <p class="govuk-body">
-    We really appreciate your feedback in this voluntary data collection exercise and it will greately help DfE to understand the problems our partners are facing in ITT Placments and help inform policy decisions and provide better support for trainees, schools and providers.
+      We really appreciate your feedback in this voluntary data collection exercise and it will greately help DfE to understand the problems our partners are facing in ITT Placments and help inform policy decisions and provide better support for trainees, schools and providers.
     </p>
 
-
-
-    {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Back to start",
       href: "/data-report/"
