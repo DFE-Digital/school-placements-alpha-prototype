@@ -54,8 +54,7 @@ const organisationController = require('./controllers/organisations')
 const placementController = require('./controllers/placements')
 const resultsController = require('./controllers/results')
 const searchController = require('./controllers/search')
-const datareportController = require('./controllers/datareport')
-const problemreportController = require('./controllers/problemreport')
+const dataReportController = require('./controllers/data-report')
 const userController = require('./controllers/users')
 const guidanceController = require('./controllers/guidance')
 const contentController = require('./controllers/content')
@@ -331,31 +330,25 @@ router.get('/placements/:placementId', resultsController.show)
 /// ------------------------------------------------------------------------ ///
 /// DATA REPORT ROUTES
 /// ------------------------------------------------------------------------ ///
-router.get('/datareport', datareportController.datareport_get)
-router.get('/datareport/reasonnotparticipate', datareportController.reasonnotparticipate_get)
-router.get('/datareport/challengesmanagingitt', datareportController.challengesmanagingitt_get)
-router.get('/datareport/enoughmentors', datareportController.enoughmentors_get)
-router.get('/datareport/secondarysubjectsdifficulty', datareportController.secondarysubjectsdifficulty_get)
-router.get('/datareport/primarysubjectsdifficulty', datareportController.primarysubjectsdifficulty_get)
-router.get('/datareport/surplusquestion', datareportController.surplusquestion_get)
-router.get('/datareport/surplussubject', datareportController.surplussubject_get)
-router.get('/datareport/surplus', datareportController.surplus_get)
-router.get('/datareport/shortagequestion', datareportController.shortagequestion_get)
-router.get('/datareport/shortagesubject', datareportController.shortagesubject_get)
-router.get('/datareport/shortage', datareportController.shortage_get)
-router.get('/datareport/endreport', datareportController.endreport_get)
+router.get('/datareport', dataReportController.data_report_get)
 
-router.get('/datareport/template', datareportController.template_get)
+router.get('/data-report/shortage-question', dataReportController.shortage_question_get)
+router.get('/data-report/shortage-subject', dataReportController.shortage_subject_get)
+router.get('/data-report/shortage', dataReportController.shortage_get)
 
-/// ------------------------------------------------------------------------ ///
-/// REPORT PROBLEM ROUTES
-/// ------------------------------------------------------------------------ ///
-router.get('/problemreport', problemreportController.problemreport_get)
+router.get('/data-report/surplus-question', dataReportController.surplus_question_get)
+router.get('/data-report/surplus-subject', dataReportController.surplus_subject_get)
+router.get('/data-report/surplus', dataReportController.surplus_get)
 
+router.get('/data-report/primary-subjects-difficulty', dataReportController.primary_subjects_difficulty_get)
+router.get('/data-report/secondary-subjects-difficulty', dataReportController.secondary_subjects_difficulty_get)
 
-router.get('/', checkIsAuthenticated, (req, res) => {
-  res.render('index')
-})
+router.get('/data-report/challenges-managing-itt', dataReportController.challenges_managing_itt_get)
+router.get('/data-report/reason-not-participate', dataReportController.reason_not_participate_get)
+
+router.get('/data-report/enough-mentors', dataReportController.enough_mentors_get)
+
+router.get('/data-report/confirmation', dataReportController.confirmation_get)
 
 /// ------------------------------------------------------------------------ ///
 /// USER ROUTES
@@ -399,6 +392,10 @@ router.get('/cookies', contentController.cookies)
 router.get('/privacy', contentController.privacy)
 
 router.get('/terms', contentController.terms)
+
+router.get('/', checkIsAuthenticated, (req, res) => {
+  res.render('index')
+})
 
 /// ------------------------------------------------------------------------ ///
 /// DATA ROUTES

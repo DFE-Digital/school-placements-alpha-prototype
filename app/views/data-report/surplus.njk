@@ -1,0 +1,86 @@
+{% extends "layouts/main.njk" %}
+
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
+
+{% set title = "You told us that you have the following surpluses" %}
+{# {% set caption = "Surpluses" %} #}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/data-report/surplus-subject"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% include "_includes/page-heading.njk" %}
+
+    <form action="/data-report/primary-subjects-difficulty" method="post" accept-charset="utf-8" novalidate>
+
+      {{ govukTable({
+        caption: "Surpluses",
+        captionClasses: "govuk-visually-hidden",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Item"
+          },
+          {
+            text: "Subject"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "Mentor"
+            },
+            {
+              text: "History"
+            }
+          ],
+          [
+            {
+              text: "Mentor"
+            },
+            {
+              text: "Geography"
+            }
+          ],
+          [
+            {
+              text: "Trainee"
+            },
+            {
+              text: "Mathematics"
+            }
+          ],
+          [
+            {
+              text: "Trainee"
+            },
+            {
+              text: "Physics"
+            }
+          ]
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

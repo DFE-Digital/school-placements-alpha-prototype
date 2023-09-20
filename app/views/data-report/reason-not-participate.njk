@@ -1,0 +1,91 @@
+{% extends "layouts/main.njk" %}
+
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
+
+{% set title = "What are the biggest barriers to providing ITT placements for schools in your area?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/data-report/challenges-managing-itt"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% set headingHtml %}
+      {% include "_includes/page-heading-legend.njk" %}
+    {% endset %}
+
+    <form action="/data-report/confirmation" method="post" accept-charset="utf-8" novalidate>
+
+      {{ govukCheckboxes({
+        idPrefix: "datareport-barriers",
+        name: "datareport[barriers][reasons]",
+        fieldset: {
+          legend: {
+            html: headingHtml,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Select all that apply"
+        },
+        items: [
+          {
+            value: "funding",
+            text: "Funding"
+          },
+          {
+            value: "mentor-availability",
+            text: "Mentor availability"
+          },
+          {
+            value: "school-capacity",
+            text: "School capacity"
+          },
+          {
+            value: "ofsted-rating",
+            text: "OFSTED rating"
+          },
+          {
+            value: "geography",
+            text: "Geographic area"
+          },
+          {
+            value: "other",
+            text: "Other",
+            conditional: {
+              html: govukTextarea({
+                name: "datareport[barriers][other]",
+                id: "datareport-barriers-other",
+                label: {
+                  text: "Details",
+                  classes: "govuk-label--s",
+                  isPageHeading: false
+                }
+              })
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

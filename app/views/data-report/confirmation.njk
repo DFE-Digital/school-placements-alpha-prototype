@@ -1,0 +1,37 @@
+{% extends "layouts/main.njk" %}
+
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
+
+{% set title = "Thank you for completing the survey" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/data-report/reason-not-participate"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukPanel({
+      titleText: "Thank you",
+      html: "You have completed the survey"
+    }) }}
+
+    <p class="govuk-body">
+      We appreciate your feedback in this voluntary data collection exercise, and it will help DfE to understand the problems our partners are facing in ITT placements, help inform policy decisions and provide better support for trainees, schools and providers.
+    </p>
+
+    {{ govukButton({
+      text: "Back to start",
+      href: "/data-report/"
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}
