@@ -1,0 +1,64 @@
+{% extends "layouts/main.njk" %}
+
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
+
+{% set title = "Do you have a surplus of any resources?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/data-report/shortage"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/data-report/surplus-subject" method="post" accept-charset="utf-8" novalidate>
+
+      {{ govukRadios({
+        idPrefix: "datareport",
+        name: "datareport[surplus][question]",
+        fieldset: {
+          legend: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "For example, too many mentors"
+        },
+        items: [
+          {
+            value: "trainees",
+            text: "Trainees"
+          },
+          {
+            value: "mentors",
+            text: "Mentors"
+          },
+          {
+            value: "none",
+            text: "None"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "layouts/main.njk" %}
+
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
+
+{% set title = "What are the biggest challenges for you in managing ITT?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/data-report/secondary-subjects-difficulty"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% set headingHtml %}
+      {% include "_includes/page-heading-legend.njk" %}
+    {% endset %}
+
+    <form action="/data-report/reason-not-participate" method="post" accept-charset="utf-8" novalidate>
+
+      {{ govukCheckboxes({
+        idPrefix: "datareport-challenges",
+        name: "datareport[challenges][reasons]",
+        fieldset: {
+          legend: {
+            html: headingHtml,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Select all that apply"
+        },
+        items: [
+          {
+            value: "school-awareness",
+            text: "School awareness"
+          },
+          {
+            value: "funding",
+            text: "Funding"
+          },
+          {
+            value: "mentor-availability",
+            text: "Mentor availability"
+          },
+          {
+            value: "school-capacity",
+            text: "School capacity"
+          },
+          {
+            value: "ofsted-rating",
+            text: "OFSTED rating"
+          },
+          {
+            value: "geography",
+            text: "Geographic area"
+          },
+          {
+            value: "other",
+            text: "Other",
+            conditional: {
+              html: govukTextarea({
+                name: "datareport[challenges][other]",
+                id: "datareport-challenges-other",
+                label: {
+                  text: "Details",
+                  classes: "govuk-label--s",
+                  isPageHeading: false
+                }
+              })
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/data-report">Cancel</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

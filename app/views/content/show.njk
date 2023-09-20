@@ -1,0 +1,45 @@
+{% extends "layouts/main.njk" %}
+
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
+
+{% set title = contentData.title %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    }, {
+      text: title
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "_includes/page-heading.njk" %}
+
+      {% if contentData.contents.items and contentData.contents.items.length %}
+        <h2 class="govuk-heading-s">Contents</h2>
+
+        <ul class="govuk-list app-list--dash course-contents govuk-!-margin-bottom-8">
+          {% for item in contentData.contents.items %}
+            <li><a class="govuk-link" href="{{ item.href }}">{{ item.text }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <div class="app-markdown">
+        {{ content | markdownToHtml | safe }}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
