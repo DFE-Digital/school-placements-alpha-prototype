@@ -54,8 +54,7 @@ const organisationController = require('./controllers/organisations')
 const placementController = require('./controllers/placements')
 const resultsController = require('./controllers/results')
 const searchController = require('./controllers/search')
-const datareportController = require('./controllers/datareport')
-const problemreportController = require('./controllers/problemreport')
+const dataReportController = require('./controllers/data-report')
 const userController = require('./controllers/users')
 const guidanceController = require('./controllers/guidance')
 const contentController = require('./controllers/content')
@@ -331,31 +330,21 @@ router.get('/placements/:placementId', resultsController.show)
 /// ------------------------------------------------------------------------ ///
 /// DATA REPORT ROUTES
 /// ------------------------------------------------------------------------ ///
-router.get('/datareport', datareportController.datareport_get)
-router.get('/datareport/reasonnotparticipate', datareportController.reasonnotparticipate_get)
-router.get('/datareport/challengesmanagingitt', datareportController.challengesmanagingitt_get)
-router.get('/datareport/enoughmentors', datareportController.enoughmentors_get)
-router.get('/datareport/secondarysubjectsdifficulty', datareportController.secondarysubjectsdifficulty_get)
-router.get('/datareport/primarysubjectsdifficulty', datareportController.primarysubjectsdifficulty_get)
-router.get('/datareport/surplusquestion', datareportController.surplusquestion_get)
-router.get('/datareport/surplussubject', datareportController.surplussubject_get)
-router.get('/datareport/surplus', datareportController.surplus_get)
-router.get('/datareport/shortagequestion', datareportController.shortagequestion_get)
-router.get('/datareport/shortagesubject', datareportController.shortagesubject_get)
-router.get('/datareport/shortage', datareportController.shortage_get)
-router.get('/datareport/endreport', datareportController.endreport_get)
+router.get('/datareport', dataReportController.datareport_get)
+router.get('/data-report/reasonnotparticipate', dataReportController.reasonnotparticipate_get)
+router.get('/data-report/challengesmanagingitt', dataReportController.challengesmanagingitt_get)
+router.get('/data-report/enoughmentors', dataReportController.enoughmentors_get)
+router.get('/data-report/secondarysubjectsdifficulty', dataReportController.secondarysubjectsdifficulty_get)
+router.get('/data-report/primarysubjectsdifficulty', dataReportController.primarysubjectsdifficulty_get)
+router.get('/data-report/surplusquestion', dataReportController.surplusquestion_get)
+router.get('/data-report/surplussubject', dataReportController.surplussubject_get)
+router.get('/data-report/surplus', dataReportController.surplus_get)
+router.get('/data-report/shortagequestion', dataReportController.shortagequestion_get)
+router.get('/data-report/shortagesubject', dataReportController.shortagesubject_get)
+router.get('/data-report/shortage', dataReportController.shortage_get)
+router.get('/data-report/endreport', dataReportController.endreport_get)
 
-router.get('/datareport/template', datareportController.template_get)
-
-/// ------------------------------------------------------------------------ ///
-/// REPORT PROBLEM ROUTES
-/// ------------------------------------------------------------------------ ///
-router.get('/problemreport', problemreportController.problemreport_get)
-
-
-router.get('/', checkIsAuthenticated, (req, res) => {
-  res.render('index')
-})
+router.get('/data-report/template', dataReportController.template_get)
 
 /// ------------------------------------------------------------------------ ///
 /// USER ROUTES
@@ -399,6 +388,10 @@ router.get('/cookies', contentController.cookies)
 router.get('/privacy', contentController.privacy)
 
 router.get('/terms', contentController.terms)
+
+router.get('/', checkIsAuthenticated, (req, res) => {
+  res.render('index')
+})
 
 /// ------------------------------------------------------------------------ ///
 /// DATA ROUTES
