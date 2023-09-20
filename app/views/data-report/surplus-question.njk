@@ -3,7 +3,7 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{% set pageTitle = "Do you have a surplus of any resources?" %}
+{% set title = "Do you have a surplus of any resources?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -24,13 +24,13 @@
         name: "datareport[surplus][question]",
         fieldset: {
           legend: {
-            text: "Do you have a surplus of any resources?",
+            text: title,
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
         hint: {
-          text: "For example too many history mentors."
+          text: "For example, too many mentors"
         },
         items: [
           {

@@ -3,7 +3,7 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{% set pageTitle = "Question Title" %}
+{% set title = "Do you have enough ITT Mentors in your network?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -23,7 +23,7 @@
         name: "enough-mentors",
         fieldset: {
           legend: {
-            text: "Do you have enough ITT Mentors in your network?",
+            text: title,
             isPageHeading: false,
             classes: "govuk-fieldset__legend--l"
           }

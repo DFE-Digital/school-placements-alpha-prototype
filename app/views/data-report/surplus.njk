@@ -3,7 +3,8 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{% set title = "You told us that you have the following surplus" %}
+{% set title = "You told us that you have the following surpluses" %}
+{# {% set caption = "Surpluses" %} #}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -23,7 +24,7 @@
 
       {{ govukTable({
         caption: "Surpluses",
-        captionClasses: "govuk-table__caption--m",
+        captionClasses: "govuk-visually-hidden",
         firstCellIsHeader: true,
         head: [
           {

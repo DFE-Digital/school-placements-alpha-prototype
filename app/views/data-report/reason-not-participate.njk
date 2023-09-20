@@ -3,7 +3,7 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{% set pageTitle = "Question Title" %}
+{% set title = "What are the biggest barriers to providing ITT placements for schools in your area?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -17,6 +17,10 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    {% set headingHtml %}
+      {% include "_includes/page-heading-legend.njk" %}
+    {% endset %}
+
     <form action="/data-report/confirmation" method="post" accept-charset="utf-8" novalidate>
 
       {{ govukCheckboxes({
@@ -24,13 +28,13 @@
         name: "datareport[barriers][reasons]",
         fieldset: {
           legend: {
-            text: "What are the biggest barriers to providing ITT placements for schools in your area?",
+            html: headingHtml,
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
         hint: {
-          text: "Select all that apply."
+          text: "Select all that apply"
         },
         items: [
           {

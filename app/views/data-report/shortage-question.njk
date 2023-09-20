@@ -17,12 +17,6 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include "_includes/page-heading.njk" %}
-
-    <p class="govuk-hint">
-      For example too many history teachers, or not enough physics mentors.
-    </p>
-
     <form action="/data-report/shortage-subject" method="post" accept-charset="utf-8" novalidate>
 
       {{ govukRadios({
@@ -30,10 +24,13 @@
         name: "datareport[shortage][question]",
         fieldset: {
           legend: {
-            text: "We have a shortage of",
+            text: title,
             isPageHeading: false,
             classes: "govuk-fieldset__legend--m"
           }
+        },
+        hint: {
+          text: "For example, too few trainees"
         },
         items: [
           {

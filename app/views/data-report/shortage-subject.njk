@@ -4,6 +4,7 @@
 {% set hideOrganisationSwitcher = true %}
 
 {% set title = "What subjects does this shortage apply to?" %}
+{# {% set caption = "Shortages" %} #}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -17,14 +18,18 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    {% set headingHtml %}
+      {% include "_includes/page-heading-legend.njk" %}
+    {% endset %}
+
     <form action="/data-report/shortage" method="post" accept-charset="utf-8" novalidate>
 
       {{ govukCheckboxes({
         idPrefix: "datareport",
-        name: "datareport[shortage][subjects]",
+        name: "datareport[shortage][subjects][]",
         fieldset: {
           legend: {
-            text: title,
+            html: headingHtml,
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
