@@ -344,8 +344,6 @@ router.get('/data-report/shortagesubject', dataReportController.shortagesubject_
 router.get('/data-report/shortage', dataReportController.shortage_get)
 router.get('/data-report/endreport', dataReportController.endreport_get)
 
-router.get('/data-report/template', dataReportController.template_get)
-
 /// ------------------------------------------------------------------------ ///
 /// USER ROUTES
 /// ------------------------------------------------------------------------ ///

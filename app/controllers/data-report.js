@@ -61,9 +61,5 @@ exports.shortagesubject_get = (req, res) => {
 }
 
 exports.endreport_get = (req, res) => {
-  res.render('data-report/endreport')
-}
-
-exports.template_get = (req, res) => {
-  res.render('data-report/template')
+  res.render('data-report/confirmation')
 }
