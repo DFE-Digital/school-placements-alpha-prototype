@@ -331,17 +331,23 @@ router.get('/placements/:placementId', resultsController.show)
 /// DATA REPORT ROUTES
 /// ------------------------------------------------------------------------ ///
 router.get('/datareport', dataReportController.data_report_get)
-router.get('/data-report/reason-not-participate', dataReportController.reason_not_participate_get)
-router.get('/data-report/challenges-managing-itt', dataReportController.challenges_managing_itt_get)
-router.get('/data-report/enough-mentors', dataReportController.enough_mentors_get)
-router.get('/data-report/secondary-subjects-difficulty', dataReportController.secondary_subjects_difficulty_get)
-router.get('/data-report/primary-subjects-difficulty', dataReportController.primary_subjects_difficulty_get)
-router.get('/data-report/surplus-question', dataReportController.surplus_question_get)
-router.get('/data-report/surplus-subject', dataReportController.surplus_subject_get)
-router.get('/data-report/surplus', dataReportController.surplus_get)
+
 router.get('/data-report/shortage-question', dataReportController.shortage_question_get)
 router.get('/data-report/shortage-subject', dataReportController.shortage_subject_get)
 router.get('/data-report/shortage', dataReportController.shortage_get)
+
+router.get('/data-report/surplus-question', dataReportController.surplus_question_get)
+router.get('/data-report/surplus-subject', dataReportController.surplus_subject_get)
+router.get('/data-report/surplus', dataReportController.surplus_get)
+
+router.get('/data-report/primary-subjects-difficulty', dataReportController.primary_subjects_difficulty_get)
+router.get('/data-report/secondary-subjects-difficulty', dataReportController.secondary_subjects_difficulty_get)
+
+router.get('/data-report/challenges-managing-itt', dataReportController.challenges_managing_itt_get)
+router.get('/data-report/reason-not-participate', dataReportController.reason_not_participate_get)
+
+router.get('/data-report/enough-mentors', dataReportController.enough_mentors_get)
+
 router.get('/data-report/confirmation', dataReportController.confirmation_get)
 
 /// ------------------------------------------------------------------------ ///
