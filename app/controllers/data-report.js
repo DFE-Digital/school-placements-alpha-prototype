@@ -1,6 +1,7 @@
 const subjectHelper = require('../helpers/subjects')
 
 exports.data_report_get = (req, res) => {
+  delete req.session.data.datareport
   res.render('data-report/index')
 }
 
@@ -61,5 +62,6 @@ exports.shortage_subject_get = (req, res) => {
 }
 
 exports.confirmation_get = (req, res) => {
+  delete req.session.data.datareport
   res.render('data-report/confirmation')
 }
