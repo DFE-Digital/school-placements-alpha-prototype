@@ -20,8 +20,8 @@
     <form action="/data-report/confirmation" method="post" accept-charset="utf-8" novalidate>
 
       {{ govukCheckboxes({
-        idPrefix: "datareport",
-        name: "datareport[nonParticipation][reasons]",
+        idPrefix: "datareport-barriers",
+        name: "datareport[barriers][reasons]",
         fieldset: {
           legend: {
             text: "What are the biggest barriers to providing ITT placements for schools in your area?",
@@ -58,8 +58,8 @@
             text: "Other",
             conditional: {
               html: govukTextarea({
-                name: "nonparticipation-other-detail",
-                id: "nonparticipation-other-detail",
+                name: "datareport[barriers][other]",
+                id: "datareport-barriers-other",
                 label: {
                   text: "Details",
                   classes: "govuk-label--s",
@@ -70,16 +70,6 @@
           }
         ]
       }) }}
-
-      {# {{ govukTextarea({
-        name: "nonparticipation-other-detail",
-        id: "nonparticipation-other-detail",
-        label: {
-          text: "If you selected other please provide more detail",
-          classes: "govuk-label--m",
-          isPageHeading: false
-        }
-      }) }} #}
 
       {{ govukButton({
         text: "Continue"

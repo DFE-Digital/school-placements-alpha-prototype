@@ -19,25 +19,25 @@
 
     <form action="/data-report/secondary-subjects-difficulty" method="post" accept-charset="utf-8" novalidate>
 
-    {{ govukCheckboxes({
-      idPrefix: "datareport",
-        name: "datareport[difficulty][primarySubjects]",
-      fieldset: {
-        legend: {
-          text: "Which Primary subjects are hard to find placements for?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--l"
-        }
-      },
-      hint: {
-        text: "Select all that apply"
-      },
-      items: subjectOptions
-    }) }}
-    {{ govukButton({
-      text: "Continue",
-      href: "/data-report/secondary-subjects-difficulty"
-    }) }}
+      {{ govukCheckboxes({
+        idPrefix: "datareport",
+          name: "datareport[difficulty][primarySubjects]",
+        fieldset: {
+          legend: {
+            text: "Which Primary subjects are hard to find placements for?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Select all that apply"
+        },
+        items: subjectOptions
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
 
     </form>
 

@@ -20,7 +20,7 @@
     <form action="/data-report/reason-not-participate" method="post" accept-charset="utf-8" novalidate>
 
       {{ govukCheckboxes({
-        idPrefix: "datareport",
+        idPrefix: "datareport-challenges",
         name: "datareport[challenges][reasons]",
         fieldset: {
           legend: {
@@ -62,8 +62,8 @@
             text: "Other",
             conditional: {
               html: govukTextarea({
-                name: "challenges-other-detail",
-                id: "challenges-other-detail",
+                name: "datareport[challenges][other]",
+                id: "datareport-challenges-other",
                 label: {
                   text: "Details",
                   classes: "govuk-label--s",
@@ -74,16 +74,6 @@
           }
         ]
       }) }}
-
-      {# {{ govukTextarea({
-        name: "challenges-other-detail",
-        id: "challenges-other-detail",
-        label: {
-          text: "If you selected other please provide more detail",
-          classes: "govuk-label--m",
-          isPageHeading: false
-        }
-      }) }} #}
 
       {{ govukButton({
         text: "Continue"
