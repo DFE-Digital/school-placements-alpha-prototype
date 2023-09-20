@@ -1,12 +1,10 @@
 {% extends "layouts/main.njk" %}
 
-{#-----IMPORT FORM COMPONENTS WE NEED-----#}
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
 
-{#-----PAGE TITLE-----#}
-{% set pageTitle = "Shortage" %}
+{% set title = "Do you have a shortage of any resources?" %}
 
-{#-----BACK LINK-----#}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -14,24 +12,17 @@
   }) }}
 {% endblock %}
 
-{#-----MAIN CONTENT BELOW-----#}
 {% block content %}
 
-{#-----CREATE GRID TO HOLD OUR CONTENT IN 2/3 OF THE PAGE-----#}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {#-----HEADER TEXT-----#}
-    <h1 class="govuk-heading-xl">
-      Do you have a shortage of any resources?
-    </h1>
+    {% include "_includes/page-heading.njk" %}
 
-    {#-----EXPLANATORY TEXT FOR OUR QUESTION-----#}
-    <p class="govuk-body">
-    For example too many history teachers, or not enough physics mentors.
+    <p class="govuk-hint">
+      For example too many history teachers, or not enough physics mentors.
     </p>
 
-    {#-----RADIO CONTROL-----#}
     {{ govukRadios({
       name: "template-question",
       fieldset: {
@@ -57,7 +48,6 @@
       ]
     }) }}
 
-    {#-----CONTINUE BUTTON-----#}
     {{ govukButton({
       text: "Continue",
       href: "/data-report/shortagesubject"

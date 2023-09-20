@@ -1,8 +1,7 @@
 {% extends "layouts/main.njk" %}
 
-{#-----IMPORT FORM COMPONENTS YOU NEED-----#}
-{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
-{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
 
 {#-----PAGE TITLE-----#}
 {% set pageTitle = "Question Title" %}
