@@ -278,6 +278,51 @@ router.get('/organisations/:organisationId/mentors', checkIsAuthenticated, mento
 
 router.get('/organisations/:organisationId/show', checkIsAuthenticated, organisationController.show_organisation_get)
 
+router.get('/organisations/:organisationId/establishment-group', checkIsAuthenticated, organisationController.edit_establishment_group_get)
+router.post('/organisations/:organisationId/establishment-group', checkIsAuthenticated, organisationController.edit_establishment_group_post)
+
+router.get('/organisations/:organisationId/establishment-type', checkIsAuthenticated, organisationController.edit_establishment_type_get)
+router.post('/organisations/:organisationId/establishment-type', checkIsAuthenticated, organisationController.edit_establishment_type_post)
+
+router.get('/organisations/:organisationId/establishment-phase', checkIsAuthenticated, organisationController.edit_establishment_phase_get)
+router.post('/organisations/:organisationId/establishment-phase', checkIsAuthenticated, organisationController.edit_establishment_phase_post)
+
+router.get('/organisations/:organisationId/gender', checkIsAuthenticated, organisationController.edit_gender_get)
+router.post('/organisations/:organisationId/gender', checkIsAuthenticated, organisationController.edit_gender_post)
+
+router.get('/organisations/:organisationId/age', checkIsAuthenticated, organisationController.edit_age_get)
+router.post('/organisations/:organisationId/age', checkIsAuthenticated, organisationController.edit_age_post)
+
+router.get('/organisations/:organisationId/sixth-form', checkIsAuthenticated, organisationController.edit_sixth_form_get)
+router.post('/organisations/:organisationId/sixth-form', checkIsAuthenticated, organisationController.edit_sixth_form_post)
+
+router.get('/organisations/:organisationId/nursery-provision', checkIsAuthenticated, organisationController.edit_nursery_provision_get)
+router.post('/organisations/:organisationId/nursery-provision', checkIsAuthenticated, organisationController.edit_nursery_provision_post)
+
+router.get('/organisations/:organisationId/religious-character', checkIsAuthenticated, organisationController.edit_religious_character_get)
+router.post('/organisations/:organisationId/religious-character', checkIsAuthenticated, organisationController.edit_religious_character_post)
+
+router.get('/organisations/:organisationId/admissions-policy', checkIsAuthenticated, organisationController.edit_admissions_policy_get)
+router.post('/organisations/:organisationId/admissions-policy', checkIsAuthenticated, organisationController.edit_admissions_policy_post)
+
+router.get('/organisations/:organisationId/urban-rural', checkIsAuthenticated, organisationController.edit_urban_rural_get)
+router.post('/organisations/:organisationId/urban-rural', checkIsAuthenticated, organisationController.edit_urban_rural_post)
+
+router.get('/organisations/:organisationId/school-capacity', checkIsAuthenticated, organisationController.edit_school_capacity_get)
+router.post('/organisations/:organisationId/school-capacity', checkIsAuthenticated, organisationController.edit_school_capacity_post)
+
+router.get('/organisations/:organisationId/free-school-meals', checkIsAuthenticated, organisationController.edit_free_school_meals_get)
+router.post('/organisations/:organisationId/free-school-meals', checkIsAuthenticated, organisationController.edit_free_school_meals_post)
+
+router.get('/organisations/:organisationId/special-classes', checkIsAuthenticated, organisationController.edit_special_classes_get)
+router.post('/organisations/:organisationId/special-classes', checkIsAuthenticated, organisationController.edit_special_classes_post)
+
+router.get('/organisations/:organisationId/send-provision', checkIsAuthenticated, organisationController.edit_send_provision_get)
+router.post('/organisations/:organisationId/send-provision', checkIsAuthenticated, organisationController.edit_send_provision_post)
+
+router.get('/organisations/:organisationId/training-with-disabilities', checkIsAuthenticated, organisationController.edit_training_with_disabilities_get)
+router.post('/organisations/:organisationId/training-with-disabilities', checkIsAuthenticated, organisationController.edit_training_with_disabilities_post)
+
 router.get('/organisations/:organisationId', checkIsAuthenticated, organisationController.organisation)
 
 router.get('/organisations', checkIsAuthenticated, organisationController.list_organisations_get)
