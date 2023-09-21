@@ -3,7 +3,7 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{% set title = "Do you have a surplus of any resources?" %}
+{% set title = "Do you have a surplus of mentors or trainees?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -29,17 +29,14 @@
             classes: "govuk-fieldset__legend--l"
           }
         },
-        hint: {
-          text: "For example, too many mentors"
-        },
         items: [
-          {
-            value: "trainees",
-            text: "Trainees"
-          },
           {
             value: "mentors",
             text: "Mentors"
+          },
+          {
+            value: "trainees",
+            text: "Trainees"
           },
           {
             divider: "or"
