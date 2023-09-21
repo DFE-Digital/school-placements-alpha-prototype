@@ -88,12 +88,20 @@ exports.secondary_subjects_difficulty_get = (req, res) => {
 /// Barriers and challenges
 /// ------------------------------------------------------------------------ ///
 
+exports.challenges_managing_itt_get = (req, res) => {
+  res.render('data-report/challenges-managing-itt')
+}
+
 exports.reason_not_participate_get = (req, res) => {
   res.render('data-report/reason-not-participate')
 }
 
-exports.challenges_managing_itt_get = (req, res) => {
-  res.render('data-report/challenges-managing-itt')
+/// ------------------------------------------------------------------------ ///
+/// END
+/// ------------------------------------------------------------------------ ///
+
+exports.check_your_answers_get = (req, res) => {
+  res.render('data-report/check-your-answers')
 }
 
 /// ------------------------------------------------------------------------ ///
