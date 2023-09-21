@@ -297,3 +297,5 @@ addFilter('getSpecialClassesLabel', giasHelper.getSpecialClassesLabel)
 addFilter('getUrbanRuralLabel', giasHelper.getUrbanRuralLabel)
 
 addFilter('getOfstedRatingLabel', giasHelper.getOfstedRatingLabel)
+
+addFilter('getSENDProvisionLabel', giasHelper.getSENDProvisionLabel)
