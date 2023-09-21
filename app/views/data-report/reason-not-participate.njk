@@ -21,7 +21,7 @@
       {% include "_includes/page-heading-legend.njk" %}
     {% endset %}
 
-    <form action="/data-report/confirmation" method="post" accept-charset="utf-8" novalidate>
+    <form action="/data-report/check-your-answers" method="post" accept-charset="utf-8" novalidate>
 
       {{ govukCheckboxes({
         idPrefix: "datareport-barriers",
@@ -51,7 +51,7 @@
           },
           {
             value: "ofsted-rating",
-            text: "OFSTED rating"
+            text: "Ofsted rating"
           },
           {
             value: "geography",

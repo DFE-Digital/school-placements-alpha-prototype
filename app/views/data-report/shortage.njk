@@ -22,7 +22,46 @@
 
     <form action="/data-report/surplus-question" method="post" accept-charset="utf-8" novalidate>
 
-      {{ govukTable({
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Mentors"
+            },
+            value: {
+              html: "History<br>Geography"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "mentor shortages"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Trainees"
+            },
+            value: {
+              html: "Computing<br>Drama"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "trainee shortages"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {# {{ govukTable({
         caption: "Shortages",
         captionClasses: "govuk-visually-hidden",
         firstCellIsHeader: true,
@@ -68,7 +107,7 @@
             }
           ]
         ]
-      }) }}
+      }) }} #}
 
       {{ govukButton({
         text: "Continue"
