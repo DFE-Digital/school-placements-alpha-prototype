@@ -22,7 +22,46 @@
 
     <form action="/data-report/primary-subjects-difficulty" method="post" accept-charset="utf-8" novalidate>
 
-      {{ govukTable({
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Mentors"
+            },
+            value: {
+              html: "English<br>Physical education"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "mentor shortages"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Trainees"
+            },
+            value: {
+              html: "Mathematics<br>Physics"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "trainee shortages"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {# {{ govukTable({
         caption: "Surpluses",
         captionClasses: "govuk-visually-hidden",
         firstCellIsHeader: true,
@@ -68,7 +107,7 @@
             }
           ]
         ]
-      }) }}
+      }) }} #}
 
       {{ govukButton({
         text: "Continue"

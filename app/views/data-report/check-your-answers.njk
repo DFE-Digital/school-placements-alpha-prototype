@@ -1,0 +1,202 @@
+{% extends "layouts/main.njk" %}
+
+{% set hidePrimaryNavigation = true %}
+{% set hideOrganisationSwitcher = true %}
+
+{% set title = "Check your answers" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/data-report/reason-not-participate"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% include "_includes/page-heading.njk" %}
+
+    <h2 class="govuk-heading-m">
+      Shortage of mentors or trainees
+    </h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Mentors"
+          },
+          value: {
+            html: "History<br>Geography"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "mentor shortages"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Trainees"
+          },
+          value: {
+            html: "Computing<br>Drama"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "trainee shortages"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">
+      Surplus of mentors or trainees
+    </h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Mentors"
+          },
+          value: {
+            html: "English<br>Physical education"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "mentor shortages"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Trainees"
+          },
+          value: {
+            html: "Mathematics<br>Physics"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "trainee shortages"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">
+      Difficulties finding placements
+    </h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Primary subject specialisms"
+          },
+          value: {
+            text: "Not applicable"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "primary subject specialisms"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Secondary subjects"
+          },
+          value: {
+            html: "Japanese<br>Mandarin"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "secondary subjects"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">
+      Challenges to managing and barriers providing placements
+    </h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Challenges to managing placements"
+          },
+          value: {
+            html: "School capacity<br>Geographic area"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "challenges to managing placements"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Barriers to providing placements"
+          },
+          value: {
+            html: "Funding<br>Mentor availability"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "barriers to providing placements"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Finish survey",
+      href: "/data-report/confirmation"
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}

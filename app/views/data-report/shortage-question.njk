@@ -3,7 +3,7 @@
 {% set hidePrimaryNavigation = true %}
 {% set hideOrganisationSwitcher = true %}
 
-{% set title = "Do you have a shortage of any resources?" %}
+{% set title = "Do you have a shortage of mentors or trainees?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -19,7 +19,7 @@
 
     <form action="/data-report/shortage-subject" method="post" accept-charset="utf-8" novalidate>
 
-      {{ govukRadios({
+      {{ govukCheckboxes({
         idPrefix: "datareport",
         name: "datareport[shortage][question]",
         fieldset: {
@@ -30,20 +30,24 @@
           }
         },
         hint: {
-          text: "For example, too few trainees"
+          text: "Select all that apply"
         },
         items: [
-          {
-            value: "trainees",
-            text: "Trainees"
-          },
           {
             value: "mentors",
             text: "Mentors"
           },
           {
+            value: "trainees",
+            text: "Trainees"
+          },
+          {
+            divider: "or"
+          },
+          {
             value: "none",
-            text: "None"
+            text: "None",
+            behaviour: "exclusive"
           }
         ]
       }) }}

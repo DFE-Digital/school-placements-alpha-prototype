@@ -346,7 +346,7 @@ router.get('/data-report/secondary-subjects-difficulty', dataReportController.se
 router.get('/data-report/challenges-managing-itt', dataReportController.challenges_managing_itt_get)
 router.get('/data-report/reason-not-participate', dataReportController.reason_not_participate_get)
 
-router.get('/data-report/enough-mentors', dataReportController.enough_mentors_get)
+// router.get('/data-report/enough-mentors', dataReportController.enough_mentors_get)
 
 router.get('/data-report/confirmation', dataReportController.confirmation_get)
 
