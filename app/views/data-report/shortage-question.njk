@@ -19,7 +19,7 @@
 
     <form action="/data-report/shortage-subject" method="post" accept-charset="utf-8" novalidate>
 
-      {{ govukRadios({
+      {{ govukCheckboxes({
         idPrefix: "datareport",
         name: "datareport[shortage][question]",
         fieldset: {
@@ -42,8 +42,12 @@
             text: "Mentors"
           },
           {
+            divider: "or"
+          },
+          {
             value: "none",
-            text: "None"
+            text: "None",
+            behaviour: "exclusive"
           }
         ]
       }) }}
