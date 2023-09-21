@@ -12,6 +12,7 @@ const mentorHelper = require('./helpers/mentors')
 const organisationHelper = require('./helpers/organisations')
 const subjectHelper = require('./helpers/subjects')
 const qualificationHelper = require('./helpers/qualifications')
+const giasHelper = require('./helpers/gias')
 
 /* ------------------------------------------------------------------
   numeral filter for use in Nunjucks
@@ -268,3 +269,31 @@ addFilter('getGuidanceSectionLabel', (section) => {
 
   return label
 })
+
+
+/* ------------------------------------------------------------------
+GIAS utility functions
+------------------------------------------------------------------ */
+addFilter('getEstablishmentTypeLabel', giasHelper.getEstablishmentTypeLabel)
+
+addFilter('getEstablishmentGroupLabel', giasHelper.getEstablishmentGroupLabel)
+
+addFilter('getEstablishmentStatusLabel', giasHelper.getEstablishmentStatusLabel)
+
+addFilter('getEstablishmentPhaseLabel', giasHelper.getEstablishmentPhaseLabel)
+
+addFilter('getGenderLabel', giasHelper.getGenderLabel)
+
+addFilter('getOfficialSixthFormLabel', giasHelper.getOfficialSixthFormLabel)
+
+addFilter('getNurseryProvisionLabel', giasHelper.getNurseryProvisionLabel)
+
+addFilter('getReligiousCharacterLabel', giasHelper.getReligiousCharacterLabel)
+
+addFilter('getAdmissionsPolicyLabel', giasHelper.getAdmissionsPolicyLabel)
+
+addFilter('getSpecialClassesLabel', giasHelper.getSpecialClassesLabel)
+
+addFilter('getUrbanRuralLabel', giasHelper.getUrbanRuralLabel)
+
+addFilter('getOfstedRatingLabel', giasHelper.getOfstedRatingLabel)
