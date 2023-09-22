@@ -61,6 +61,10 @@ exports.updateOne = (params) => {
       organisation.send = params.organisation.send
     }
 
+    if (params.organisation.specialClasses !== undefined) {
+      organisation.specialClasses = params.organisation.specialClasses
+    }
+
     organisation.updatedAt = new Date()
 
     const filePath = directoryPath + '/' + params.organisationId + '.json'
