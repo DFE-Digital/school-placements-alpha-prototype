@@ -3,6 +3,7 @@ const organisationModel = require('../models/organisations')
 const schoolModel = require('../models/schools')
 
 const ageRangeHelper = require('../helpers/age-ranges')
+const giasHelper = require('../helpers/gias')
 const keyStageHelper = require('../helpers/key-stages')
 const paginationHelper = require('../helpers/pagination')
 const subjectHelper = require('../helpers/subjects')
@@ -801,6 +802,193 @@ exports.edit_mentor_key_stage_post = (req, res) => {
     delete req.session.data.mentor
 
     req.flash('success', 'Key stage updated')
+    res.redirect(`/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`)
+  }
+}
+
+exports.edit_mentor_send_training_get = (req, res) => {
+  const currentMentor = mentorModel.findOne({ mentorId: req.params.mentorId })
+  const mentor = mentorModel.findOne({ mentorId: req.params.mentorId })
+
+  let selectedSendTraining
+  if (mentor?.send) {
+    selectedSendTraining = mentor.send
+  }
+
+  const sendOptions = giasHelper.getSENDProvisionOptions(selectedSendTraining, true)
+
+  res.render('../views/mentors/send-training', {
+    currentMentor,
+    mentor,
+    sendOptions,
+    actions: {
+      back: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`,
+      save: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/send-training`,
+      cancel: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`
+    }
+  })
+}
+
+exports.edit_mentor_send_training_post = (req, res) => {
+  const currentMentor = mentorModel.findOne({ mentorId: req.params.mentorId })
+
+  let selectedSendTraining
+  if (req.session.data.mentor?.send) {
+    selectedSendTraining = req.session.data.mentor.send
+  }
+
+  const sendOptions = giasHelper.getSENDProvisionOptions(selectedSendTraining, true)
+
+  const errors = []
+
+  if (!req.session.data.mentor.send) {
+    const error = {}
+    error.fieldName = 'send-training'
+    error.href = '#send-training'
+    error.text = 'Select at least one SEND training or select ‘None’'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/mentors/send-training', {
+      currentMentor,
+      mentor: req.session.data.mentor,
+      sendOptions,
+      actions: {
+        back: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`,
+        save: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/send-training`,
+        cancel: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`
+      },
+      errors
+    })
+  } else {
+    mentorModel.updateOne({
+      organisationId: req.params.organisationId,
+      mentorId: req.params.mentorId,
+      mentor: req.session.data.mentor
+    })
+
+    delete req.session.data.mentor
+
+    req.flash('success', 'SEND training updated')
+    res.redirect(`/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`)
+  }
+}
+
+exports.edit_mentor_networks_associations_get = (req, res) => {
+  const currentMentor = mentorModel.findOne({ mentorId: req.params.mentorId })
+  const mentor = mentorModel.findOne({ mentorId: req.params.mentorId })
+
+  const wordCount = 250
+
+  res.render('../views/mentors/networks-and-associations', {
+    currentMentor,
+    mentor,
+    wordCount,
+    actions: {
+      back: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`,
+      save: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/networks-and-associations`,
+      cancel: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`
+    }
+  })
+}
+
+exports.edit_mentor_networks_associations_post = (req, res) => {
+  const currentMentor = mentorModel.findOne({ mentorId: req.params.mentorId })
+
+  const wordCount = 250
+
+  const errors = []
+
+  // if (!req.session.data.mentor.subjectNetworksAndAssociations.length) {
+  //   const error = {}
+  //   error.fieldName = 'networks-and-associations'
+  //   error.href = '#networks-and-associations'
+  //   error.text = 'Enter details about subject networks and associations'
+  //   errors.push(error)
+  // }
+
+  if (errors.length) {
+    res.render('../views/mentors/networks-and-associations', {
+      currentMentor,
+      mentor: req.session.data.mentor,
+      wordCount,
+      actions: {
+        back: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`,
+        save: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/networks-and-associations`,
+        cancel: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`
+      },
+      errors
+    })
+  } else {
+    mentorModel.updateOne({
+      organisationId: req.params.organisationId,
+      mentorId: req.params.mentorId,
+      mentor: req.session.data.mentor
+    })
+
+    delete req.session.data.mentor
+
+    req.flash('success', 'Subject networks and associations updated')
+    res.redirect(`/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`)
+  }
+}
+
+exports.edit_mentor_other_experiences_get = (req, res) => {
+  const currentMentor = mentorModel.findOne({ mentorId: req.params.mentorId })
+  const mentor = mentorModel.findOne({ mentorId: req.params.mentorId })
+
+  const wordCount = 250
+
+  res.render('../views/mentors/other-experiences', {
+    currentMentor,
+    mentor,
+    wordCount,
+    actions: {
+      back: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`,
+      save: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/other-experiences`,
+      cancel: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`
+    }
+  })
+}
+
+exports.edit_mentor_other_experiences_post = (req, res) => {
+  const currentMentor = mentorModel.findOne({ mentorId: req.params.mentorId })
+
+  const wordCount = 250
+
+  const errors = []
+
+  // if (!req.session.data.mentor.otherExperiences.length) {
+  //   const error = {}
+  //   error.fieldName = 'other-experiences'
+  //   error.href = '#other-experiences'
+  //   error.text = 'Enter details about other experiences'
+  //   errors.push(error)
+  // }
+
+  if (errors.length) {
+    res.render('../views/mentors/other-experiences', {
+      currentMentor,
+      mentor: req.session.data.mentor,
+      wordCount,
+      actions: {
+        back: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`,
+        save: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}/other-experiences`,
+        cancel: `/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`
+      },
+      errors
+    })
+  } else {
+    mentorModel.updateOne({
+      organisationId: req.params.organisationId,
+      mentorId: req.params.mentorId,
+      mentor: req.session.data.mentor
+    })
+
+    delete req.session.data.mentor
+
+    req.flash('success', 'Other experiences updated')
     res.redirect(`/organisations/${req.params.organisationId}/mentors/${req.params.mentorId}`)
   }
 }
