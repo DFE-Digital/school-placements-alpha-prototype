@@ -161,7 +161,8 @@ exports.edit_special_classes_get = (req, res) => {
     specialClassesOptions,
     actions: {
       back: `/organisations/${req.params.organisationId}/show`,
-      save: `/organisations/${req.params.organisationId}/special-classes`
+      save: `/organisations/${req.params.organisationId}/special-classes`,
+      cancel: `/organisations/${req.params.organisationId}/show`
     }
   })
 }
@@ -190,7 +191,8 @@ exports.edit_special_classes_post = (req, res) => {
       specialClassesOptions,
       actions: {
         back: `/organisations/${req.params.organisationId}/show`,
-        save: `/organisations/${req.params.organisationId}/special-classes`
+        save: `/organisations/${req.params.organisationId}/special-classes`,
+        cancel: `/organisations/${req.params.organisationId}/show`
       },
       errors
     })
@@ -224,7 +226,8 @@ exports.edit_send_provision_get = (req, res) => {
     sendOptions,
     actions: {
       back: `/organisations/${req.params.organisationId}/show`,
-      save: `/organisations/${req.params.organisationId}/send-provision`
+      save: `/organisations/${req.params.organisationId}/send-provision`,
+      cancel: `/organisations/${req.params.organisationId}/show`
     }
   })
 }
@@ -253,7 +256,8 @@ exports.edit_send_provision_post = (req, res) => {
       sendOptions,
       actions: {
         back: `/organisations/${req.params.organisationId}/show`,
-        save: `/organisations/${req.params.organisationId}/send-provision`
+        save: `/organisations/${req.params.organisationId}/send-provision`,
+        cancel: `/organisations/${req.params.organisationId}/show`
       },
       errors
     })
@@ -282,7 +286,8 @@ exports.edit_training_with_disabilities_get = (req, res) => {
     wordCount,
     actions: {
       back: `/organisations/${req.params.organisationId}/show`,
-      save: `/organisations/${req.params.organisationId}/training-with-disabilities`
+      save: `/organisations/${req.params.organisationId}/training-with-disabilities`,
+      cancel: `/organisations/${req.params.organisationId}/show`
     }
   })
 }
@@ -311,7 +316,8 @@ exports.edit_training_with_disabilities_post = (req, res) => {
       wordCount,
       actions: {
         back: `/organisations/${req.params.organisationId}/show`,
-        save: `/organisations/${req.params.organisationId}/training-with-disabilities`
+        save: `/organisations/${req.params.organisationId}/training-with-disabilities`,
+        cancel: `/organisations/${req.params.organisationId}/show`
       },
       errors
     })
