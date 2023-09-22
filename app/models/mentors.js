@@ -172,6 +172,18 @@ exports.updateOne = (params) => {
       mentor.status = params.mentor.status
     }
 
+    if (params.mentor.send) {
+      mentor.send = params.mentor.send
+    }
+
+    if (params.mentor.subjectNetworksAndAssociations !== undefined) {
+      mentor.subjectNetworksAndAssociations = params.mentor.subjectNetworksAndAssociations
+    }
+
+    if (params.mentor.otherExperiences !== undefined) {
+      mentor.otherExperiences = params.mentor.otherExperiences
+    }
+
     mentor.updatedAt = new Date()
 
     const filePath = directoryPath + '/' + mentor.id + '.json'
