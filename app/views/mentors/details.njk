@@ -29,13 +29,13 @@
   </div>
 
 
-  <div class="govuk-grid-row">
+  {# <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
       {% include "./_sub-navigation.njk" %}
 
     </div>
-  </div>
+  </div> #}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -191,6 +191,187 @@
                 ]
               }
             }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-9">
+        Additional details
+      </h2>
+
+      {% set providerHtml %}
+        {% if mentor.providers %}
+          <ul class="govuk-list">
+            {% for provider in mentor.providers %}
+              <li>
+                {{ provider | getOrganisationName }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="govuk-hint">
+            Not entered
+          </p>
+        {% endif %}
+      {% endset %}
+
+      {% set qualificationsHtml %}
+        {% if mentor.qualifications %}
+          <ul class="govuk-list">
+            {% for qualification in mentor.qualifications %}
+              <li>
+                {{ qualification | getQualificationLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="govuk-hint">
+            Not entered
+          </p>
+        {% endif %}
+
+      {% endset %}
+
+      {% set sendHtml %}
+        {% if mentor.send %}
+          <ul class="govuk-list">
+            {% for send in mentor.send %}
+              <li>
+                {{ send | getSENDProvisionLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="govuk-hint">
+            Not entered
+          </p>
+        {% endif %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Date qualified as a teacher"
+            },
+            value: {
+              text: mentor.dateQualified | datetime('dd LLLL yyyy') if mentor.dateQualified else "Not entered",
+              classes: "govuk-hint" if not mentor.dateQualified
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "date qualified as a teacher"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Qualifications"
+            },
+            value: {
+              html: qualificationsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "qualifications"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date started mentoring"
+            },
+            value: {
+              text: mentor.dateStartedMentoring | datetime('dd LLLL yyyy') if mentor.dateStartedMentoring else "Not entered",
+              classes: "govuk-hint" if not mentor.dateQualified
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "date started as a mentor"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Provider training"
+            },
+            value: {
+              html: providerHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "provider training"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: '<abbr title="Special educational needs and disability">SEND</abbr> training'
+            },
+            value: {
+              html: sendHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/send-training",
+                  text: "Change",
+                  visuallyHiddenText: "SEND training"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Subject networks and associations"
+            },
+            value: {
+              text: mentor.subjectNetworksAndAssociations if mentor.subjectNetworksAndAssociations.length else "Not entered",
+              classes: "govuk-hint" if not mentor.subjectNetworksAndAssociations.length
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/networks-and-associations",
+                  text: "Change",
+                  visuallyHiddenText: "subject networks and associations"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Other experiences"
+            },
+            value: {
+              text: mentor.otherExperiences if mentor.otherExperiences.length else "Not entered",
+              classes: "govuk-hint" if not mentor.otherExperiences.length
+            },
+            actions: {
+              items: [
+                {
+                  href: actions.change + "/other-experiences",
+                  text: "Change",
+                  visuallyHiddenText: "other experiences"
+                }
+              ]
+            }
+          }
         ]
       }) }}
 
