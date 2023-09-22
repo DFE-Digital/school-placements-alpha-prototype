@@ -333,7 +333,7 @@ exports.getSpecialClassesOptions = (selectedItem) => {
     item.text = option.name
     item.value = option.code
     item.id = option.id
-    item.checked = (selectedItem && selectedItem.includes(option.code)) ? 'checked' : ''
+    item.checked = (selectedItem && parseInt(selectedItem) === option.code) ? 'checked' : ''
 
     items.push(item)
   })
@@ -347,7 +347,7 @@ exports.getSpecialClassesOptions = (selectedItem) => {
 
 exports.getSpecialClassesLabel = (code) => {
   const options = require('../data/schools/school-special-classes')
-  const option = options.find(option => option.code === code)
+  const option = options.find(option => option.code === parseInt(code))
 
   let label = code
 
