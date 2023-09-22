@@ -72,6 +72,22 @@
 
       {% endset %}
 
+      {% set sendHtml %}
+        {% if mentor.send %}
+          <ul class="govuk-list">
+            {% for send in mentor.send %}
+              <li>
+                {{ send | getSENDProvisionLabel }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="govuk-hint">
+            Not entered
+          </p>
+        {% endif %}
+      {% endset %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -149,13 +165,12 @@
               html: '<abbr title="Special educational needs and disability">SEND</abbr> training'
             },
             value: {
-              text: "Not entered",
-              classes: "govuk-hint"
+              html: sendHtml
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: actions.change + "/send-training",
                   text: "Change",
                   visuallyHiddenText: "SEND training"
                 }
@@ -191,7 +206,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: actions.change + "/other-experiences",
                   text: "Change",
                   visuallyHiddenText: "other experiences"
                 }
