@@ -67,8 +67,324 @@
         ]
       }) }}
 
-      {% if organisation.type == 'school' %}
-        <h2 class="govuk-heading-m govuk-!-margin-top-5">
+      {% if organisation.type == "school" %}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">
+          Additional details
+        </h2>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Group"
+              },
+              value: {
+                text: organisation.establishmentGroup | getEstablishmentGroupLabel if organisation.establishmentGroup else "Not entered",
+                classes: "govuk-hint" if not organisation.establishmentGroup
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/establishment-group",
+                    text: "Change",
+                    visuallyHiddenText: "establishment group"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Type"
+              },
+              value: {
+                text: organisation.establishmentType | getEstablishmentTypeLabel if organisation.establishmentType else "Not entered",
+                classes: "govuk-hint" if not organisation.establishmentType
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/establishment-type",
+                    text: "Change",
+                    visuallyHiddenText: "establishment type"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                text: organisation.establishmentStatus | getEstablishmentStatusLabel if organisation.establishmentStatus else "Not entered",
+                classes: "govuk-hint" if not organisation.establishmentStatus
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/establishment-status",
+                    text: "Change",
+                    visuallyHiddenText: "establishment status"
+                  }
+                ]
+              }
+            } if 1==0,
+            {
+              key: {
+                text: "Phase"
+              },
+              value: {
+                text: organisation.establishmentPhase | getEstablishmentPhaseLabel if organisation.establishmentPhase else "Not entered",
+                classes: "govuk-hint" if not organisation.establishmentPhase
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/establishment-phase",
+                    text: "Change",
+                    visuallyHiddenText: "establishment phase"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Gender"
+              },
+              value: {
+                text: organisation.gender | getGenderLabel if organisation.gender else "Not entered",
+                classes: "govuk-hint" if not organisation.gender
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/gender",
+                    text: "Change",
+                    visuallyHiddenText: "gender"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Minimum age"
+              },
+              value: {
+                text: organisation.minAge if organisation.minAge else "Not entered",
+                classes: "govuk-hint" if not organisation.minAge
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/age",
+                    text: "Change",
+                    visuallyHiddenText: "minimum age"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Maximum age"
+              },
+              value: {
+                text: organisation.maxAge if organisation.maxAge else "Not entered",
+                classes: "govuk-hint" if not organisation.maxAge
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/age",
+                    text: "Change",
+                    visuallyHiddenText: "maximum age"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Sixth form"
+              },
+              value: {
+                text: organisation.officialSixthForm | getOfficialSixthFormLabel if organisation.officialSixthForm else "Not entered",
+                classes: "govuk-hint" if not organisation.officialSixthForm
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/sixth-form",
+                    text: "Change",
+                    visuallyHiddenText: "six form"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Nursery provision"
+              },
+              value: {
+                text: organisation.nurseryProvision | getNurseryProvisionLabel if organisation.nurseryProvision else "Not entered",
+                classes: "govuk-hint" if not organisation.nurseryProvision
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/nursery-provision",
+                    text: "Change",
+                    visuallyHiddenText: "nursery provision"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Religious character"
+              },
+              value: {
+                text: organisation.religiousCharacter | getReligiousCharacterLabel if organisation.religiousCharacter else "Not entered",
+                classes: "govuk-hint" if not organisation.religiousCharacter
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/religious-character",
+                    text: "Change",
+                    visuallyHiddenText: "religious character"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Admissions policy"
+              },
+              value: {
+                text: organisation.admissionsPolicy | getAdmissionsPolicyLabel if organisation.admissionsPolicy else "Not entered",
+                classes: "govuk-hint" if not organisation.admissionsPolicy
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/admissions-policy",
+                    text: "Change",
+                    visuallyHiddenText: "admissions policy"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Urban or rural"
+              },
+              value: {
+                text: organisation.urbanRural | getUrbanRuralLabel if organisation.urbanRural else "Not entered",
+                classes: "govuk-hint" if not organisation.urbanRural
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/urban-rural",
+                    text: "Change",
+                    visuallyHiddenText: "urban or rural"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "School capacity"
+              },
+              value: {
+                text: organisation.schoolCapacity | numeral('0,0') if organisation.schoolCapacity else "Not entered",
+                classes: "govuk-hint" if not organisation.schoolCapacity
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/school-capacity",
+                    text: "Change",
+                    visuallyHiddenText: "school capacity"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Total pupils"
+              },
+              value: {
+                text: organisation.totalPupils | numeral('0,0') if organisation.totalPupils else "Not entered",
+                classes: "govuk-hint" if not organisation.totalPupils
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/school-capacity",
+                    text: "Change",
+                    visuallyHiddenText: "total pupils"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Total boys"
+              },
+              value: {
+                text: organisation.totalBoys | numeral('0,0') if organisation.totalBoys else "Not entered",
+                classes: "govuk-hint" if not organisation.totalBoys
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/school-capacity",
+                    text: "Change",
+                    visuallyHiddenText: "total boys"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Total girls"
+              },
+              value: {
+                text: organisation.totalGirls | numeral('0,0') if organisation.totalGirls else "Not entered",
+                classes: "govuk-hint" if not organisation.totalGirls
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/school-capacity",
+                    text: "Change",
+                    visuallyHiddenText: "total girls"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Percentage free school meals"
+              },
+              value: {
+                text: organisation.percentageFreeSchoolMeals | numeral('0,0') + "%" if organisation.percentageFreeSchoolMeals else "Not entered",
+                classes: "govuk-hint" if not organisation.percentageFreeSchoolMeals
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/free-school-meals",
+                    text: "Change",
+                    visuallyHiddenText: "free school meals"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">
           Special educational needs and disabilities (SEND)
         </h2>
 
@@ -77,7 +393,7 @@
             <ul class="govuk-list">
               {% for send in organisation.send %}
                 <li>
-                  {{ send }}
+                  {{ send | getSENDProvisionLabel }}
                 </li>
               {% endfor %}
             </ul>
@@ -92,6 +408,24 @@
           rows: [
             {
               key: {
+                text: "Special classes"
+              },
+              value: {
+                text: organisation.specialClasses | getSpecialClassesLabel if organisation.specialClasses else "Not entered",
+                classes: "govuk-hint" if not organisation.specialClasses
+              },
+              actions: {
+                items: [
+                  {
+                    href: actions.change + "/special-classes",
+                    text: "Change",
+                    visuallyHiddenText: "special classes"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
                 html: '<abbr title="Special educational needs and disability">SEND</abbr> provision'
               },
               value: {
@@ -100,7 +434,7 @@
               actions: {
                 items: [
                   {
-                    href: "#",
+                    href: actions.change + "/send-provision",
                     text: "Change",
                     visuallyHiddenText: "SEND provision"
                   }
@@ -118,7 +452,7 @@
               actions: {
                 items: [
                   {
-                    href: "#",
+                    href: actions.change + "/training-with-disabilities",
                     text: "Change",
                     visuallyHiddenText: "training with disabilities"
                   }
@@ -127,9 +461,37 @@
             }
           ]
         }) }}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">
+          Ofsted
+        </h2>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Rating"
+              },
+              value: {
+                text: organisation.ofsted.rating | getOfstedRatingLabel if organisation.ofsted.rating else "Unknown",
+                classes: "govuk-hint" if not organisation.ofsted.rating
+              }
+            },
+            {
+              key: {
+                text: "Last inspection date"
+              },
+              value: {
+                text: organisation.ofsted.lastInspectionDate | datetime('dd LLLL yyyy') if organisation.ofsted.lastInspectionDate else "Unknown",
+                classes: "govuk-hint" if not organisation.ofsted.lastInspectionDate
+              }
+            }
+          ]
+        }) }}
+
       {% endif %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-5">Contact details</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-9">Contact details</h2>
 
       {% set addressHtml %}
         {% if organisation.address.addressLine1.length %}
