@@ -430,10 +430,12 @@ exports.getOfstedRatingLabel = (code) => {
   return label
 }
 
-exports.getSENDProvisionOptions = (selectedItem) => {
+exports.getSENDProvisionOptions = (selectedItem, noneOption = false) => {
   const items = []
 
   let options = require('../data/schools/school-send-provision')
+
+  options.sort((a, b) => a.sortOrder - b.sortOrder)
 
   options.forEach((option, i) => {
     const item = {}
@@ -446,9 +448,20 @@ exports.getSENDProvisionOptions = (selectedItem) => {
     items.push(item)
   })
 
-  items.sort((a, b) => {
-    return a.text.localeCompare(b.text)
-  })
+  if (noneOption) {
+    items.push({ divider: 'or' })
+    items.push({
+      text: 'None',
+      value: 'none',
+      id: '5df6cb03-028a-4374-8364-20eddbc789c8',
+      checked: (selectedItem && selectedItem.includes('none')) ? 'checked' : '',
+      behaviour: 'exclusive'
+    })
+  }
+
+  // items.sort((a, b) => {
+  //   return a.text.localeCompare(b.text)
+  // })
 
   return items
 }
