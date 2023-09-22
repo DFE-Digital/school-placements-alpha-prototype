@@ -143,7 +143,17 @@ exports.edit_free_school_meals_post = (req, res) => {
 }
 
 exports.edit_special_classes_get = (req, res) => {
-  res.send('Not implemented')
+  const organisation = organisationModel.findOne({
+    organisationId: req.params.organisationId
+  })
+
+  res.render('../views/organisations/special-classes', {
+    organisation,
+    actions: {
+      back: `/organisations/${req.params.organisationId}`,
+      save: `/organisations/${req.params.organisationId}/special-classes`
+    }
+  })
 }
 
 exports.edit_special_classes_post = (req, res) => {
@@ -151,7 +161,17 @@ exports.edit_special_classes_post = (req, res) => {
 }
 
 exports.edit_send_provision_get = (req, res) => {
-  res.send('Not implemented')
+  const organisation = organisationModel.findOne({
+    organisationId: req.params.organisationId
+  })
+
+  res.render('../views/organisations/send-provision', {
+    organisation,
+    actions: {
+      back: `/organisations/${req.params.organisationId}/show`,
+      save: `/organisations/${req.params.organisationId}/send-provision`
+    }
+  })
 }
 
 exports.edit_send_provision_post = (req, res) => {
@@ -159,9 +179,59 @@ exports.edit_send_provision_post = (req, res) => {
 }
 
 exports.edit_training_with_disabilities_get = (req, res) => {
-  res.send('Not implemented')
+  const organisation = organisationModel.findOne({
+    organisationId: req.params.organisationId
+  })
+
+  const wordCount = 250
+
+  res.render('../views/organisations/training-with-disabilities', {
+    organisation,
+    wordCount,
+    actions: {
+      back: `/organisations/${req.params.organisationId}/show`,
+      save: `/organisations/${req.params.organisationId}/training-with-disabilities`
+    }
+  })
 }
 
 exports.edit_training_with_disabilities_post = (req, res) => {
-  res.send('Not implemented')
+  const wordCount = 250
+  const errors = []
+
+  if (!req.session.data.organisation.trainingWithDisabilities.length) {
+    const error = {}
+    error.fieldName = 'training-with-disabilities'
+    error.href = '#training-with-disabilities'
+    error.text = 'Enter details about training with disabilities'
+    errors.push(error)
+  } else if (req.session.data.organisation.trainingWithDisabilities?.split(' ').length > wordCount) {
+    const error = {}
+    error.fieldName = 'training-with-disabilities'
+    error.href = '#training-with-disabilities'
+    error.text = `Details about training with disabilities must be ${wordCount} words or fewer`
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/organisations/training-with-disabilities', {
+      organisation: req.session.data.organisation,
+      wordCount,
+      actions: {
+        back: `/organisations/${req.params.organisationId}/show`,
+        save: `/organisations/${req.params.organisationId}/training-with-disabilities`
+      },
+      errors
+    })
+  } else {
+    organisationModel.updateOne({
+      organisationId: req.params.organisationId,
+      organisation: req.session.data.organisation
+    })
+
+    delete req.session.data.organisation
+
+    req.flash('success', 'Training with disabilities updated')
+    res.redirect(`/organisations/${req.params.organisationId}/show`)
+  }
 }
