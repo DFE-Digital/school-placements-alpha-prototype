@@ -263,6 +263,15 @@ router.post('/organisations/:organisationId/mentors/:mentorId/age-range', checkI
 router.get('/organisations/:organisationId/mentors/:mentorId/key-stage', checkIsAuthenticated, mentorController.edit_mentor_key_stage_get)
 router.post('/organisations/:organisationId/mentors/:mentorId/key-stage', checkIsAuthenticated, mentorController.edit_mentor_key_stage_post)
 
+router.get('/organisations/:organisationId/mentors/:mentorId/send-training', checkIsAuthenticated, mentorController.edit_mentor_send_training_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/send-training', checkIsAuthenticated, mentorController.edit_mentor_send_training_post)
+
+router.get('/organisations/:organisationId/mentors/:mentorId/networks-and-associations', checkIsAuthenticated, mentorController.edit_mentor_networks_associations_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/networks-and-associations', checkIsAuthenticated, mentorController.edit_mentor_networks_associations_post)
+
+router.get('/organisations/:organisationId/mentors/:mentorId/other-experiences', checkIsAuthenticated, mentorController.edit_mentor_other_experiences_get)
+router.post('/organisations/:organisationId/mentors/:mentorId/other-experiences', checkIsAuthenticated, mentorController.edit_mentor_other_experiences_post)
+
 router.get('/organisations/:organisationId/mentors/:mentorId/delete', checkIsAuthenticated, mentorController.delete_mentor_get)
 router.post('/organisations/:organisationId/mentors/:mentorId/delete', checkIsAuthenticated, mentorController.delete_mentor_post)
 
