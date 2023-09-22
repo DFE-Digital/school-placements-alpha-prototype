@@ -149,17 +149,62 @@ exports.edit_special_classes_get = (req, res) => {
     organisationId: req.params.organisationId
   })
 
+  let selectedSpecialClasses
+  if (organisation?.specialClasses) {
+    selectedSpecialClasses = organisation.specialClasses
+  }
+
+  const specialClassesOptions = giasHelper.getSpecialClassesOptions(selectedSpecialClasses)
+
   res.render('../views/organisations/special-classes', {
     organisation,
+    specialClassesOptions,
     actions: {
-      back: `/organisations/${req.params.organisationId}`,
+      back: `/organisations/${req.params.organisationId}/show`,
       save: `/organisations/${req.params.organisationId}/special-classes`
     }
   })
 }
 
 exports.edit_special_classes_post = (req, res) => {
-  res.send('Not implemented')
+  let selectedSpecialClasses
+  if (req.session.data.organisation?.specialClasses) {
+    selectedSpecialClasses = req.session.data.organisation.specialClasses
+  }
+
+  const specialClassesOptions = giasHelper.getSpecialClassesOptions(selectedSpecialClasses)
+
+  const errors = []
+
+  if (!req.session.data.organisation.specialClasses) {
+    const error = {}
+    error.fieldName = 'special-classes'
+    error.href = '#special-classes'
+    error.text = 'Select if you have special classes'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/organisations/special-classes', {
+      organisation: req.session.data.organisation,
+      specialClassesOptions,
+      actions: {
+        back: `/organisations/${req.params.organisationId}/show`,
+        save: `/organisations/${req.params.organisationId}/special-classes`
+      },
+      errors
+    })
+  } else {
+    organisationModel.updateOne({
+      organisationId: req.params.organisationId,
+      organisation: req.session.data.organisation
+    })
+
+    delete req.session.data.organisation
+
+    req.flash('success', 'Special classes updated')
+    res.redirect(`/organisations/${req.params.organisationId}/show`)
+  }
 }
 
 exports.edit_send_provision_get = (req, res) => {
@@ -223,7 +268,6 @@ exports.edit_send_provision_post = (req, res) => {
     req.flash('success', 'SEND provision updated')
     res.redirect(`/organisations/${req.params.organisationId}/show`)
   }
-
 }
 
 exports.edit_training_with_disabilities_get = (req, res) => {
