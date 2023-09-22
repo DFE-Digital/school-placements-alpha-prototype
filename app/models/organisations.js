@@ -57,6 +57,10 @@ exports.updateOne = (params) => {
       organisation.trainingWithDisabilities = params.organisation.trainingWithDisabilities
     }
 
+    if (params.organisation.send !== undefined) {
+      organisation.send = params.organisation.send
+    }
+
     organisation.updatedAt = new Date()
 
     const filePath = directoryPath + '/' + params.organisationId + '.json'
