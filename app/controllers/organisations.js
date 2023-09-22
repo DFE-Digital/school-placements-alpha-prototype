@@ -1,5 +1,7 @@
 const organisationModel = require('../models/organisations')
 
+const giasHelper = require('../helpers/gias')
+
 exports.list_organisations_get = (req, res) => {
   if (req.session.passport.user.organisations && req.session.passport.user.organisations.length > 1) {
     const organisations = req.session.passport.user.organisations
@@ -165,8 +167,16 @@ exports.edit_send_provision_get = (req, res) => {
     organisationId: req.params.organisationId
   })
 
+  let selectedSendProvision
+  if (organisation?.send) {
+    selectedSendProvision = organisation.send
+  }
+
+  const sendOptions = giasHelper.getSENDProvisionOptions(selectedSendProvision, true)
+
   res.render('../views/organisations/send-provision', {
     organisation,
+    sendOptions,
     actions: {
       back: `/organisations/${req.params.organisationId}/show`,
       save: `/organisations/${req.params.organisationId}/send-provision`
@@ -175,7 +185,45 @@ exports.edit_send_provision_get = (req, res) => {
 }
 
 exports.edit_send_provision_post = (req, res) => {
-  res.send('Not implemented')
+  let selectedSendProvision
+  if (req.session.data.organisation?.send) {
+    selectedSendProvision = req.session.data.organisation.send
+  }
+
+  const sendOptions = giasHelper.getSENDProvisionOptions(selectedSendProvision, true)
+
+  const errors = []
+
+  if (!req.session.data.organisation.send) {
+    const error = {}
+    error.fieldName = 'send-provision'
+    error.href = '#send-provision'
+    error.text = 'Select at least one SEND provision'
+    errors.push(error)
+  }
+
+  if (errors.length) {
+    res.render('../views/organisations/send-provision', {
+      organisation: req.session.data.organisation,
+      sendOptions,
+      actions: {
+        back: `/organisations/${req.params.organisationId}/show`,
+        save: `/organisations/${req.params.organisationId}/send-provision`
+      },
+      errors
+    })
+  } else {
+    organisationModel.updateOne({
+      organisationId: req.params.organisationId,
+      organisation: req.session.data.organisation
+    })
+
+    delete req.session.data.organisation
+
+    req.flash('success', 'SEND provision updated')
+    res.redirect(`/organisations/${req.params.organisationId}/show`)
+  }
+
 }
 
 exports.edit_training_with_disabilities_get = (req, res) => {
