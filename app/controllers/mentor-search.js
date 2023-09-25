@@ -310,7 +310,7 @@ exports.list_mentors_results_get = (req, res) => {
 
   const filterKItems = utilsHelper.getSENDTrainingFilterItems(selectedK)
 
-  let results = require('../data/temp/mentors-sprint6')
+  let results = require('../data/temp/mentors-sprint11')
   const resultsCount = results.length
 
   // Get the pagination data
