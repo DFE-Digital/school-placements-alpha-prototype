@@ -9,6 +9,9 @@
     "schoolType": "Voluntary aided school",
     "gender": "Mixed",
     "religiousCharacter": "Roman Catholic",
+    "sendProvision": [
+      "Autistic Spectrum Disorder"
+    ],
     "ofstedRating": "Good",
     "keyStage": "3 and 4",
     "ecfTraining": "yes",
@@ -52,6 +55,9 @@
     "schoolType": "Community school",
     "gender": "Mixed",
     "religiousCharacter": "Does not apply",
+    "sendProvision": [
+      "Autistic Spectrum Disorder"
+    ],
     "ofstedRating": "Outstanding",
     "keyStage": "3 and 4",
     "admissionsPolicy": "Non-selective",
@@ -94,6 +100,9 @@
     "schoolType": "Academy converter",
     "gender": "Boys",
     "religiousCharacter": "Roman Catholic",
+    "sendProvision": [
+      "Autistic Spectrum Disorder"
+    ],
     "ofstedRating": "Good",
     "keyStage": "3 and 4",
     "admissionsPolicy": "Selective",
@@ -116,6 +125,10 @@
     "schoolType": "Academy converter",
     "gender": "Boys",
     "religiousCharacter": "Roman Catholic",
+    "sendProvision": [
+      "Autistic Spectrum Disorder",
+      "Severe Learning Difficulty"
+    ],
     "ofstedRating": "Good",
     "keyStage": "3 and 4",
     "admissionsPolicy": "Selective",
@@ -137,6 +150,10 @@
     "schoolType": "Other independent school",
     "gender": "Mixed",
     "religiousCharacter": "Church of England",
+    "sendProvision": [
+      "Severe Learning Difficulty",
+      "Social, Emotional and Mental Health"
+    ],
     "keyStage": "3 and 4",
     "admissionsPolicy": "Not applicable",
     "ecfTraining": "yes",
@@ -158,7 +175,6 @@
     "schoolType": "Community special school",
     "gender": "Mixed",
     "religiousCharacter": "Does not apply",
-    "sendProvision": "SEMH - Social, Emotional and Mental Health",
     "ofstedRating": "Good",
     "keyStage": "1 and 2",
     "admissionsPolicy": "Not applicable",
@@ -203,7 +219,10 @@
     "schoolType": "Foundation special school",
     "gender": "Mixed",
     "religiousCharacter": "Does not apply",
-    "sendProvision": "SLD - Severe Learning Difficulty",
+    "sendProvision": [
+      "Autistic Spectrum Disorder",
+      "Severe Learning Difficulty"
+    ],
     "ofstedRating": "Good",
     "keyStage": "3 and 4",
     "admissionsPolicy": "Not applicable",
@@ -246,7 +265,9 @@
     "schoolType": "Academy converter",
     "gender": "Mixed",
     "religiousCharacter": "Does not apply",
-    "sendProvision": "ASD - Autistic Spectrum Disorder",
+    "sendProvision": [
+      "Autistic Spectrum Disorder"
+    ],
     "ofstedRating": "Requires improvement",
     "keyStage": "3 and 4",
     "admissionsPolicy": "Non-selective",
@@ -268,6 +289,10 @@
     "schoolType": "Other independent school",
     "gender": "Mixed",
     "religiousCharacter": "Islam",
+    "sendProvision": [
+      "Autistic Spectrum Disorder",
+      "Severe Learning Difficulty"
+    ],
     "ofstedRating": "Inadequate",
     "keyStage": "3 and 4",
     "admissionsPolicy": "Non-selective",
