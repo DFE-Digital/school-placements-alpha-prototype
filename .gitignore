@@ -1,3 +1,6 @@
+# Ignore package-lock file
+package-lock.json
+
 # Ignore generated data files
 app/data/age-ranges.json
 app/data/key-stages.json
