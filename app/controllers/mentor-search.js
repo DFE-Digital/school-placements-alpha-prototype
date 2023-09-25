@@ -23,6 +23,7 @@ exports.list_mentors_results_get = (req, res) => {
   const h = null
   const i = null
   const j = null
+  const k = null
 
   let as
   if (req.session.data.filter?.a) {
@@ -45,33 +46,38 @@ exports.list_mentors_results_get = (req, res) => {
   }
 
   let es
-  if (req.session.data.filter?.d) {
+  if (req.session.data.filter?.e) {
     es = utilsHelper.getCheckboxValues(e, req.session.data.filter.e)
   }
 
   let fs
-  if (req.session.data.filter?.d) {
+  if (req.session.data.filter?.f) {
     fs = utilsHelper.getCheckboxValues(f, req.session.data.filter.f)
   }
 
   let gs
-  if (req.session.data.filter?.d) {
+  if (req.session.data.filter?.g) {
     gs = utilsHelper.getCheckboxValues(g, req.session.data.filter.g)
   }
 
   let hs
-  if (req.session.data.filter?.d) {
+  if (req.session.data.filter?.h) {
     hs = utilsHelper.getCheckboxValues(h, req.session.data.filter.h)
   }
 
   let is
-  if (req.session.data.filter?.d) {
+  if (req.session.data.filter?.i) {
     is = utilsHelper.getCheckboxValues(i, req.session.data.filter.i)
   }
 
   let js
-  if (req.session.data.filter?.d) {
+  if (req.session.data.filter?.j) {
     js = utilsHelper.getCheckboxValues(j, req.session.data.filter.j)
+  }
+
+  let ks
+  if (req.session.data.filter?.k) {
+    ks = utilsHelper.getCheckboxValues(k, req.session.data.filter.k)
   }
 
   const hasFilters = !!((as?.length > 0)
@@ -84,6 +90,7 @@ exports.list_mentors_results_get = (req, res) => {
     || (hs?.length > 0)
     || (is?.length > 0)
     || (js?.length > 0)
+    || (ks?.length > 0)
   )
 
   let selectedFilters = null
@@ -212,6 +219,18 @@ exports.list_mentors_results_get = (req, res) => {
         })
       })
     }
+
+    if (ks?.length) {
+      selectedFilters.categories.push({
+        heading: { text: 'SEND training' },
+        items: ks.map((k) => {
+          return {
+            text: utilsHelper.getFilterKLabel(j),
+            href: `/find/organisations/${req.params.organisationId}/mentors/remove-k-filter/${k}`
+          }
+        })
+      })
+    }
   }
 
   let selectedA
@@ -284,6 +303,13 @@ exports.list_mentors_results_get = (req, res) => {
 
   const filterJItems = utilsHelper.getECFTrainingFilterItems(selectedJ)
 
+  let selectedK
+  if (req.session.data.filter?.k) {
+    selectedK = req.session.data.filter.k
+  }
+
+  const filterKItems = utilsHelper.getSENDTrainingFilterItems(selectedK)
+
   let results = require('../data/temp/mentors-sprint6')
   const resultsCount = results.length
 
@@ -317,6 +343,7 @@ exports.list_mentors_results_get = (req, res) => {
     filterHItems,
     filterIItems,
     filterJItems,
+    filterKItems,
     // selectedA,
     // selectedC,
     // selectedE,
@@ -388,6 +415,11 @@ exports.removeFilterI = (req, res) => {
 
 exports.removeFilterJ = (req, res) => {
   req.session.data.filter.j = utilsHelper.removeFilter(req.params.j, req.session.data.filter.j)
+  res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
+}
+
+exports.removeFilterK = (req, res) => {
+  req.session.data.filter.k = utilsHelper.removeFilter(req.params.k, req.session.data.filter.k)
   res.redirect(`/find/organisations/${req.params.organisationId}/mentors`)
 }
 

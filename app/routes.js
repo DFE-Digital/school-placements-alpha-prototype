@@ -225,6 +225,7 @@ router.get('/find/organisations/:organisationId/mentors/remove-g-filter/:g', che
 router.get('/find/organisations/:organisationId/mentors/remove-h-filter/:h', checkIsAuthenticated, mentorSearchController.removeFilterH)
 router.get('/find/organisations/:organisationId/mentors/remove-i-filter/:i', checkIsAuthenticated, mentorSearchController.removeFilterI)
 router.get('/find/organisations/:organisationId/mentors/remove-j-filter/:j', checkIsAuthenticated, mentorSearchController.removeFilterJ)
+router.get('/find/organisations/:organisationId/mentors/remove-k-filter/:k', checkIsAuthenticated, mentorSearchController.removeFilterK)
 
 router.get('/find/organisations/:organisationId/mentors/remove-all-filters', checkIsAuthenticated, mentorSearchController.removeAllFilters)
 
