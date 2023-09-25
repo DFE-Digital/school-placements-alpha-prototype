@@ -35,8 +35,18 @@
   </div>
   {% if params.sendProvision %}
     <div class="app-mentor-result-detail__row">
-      <dt class="app-mentor-result-detail__key"><abbr title="special educational needs and disabilities">SEND</abbr> provision</dt>
-      <dd class="app-mentor-result-detail__value">{{ params.sendProvision }}</dd>
+      <dt class="app-mentor-result-detail__key">
+        <abbr title="Special Educational Needs and Disabilities">SEND</abbr> provision
+      </dt>
+      <dd class="app-mentor-result-detail__value">
+        <ul class="govuk-list govuk-!-margin-bottom-0">
+          {% for send in params.sendProvision %}
+            <li>
+              {{ send }}
+            </li>
+          {% endfor %}
+        </ul>
+      </dd>
     </div>
   {% endif %}
   {# TODO: add last ofsted inspection date next to rating #}
@@ -64,7 +74,7 @@
   <div class="app-mentor-result-detail__row">
     <dt class="app-mentor-result-detail__key">Years mentoring</dt>
     <dd class="app-mentor-result-detail__value">
-      <p class="govuk-body">{{ params.yearsMentoring }} ({{ params.yearsTeaching }} years teaching)</p>
+      <p class="govuk-body">{{ params.yearsMentoring + (" - new to mentoring" if not params.yearsMentoring) }} ({{ params.yearsTeaching }} years teaching)</p>
       <p class="govuk-hint">
         Trained with {{ params.trainedWith[0] }} {{" and " + (params.trainedWith.length - 1) + " others" if params.trainedWith.length > 1}}
       </p>

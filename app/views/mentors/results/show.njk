@@ -61,7 +61,7 @@
               text: "Years mentoring"
             },
             value: {
-              text: mentor.yearsMentoring
+              text: mentor.yearsMentoring + (" - new to mentoring" if not mentor.yearsMentoring)
             }
           },
           {
@@ -74,7 +74,7 @@
           },
           {
             key: {
-              text: "SEND training"
+              html: '<abbr title="Special educational needs and disability">SEND</abbr> training'
             },
             value: {
               text: mentor.sendTraining | capitalize
@@ -82,7 +82,7 @@
           },
           {
             key: {
-              text: "ECF training"
+              html: '<abbr title="Early Careers Framework">ECF</abbr> training'
             },
             value: {
               text: mentor.ecfTraining | capitalize
@@ -115,6 +115,22 @@
       }) }}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-9">School details</h2>
+
+      {% set sendProvisionHtml %}
+        {% if mentor.sendProvision %}
+          <ul class="govuk-list">
+            {% for send in mentor.sendProvision %}
+              <li>
+                {{ send }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="govuk-hint">
+            Not entered
+          </p>
+        {% endif %}
+      {% endset %}
 
       {{ govukSummaryList({
         rows: [
@@ -172,6 +188,14 @@
             },
             value: {
               text: mentor.admissionsPolicy if mentor.admissionsPolicy else "Unknown"
+            }
+          },
+          {
+            key: {
+              html: '<abbr title="Special educational needs and disability">SEND</abbr> provision'
+            },
+            value: {
+              html: sendProvisionHtml
             }
           }
         ]
