@@ -330,6 +330,31 @@ exports.getECFTrainingFilterItems = (selectedItems) => {
   return items
 }
 
+exports.getSENDTrainingFilterItems = (selectedItems) => {
+  const options = [
+    {
+      id: '7f3f22c4-5d38-4db3-935d-aa6cb9074bda',
+      name: 'Only show mentors with SEND training',
+      code: 'option-1'
+    }
+  ]
+
+  const items = []
+
+  options.forEach((option, i) => {
+    const item = {}
+
+    item.text = option.name
+    item.value = option.code
+    item.id = option.id
+    item.checked = (selectedItems && selectedItems.includes(option.code)) ? 'checked' : ''
+
+    items.push(item)
+  })
+
+  return items
+}
+
 exports.getFilterGItems = (selectedItems) => {
   const options = [
     {
@@ -525,6 +550,12 @@ exports.getFilterILabel = (code) => {
 }
 
 exports.getFilterJLabel = (code) => {
+  let label = code
+
+  return label
+}
+
+exports.getFilterKLabel = (code) => {
   let label = code
 
   return label

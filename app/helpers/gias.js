@@ -333,7 +333,7 @@ exports.getSpecialClassesOptions = (selectedItem) => {
     item.text = option.name
     item.value = option.code
     item.id = option.id
-    item.checked = (selectedItem && selectedItem.includes(option.code)) ? 'checked' : ''
+    item.checked = (selectedItem && parseInt(selectedItem) === option.code) ? 'checked' : ''
 
     items.push(item)
   })
@@ -347,7 +347,7 @@ exports.getSpecialClassesOptions = (selectedItem) => {
 
 exports.getSpecialClassesLabel = (code) => {
   const options = require('../data/schools/school-special-classes')
-  const option = options.find(option => option.code === code)
+  const option = options.find(option => option.code === parseInt(code))
 
   let label = code
 
@@ -430,10 +430,12 @@ exports.getOfstedRatingLabel = (code) => {
   return label
 }
 
-exports.getSENDProvisionOptions = (selectedItem) => {
+exports.getSENDProvisionOptions = (selectedItem, noneOption = false) => {
   const items = []
 
   let options = require('../data/schools/school-send-provision')
+
+  options.sort((a, b) => a.sortOrder - b.sortOrder)
 
   options.forEach((option, i) => {
     const item = {}
@@ -446,9 +448,20 @@ exports.getSENDProvisionOptions = (selectedItem) => {
     items.push(item)
   })
 
-  items.sort((a, b) => {
-    return a.text.localeCompare(b.text)
-  })
+  if (noneOption) {
+    items.push({ divider: 'or' })
+    items.push({
+      text: 'None',
+      value: 'none',
+      id: '5df6cb03-028a-4374-8364-20eddbc789c8',
+      checked: (selectedItem && selectedItem.includes('none')) ? 'checked' : '',
+      behaviour: 'exclusive'
+    })
+  }
+
+  // items.sort((a, b) => {
+  //   return a.text.localeCompare(b.text)
+  // })
 
   return items
 }

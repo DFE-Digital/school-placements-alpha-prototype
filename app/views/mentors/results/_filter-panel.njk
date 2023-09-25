@@ -1,5 +1,21 @@
 {% set filterOptionsHtml %}
 
+{{ govukCheckboxes({
+  idPrefix: "filter-k",
+  name: "filter[k]",
+  fieldset: {
+    legend: {
+      html: 'SEND training<span class="govuk-visually-hidden"> filter</span>',
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  formGroup: {
+    classes: "app-filter__group"
+  },
+  items: filterKItems,
+  classes: "govuk-checkboxes--small"
+}) }}
+
 {# {{ appCheckboxFilter({
   idPrefix: "filter-a",
   name: "filter[a]",

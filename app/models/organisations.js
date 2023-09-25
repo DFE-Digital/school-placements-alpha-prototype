@@ -48,7 +48,35 @@ exports.insertOne = (params) => {
 }
 
 exports.updateOne = (params) => {
+  let organisation
 
+  if (params.organisationId) {
+    organisation = this.findOne({ organisationId: params.organisationId })
+
+    if (params.organisation.trainingWithDisabilities !== undefined) {
+      organisation.trainingWithDisabilities = params.organisation.trainingWithDisabilities
+    }
+
+    if (params.organisation.send !== undefined) {
+      organisation.send = params.organisation.send
+    }
+
+    if (params.organisation.specialClasses !== undefined) {
+      organisation.specialClasses = params.organisation.specialClasses
+    }
+
+    organisation.updatedAt = new Date()
+
+    const filePath = directoryPath + '/' + params.organisationId + '.json'
+
+    // create a JSON sting for the submitted data
+    const fileData = JSON.stringify(organisation)
+
+    // write the JSON data
+    fs.writeFileSync(filePath, fileData)
+  }
+
+  return organisation
 }
 
 exports.deleteOne = (params) => {
