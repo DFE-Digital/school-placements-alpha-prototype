@@ -661,7 +661,7 @@ exports.list_mentors_get = (req, res) => {
 /// ------------------------------------------------------------------------ ///
 
 exports.show_mentor_get = (req, res) => {
-  const mentors = require('../data/temp/mentors-sprint6')
+  const mentors = require('../data/temp/mentors-sprint11')
   const mentor = mentors.find(mentor => mentor.id === req.params.mentorId)
 
   const school = schoolModel.findOne({ schoolId: mentor.urn })
