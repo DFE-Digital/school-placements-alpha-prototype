@@ -19,7 +19,7 @@
     "del": "6.1.1",
     "got": "^11.8.6",
     "govuk-frontend": "4.7.0",
-    "govuk-prototype-kit": "13.15.1",
+    "govuk-prototype-kit": "13.15.2",
     "gray-matter": "^4.0.3",
     "luxon": "^3.4.4",
     "marked": "^9.1.6",
