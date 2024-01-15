@@ -12,7 +12,7 @@
     "start": "govuk-prototype-kit start"
   },
   "dependencies": {
-    "@govuk-prototype-kit/common-templates": "1.2.2",
+    "@govuk-prototype-kit/common-templates": "2.0.1",
     "connect-flash": "^0.1.1",
     "convert-csv-to-json": "^2.0.0",
     "csv-string": "^4.1.1",
