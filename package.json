@@ -14,7 +14,7 @@
   "dependencies": {
     "@govuk-prototype-kit/common-templates": "1.2.2",
     "connect-flash": "^0.1.1",
-    "convert-csv-to-json": "^2.0.0",
+    "convert-csv-to-json": "^2.2.0",
     "csv-string": "^4.1.1",
     "del": "6.1.1",
     "got": "^11.8.6",
