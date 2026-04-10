@@ -27,6 +27,6 @@
     "numeral": "^2.0.6",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "uuid": "^9.0.1"
+    "uuid": "^13.0.0"
   }
 }
